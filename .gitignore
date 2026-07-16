@@ -4,6 +4,7 @@ out/
 coverage/
 playwright-report/
 test-results/
+.worktrees/
 *.tsbuildinfo
 
 .env
@@ -15,4 +16,3 @@ Thumbs.db
 
 # Local copyrighted reference material. Never publish this file.
 docs/诡秘之主.txt
-
