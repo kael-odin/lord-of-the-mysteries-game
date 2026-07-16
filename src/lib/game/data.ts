@@ -1,0 +1,324 @@
+import type { Effect } from "./types";
+
+// ============ 途径 PATHWAYS ============
+export interface AbilityFx {
+  dmg?: number;
+  dmgAttr?: number; // 属性加成系数
+  dmgAttrKey?: "physique" | "inspiration" | "will";
+  healHp?: number;
+  healSp?: number;
+  healSanity?: number;
+  shield?: number;
+  dot?: { v: number; turns: number };
+  eAtkDown?: number;
+  eAtkTurns?: number;
+  atkUp?: number;
+  atkUpTurns?: number;
+  dodgeUp?: number;
+  dodgeTurns?: number;
+  vuln?: number; // %
+  vulnTurns?: number;
+  undeadBonus?: number;
+  crit?: number; // 额外暴击率
+}
+
+export interface Ability {
+  key: string;
+  name: string;
+  desc: string;
+  sp: number;
+  sanity?: number;
+  fx: AbilityFx;
+  upName?: string; // 序列8升级名
+  upDesc?: string;
+  upFx?: Partial<AbilityFx>;
+}
+
+export interface Pathway {
+  key: string;
+  name: string; // 序列9名称
+  seq8: string;
+  road: string; // 途径归属
+  motto: string; // 扮演法则
+  desc: string;
+  bonus: {
+    maxHp?: number; maxSp?: number; maxSanity?: number;
+    physique?: number; inspiration?: number; will?: number;
+    sp?: number; hp?: number; sanity?: number; tag?: string;
+  };
+  passive: { name: string; desc: string };
+  abilities: Ability[];
+  drinkNode: string;
+  flavor: string;
+}
+
+export const PATHWAYS: Record<string, Pathway> = {
+  seer: {
+    key: "seer",
+    name: "占卜家",
+    seq8: "小丑",
+    road: "愚者途径",
+    motto: "「扮演占卜师，敬畏命运，却不臣服于命运。」",
+    desc: "窥视命运长河的人。擅长灵视与占卜，能提前嗅到危险的气息。代价是——知道的越多，死得越快。",
+    bonus: { inspiration: 3, will: 1, maxSp: 8, sp: 8, maxSanity: 4 },
+    passive: { name: "灵视", desc: "永久被动：战斗中敌人闪避率降低，剧情中解锁隐藏选项。" },
+    drinkNode: "c2_drink_seer",
+    flavor: "佔卜家的魔药像一杯凝固的星空，靛蓝色液体里浮沉着眼珠大小的银白光点。",
+    abilities: [
+      {
+        key: "spirit_eye", name: "灵视解析", desc: "看穿敌人的「灵」，攻击+3、闪避+25%，持续2回合",
+        sp: 4, fx: { atkUp: 3, atkUpTurns: 2, dodgeUp: 25, dodgeTurns: 2 },
+        upName: "危机直觉", upDesc: "小丑的直觉：攻击+4、闪避+35%，持续3回合",
+        upFx: { atkUp: 4, atkUpTurns: 3, dodgeUp: 35, dodgeTurns: 3 },
+      },
+      {
+        key: "spirit_fire", name: "仪式·灵焰", desc: "以灵性点燃无形之火，造成 8+灵感×1.2 伤害，对亡灵额外+6",
+        sp: 6, fx: { dmg: 8, dmgAttr: 1.2, dmgAttrKey: "inspiration", undeadBonus: 6 },
+        upName: "纸牌飞刀", upDesc: "造成 12+灵感×1.4 伤害，20% 暴击（×1.6）",
+        upFx: { dmg: 12, dmgAttr: 1.4, crit: 20 },
+      },
+    ],
+  },
+  sleepless: {
+    key: "sleepless",
+    name: "不眠者",
+    seq8: "午夜诗人",
+    road: "黑暗途径",
+    motto: "「守护长夜，直到黎明。不眠即是职责。」",
+    desc: "黑夜的眷属。夜越深，力量越强，精神如打磨过的刀。黑夜女神教会值夜者的中坚序列。",
+    bonus: { physique: 2, will: 2, maxHp: 10, hp: 10, maxSp: 6, sp: 6 },
+    passive: { name: "夜之眷顾", desc: "被动：每次进入战斗额外回复2点灵性；夜晚剧情判定获得加值。" },
+    drinkNode: "c2_drink_sleepless",
+    flavor: "不眠者的魔药是纯粹的漆黑，像把一小段午夜装进了玻璃管，喝下去时喉间一片冰凉。",
+    abilities: [
+      {
+        key: "mind_scalpel", name: "精神穿刺", desc: "意志凝成尖刺，造成 7+意志×1.2 伤害",
+        sp: 5, fx: { dmg: 7, dmgAttr: 1.2, dmgAttrKey: "will" },
+        upName: "安魂诗篇", upDesc: "11+意志×1.4 伤害，并使敌人攻击-3，持续2回合",
+        upFx: { dmg: 11, dmgAttr: 1.4, eAtkDown: 3, eAtkTurns: 2 },
+      },
+      {
+        key: "night_mend", name: "夜幕回复", desc: "汲取夜色修复自身，回复 12 点生命",
+        sp: 4, fx: { healHp: 12 },
+        upName: "深夜庇护", upDesc: "回复 16 生命并获得 8 点护盾",
+        upFx: { healHp: 16, shield: 8 },
+      },
+    ],
+  },
+  collector: {
+    key: "collector",
+    name: "收尸人",
+    seq8: "掘墓人",
+    road: "永眠者途径",
+    motto: "「直面死亡，但不能爱上死亡。」",
+    desc: "与尸体和亡灵同行的人。能沟通死者、安抚怨魂，自身也愈发接近「死」的一侧——理智却意外地稳固。",
+    bonus: { physique: 2, inspiration: 2, maxHp: 6, hp: 6, maxSanity: 8, sanity: 8 },
+    passive: { name: "亡者之友", desc: "被动：亡灵类敌人对你造成的伤害降低30%；剧情中可通灵问讯。" },
+    drinkNode: "c2_drink_collector",
+    flavor: "收尸人的魔药苍白如骨灰，带着雨后墓园的泥土气息，入口的瞬间你听见了遥远的哭声。",
+    abilities: [
+      {
+        key: "dead_touch", name: "亡者之抚", desc: "冰冷的手抚过敌人，6点伤害+每回合3点凋零，持续3回合（对亡灵+5）",
+        sp: 5, fx: { dmg: 6, dot: { v: 3, turns: 3 }, undeadBonus: 5 },
+        upName: "掘墓之铲", upDesc: "14+体魄×1.2 伤害+凋零4点×3回合",
+        upFx: { dmg: 14, dmgAttr: 1.2, dmgAttrKey: "physique", dot: { v: 4, turns: 3 } },
+      },
+      {
+        key: "soul_shield", name: "通灵护盾", desc: "聚拢哀魂形成屏障：10点护盾，并回复3点理智",
+        sp: 4, fx: { shield: 10, healSanity: 3 },
+        upName: "万魂壁垒", upDesc: "16点护盾，回复5点理智",
+        upFx: { shield: 16, healSanity: 5 },
+      },
+    ],
+  },
+  pryer: {
+    key: "pryer",
+    name: "窥秘人",
+    seq8: "格斗学者",
+    road: "隐者途径",
+    motto: "「为窥见隐秘付出对等的代价——这就是公平。」",
+    desc: "追逐隐秘知识的人。知识就是力量，字面意义上的。但每一页不该被阅读的纸，都在蚕食你的自我。",
+    bonus: { inspiration: 4, maxSp: 12, sp: 12, maxSanity: -4 },
+    passive: { name: "博闻强识", desc: "被动：灵性上限更高；判定时知识可替代部分灵感（剧情加成）。" },
+    drinkNode: "c2_drink_pryer",
+    flavor: "窥秘人的魔药是旋转的暗紫色，表面不断浮现又破裂的符文气泡，盯着看太久会流鼻血。",
+    abilities: [
+      {
+        key: "arcane_rune", name: "秘术符文", desc: "燃烧一段知识：9+灵感×1.3 伤害，代价2点理智",
+        sp: 6, sanity: 2, fx: { dmg: 9, dmgAttr: 1.3, dmgAttrKey: "inspiration" },
+        upName: "学者斗技", upDesc: "13+灵感×1.5 伤害，代价2点理智",
+        upFx: { dmg: 13, dmgAttr: 1.5 },
+      },
+      {
+        key: "knowledge_gaze", name: "知识窥视", desc: "解析敌人的弱点：受到伤害+30%，其攻击-2，持续3回合。代价2理智",
+        sp: 3, sanity: 2, fx: { vuln: 30, vulnTurns: 3, eAtkDown: 2, eAtkTurns: 3 },
+        upName: "解构之视", upDesc: "受伤+40%，敌攻-3，持续3回合。代价2理智",
+        upFx: { vuln: 40, vulnTurns: 3, eAtkDown: 3, eAtkTurns: 3 },
+      },
+    ],
+  },
+  hunter: {
+    key: "hunter",
+    name: "猎人",
+    seq8: "挑衅者",
+    road: "红祭司途径",
+    motto: "「最强大的猎人，往往以猎物的姿态出现。」",
+    desc: "荒野与阴谋的宠儿。追踪、设伏、一击致命。对陷阱与杀意的嗅觉无人能及——正面战斗中的王者。",
+    bonus: { physique: 3, inspiration: 1, maxHp: 12, hp: 12 },
+    passive: { name: "猎手直觉", desc: "被动：无法被伏击（剧情）；基础攻击力+1。" },
+    drinkNode: "c2_drink_hunter",
+    flavor: "猎人的魔药是灼热的铁锈红色，像咽下了一口烧红的刀尖，血腥味在口腔里炸开。",
+    abilities: [
+      {
+        key: "hunt_mark", name: "猎杀标记", desc: "标记猎物：其受到的伤害+25%，持续3回合",
+        sp: 3, fx: { vuln: 25, vulnTurns: 3 },
+        upName: "挑衅烙印", upDesc: "受伤+35%，持续3回合，且敌攻-2",
+        upFx: { vuln: 35, vulnTurns: 3, eAtkDown: 2, eAtkTurns: 3 },
+      },
+      {
+        key: "lethal_shot", name: "致命射击", desc: "瞄准要害：9+体魄×1.3 伤害，25% 暴击（×1.6）",
+        sp: 6, fx: { dmg: 9, dmgAttr: 1.3, dmgAttrKey: "physique", crit: 25 },
+        upName: "獠牙一击", upDesc: "13+体魄×1.5 伤害，30% 暴击（×1.6）",
+        upFx: { dmg: 13, dmgAttr: 1.5, crit: 30 },
+      },
+    ],
+  },
+};
+
+export const PATHWAY_ORDER = ["seer", "sleepless", "collector", "pryer", "hunter"];
+
+// ============ 物品 ============
+export interface Item {
+  id: string;
+  name: string;
+  desc: string;
+  price?: number;
+  usable?: "healHp" | "healSp" | "healSanity" | "combatDmg";
+  v?: number;
+  undeadBonus?: number;
+  passive?: string;
+}
+
+export const ITEMS: Record<string, Item> = {
+  old_revolver: { id: "old_revolver", name: "老式左轮手枪", desc: "卡尔·文森留下的遗物。战斗基础攻击+2。", passive: "atk2" },
+  potion_heal: { id: "potion_heal", name: "治疗圣水", desc: "战斗中或平时使用，回复14点生命。", price: 3, usable: "healHp", v: 14 },
+  potion_calm: { id: "potion_calm", name: "安眠香膏", desc: "老尼尔调配的膏剂，回复12点灵性。", price: 2, usable: "healSp", v: 12 },
+  potion_mind: { id: "potion_mind", name: "宁神药剂", desc: "稳定濒临崩溃的心智，回复10点理智。", price: 3, usable: "healSanity", v: 10 },
+  bullet_purify: { id: "bullet_purify", name: "净化子弹", desc: "铭刻太阳圣徽的子弹：战斗中造成14点伤害，对亡灵+8。", price: 4, usable: "combatDmg", v: 14, undeadBonus: 8 },
+  charm_dog: { id: "charm_dog", name: "黑狗护符", desc: "被动：每次理智损失-1（最低1点）。传闻黑狗是黑夜的眷属。", price: 5, passive: "sanityShield" },
+  coin_luck: { id: "coin_luck", name: "命运金币", desc: "购买后幸运+1。它永远以字面那一面朝上。", price: 6 },
+};
+
+// ============ 敌人 ============
+export interface EnemyMove {
+  name: string;
+  msg: string;
+  dmg?: number;
+  sanity?: number;
+  w: number; // 权重
+  minTurn?: number;
+  belowHalf?: boolean; // 半血后解锁
+}
+
+export interface Enemy {
+  key: string;
+  name: string;
+  title: string;
+  hp: number;
+  atk: number;
+  dodge: number; // 被击中率的反向（玩家miss率%）
+  undead?: boolean;
+  sanitySight?: number; // 初见理智损失
+  intro: string;
+  moves: EnemyMove[];
+  loot: Effect[];
+  digest: number; // 胜利后消化度
+}
+
+export const ENEMIES: Record<string, Enemy> = {
+  thug: {
+    key: "thug",
+    name: "入室的黑影",
+    title: "受雇的打手",
+    hp: 20, atk: 5, dodge: 5,
+    intro: "黑影从窗台翻入，蒙面布上方是一双贪婪而紧张的眼睛。他手里的短棍在月光下泛着汗光。",
+    moves: [
+      { name: "短棍横扫", msg: "黑影抡圆短棍横扫过来", dmg: 5, w: 3 },
+      { name: "膝撞", msg: "他突然欺近，膝盖狠狠顶出", dmg: 7, w: 2 },
+      { name: "犹豫", msg: "他警惕地后退半步，打量着你", w: 1 },
+    ],
+    loot: [{ t: "pounds", v: 2 }],
+    digest: 4,
+  },
+  wraith: {
+    key: "wraith",
+    name: "徘徊的怨魂",
+    title: "铁十字街凶宅的死者",
+    hp: 26, atk: 6, dodge: 15, undead: true, sanitySight: 5,
+    intro: "黑暗里浮起一个半透明的人形。它的脖子以不自然的角度歪着，眼球翻白，湿漉漉的怨气像雾一样淌下来。",
+    moves: [
+      { name: "怨念尖啸", msg: "怨魂发出直击灵魂的尖啸", dmg: 3, sanity: 4, w: 2 },
+      { name: "冰冷抓挠", msg: "青白的手爪带着阴冷的风抓来", dmg: 7, w: 3 },
+      { name: "附身失败", msg: "它试图钻进你的身体，被你的灵性弹开", sanity: 2, w: 1 },
+    ],
+    loot: [{ t: "pounds", v: 3 }, { t: "flag", k: "wraith_down", v: 1 }],
+    digest: 8,
+  },
+  cultist: {
+    key: "cultist",
+    name: "密修会杀手",
+    title: "隐秘组织的獠牙",
+    hp: 32, atk: 7, dodge: 10,
+    intro: "斗篷男人从阴影里站起身，指间一柄涂着墨绿毒液的匕首。他的眼神平静得像在祷告——为猎物祷告。",
+    moves: [
+      { name: "毒刃连刺", msg: "匕首化作两道绿光刺来", dmg: 7, w: 3 },
+      { name: "淬毒一击", msg: "刀尖掠过伤口，毒素渗入血脉", dmg: 5, sanity: 2, w: 2 },
+      { name: "阴影滑步", msg: "他的身形忽然模糊，垫步侧移", w: 1 },
+    ],
+    loot: [{ t: "pounds", v: 5 }, { t: "item", k: "potion_heal", v: 1 }],
+    digest: 8,
+  },
+  deacon: {
+    key: "deacon",
+    name: "密修会执事",
+    title: "序列8的非凡者",
+    hp: 40, atk: 8, dodge: 12, sanitySight: 4,
+    intro: "面具人缓步走下祭坛，灰色的雾气在他周身缭绕。仅仅被他的目光扫过，你的太阳穴就突突作痛——他序列比你高。",
+    moves: [
+      { name: "灰雾鞭笞", msg: "灰雾凝成的长鞭抽裂空气", dmg: 9, w: 3 },
+      { name: "诡秘低语", msg: "他念出一段不该存在的音节，你的耳膜嗡鸣", dmg: 4, sanity: 4, w: 2 },
+      { name: "雾遁", msg: "他溶入灰雾，下一击将难以命中", w: 1 },
+    ],
+    loot: [{ t: "pounds", v: 8 }],
+    digest: 10,
+  },
+  shadow: {
+    key: "shadow",
+    name: "安提哥努斯的残影",
+    title: "被污染的古籍守卫",
+    hp: 58, atk: 9, dodge: 18, undead: true, sanitySight: 10,
+    intro: "笔记上方的空气扭曲起来。无数张重叠的人脸在黑暗里睁开，那是安提哥努斯家族百年来所有亡灵的缝合——它只有一句话，用几百个声音同时说：把……笔记……留下……",
+    moves: [
+      { name: "恐怖凝视", msg: "数百只眼睛同时看向你", dmg: 3, sanity: 6, w: 3 },
+      { name: "暗影缝合", msg: "黑色的手臂从阴影里增生、抓挠", dmg: 10, w: 3 },
+      { name: "怨灵狂潮", msg: "人脸组成的浪潮覆压而下", dmg: 7, sanity: 3, w: 2 },
+      { name: "绝望喷发", msg: "它发出所有亡者生前的惨叫——那声音不是从耳朵，而是从骨头里响起的", dmg: 12, sanity: 5, w: 2, belowHalf: true },
+    ],
+    loot: [{ t: "flag", k: "boss_down", v: 1 }],
+    digest: 14,
+  },
+  drunk: {
+    key: "drunk",
+    name: "码头的醉汉",
+    title: "膝盖以下都是麻烦",
+    hp: 14, atk: 4, dodge: 0,
+    intro: "醉汉挥舞着半截酒瓶，满身劣质金酒的气味，舌头大得像个红鲱鱼：「外、外乡人！你的钱袋……嗝……看起来很孤单！」",
+    moves: [
+      { name: "酒瓶挥舞", msg: "他把碎酒瓶挥得呼呼作响", dmg: 4, w: 3 },
+      { name: "踉跄扑击", msg: "他整个人带着酒气扑过来", dmg: 6, w: 1 },
+      { name: "呕吐预警", msg: "他扶着墙干呕起来，露出了巨大破绽", w: 2 },
+    ],
+    loot: [{ t: "pounds", v: 1 }],
+    digest: 2,
+  },
+};
