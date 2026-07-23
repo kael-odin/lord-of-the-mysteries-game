@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Heart, Sparkles, Brain, FlaskConical, Coins, Package, Moon } from "lucide-react";
+import { Heart, Sparkles, Brain, FlaskConical, Coins, Package, Moon, BookOpen, Save, CloudOff } from "lucide-react";
 import type { GameState } from "@/lib/game/types";
 import { ITEMS, PATHWAYS } from "@/lib/game/data";
 
@@ -17,7 +17,14 @@ function Bar({ value, max, color, glow }: { value: number; max: number; color: s
   );
 }
 
-export default function Hud({ gs, onUseItem }: { gs: GameState; onUseItem: (id: string) => void }) {
+export default function Hud({ gs, onUseItem, onOpenSlots, onOpenCodex, saveStatus, onManualSave }: {
+  gs: GameState;
+  onUseItem: (id: string) => void;
+  onOpenSlots?: () => void;
+  onOpenCodex?: () => void;
+  saveStatus?: "idle" | "saving" | "saved" | "offline";
+  onManualSave?: () => void;
+}) {
   const [invOpen, setInvOpen] = useState(false);
   const pw = gs.pathway ? PATHWAYS[gs.pathway] : null;
   const items = Object.entries(gs.inv);
@@ -69,6 +76,33 @@ export default function Hud({ gs, onUseItem }: { gs: GameState; onUseItem: (id: 
           >
             <Package className="h-3.5 w-3.5" /> 行囊
           </button>
+          {onManualSave && (
+            <button
+              onClick={onManualSave}
+              title={saveStatus === "offline" ? "本地存档（云端未启用）" : saveStatus === "saved" ? "已留存" : "存档"}
+              className="flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-[11px] text-white/70 transition hover:border-[#c9a86a]/50 hover:text-[#e7d9b8]"
+            >
+              {saveStatus === "offline" ? <CloudOff className="h-3.5 w-3.5" /> : <Save className="h-3.5 w-3.5" />}
+            </button>
+          )}
+          {onOpenCodex && (
+            <button
+              onClick={onOpenCodex}
+              title="秘典"
+              className="flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-[11px] text-white/70 transition hover:border-[#c9a86a]/50 hover:text-[#e7d9b8]"
+            >
+              <BookOpen className="h-3.5 w-3.5" />
+            </button>
+          )}
+          {onOpenSlots && (
+            <button
+              onClick={onOpenSlots}
+              title="存档"
+              className="flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-[11px] text-white/70 transition hover:border-[#c9a86a]/50 hover:text-[#e7d9b8]"
+            >
+              <Moon className="h-3.5 w-3.5" />
+            </button>
+          )}
         </div>
       </div>
 

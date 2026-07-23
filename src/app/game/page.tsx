@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { ChevronRight, Lock, Feather, Moon } from "lucide-react";
+import { useEffect, useRef, useState, useCallback } from "react";
+import { ChevronRight, Lock, Feather, Moon, BookOpen, Settings } from "lucide-react";
 import type { Choice, GameState } from "@/lib/game/types";
 import {
   applyEffects,
@@ -18,17 +18,26 @@ import {
 } from "@/lib/game/engine";
 import { getNode, CHAPTER_TITLES } from "@/lib/game/story";
 import { PATHWAYS, ITEMS } from "@/lib/game/data";
+import { sceneArt } from "@/lib/game/art";
+import {
+  loadSlot,
+  saveSlot,
+  deleteSlot,
+  listSlots,
+  getCurrentSlotId,
+  setCurrentSlotId,
+  recordEnding,
+  recordPathway,
+  MAX_SLOTS,
+  type SaveHeader,
+} from "@/lib/game/persistence/localSaveStore";
 import Hud from "@/components/game/Hud";
 import DiceOverlay from "@/components/game/DiceOverlay";
 import CombatPanel from "@/components/game/CombatPanel";
 import PathwaySelect from "@/components/game/PathwaySelect";
 import EndingScreen from "@/components/game/EndingScreen";
-
-const ART: Record<string, string> = {
-  city: "/images/bg-city.jpg",
-  fog: "/images/bg-fog-palace.jpg",
-  ritual: "/images/bg-ritual.jpg",
-};
+import SaveSlotsPanel from "@/components/game/SaveSlotsPanel";
+import CodexModal from "@/components/game/CodexModal";
 
 const WHISPERS = [
   "……听……墙里的声音……",
@@ -36,9 +45,11 @@ const WHISPERS = [
   "……月亮在看你，别回头……",
   "……扮演得很好，再多一点，你就是它了……",
   "……二十二张椅子，有一张刻着你的名字……",
+  "……第三支舞，你跳得很好……",
+  "……回声需要一个新的家，你的骨头很合适……",
 ];
 
-type Phase = "boot" | "name" | "play";
+type Phase = "boot" | "name" | "slots" | "play";
 
 export default function GamePage() {
   const [phase, setPhase] = useState<Phase>("boot");
@@ -48,41 +59,72 @@ export default function GamePage() {
   const [battle, setBattle] = useState<{ enemyKey: string; winNext: string; loseNext: string } | null>(null);
   const [notes, setNotes] = useState<{ id: number; text: string }[]>([]);
   const [banner, setBanner] = useState<number | null>(null);
+  const [saveStatus, setSaveStatus] = useState<"idle" | "saving" | "saved" | "offline">("idle");
+  const [slots, setSlots] = useState<SaveHeader[]>([]);
+  const [showSlots, setShowSlots] = useState(false);
+  const [showCodex, setShowCodex] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
 
   const gsRef = useRef<GameState | null>(null);
   gsRef.current = gs;
   const noteId = useRef(0);
   const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const prevChapter = useRef(0);
+  const slotIdRef = useRef<string>("auto");
 
   const node = gs ? getNode(gs.nodeId) : null;
 
-  // ---------- 启动：尝试读取云端存档 ----------
+  // ---------- reduced motion ----------
   useEffect(() => {
-    const pid = typeof window !== "undefined" ? localStorage.getItem("lotm_player_id") : null;
-    if (!pid) {
-      setPhase("name");
-      return;
+    try {
+      const stored = localStorage.getItem("lotm_reduced_motion");
+      if (stored !== null) {
+        setReducedMotion(stored === "1");
+      } else if (typeof window !== "undefined" && window.matchMedia) {
+        setReducedMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+      }
+    } catch {
+      /* ignore */
     }
-    fetch(`/api/game?playerId=${encodeURIComponent(pid)}`)
-      .then((r) => r.json())
-      .then((d) => {
-        if (d?.save?.state?.nodeId) {
-          setGsState(d.save.state as GameState);
-          setPhase("play");
-        } else {
-          setPhase("name");
-        }
-      })
-      .catch(() => setPhase("name"));
   }, []);
 
-  // ---------- 自动存档 ----------
+  useEffect(() => {
+    if (reducedMotion) document.documentElement.dataset.reducedMotion = "1";
+    else delete document.documentElement.dataset.reducedMotion;
+  }, [reducedMotion]);
+
+  const refreshSlots = useCallback(async () => {
+    const list = await listSlots();
+    setSlots(list);
+    return list;
+  }, []);
+
+  // ---------- 启动：本地优先读取 ----------
+  useEffect(() => {
+    (async () => {
+      const cur = await getCurrentSlotId();
+      if (cur) {
+        const slot = await loadSlot(cur);
+        if (slot && slot.state?.nodeId) {
+          slotIdRef.current = cur;
+          setGsState(slot.state);
+          setPhase("play");
+          return;
+        }
+      }
+      setPhase("slots");
+    })().catch(() => setPhase("slots"));
+  }, []);
+
+  // ---------- 自动存档（本地优先；云端可选备份） ----------
   useEffect(() => {
     if (phase !== "play" || !gs) return;
     if (saveTimer.current) clearTimeout(saveTimer.current);
-    saveTimer.current = setTimeout(() => {
-      const nd = getNode(gs.nodeId);
+    setSaveStatus("saving");
+    saveTimer.current = setTimeout(async () => {
+      const ok = await saveSlot(slotIdRef.current, gs);
+      setSaveStatus(ok ? "saved" : "offline");
+      // 可选云端备份：失败不影响本地
       fetch("/api/game", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -93,7 +135,7 @@ export default function GamePage() {
           seq: gs.seq,
           chapter: gs.chapter,
           nodeId: gs.nodeId,
-          ending: nd.type === "ending" ? nd.endingId ?? null : null,
+          ending: node?.type === "ending" ? node.endingId ?? null : null,
           digestion: gs.digestion,
           rounds: gs.rounds,
           state: gs,
@@ -103,7 +145,7 @@ export default function GamePage() {
     return () => {
       if (saveTimer.current) clearTimeout(saveTimer.current);
     };
-  }, [gs, phase]);
+  }, [gs, phase, node]);
 
   // ---------- 章节横幅 ----------
   useEffect(() => {
@@ -112,11 +154,21 @@ export default function GamePage() {
       prevChapter.current = gs.chapter;
       if (CHAPTER_TITLES[gs.chapter]) {
         setBanner(gs.chapter);
-        const t = setTimeout(() => setBanner(null), 3000);
+        const t = setTimeout(() => setBanner(null), reducedMotion ? 900 : 3000);
         return () => clearTimeout(t);
       }
     }
-  }, [gs]);
+  }, [gs, reducedMotion]);
+
+  // ---------- 记录途径 ----------
+  useEffect(() => {
+    if (gs?.pathway) recordPathway(gs.pathway);
+  }, [gs?.pathway]);
+
+  // ---------- 记录结局 ----------
+  useEffect(() => {
+    if (node?.type === "ending" && node.endingId) recordEnding(node.endingId);
+  }, [node?.endingId, node?.type]);
 
   function pushNotes(list: string[]) {
     if (!list.length) return;
@@ -137,7 +189,7 @@ export default function GamePage() {
       st = r.state;
       allNotes.push(...r.notes);
     }
-    if ((nextNodeId === "c3_promote" || nextNodeId === "c3_promote_late") && st.seq === 9) {
+    if ((nextNodeId === "c3_promote" || nextNodeId === "c3_promote_late" || nextNodeId === "c4_promote" || nextNodeId === "c4_promote_late" || nextNodeId === "c5_promote") && st.seq === 9) {
       const r = applyPromotion(st);
       st = r.state;
       allNotes.push("晋升序列 8，新的大门已经洞开", ...r.notes);
@@ -236,22 +288,55 @@ export default function GamePage() {
     pushNotes([`使用了【${item.name}】`, ...r.notes]);
   }
 
-  function startGame() {
+  async function startGame() {
     const pid = uid();
-    localStorage.setItem("lotm_player_id", pid);
     const st = makeInitialState(nameInput, pid);
+    slotIdRef.current = "auto";
+    await setCurrentSlotId("auto");
+    await saveSlot("auto", st);
     setGsState(st);
     setPhase("play");
   }
 
-  function rebirth() {
+  async function startInSlot(id: string, name: string) {
     const pid = uid();
-    localStorage.setItem("lotm_player_id", pid);
+    const st = makeInitialState(name, pid);
+    slotIdRef.current = id;
+    await setCurrentSlotId(id);
+    await saveSlot(id, st);
+    setGsState(st);
+    setPhase("play");
+  }
+
+  async function loadSlotById(id: string) {
+    const slot = await loadSlot(id);
+    if (slot && slot.state?.nodeId) {
+      slotIdRef.current = id;
+      await setCurrentSlotId(id);
+      setGsState(slot.state);
+      setPhase("play");
+    }
+  }
+
+  async function deleteSlotById(id: string) {
+    await deleteSlot(id);
+    await refreshSlots();
+  }
+
+  function rebirth() {
     setGsState(null);
     setBattle(null);
     setPendingCheck(null);
     prevChapter.current = 0;
-    setPhase("name");
+    setPhase("slots");
+    refreshSlots();
+  }
+
+  async function manualSave() {
+    if (!gs) return;
+    setSaveStatus("saving");
+    const ok = await saveSlot(slotIdRef.current, gs);
+    setSaveStatus(ok ? "saved" : "offline");
   }
 
   // ================= 渲染 =================
@@ -266,10 +351,26 @@ export default function GamePage() {
     );
   }
 
+  if (phase === "slots") {
+    return (
+      <SaveSlotsPanel
+        slots={slots}
+        nameInput={nameInput}
+        setNameInput={setNameInput}
+        maxSlots={MAX_SLOTS}
+        onRefresh={refreshSlots}
+        onNewInSlot={startInSlot}
+        onLoad={loadSlotById}
+        onDelete={deleteSlotById}
+        onQuickStart={startGame}
+      />
+    );
+  }
+
   if (phase === "name") {
     return (
       <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#05060a]">
-        <div className="absolute inset-0 bg-cover bg-center opacity-40" style={{ backgroundImage: "url(/images/bg-fog-palace.jpg)" }} />
+        <div className="absolute inset-0 bg-cover bg-center opacity-40" style={{ backgroundImage: sceneArt("fog") }} />
         <div className="absolute inset-0 bg-gradient-to-b from-[#05060a]/60 via-[#05060a]/80 to-[#05060a]" />
         <div className="fog-layer" />
         <div className="relative z-10 w-[min(92vw,480px)] rounded-2xl border border-white/10 bg-[#0b0c14]/80 p-10 text-center backdrop-blur-md">
@@ -285,7 +386,7 @@ export default function GamePage() {
             onChange={(e) => setNameInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && startGame()}
             maxLength={12}
-            placeholder="周明瑞"
+            placeholder="无名者"
             className="mb-4 w-full rounded-lg border border-white/15 bg-black/40 px-4 py-3 text-center text-lg tracking-[0.3em] text-[#e7d9b8] outline-none transition placeholder:text-white/20 focus:border-[#c9a86a]/60"
           />
           <button
@@ -322,10 +423,10 @@ export default function GamePage() {
       <div
         key={node.art || "city"}
         className="fixed inset-0 bg-cover bg-center transition-opacity duration-1000"
-        style={{ backgroundImage: `url(${ART[node.art || "city"]})` }}
+        style={{ backgroundImage: sceneArt(node.art) }}
       />
-      <div className="fixed inset-0 bg-gradient-to-b from-[#05060a]/75 via-[#05060a]/55 to-[#05060a]" />
-      <div className="fog-layer" />
+      <div className="fixed inset-0 bg-gradient-to-b from-[#05060a]/78 via-[#05060a]/58 to-[#05060a]" />
+      {!reducedMotion && <div className="fog-layer" />}
 
       {/* 理智过低特效 */}
       {lowSan && (
@@ -337,7 +438,7 @@ export default function GamePage() {
         </>
       )}
 
-      <Hud gs={gs} onUseItem={useItem} />
+      <Hud gs={gs} onUseItem={useItem} onOpenSlots={() => setShowSlots(true)} onOpenCodex={() => setShowCodex(true)} saveStatus={saveStatus} onManualSave={manualSave} />
 
       {/* 浮动提示 */}
       <div className="pointer-events-none fixed right-4 top-20 z-50 space-y-1.5">
@@ -349,6 +450,17 @@ export default function GamePage() {
             {n.text}
           </p>
         ))}
+      </div>
+
+      {/* 右上工具栏 */}
+      <div className="fixed right-4 top-2 z-50 flex gap-2">
+        <button
+          onClick={() => setReducedMotion((v) => !v)}
+          title={reducedMotion ? "动效已减弱（点击开启）" : "点击减弱动效"}
+          className="flex items-center gap-1.5 rounded-full border border-white/15 bg-[#0a0b12]/80 px-2.5 py-1 text-[10px] text-white/60 backdrop-blur-sm transition hover:border-[#c9a86a]/50 hover:text-[#e7d9b8]"
+        >
+          <Settings className="h-3 w-3" /> {reducedMotion ? "动效·简" : "动效"}
+        </button>
       </div>
 
       {/* 章节横幅 */}
@@ -433,8 +545,8 @@ export default function GamePage() {
           </div>
         )}
 
-        <p className="mt-16 text-center text-[10px] tracking-[0.3em] text-white/20">
-          存档已同步至灰雾之上 · 死亡与失控皆是命运的一部分
+        <p className="mt-16 flex items-center justify-center gap-2 text-center text-[10px] tracking-[0.3em] text-white/20">
+          {saveStatus === "saving" ? "灰雾正在铭记你的轮回……" : saveStatus === "saved" ? "存档已留存于灰雾之上" : saveStatus === "offline" ? "本地存档（云端未启用）" : "死亡与失控皆是命运的一部分"}
         </p>
       </main>
 
@@ -454,6 +566,32 @@ export default function GamePage() {
           onFinish={onCombatFinish}
         />
       )}
+
+      {/* 存档面板 */}
+      {showSlots && (
+        <SaveSlotsPanel
+          embedded
+          slots={slots}
+          nameInput={nameInput}
+          setNameInput={setNameInput}
+          maxSlots={MAX_SLOTS}
+          currentSlotId={slotIdRef.current}
+          onRefresh={refreshSlots}
+          onNewInSlot={async (id, name) => {
+            await startInSlot(id, name);
+            setShowSlots(false);
+          }}
+          onLoad={async (id) => {
+            await loadSlotById(id);
+            setShowSlots(false);
+          }}
+          onDelete={deleteSlotById}
+          onClose={() => setShowSlots(false)}
+        />
+      )}
+
+      {/* 秘典 */}
+      {showCodex && <CodexModal onClose={() => setShowCodex(false)} />}
     </div>
   );
 }

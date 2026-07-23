@@ -26,6 +26,28 @@ body {
   color: #fff8e7;
 }
 
+/* ---------- 减弱动效 ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+html[data-reduced-motion="1"] *,
+html[data-reduced-motion="1"] *::before,
+html[data-reduced-motion="1"] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+html[data-reduced-motion="1"] .fog-layer,
+html[data-reduced-motion="1"] .sanity-vignette {
+  animation: none !important;
+}
+
 /* ---------- 滚动条 ---------- */
 ::-webkit-scrollbar {
   width: 8px;

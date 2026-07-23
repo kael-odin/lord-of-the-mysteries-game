@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Eye, Moon, Skull, BookOpen, Crosshair, ShieldQuestion } from "lucide-react";
 import { PATHWAYS, PATHWAY_ORDER } from "@/lib/game/data";
+import { sceneArt } from "@/lib/game/art";
 
 const ICONS: Record<string, typeof Eye> = {
   seer: Eye,
@@ -39,7 +40,7 @@ export default function PathwaySelect({ onPick }: { onPick: (nodeId: string) => 
             {/* 卡面纹理 */}
             <div
               className="absolute inset-0 bg-cover bg-center opacity-30 transition-opacity duration-500 group-hover:opacity-50"
-              style={{ backgroundImage: "url(/images/tarot.jpg)" }}
+              style={{ backgroundImage: sceneArt("ritual") }}
             />
             <div className="absolute inset-0 bg-gradient-to-b from-[#0b0c14]/60 via-[#0b0c14]/80 to-[#0b0c14]" />
 

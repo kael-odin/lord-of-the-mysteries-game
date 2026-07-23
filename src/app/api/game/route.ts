@@ -1,24 +1,30 @@
 import { NextRequest, NextResponse } from "next/server";
 import { eq } from "drizzle-orm";
-import { db } from "@/db";
+import { getDb } from "@/db";
 import { lotmSaves } from "@/db/schema";
 
 export const dynamic = "force-dynamic";
 
-// GET /api/game?playerId=xxx —— 读取存档
+// GET /api/game?playerId=xxx —— 读取云端存档（可选；本地存档为权威来源）
 export async function GET(req: NextRequest) {
   try {
     const playerId = req.nextUrl.searchParams.get("playerId");
     if (!playerId) return NextResponse.json({ save: null });
-    const rows = await db.select().from(lotmSaves).where(eq(lotmSaves.playerId, playerId)).limit(1);
+    const database = getDb();
+    if (!database) return NextResponse.json({ save: null, offline: true });
+    const rows = await database
+      .select()
+      .from(lotmSaves)
+      .where(eq(lotmSaves.playerId, playerId))
+      .limit(1);
     return NextResponse.json({ save: rows[0] ?? null });
   } catch (e) {
     console.error("load save failed", e);
-    return NextResponse.json({ save: null });
+    return NextResponse.json({ save: null, offline: true });
   }
 }
 
-// POST /api/game —— 保存/更新存档
+// POST /api/game —— 保存/更新云端存档（可选备份）
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
@@ -26,7 +32,9 @@ export async function POST(req: NextRequest) {
     if (!playerId || !name || !state) {
       return NextResponse.json({ ok: false, error: "invalid payload" }, { status: 400 });
     }
-    await db
+    const database = getDb();
+    if (!database) return NextResponse.json({ ok: false, offline: true });
+    await database
       .insert(lotmSaves)
       .values({ playerId, name, pathway, seq, chapter, nodeId, ending, digestion, rounds, state, updatedAt: new Date() })
       .onConflictDoUpdate({
@@ -36,6 +44,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: true });
   } catch (e) {
     console.error("save failed", e);
-    return NextResponse.json({ ok: false }, { status: 200 });
+    return NextResponse.json({ ok: false, offline: true }, { status: 200 });
   }
 }

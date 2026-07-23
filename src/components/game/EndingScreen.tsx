@@ -4,18 +4,14 @@ import { RotateCcw, Home, Award, Route, FlaskConical, Coins, Footprints } from "
 import type { GameState, StoryNode } from "@/lib/game/types";
 import { ENDINGS } from "@/lib/game/story";
 import { PATHWAYS } from "@/lib/game/data";
-
-const ART: Record<string, string> = {
-  city: "/images/bg-city.jpg",
-  fog: "/images/bg-fog-palace.jpg",
-  ritual: "/images/bg-ritual.jpg",
-};
+import { sceneArt } from "@/lib/game/art";
 
 const TONE: Record<string, string> = {
   gold: "text-[#c9a86a]",
   red: "text-red-400",
   gray: "text-white/70",
   green: "text-emerald-400",
+  purple: "text-purple-300",
 };
 
 export default function EndingScreen({
@@ -34,7 +30,7 @@ export default function EndingScreen({
     <div className="relative min-h-screen">
       <div
         className="fixed inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${ART[node.art || "fog"]})` }}
+        style={{ backgroundImage: sceneArt(node.art) }}
       />
       <div className="fixed inset-0 bg-gradient-to-b from-black/70 via-[#06070b]/85 to-[#06070b]" />
 
@@ -52,7 +48,7 @@ export default function EndingScreen({
               className="text-[15px] leading-loose text-[#cec8ba]"
               style={{ animation: "fadeUp 0.9s ease both", animationDelay: `${0.2 + i * 0.15}s` }}
             >
-              {t.replaceAll("{name}", gs.name || "卡尔·文森")}
+              {t.replaceAll("{name}", gs.name || "无名者")}
             </p>
           ))}
         </div>

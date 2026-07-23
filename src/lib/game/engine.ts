@@ -32,9 +32,10 @@ export function makeInitialState(name: string, playerId: string): GameState {
 
 const clamp = (v: number, min: number, max: number) => Math.max(min, Math.min(max, v));
 
-/** 理智损失减免（黑狗护符） */
+/** 理智损失减免：黑狗护符 -1；罗塞尔的锚 减半（最低1） */
 function sanityLossShield(s: GameState, loss: number) {
   if (loss >= 0) return loss;
+  if (s.inv["charm_anchor"]) return Math.min(Math.round(loss / 2), -1);
   const shielded = s.inv["charm_dog"] ? loss + 1 : loss;
   return Math.min(shielded, -1);
 }
@@ -455,7 +456,7 @@ function enemyAct(s: GameState, c: CombatState, push: (side: "player" | "enemy" 
   const parts: string[] = [];
   if (dmg > 0) { c.playerHp = Math.max(0, c.playerHp - dmg); parts.push(`你受到 ${dmg} 点伤害`); }
   if (mv.sanity) {
-    const loss = s.inv["charm_dog"] ? Math.max(1, mv.sanity - 1) : mv.sanity;
+    const loss = s.inv["charm_anchor"] ? Math.max(1, Math.round(mv.sanity / 2)) : s.inv["charm_dog"] ? Math.max(1, mv.sanity - 1) : mv.sanity;
     c.playerSanity = clamp(c.playerSanity - loss, 0, s.maxSanity);
     parts.push(`理智 -${loss}`);
   }

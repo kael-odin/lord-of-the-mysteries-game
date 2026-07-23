@@ -207,6 +207,12 @@ export const ITEMS: Record<string, Item> = {
   bullet_purify: { id: "bullet_purify", name: "净化子弹", desc: "铭刻太阳圣徽的子弹：战斗中造成14点伤害，对亡灵+8。", price: 4, usable: "combatDmg", v: 14, undeadBonus: 8 },
   charm_dog: { id: "charm_dog", name: "黑狗护符", desc: "被动：每次理智损失-1（最低1点）。传闻黑狗是黑夜的眷属。", price: 5, passive: "sanityShield" },
   coin_luck: { id: "coin_luck", name: "命运金币", desc: "购买后幸运+1。它永远以字面那一面朝上。", price: 6 },
+  // ---- 新增物品 ----
+  potion_full: { id: "potion_full", name: "司钟人的余烬药剂", desc: "钟楼仪式残余调配的稀有药剂：回复30点生命。", price: 6, usable: "healHp", v: 30 },
+  potion_focus: { id: "potion_focus", name: "静谧香膏", desc: "教会秘方：回复20点灵性与6点理智。", price: 5, usable: "healSp", v: 20 },
+  charm_anchor: { id: "charm_anchor", name: "罗塞尔的「锚」", desc: "被动：理智上限+10，且每次进入战斗理智损失减半（最低1）。穿越者前辈的告诫。", price: 10, passive: "anchor" },
+  seal_card: { id: "seal_card", name: "封印物·零号封缄", desc: "战斗中使用：对敌人造成40点真实伤害（无视护盾）。一次性的高阶封印弹药。", price: 9, usable: "combatDmg", v: 40 },
+  ritual_dust: { id: "ritual_dust", name: "仪式灰烬", desc: "战斗中抛洒：对敌人造成18点伤害，对亡灵额外+10。浸血的钟楼灰烬。", price: 4, usable: "combatDmg", v: 18, undeadBonus: 10 },
 };
 
 // ============ 敌人 ============
@@ -320,5 +326,64 @@ export const ENEMIES: Record<string, Enemy> = {
     ],
     loot: [{ t: "pounds", v: 1 }],
     digest: 2,
+  },
+  // ---- 第三章之后新增敌人 ----
+  hound: {
+    key: "hound",
+    name: "月影犬",
+    title: "被仪式扭曲的看门兽",
+    hp: 30, atk: 7, dodge: 20, undead: true, sanitySight: 4,
+    intro: "钟楼台阶上伏着一只瘦骨嶙峋的黑犬。它抬起头，脸上却没有眼鼻的位置——只有一张咧到耳根的、布满人齿的嘴。它「认出」了你身上的活人气息。",
+    moves: [
+      { name: "阴影撕咬", msg: "月影犬无声扑来，利齿咬住手臂", dmg: 8, w: 3 },
+      { name: "哀嚎", msg: "它仰头发出不属于任何活物的嚎叫", dmg: 3, sanity: 5, w: 2 },
+      { name: "诡影分身", msg: "它分裂成两道黑影绕行，你无法锁定真身", w: 1 },
+    ],
+    loot: [{ t: "pounds", v: 3 }, { t: "flag", k: "hound_down", v: 1 }],
+    digest: 7,
+  },
+  bellkeeper: {
+    key: "bellkeeper",
+    name: "司钟人",
+    title: "三十年未下钟楼的守塔人",
+    hp: 44, atk: 8, dodge: 8, sanitySight: 6,
+    intro: "钟楼顶层，一个枯瘦的人形吊在巨大的铜钟之下。他已经被钟绳勒进肉里，与钟融为一体。你进门时，他缓缓睁眼——瞳孔里倒映着一座不属于这个世界的钟楼。",
+    moves: [
+      { name: "铜钟震荡", msg: "他拉动钟绳，沉闷的钟声震得你耳膜渗血", dmg: 7, sanity: 4, w: 3 },
+      { name: "绳索绞缠", msg: "浸血的钟绳如活蛇般缠向你的咽喉", dmg: 9, w: 2 },
+      { name: "回溯之声", msg: "他用三十年前的声音喊出已死之人的名字", sanity: 6, w: 2, minTurn: 2 },
+    ],
+    loot: [{ t: "pounds", v: 6 }, { t: "item", k: "charm_dog", v: 1 }],
+    digest: 10,
+  },
+  beast: {
+    key: "beast",
+    name: "绯红之兽",
+    title: "舞会中央的活体仪式",
+    hp: 70, atk: 10, dodge: 14, undead: false, sanitySight: 12,
+    intro: "舞池正中，宾客们的绯红假面飘上半空，汇聚成一尊由无数面具拼成的兽形——鹿角、狮口、蝶翼，每一片鳞甲都是一张尖叫的人脸。这是密修会献祭整场舞会唤来的「器皿」。",
+    moves: [
+      { name: "面具风暴", msg: "数百张假面如刀片般旋转切割", dmg: 11, w: 3 },
+      { name: "绯红凝视", msg: "兽首万千瞳孔同时锁住你", dmg: 5, sanity: 6, w: 2 },
+      { name: "吞噬一舞", msg: "它张开狮口，将一名宾客的影子连皮带骨吞下", dmg: 8, sanity: 3, w: 2 },
+      { name: "假面反噬", msg: "它体表的宾客发出齐声惨叫，力量反噬自身", dmg: 0, w: 1, belowHalf: true },
+    ],
+    loot: [{ t: "pounds", v: 10 }, { t: "flag", k: "beast_down", v: 1 }],
+    digest: 16,
+  },
+  master: {
+    key: "master",
+    name: "密修会·雾衣大师",
+    title: "序列6的秘偶操纵者",
+    hp: 96, atk: 12, dodge: 18, sanitySight: 14,
+    intro: "雾衣大师从假面兽的余烬中走出——不，是「滑」出来的，仿佛空间在他脚下折叠。他抬手，你的影子竟然违背你地动了一下。「了不起的小值夜者，」他的声音直接在颅骨内响起，「让我看看，你的线有多长。」",
+    moves: [
+      { name: "秘偶提线", msg: "你的影子被无形之线拉扯，四肢不受控地抽搐", dmg: 10, sanity: 5, w: 3 },
+      { name: "雾刃千割", msg: "灰雾凝成无数薄刃，把你切成一幅血画", dmg: 13, w: 2 },
+      { name: "记忆窃取", msg: "他探进你的意识，偷走一段关于「家」的记忆", sanity: 8, w: 2, minTurn: 2 },
+      { name: "同构", msg: "他试图让你也成为他的秘偶——你咬碎舌尖才挣脱", dmg: 6, sanity: 7, w: 1, belowHalf: true },
+    ],
+    loot: [{ t: "pounds", v: 14 }, { t: "flag", k: "master_down", v: 1 }, { t: "item", k: "potion_mind", v: 2 }],
+    digest: 22,
   },
 };

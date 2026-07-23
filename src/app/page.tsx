@@ -6,7 +6,8 @@ import {
   BookOpen, Crosshair, Ghost, Coffee,
 } from "lucide-react";
 import { PATHWAYS } from "@/lib/game/data";
-import { ENDINGS, CHAPTER_TITLES } from "@/lib/game/story";
+import { ENDINGS, CHAPTER_TITLES, ALL_ENDING_IDS } from "@/lib/game/story";
+import { sceneArt } from "@/lib/game/art";
 
 interface EchoRow {
   name: string;
@@ -35,8 +36,8 @@ const FEATURES = [
   },
   {
     icon: Scroll,
-    title: "廷根 · 安提哥努斯事件",
-    desc: "从水仙花街的死而复生开始，加入值夜者，调查那本带来死亡的笔记——直面密修会与百年亡灵的缝合残影。",
+    title: "廷根 · 五章冒险",
+    desc: "从水仙花街的死而复生开始，加入值夜者，调查安提哥努斯笔记——直面密修会、钟楼回声、绯红假面舞会，直到灰雾之上的第二次邀约。",
   },
 ];
 
@@ -63,7 +64,7 @@ export default function LandingPage() {
     <div className="min-h-screen bg-[#05060a] text-[#d8d3c8]">
       {/* ================= HERO ================= */}
       <section className="relative flex min-h-screen flex-col overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url(/images/bg-city.jpg)" }} />
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: sceneArt("city") }} />
         <div className="absolute inset-0 bg-gradient-to-b from-[#05060a]/60 via-[#05060a]/40 to-[#05060a]" />
         <div className="fog-layer" />
         <div className="fog-layer fog-layer-slow" />
@@ -116,7 +117,7 @@ export default function LandingPage() {
           </div>
 
           <p className="mt-6 text-[10px] tracking-[0.2em] text-white/30" style={{ animation: "fadeUp 1s ease both", animationDelay: "0.6s" }}>
-            云端存档 · 五种结局 · 约40分钟完整旅程
+            本地存档 · 五大章节 · {ALL_ENDING_IDS.length} 种结局 · 五条途径攀升至序列8
           </p>
         </div>
 
@@ -141,7 +142,7 @@ export default function LandingPage() {
             >
               <div
                 className="absolute inset-0 bg-cover bg-center opacity-0 transition-opacity duration-700 group-hover:opacity-15"
-                style={{ backgroundImage: "url(/images/tarot.jpg)" }}
+                style={{ backgroundImage: sceneArt("ritual") }}
               />
               <div className="relative">
                 <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full border border-[#c9a86a]/30 bg-[#c9a86a]/10">
@@ -159,7 +160,7 @@ export default function LandingPage() {
       <section className="relative border-t border-white/5 py-24">
         <div
           className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-15"
-          style={{ backgroundImage: "url(/images/bg-fog-palace.jpg)" }}
+          style={{ backgroundImage: sceneArt("fog") }}
         />
         <div className="relative mx-auto max-w-4xl px-6">
           <div className="mb-12 text-center">

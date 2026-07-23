@@ -1,14 +1,16 @@
 import { NextResponse } from "next/server";
 import { desc } from "drizzle-orm";
-import { db } from "@/db";
+import { getDb } from "@/db";
 import { lotmSaves } from "@/db/schema";
 
 export const dynamic = "force-dynamic";
 
-// GET /api/game/recent —— 灰雾回响：最近苏醒的旅人们
+// GET /api/game/recent —— 灰雾回响：最近苏醒的旅人们（可选；DB 不可用时返回空）
 export async function GET() {
   try {
-    const rows = await db
+    const database = getDb();
+    if (!database) return NextResponse.json({ recent: [], offline: true });
+    const rows = await database
       .select({
         name: lotmSaves.name,
         pathway: lotmSaves.pathway,
@@ -23,6 +25,6 @@ export async function GET() {
     return NextResponse.json({ recent: rows });
   } catch (e) {
     console.error("recent failed", e);
-    return NextResponse.json({ recent: [] });
+    return NextResponse.json({ recent: [], offline: true });
   }
 }
