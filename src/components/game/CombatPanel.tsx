@@ -191,6 +191,7 @@ export default function CombatPanel({
               const name = up && ab.upName ? ab.upName : ab.name;
               const desc = up && ab.upDesc ? ab.upDesc : ab.desc;
               const aff = cs.playerSp >= ab.sp;
+              const sanityCost = gs.pathway === "pryer" ? Math.max(0, (ab.sanity || 0) - 1) : (ab.sanity || 0);
               return (
                 <button
                   key={ab.key}
@@ -207,7 +208,7 @@ export default function CombatPanel({
                   </span>
                   <span className="text-[10px] text-white/40">
                     灵性-{ab.sp}
-                    {ab.sanity ? ` · 理智-${ab.sanity}` : ""}
+                    {sanityCost ? ` · 理智-${sanityCost}` : ""}
                   </span>
                 </button>
               );

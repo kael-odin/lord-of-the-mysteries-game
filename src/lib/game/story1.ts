@@ -776,6 +776,8 @@ export const STORY_1: StoryNode[] = [
       { text: "循着一声猫叫拐进漆黑的小巷", sub: "也许是猫，也许不是", next: "patrol_alley" },
       { text: "拦下一辆夜行的马车盘问", sub: "意志判定：查验身份", next: "patrol_carriage" },
       { text: "在桥头的老灯柱下站一会儿", sub: "让魔药在静默中沉淀", next: "patrol_lamp" },
+      { text: "听见呼救，直奔铁十字街口", sub: "有人当街行凶", once: "patrol_mug", next: "patrol_mugging" },
+      { text: "去码头栈道查夜里的私货", sub: "体魄判定：撬开一只不该出现的木箱", once: "patrol_smug", next: "patrol_dock" },
       { text: "结束巡逻，回公司", next: "c2_hub" },
     ],
   },
@@ -886,6 +888,111 @@ export const STORY_1: StoryNode[] = [
     ],
     onEnter: [{ t: "digestion", v: 6 }, { t: "sp", v: 3 }, { t: "sanity", v: 2 }],
     choices: [{ text: "静默片刻，继续巡逻", next: "c2_patrol" }],
+  },
+  {
+    id: "patrol_mugging",
+    chapter: 2,
+    art: "city",
+    title: "铁十字街口的呼救",
+    text: [
+      "一声短促的呼救从铁十字街口传来。你提着徽章跑过去时，只看见一个剪径贼正把一位夜归的抄写员抵在墙上，折刀抵着对方的喉咙。",
+      "抄写员的眼睛瞪得溜圆，看见你的徽章比看见救星还激动。贼人听见脚步，回头——他没跑，反而把刀尖转向了你。",
+    ],
+    choices: [
+      { text: "亮明身份，正面制服", sub: "剪径贼", combat: "mugger", winNext: "patrol_mug_win", loseNext: "patrol_mug_lose" },
+      { text: "先安抚人质，稳住局面", sub: "意志判定：分化贼人", check: { attr: "will", dc: 11, label: "稳住局面", pass: "patrol_mug_win", passEffects: [{ t: "pounds", v: 2 }, { t: "flag", k: "patrol_clue", v: 1 }], fail: "patrol_mug_fail" } },
+    ],
+  },
+  {
+    id: "patrol_mug_win",
+    chapter: 2,
+    art: "city",
+    text: [
+      "贼人被你三两下按在地上。抄写员抖着腿道谢，硬塞给你一镑「茶水费」——在廷根，被值夜者救下的人总觉得得给点什么才安心。",
+      "你给贼人上了值夜者的封缄索，等巡警来接手。扮演得越像，魔药消化得越顺——你能感觉到，魔药在你骨血里满意地翻涌了一下。",
+    ],
+    onEnter: [{ t: "pounds", v: 1 }, { t: "digestion", v: 5 }],
+    choices: [{ text: "记下笔录，继续巡逻", next: "c2_patrol" }],
+  },
+  {
+    id: "patrol_mug_fail",
+    chapter: 2,
+    art: "city",
+    text: [
+      "你一句安抚的话没说利索，贼人反而借机挟持抄写员后退。等他溜进雾里，只剩抄写员瘫在墙根，你与他对视——他眼里没有责怪，只有遗憾。",
+      "扮演得不算圆满，魔药也沉了几分。",
+    ],
+    onEnter: [{ t: "sanity", v: -2 }],
+    choices: [{ text: "扶起抄写员，继续巡逻", next: "c2_patrol" }],
+  },
+  {
+    id: "patrol_mug_lose",
+    chapter: 2,
+    art: "city",
+    text: [
+      "剪径贼的折刀比你预想的更刁钻，你被迫退开。他趁势窜进巷雾里，抄写员倒是没受伤——只是你这条街的治安账上又添了一笔。",
+    ],
+    onEnter: [{ t: "sanity", v: -1 }],
+    choices: [{ text: "揉着伤口，继续巡逻", next: "c2_patrol" }],
+  },
+  {
+    id: "patrol_dock",
+    chapter: 2,
+    art: "city",
+    title: "码头栈道的私货",
+    text: [
+      "盐鳍鱼酒馆后栈道，几只没贴海关铅封的木箱堆在吊车下。一个肩头沾满盐霜的壮汉叉腰守着，手里攥着一截包铁的船桨——他显然不是正经码头工。",
+      "你凑近，箱缝里渗出一股不属于这个季节的、带着甜腥气的香。",
+    ],
+    choices: [
+      { text: "强行撬箱查验", sub: "体魄判定：动手", check: { attr: "physique", dc: 12, label: "撬箱", pass: "patrol_dock_pass", passEffects: [{ t: "flag", k: "patrol_clue", v: 1 }], fail: "patrol_dock_fail" } },
+      { text: "直接拿人，按规矩来", sub: "私盐贩子", combat: "smuggler", winNext: "patrol_dock_win", loseNext: "patrol_dock_lose" },
+    ],
+  },
+  {
+    id: "patrol_dock_pass",
+    chapter: 2,
+    art: "city",
+    text: [
+      "你一脚把吊卡踹开，箱缝里滚出几只封着黑蜡的小陶罐——标签上的弗萨克语你认不全，但那股甜腥气你认得：某种低阶魔药的劣质萃取物。",
+      "私盐贩子见势不妙，扔下船桨要跑——",
+    ],
+    choices: [
+      { text: "追上去按倒", sub: "私盐贩子", combat: "smuggler", winNext: "patrol_dock_win", loseNext: "patrol_dock_lose" },
+    ],
+  },
+  {
+    id: "patrol_dock_fail",
+    chapter: 2,
+    art: "city",
+    text: [
+      "吊卡年久生锈，你撬了半下，手腕一震。私盐贩子冷笑一声，抡起船桨便来——这一仗躲不掉了。",
+    ],
+    choices: [
+      { text: "迎上船桨", sub: "私盐贩子", combat: "smuggler", winNext: "patrol_dock_win", loseNext: "patrol_dock_lose" },
+    ],
+  },
+  {
+    id: "patrol_dock_win",
+    chapter: 2,
+    art: "city",
+    text: [
+      "私盐贩子被你按在盐霜里，船桨滚到一旁。你从木箱里检出三只黑蜡陶罐——这种劣质萃取物不能留在外头，得带回公司交老尼尔销毁。",
+      "魔药在你体内翻涌了一下：又一个像样的值夜者之夜。",
+    ],
+    onEnter: [{ t: "pounds", v: 2 }, { t: "digestion", v: 6 }, { t: "flag", k: "dock_raided", v: 1 }],
+    choices: [{ text: "押人回公司，继续巡逻", next: "c2_patrol" }],
+  },
+  {
+    id: "patrol_dock_lose",
+    chapter: 2,
+    art: "city",
+    text: [
+      "船桨带着海腥气横扫，你被打得退出栈道。私盐贩子趁机把几只陶罐踹进河里，自己也跳上一艘小划子，消失在夜雾中。",
+      "线索断了，但至少今晚他知道这条栈道有值夜者盯着。",
+    ],
+    onEnter: [{ t: "hp", v: -4 }],
+    choices: [{ text: "按着肋骨，继续巡逻", next: "c2_patrol" }],
   },
   {
     id: "ev_cat",

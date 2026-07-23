@@ -162,7 +162,47 @@ export const STORY_4: StoryNode[] = [
         text: "接近舞池中央那群戴雾袖标的人", sub: "直觉告诉你密修会就在那",
         next: "c5_cultists",
       },
+      {
+        text: "拦截一位正向宾客扑去的失控者", sub: "他的假面下已长出多余的手臂", once: "c5_masquer_seen", next: "c5_masquer",
+      },
     ],
+  },
+  {
+    id: "c5_masquer",
+    chapter: 5,
+    art: "ritual",
+    title: "失控的绯红宾客",
+    text: [
+      "舞池边缘，一位戴猩红长喙假面的宾客踉跄着撞翻了香槟塔。他的礼服下伸出多余的、不属于人类的手臂，长喙假面里渗出一段不属于他的祷词。",
+      "周围的宾客竟无人惊叫——他们还在按舞曲旋转，仿佛这只是一段即兴表演。只有你看见，失控者眼里还残留着求救的光，但嘴已不受他控制。再拖下去，他会拖累整个舞会的仪式节奏。",
+    ],
+    choices: [
+      { text: "正面制服，速战速决", sub: "失控的绯红宾客", combat: "masquer", winNext: "c5_masquer_win", loseNext: "c5_masquer_lose" },
+      { text: "趁乱绕开，不节外生枝", sub: "主线要紧", next: "c5_cultists", effects: [{ t: "sanity", v: -2 }, { t: "flag", k: "masquer_ignored", v: 1 }] },
+    ],
+  },
+  {
+    id: "c5_masquer_win",
+    chapter: 5,
+    art: "ritual",
+    text: [
+      "你三两下按住失控者，多余的臂膀在你手下一一软下。他喉咙里挤出半句「谢……」就昏死过去——至少在仪式结束前，他不会再被驱使。",
+      "一位戴孔雀面具的女人从你身侧擦过，声音只有你能听见：「身手不错。可惜，今夜谁来都拦不住——银鹿大人的第三支舞，快奏响了。」",
+      "魔药在体内翻涌了一下：在失控的边缘拉回一个灵魂，这是值夜者最该做的事。",
+    ],
+    onEnter: [{ t: "digestion", v: 8 }, { t: "flag", k: "masquer_saved", v: 1 }, { t: "pounds", v: 0 }],
+    choices: [{ text: "锁定那群同步起舞的宾客", next: "c5_cultists" }],
+  },
+  {
+    id: "c5_masquer_lose",
+    chapter: 5,
+    art: "ritual",
+    text: [
+      "失控者的多余臂膀比你预想的更有力，你被推开撞翻一只香槟塔。他趁乱扑进舞池深处，搅乱了一小片宾客——但奇迹般地，舞曲没有停，宾客们绕开他继续旋转。",
+      "你按着被撞疼的肩，多少有些狼狈。",
+    ],
+    onEnter: [{ t: "hp", v: -5 }, { t: "sanity", v: -1 }],
+    choices: [{ text: "稳住身形，去盯密修会", next: "c5_cultists" }],
   },
   {
     id: "c5_guest_pass",

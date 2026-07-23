@@ -320,7 +320,9 @@ export function playerAct(s: GameState, cs: CombatState, act: PlayerAction): { s
     const fx = { ...ab.fx, ...(upgraded ? ab.upFx || {} : {}) };
     const name = upgraded && ab.upName ? ab.upName : ab.name;
     c.playerSp = clamp(c.playerSp - ab.sp, 0, st.maxSp);
-    if (ab.sanity) c.playerSanity = clamp(c.playerSanity - ab.sanity, 0, st.maxSanity);
+    // 窥秘人「博闻强识」：能力消耗的理智-1（知识替代部分自我损耗）
+    const sanityCost = s.pathway === "pryer" ? Math.max(0, (ab.sanity || 0) - 1) : (ab.sanity || 0);
+    if (sanityCost) c.playerSanity = clamp(c.playerSanity - sanityCost, 0, st.maxSanity);
     let parts: string[] = [];
     if (fx.dmg !== undefined) {
       let raw = fx.dmg;

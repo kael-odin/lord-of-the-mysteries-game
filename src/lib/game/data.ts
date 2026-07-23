@@ -139,7 +139,7 @@ export const PATHWAYS: Record<string, Pathway> = {
     motto: "「为窥见隐秘付出对等的代价——这就是公平。」",
     desc: "追逐隐秘知识的人。知识就是力量，字面意义上的。但每一页不该被阅读的纸，都在蚕食你的自我。",
     bonus: { inspiration: 4, maxSp: 12, sp: 12, maxSanity: -4 },
-    passive: { name: "博闻强识", desc: "被动：灵性上限更高；判定时知识可替代部分灵感（剧情加成）。" },
+    passive: { name: "博闻强识", desc: "被动：灵性上限更高；能力消耗的理智-1（知识替代自我损耗）；判定时知识可替代部分灵感（剧情加成）。" },
     drinkNode: "c2_drink_pryer",
     flavor: "窥秘人的魔药是旋转的暗紫色，表面不断浮现又破裂的符文气泡，盯着看太久会流鼻血。",
     abilities: [
@@ -429,5 +429,65 @@ export const ENEMIES: Record<string, Enemy> = {
     ],
     loot: [{ t: "pounds", v: 4 }, { t: "flag", k: "thief_down", v: 1 }, { t: "item", k: "potion_calm", v: 1 }],
     digest: 9,
+  },
+  // ---- 第二章·值夜者巡逻偶遇敌人 ----
+  mugger: {
+    key: "mugger",
+    name: "铁十字街的剪径贼",
+    title: "趁夜行凶的小毛贼",
+    hp: 18, atk: 5, dodge: 8,
+    intro: "巷口窜出一个裹着破风衣的瘦子，手里攥着一把生锈的折刀。他显然没料到值夜者的制服在夜里也反着微光——刀尖抖了一下，却没退。",
+    moves: [
+      { name: "虚晃一刀", msg: "贼人腕子一抖，折刀虚虚划来", dmg: 4, w: 3 },
+      { name: "贴身抢包", msg: "他猛地欺身，去拽你的钱袋", dmg: 3, w: 2 },
+      { name: "夺路", msg: "他虚晃一招，转身要跑", w: 1 },
+    ],
+    loot: [{ t: "pounds", v: 2 }],
+    digest: 3,
+  },
+  smuggler: {
+    key: "smuggler",
+    name: "码头的私盐贩子",
+    title: "见不得光的运货人",
+    hp: 24, atk: 6, dodge: 6,
+    intro: "盐鳍鱼酒馆后栈道，一个肩头沾满盐霜的壮汉挡住去路。他手里是一截包铁的船桨，身后堆着几只不该出现在廷根港的木箱。「值夜者？今晚谁也别想看箱子里是什么。」",
+    moves: [
+      { name: "包铁横桨", msg: "船桨带着海腥气横扫腰间", dmg: 6, w: 3 },
+      { name: "盐砂扬面", msg: "他抓起一把粗盐砂迎面撒来", dmg: 3, w: 2 },
+      { name: "推箱阻挡", msg: "他把货箱一脚踹倒，挡在身前", w: 1 },
+    ],
+    loot: [{ t: "pounds", v: 3 }, { t: "item", k: "potion_heal", v: 1 }],
+    digest: 5,
+  },
+  // ---- 第四章·钟楼支线敌人 ----
+  puppet: {
+    key: "puppet",
+    name: "钟楼的发条秘偶",
+    title: "被遗弃的人偶仪式残骸",
+    hp: 34, atk: 7, dodge: 10, undead: true, sanitySight: 4,
+    intro: "钟楼二层堆杂物的角落里，一具木与铜丝扎成的人偶自行站了起来，关节嘎吱作响。它没有脸，胸口却嵌着一枚锈蚀的齿轮——像一颗还在跳的心。它显然是某个被放弃的仪式留下的残骸，但残骸也会伤人。",
+    moves: [
+      { name: "齿轮拳击", msg: "人偶的铜拳带着机括声砸来", dmg: 7, w: 3 },
+      { name: "发条缠绕", msg: "它胸口弹出更多铜丝，缠向你的手腕", dmg: 5, w: 2 },
+      { name: "残骸抽搐", msg: "它诡异地抽搐一下，仿佛在回忆自己曾是谁", w: 1 },
+    ],
+    loot: [{ t: "pounds", v: 4 }, { t: "flag", k: "puppet_down", v: 1 }],
+    digest: 6,
+  },
+  // ---- 第五章·舞会宾客魔物 ----
+  masquer: {
+    key: "masquer",
+    name: "失控的绯红宾客",
+    title: "被舞会仪式裹挟的失控者",
+    hp: 42, atk: 8, dodge: 12, sanitySight: 6,
+    intro: "舞池边缘，一位戴着猩红长喙假面的宾客踉跄过来，礼服下伸出多余的、不属于人类的手臂。他还没完全失控——眼里残留着求救的光，但嘴已在念不属于他的祷词。",
+    moves: [
+      { name: "醉步扑击", msg: "宾客以舞步的节奏扑来，多余的手臂乱抓", dmg: 8, w: 3 },
+      { name: "假面低语", msg: "他的长喙假面里渗出一段祷词，你的太阳穴发紧", dmg: 3, sanity: 4, w: 2 },
+      { name: "挣扎清醒", msg: "他猛地一颤，短暂夺回了自己的身体", w: 1 },
+      { name: "彻底失控", msg: "最后的人性被吞没，他发出非人的嘶吼扑来", dmg: 10, w: 2, belowHalf: true },
+    ],
+    loot: [{ t: "pounds", v: 5 }, { t: "item", k: "potion_mind", v: 1 }],
+    digest: 8,
   },
 };

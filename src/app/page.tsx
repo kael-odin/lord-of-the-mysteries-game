@@ -8,6 +8,8 @@ import {
 import { PATHWAYS } from "@/lib/game/data";
 import { ENDINGS, CHAPTER_TITLES, ALL_ENDING_IDS } from "@/lib/game/story";
 import { sceneArt } from "@/lib/game/art";
+import { Emblem } from "@/components/game/Emblem";
+import type { PathwayKey } from "@/lib/game/emblems";
 
 interface EchoRow {
   name: string;
@@ -41,9 +43,6 @@ const FEATURES = [
   },
 ];
 
-const PW_ICONS: Record<string, typeof Eye> = {
-  seer: Eye, sleepless: Moon, collector: Skull, pryer: BookOpen, hunter: Crosshair,
-};
 const ENDING_ICONS: Record<string, typeof Ghost> = {
   fool: Sparkles, knowledge: BookOpen, shikong: Ghost, death: Skull, civilian: Coffee,
 };
@@ -177,7 +176,6 @@ export default function LandingPage() {
             <div className="space-y-2.5">
               {echoes.map((e, i) => {
                 const pw = e.pathway ? PATHWAYS[e.pathway] : null;
-                const PwIcon = pw ? PW_ICONS[e.pathway!] || Eye : Moon;
                 const EndIcon = e.ending ? ENDING_ICONS[e.ending] || Ghost : null;
                 const endMeta = e.ending ? ENDINGS[e.ending] : null;
                 return (
@@ -187,7 +185,13 @@ export default function LandingPage() {
                   >
                     <div className="flex items-center gap-3">
                       <div className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5">
-                        <PwIcon className="h-4 w-4 text-[#c9a86a]" />
+                        {pw && e.pathway ? (
+                          <span style={{ ["--ember-color" as string]: "#c9a86a" } as React.CSSProperties} className="inline-flex">
+                            <Emblem k={e.pathway as PathwayKey} size={20} />
+                          </span>
+                        ) : (
+                          <Moon className="h-4 w-4 text-[#c9a86a]" />
+                        )}
                       </div>
                       <div>
                         <p className="text-sm text-[#e9e0c9]">{e.name}</p>

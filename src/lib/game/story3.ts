@@ -229,7 +229,45 @@ export const STORY_3: StoryNode[] = [
       {
         text: "查看墙角那堆铜钟残骸", sub: "也许藏着线索", next: "c4_bells",
       },
+      {
+        text: "推开底层杂物间的侧门", sub: "里头有东西在嘎吱作响", once: "c4_puppet_seen", next: "c4_puppet",
+      },
     ],
+  },
+  {
+    id: "c4_puppet",
+    chapter: 4,
+    art: "ritual",
+    title: "杂物间的发条秘偶",
+    text: [
+      "侧门后是一间堆满断裂钟绳与齿轮的杂物间。你刚迈进半步，角落里一具木与铜丝扎成的人偶自行站起，关节嘎吱作响。它没有脸，胸口嵌着一枚锈蚀的齿轮，像还在跳的心。",
+      "它显然是某次被放弃的钟楼仪式留下的残骸——但残骸认得活人的气息，也会伤人。",
+    ],
+    choices: [
+      { text: "击倒这具残骸", sub: "发条秘偶", combat: "puppet", winNext: "c4_puppet_win", loseNext: "c4_puppet_lose" },
+      { text: "绕开它，不去招惹", sub: "多一事不如少一事", next: "c4_foyer", effects: [{ t: "sanity", v: -1 }] },
+    ],
+  },
+  {
+    id: "c4_puppet_win",
+    chapter: 4,
+    art: "ritual",
+    text: [
+      "发条秘偶散成一堆木片与铜丝，胸口那枚齿轮还在「咔哒、咔哒」空转了几下才停。你把齿轮收进证据袋——这种锈蚀程度，足以证明钟楼的仪式已经偷偷跑了至少三十年。",
+      "魔药在你骨血里翻涌了一下：又一个像样的值夜者之举。",
+    ],
+    onEnter: [{ t: "digestion", v: 6 }, { t: "flag", k: "puppet_gear", v: 1 }, { t: "pounds", v: 2 }],
+    choices: [{ text: "退出杂物间，继续向上", next: "c4_foyer" }],
+  },
+  {
+    id: "c4_puppet_lose",
+    chapter: 4,
+    art: "ritual",
+    text: [
+      "铜丝缠住你的手腕，齿轮拳砸得你退出杂物间。你撑着门框把秘偶关回去——它没追出来，似乎被困在这一小间里。但你的肋骨抗议得厉害。",
+    ],
+    onEnter: [{ t: "hp", v: -5 }],
+    choices: [{ text: "按着肋骨，继续向上", next: "c4_foyer" }],
   },
   {
     id: "c4_bells",
