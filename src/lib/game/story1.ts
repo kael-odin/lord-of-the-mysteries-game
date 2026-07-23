@@ -744,8 +744,134 @@ export const STORY_1: StoryNode[] = [
       { text: "帮一位哭哭啼啼的老妇人找她失踪的猫", sub: "善举？还是麻烦？", once: "ev_cat", next: "ev_cat" },
       { text: "回恶龙酒吧，请消息灵通的酒保喝一杯", sub: "花1镑打探消息", once: "ev_bar", req: { minPounds: 1, hint: "买酒钱总得有一镑" }, next: "ev_bar" },
       { text: "去码头区吹吹海风", sub: "码头区的治安……闻名遐迩", once: "ev_dock", next: "ev_dock" },
+      { text: "以值夜者身份夜间巡逻", sub: "可重复：偶遇、扮演与小笔进账", next: "c2_patrol" },
       { text: "提早回家休息", sub: "恢复生命+6、灵性+4、理智+3", next: "c2_hub", effects: [{ t: "hp", v: 6 }, { t: "sp", v: 4 }, { t: "sanity", v: 3 }] },
     ],
+  },
+  {
+    id: "c2_patrol",
+    chapter: 2,
+    art: "city",
+    title: "夜间巡逻",
+    text: [
+      "你别上值夜者的徽章，沿着煤气灯稀疏的街巷缓步前行。雾把脚步声吞得又轻又远，偶尔有一两声不属于活物的响动从墙缝里漏出来——这就是廷根的夜班。",
+      "你不知道今晚会撞上什么，但每一次「扮演」值夜者，魔药都会更熟稔地融进你的骨血。",
+    ],
+    onEnter: [{ t: "digestion", v: 4 }],
+    choices: [
+      { text: "循着一声猫叫拐进漆黑的小巷", sub: "也许是猫，也许不是", next: "patrol_alley" },
+      { text: "拦下一辆夜行的马车盘问", sub: "意志判定：查验身份", next: "patrol_carriage" },
+      { text: "在桥头的老灯柱下站一会儿", sub: "让魔药在静默中沉淀", next: "patrol_lamp" },
+      { text: "结束巡逻，回公司", next: "c2_hub" },
+    ],
+  },
+  {
+    id: "patrol_alley",
+    chapter: 2,
+    art: "city",
+    text: [
+      "巷子尽头，一只瘦骨嶙峋的橘猫正对着墙角呜咽。墙角的砖缝里渗出一缕极淡的、青灰色的雾气，雾气里似乎有什么东西在缓慢地「呼吸」。",
+      "猫看见你，猛地窜上了墙头。它比任何仪器都灵敏——它早就告诉你该不该靠近了。",
+    ],
+    choices: [
+      {
+        text: "贴近观察那缕雾气", sub: "灵感判定：辨识超凡残留",
+        check: {
+          attr: "inspiration", dc: 11, label: "辨识雾气",
+          pass: "patrol_alley_pass", passEffects: [{ t: "flag", k: "patrol_clue", v: 1 }, { t: "pounds", v: 2 }],
+          fail: "patrol_alley_fail", failEffects: [{ t: "sanity", v: -3 }],
+        },
+      },
+      { text: "记下位置，回头带人来", sub: "稳妥，但少了点料", next: "patrol_alley_safe", effects: [{ t: "pounds", v: 1 }] },
+    ],
+  },
+  {
+    id: "patrol_alley_pass",
+    chapter: 2,
+    art: "city",
+    text: [
+      "你眯起眼，让灵性在瞳孔里聚焦。那缕雾气并非自然水汽——它在缓慢地、有节律地收缩，像某种极微弱的、尚未成形的怨念正在凝聚。",
+      "你用粉笔在墙上画下值夜者的封缄符号，雾气立刻萎顿、消散。一个路过的巡警远远看见徽记，朝你脱了脱帽——这条线索明天会被正式立案，而你的小笔记本上又多了一笔功劳。",
+    ],
+    choices: [{ text: "记下，继续巡逻", next: "c2_patrol" }],
+  },
+  {
+    id: "patrol_alley_fail",
+    chapter: 2,
+    art: "city",
+    text: [
+      "你盯着那缕雾气看了太久，它忽然像活物一样钻进你的眼眶——一瞬间，你听见几百个声音同时念出一个你不认识的名字。等你回过神，雾气已经散尽，只剩太阳穴突突地跳。",
+      "猫在墙头用一种近乎怜悯的眼神看着你。",
+    ],
+    choices: [{ text: "揉着太阳穴离开", next: "c2_patrol" }],
+  },
+  {
+    id: "patrol_alley_safe",
+    chapter: 2,
+    art: "city",
+    text: [
+      "你没有逞强，只是用粉笔画了个记号，记下街牌。第二天这条会被转交专案组——值夜者的规矩里，「活着上报」永远排在「孤胆英雄」前面。",
+    ],
+    choices: [{ text: "继续巡逻", next: "c2_patrol" }],
+  },
+  {
+    id: "patrol_carriage",
+    chapter: 2,
+    art: "city",
+    text: [
+      "一辆没有徽记的黑色马车在雾里缓缓驶来，车帘捂得严严实实。你抬手示意停车，车夫拉了拉缰绳，却没有立刻停下——他在打量你徽章的成色。",
+    ],
+    choices: [
+      {
+        text: "强硬要求查验乘客身份", sub: "意志判定：值夜者的威慑",
+        check: {
+          attr: "will", dc: 12, label: "威慑车夫",
+          pass: "patrol_carriage_pass", passEffects: [{ t: "pounds", v: 3 }, { t: "flag", k: "patrol_clue", v: 1 }],
+          fail: "patrol_carriage_fail", failEffects: [{ t: "sanity", v: -2 }],
+        },
+      },
+      { text: "记下车牌号放行", sub: "不惹麻烦", next: "patrol_carriage_note" },
+    ],
+  },
+  {
+    id: "patrol_carriage_pass",
+    chapter: 2,
+    art: "city",
+    text: [
+      "你一字一句念出值夜者条例的相关条款，声音不高，却像钉子一样钉在车夫耳边。他终于卸下傲气，掀开车帘——车里只有一只上锁的黑色公文箱，箱面上烙着一个你曾在密修会卷宗里见过的、半模糊的徽记。",
+      "你无权开箱，但你记住了徽记的纹路，并「顺手」收了一笔「夜间协助费」。这笔线索，迟早会连成一条线。",
+    ],
+    choices: [{ text: "放行，继续巡逻", next: "c2_patrol" }],
+  },
+  {
+    id: "patrol_carriage_fail",
+    chapter: 2,
+    art: "city",
+    text: [
+      "车夫嗤笑一声，扬鞭便走。车帘被风掀起一角，你只瞥见里头一截绣着暗纹的袍角——以及一枚别在袍角的、不属于这个时代的青铜扣针。",
+      "那枚扣针的样式，让你莫名地心悸了一整晚。",
+    ],
+    choices: [{ text: "目送马车消失在雾里", next: "c2_patrol" }],
+  },
+  {
+    id: "patrol_carriage_note",
+    chapter: 2,
+    art: "city",
+    text: [
+      "你抄下车牌，退到路边。车夫临走前扔下一枚铜便士，算作「打扰费」——在廷根，有些人宁可花钱也不愿被记下名字。这枚便士不值钱，但那个车牌号，也许日后用得上。",
+    ],
+    choices: [{ text: "收好便士，继续巡逻", next: "c2_patrol", effects: [{ t: "pounds", v: 1 }] }],
+  },
+  {
+    id: "patrol_lamp",
+    chapter: 2,
+    art: "city",
+    text: [
+      "桥头的老灯柱下，煤气火焰在玻璃罩里安静地跳动。你靠在石栏上，什么都不做，只是让魔药的名字在心底一遍遍回响——这是扮演，也是修行。",
+      "雾从河面升起来，把整座桥裹成一个与世隔绝的小世界。在这片刻的静默里，你听见了自己心跳的节律，和魔药消化时那种极轻微的、像潮汐一样的起伏。",
+    ],
+    onEnter: [{ t: "digestion", v: 6 }, { t: "sp", v: 3 }, { t: "sanity", v: 2 }],
+    choices: [{ text: "静默片刻，继续巡逻", next: "c2_patrol" }],
   },
   {
     id: "ev_cat",

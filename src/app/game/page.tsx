@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import { ChevronRight, Lock, Feather, Moon, BookOpen, Settings } from "lucide-react";
-import type { Choice, GameState } from "@/lib/game/types";
+import type { Choice, Effect, GameState } from "@/lib/game/types";
 import {
   applyEffects,
   applyPathway,
@@ -277,12 +277,13 @@ export default function GamePage() {
     if (!item?.usable || item.usable === "combatDmg" || !(cur.inv[id] > 0)) return;
     let st: GameState = { ...cur, inv: { ...cur.inv, [id]: cur.inv[id] - 1 } };
     if (st.inv[id] <= 0) delete st.inv[id];
-    const fx =
+    const fx: Effect[] =
       item.usable === "healHp"
-        ? [{ t: "hp" as const, v: item.v || 0 }]
+        ? [{ t: "hp", v: item.v || 0 }]
         : item.usable === "healSp"
-          ? [{ t: "sp" as const, v: item.v || 0 }]
-          : [{ t: "sanity" as const, v: item.v || 0 }];
+          ? [{ t: "sp", v: item.v || 0 }]
+          : [{ t: "sanity", v: item.v || 0 }];
+    if (item.also) fx.push({ t: item.also.t, v: item.also.v });
     const r = applyEffects(st, fx);
     setGsState(r.state);
     pushNotes([`使用了【${item.name}】`, ...r.notes]);

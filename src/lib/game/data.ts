@@ -197,6 +197,8 @@ export interface Item {
   v?: number;
   undeadBonus?: number;
   passive?: string;
+  /** 次要效果：物品同时附带的第二段效果（如静谧香膏的理智回复）。 */
+  also?: { t: "hp" | "sp" | "sanity"; v: number };
 }
 
 export const ITEMS: Record<string, Item> = {
@@ -209,7 +211,7 @@ export const ITEMS: Record<string, Item> = {
   coin_luck: { id: "coin_luck", name: "命运金币", desc: "购买后幸运+1。它永远以字面那一面朝上。", price: 6 },
   // ---- 新增物品 ----
   potion_full: { id: "potion_full", name: "司钟人的余烬药剂", desc: "钟楼仪式残余调配的稀有药剂：回复30点生命。", price: 6, usable: "healHp", v: 30 },
-  potion_focus: { id: "potion_focus", name: "静谧香膏", desc: "教会秘方：回复20点灵性与6点理智。", price: 5, usable: "healSp", v: 20 },
+  potion_focus: { id: "potion_focus", name: "静谧香膏", desc: "教会秘方：回复20点灵性与6点理智。", price: 5, usable: "healSp", v: 20, also: { t: "sanity", v: 6 } },
   charm_anchor: { id: "charm_anchor", name: "罗塞尔的「锚」", desc: "被动：理智上限+10，且每次进入战斗理智损失减半（最低1）。穿越者前辈的告诫。", price: 10, passive: "anchor" },
   seal_card: { id: "seal_card", name: "封印物·零号封缄", desc: "战斗中使用：对敌人造成40点真实伤害（无视护盾）。一次性的高阶封印弹药。", price: 9, usable: "combatDmg", v: 40 },
   ritual_dust: { id: "ritual_dust", name: "仪式灰烬", desc: "战斗中抛洒：对敌人造成18点伤害，对亡灵额外+10。浸血的钟楼灰烬。", price: 4, usable: "combatDmg", v: 18, undeadBonus: 10 },

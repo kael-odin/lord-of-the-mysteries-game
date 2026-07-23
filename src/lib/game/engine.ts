@@ -351,6 +351,12 @@ export function playerAct(s: GameState, cs: CombatState, act: PlayerAction): { s
       if (item.usable === "healHp") { c.playerHp = clamp(c.playerHp + (item.v || 0), 0, st.maxHp); push("player", `你饮下【${item.name}】，生命 +${item.v}。`); }
       if (item.usable === "healSp") { c.playerSp = clamp(c.playerSp + (item.v || 0), 0, st.maxSp); push("player", `你使用【${item.name}】，灵性 +${item.v}。`); }
       if (item.usable === "healSanity") { c.playerSanity = clamp(c.playerSanity + (item.v || 0), 0, st.maxSanity); push("player", `你服下【${item.name}】，翻涌的幻象平息了，理智 +${item.v}。`); }
+      if (item.also) {
+        if (item.also.t === "hp") c.playerHp = clamp(c.playerHp + item.also.v, 0, st.maxHp);
+        if (item.also.t === "sp") c.playerSp = clamp(c.playerSp + item.also.v, 0, st.maxSp);
+        if (item.also.t === "sanity") c.playerSanity = clamp(c.playerSanity + item.also.v, 0, st.maxSanity);
+        push("player", `附带的药效：${item.also.t === "hp" ? "生命" : item.also.t === "sp" ? "灵性" : "理智"} +${item.also.v}。`);
+      }
       if (item.usable === "combatDmg") {
         let raw = item.v || 10;
         if (e.undead && item.undeadBonus) raw += item.undeadBonus;

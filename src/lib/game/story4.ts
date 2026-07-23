@@ -33,6 +33,11 @@ export const STORY_4: StoryNode[] = [
         next: "c5_promote",
       },
       {
+        text: "以「扮演」强行催熟魔药", sub: "理智-8：今晚必须晋升，哪怕不择手段",
+        req: { seq: 9, hint: "已是序列8" },
+        next: "c5_force_digest",
+      },
+      {
         text: "去恶龙酒吧的地下黑市采买", sub: "舞会里没有补给点",
         next: "c5_shop",
       },
@@ -57,6 +62,19 @@ export const STORY_4: StoryNode[] = [
       "邓恩站于圣徽旁：「去吧。带着新的力量，去掀开那些面具。」",
     ],
     choices: [{ text: "感受新的力量", next: "c5_hub" }],
+  },
+  {
+    id: "c5_force_digest",
+    chapter: 5,
+    art: "ritual",
+    title: "强行催熟",
+    text: [
+      "你把自己锁进炼金室，对着镜子，一遍遍念出魔药的名字——那个本该慢慢「扮演」才能承载的名字。每念一次，颅腔里就传来一声只有你能听见的、玻璃碎裂的脆响。",
+      "代价是实实在在的：一段不该被翻开的记忆被献祭给了魔药。但当你睁眼时，魔药终于在你体内彻底沉淀——你已可以申请晋升。",
+      "邓恩在门外沉默了很久，最后只说了一句：「……记住这感觉。这才是真正的『扮演』——演到自己都信了。」",
+    ],
+    onEnter: [{ t: "sanity", v: -8 }, { t: "digestion", v: 100 }, { t: "flag", k: "canAdvance", v: 1 }],
+    choices: [{ text: "走向圣徽", sub: "申请晋升序列8", next: "c5_promote" }],
   },
   {
     id: "c5_shop",
