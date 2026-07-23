@@ -219,10 +219,14 @@ export interface Item {
   name: string;
   desc: string;
   price?: number;
-  usable?: "healHp" | "healSp" | "healSanity" | "combatDmg";
+  usable?: "healHp" | "healSp" | "healSanity" | "combatDmg" | "combatBuff";
   v?: number;
   undeadBonus?: number;
   passive?: string;
+  /** 途径限定：仅该途径可在战斗中激发此物的「扮演」效果。 */
+  pathway?: string;
+  /** 战斗增益：使用后赋予玩家的临时状态（路径专属消耗品用）。 */
+  buff?: { dodgeUp?: number; dodgeTurns?: number; atkUp?: number; atkUpTurns?: number; shield?: number; vuln?: number; vulnTurns?: number; sanityCost?: number };
   /** 次要效果：物品同时附带的第二段效果（如静谧香膏的理智回复）。 */
   also?: { t: "hp" | "sp" | "sanity"; v: number };
 }
@@ -239,8 +243,18 @@ export const ITEMS: Record<string, Item> = {
   potion_full: { id: "potion_full", name: "司钟人的余烬药剂", desc: "钟楼仪式残余调配的稀有药剂：回复30点生命。", price: 6, usable: "healHp", v: 30 },
   potion_focus: { id: "potion_focus", name: "静谧香膏", desc: "教会秘方：回复20点灵性与6点理智。", price: 5, usable: "healSp", v: 20, also: { t: "sanity", v: 6 } },
   charm_anchor: { id: "charm_anchor", name: "罗塞尔的「锚」", desc: "被动：理智上限+10，且每次进入战斗理智损失减半（最低1）。穿越者前辈的告诫。", price: 10, passive: "anchor" },
-  seal_card: { id: "seal_card", name: "封印物·零号封缄", desc: "战斗中使用：对敌人造成40点真实伤害（无视护盾）。一次性的高阶封印弹药。", price: 9, usable: "combatDmg", v: 40 },
+  seal_card: { id: "seal_card", name: "封印物·零号封缄", desc: "战斗中使用：对敌人造成40点真实伤害（无视闪避），并令其易伤50%持续2回合。一次性的高阶封印弹药。", price: 9, usable: "combatDmg", v: 40, buff: { vuln: 50, vulnTurns: 2 } },
   ritual_dust: { id: "ritual_dust", name: "仪式灰烬", desc: "战斗中抛洒：对敌人造成18点伤害，对亡灵额外+10。浸血的钟楼灰烬。", price: 4, usable: "combatDmg", v: 18, undeadBonus: 10 },
+  // ---- 武器进阶：序列越高，凡俗兵器越不够用 ----
+  silver_dagger: { id: "silver_dagger", name: "银十字匕首", desc: "铭刻太阳圣徽的近战短兵。战斗基础攻击+4（替代左轮的+2）。对付亡灵更称手。", price: 7, passive: "atk4" },
+  seal_revolver: { id: "seal_revolver", name: "封印左轮", desc: "教会密库调拨的封印武器，枪管刻满赫密斯语。战斗基础攻击+6（替代前两者）。", price: 12, passive: "atk6" },
+  // ---- 途径专属消耗品：扮演的具象 ----
+  seer_tarot: { id: "seer_tarot", name: "占卜塔罗·命运之轮", desc: "【占卜家专属】战斗中翻开：预知敌招，闪避+35%持续2回合。占卜的本质是先一步看见。", price: 5, usable: "combatBuff", pathway: "seer", buff: { dodgeUp: 35, dodgeTurns: 2 } },
+  hunter_trap: { id: "hunter_trap", name: "猎人陷阱·缚兽索", desc: "【猎人专属】战斗中布下：敌人进入易伤+40%持续3回合。最强大的猎人，以猎物姿态出现。", price: 5, usable: "combatBuff", pathway: "hunter", buff: { vuln: 40, vulnTurns: 3 } },
+  reader_scroll: { id: "reader_scroll", name: "门之卷轴·折返", desc: "【读运者专属】战斗中展开：自身闪避+25%持续2回合，并获得8点护盾。门在你身后折叠。", price: 5, usable: "combatBuff", pathway: "reader", buff: { dodgeUp: 25, dodgeTurns: 2, shield: 8 } },
+  sleepless_incense: { id: "sleepless_incense", name: "不眠安息香", desc: "【不眠者专属】战斗中点燃：灵性充盈，自身攻击+4持续3回合，并获得6点护盾。守夜者从不需要真正睡着。", price: 5, usable: "combatBuff", pathway: "sleepless", buff: { atkUp: 4, atkUpTurns: 3, shield: 6 } },
+  collector_ward: { id: "collector_ward", name: "收尸人的镇魂符", desc: "【收尸人专属】战斗中贴出：敌人易伤+30%持续3回合；若敌人是不亡者，额外引发凋零（每回合6点，持续2回合）。死亡是收尸人的本行。", price: 5, usable: "combatBuff", pathway: "collector", buff: { vuln: 30, vulnTurns: 3 } },
+  pryer_grimoire: { id: "pryer_grimoire", name: "窥秘人的禁忌书页", desc: "【窥秘人专属】战斗中诵读：以知识为刃，自身攻击+5持续2回合，代价是理智-4。知识就是力量，字面意义上。", price: 5, usable: "combatBuff", pathway: "pryer", buff: { atkUp: 5, atkUpTurns: 2, sanityCost: 4 } },
 };
 
 // ============ 敌人 ============

@@ -56,8 +56,8 @@ export default function CombatPanel({
     () =>
       Object.entries(gs.inv)
         .map(([id, n]) => ({ item: ITEMS[id], n, id }))
-        .filter((x) => x.item?.usable),
-    [gs.inv],
+        .filter((x) => x.item?.usable && (!x.item.pathway || x.item.pathway === gs.pathway)),
+    [gs.inv, gs.pathway],
   );
 
   const ehpPct = (cs.ehp / cs.ehpMax) * 100;

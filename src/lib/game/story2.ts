@@ -102,6 +102,41 @@ export const STORY_2: StoryNode[] = [
         req: { minPounds: 6, hint: "还差些金镑" },
         next: "c3_shop", effects: [{ t: "pounds", v: -6 }, { t: "luck", v: 1 }],
       },
+      {
+        text: "购买【银十字匕首】（7镑）", sub: "战斗基础攻击+4（替代左轮，限购）", once: "bought_dagger",
+        req: { minPounds: 7, hint: "还差些金镑" },
+        next: "c3_shop", effects: [{ t: "pounds", v: -7 }, { t: "item", k: "silver_dagger", v: 1 }],
+      },
+      {
+        text: "购买【占卜塔罗·命运之轮】（5镑）", sub: "占卜家专属：战斗闪避+35%",
+        hidden: { pathway: "seer" }, req: { minPounds: 5, hint: "还差些金镑" },
+        next: "c3_shop", effects: [{ t: "pounds", v: -5 }, { t: "item", k: "seer_tarot", v: 1 }],
+      },
+      {
+        text: "购买【猎人陷阱·缚兽索】（5镑）", sub: "猎人专属：敌易伤+40%",
+        hidden: { pathway: "hunter" }, req: { minPounds: 5, hint: "还差些金镑" },
+        next: "c3_shop", effects: [{ t: "pounds", v: -5 }, { t: "item", k: "hunter_trap", v: 1 }],
+      },
+      {
+        text: "购买【门之卷轴·折返】（5镑）", sub: "读运者专属：闪避+25%并获护盾",
+        hidden: { pathway: "reader" }, req: { minPounds: 5, hint: "还差些金镑" },
+        next: "c3_shop", effects: [{ t: "pounds", v: -5 }, { t: "item", k: "reader_scroll", v: 1 }],
+      },
+      {
+        text: "购买【不眠安息香】（5镑）", sub: "不眠者专属：攻击+4、护盾6",
+        hidden: { pathway: "sleepless" }, req: { minPounds: 5, hint: "还差些金镑" },
+        next: "c3_shop", effects: [{ t: "pounds", v: -5 }, { t: "item", k: "sleepless_incense", v: 1 }],
+      },
+      {
+        text: "购买【收尸人的镇魂符】（5镑）", sub: "收尸人专属：亡灵易伤+50%（符面通用+25%）",
+        hidden: { pathway: "collector" }, req: { minPounds: 5, hint: "还差些金镑" },
+        next: "c3_shop", effects: [{ t: "pounds", v: -5 }, { t: "item", k: "collector_ward", v: 1 }],
+      },
+      {
+        text: "购买【窥秘人的禁忌书页】（5镑）", sub: "窥秘人专属：攻击+5，代价理智-4",
+        hidden: { pathway: "pryer" }, req: { minPounds: 5, hint: "还差些金镑" },
+        next: "c3_shop", effects: [{ t: "pounds", v: -5 }, { t: "item", k: "pryer_grimoire", v: 1 }],
+      },
       { text: "离开黑市", next: "c3_hub" },
     ],
   },

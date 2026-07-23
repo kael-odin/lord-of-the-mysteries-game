@@ -116,7 +116,7 @@ export default function Hud({ gs, onUseItem, onOpenSlots, onOpenCodex, saveStatu
                 {items.map(([id, n]) => {
                   const item = ITEMS[id];
                   if (!item) return null;
-                  const usable = !!item.usable && item.usable !== "combatDmg";
+                  const usable = !!item.usable && item.usable !== "combatDmg" && item.usable !== "combatBuff";
                   return (
                     <div key={id} className="group flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2">
                       <div>

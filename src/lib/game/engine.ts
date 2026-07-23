@@ -280,7 +280,10 @@ export function newCombat(enemyKey: string, s: GameState, winNext: string, loseN
 
 export function playerBaseAtk(s: GameState): number {
   let atk = 5 + s.attrs.physique;
-  if (s.inv["old_revolver"]) atk += 2;
+  // 武器进阶：高阶武器覆盖低阶（只取所持最高一档）
+  if (s.inv["seal_revolver"]) atk += 6;
+  else if (s.inv["silver_dagger"]) atk += 4;
+  else if (s.inv["old_revolver"]) atk += 2;
   if (s.pathway === "hunter") atk += 1;
   return atk;
 }
@@ -347,7 +350,7 @@ export function playerAct(s: GameState, cs: CombatState, act: PlayerAction): { s
     push("player", `【${name}】${parts.join("，")}。`);
   } else if (act.kind === "item" && act.key) {
     const item = ITEMS[act.key];
-    if (item && (st.inv[act.key] || 0) > 0 && item.usable) {
+    if (item && (st.inv[act.key] || 0) > 0 && item.usable && (!item.pathway || item.pathway === s.pathway)) {
       st.inv = { ...st.inv, [act.key]: st.inv[act.key] - 1 };
       if (st.inv[act.key] <= 0) delete st.inv[act.key];
       if (item.usable === "healHp") { c.playerHp = clamp(c.playerHp + (item.v || 0), 0, st.maxHp); push("player", `你饮下【${item.name}】，生命 +${item.v}。`); }
@@ -364,6 +367,20 @@ export function playerAct(s: GameState, cs: CombatState, act: PlayerAction): { s
         if (e.undead && item.undeadBonus) raw += item.undeadBonus;
         dmg = Math.round(raw * rnd(0.95, 1.1));
         push("player", `你填入【${item.name}】击发——圣徽的辉光炸开，造成 ${dmg} 点伤害！`);
+        // 零号封缄附带易伤
+        if (item.buff?.vuln) { c.vuln = item.buff.vuln; c.vulnTurns = item.buff.vulnTurns || 2; push("sys", `封缄之力渗入：目标易伤 +${item.buff.vuln}%。`); }
+      }
+      if (item.usable === "combatBuff" && item.buff) {
+        const b = item.buff;
+        const parts2: string[] = [];
+        if (b.dodgeUp) { c.dodgeUp = b.dodgeUp; c.dodgeTurns = b.dodgeTurns || 2; parts2.push(`闪避 +${b.dodgeUp}%（${b.dodgeTurns || 2}回合）`); }
+        if (b.atkUp) { c.atkUp = b.atkUp; c.atkUpTurns = b.atkUpTurns || 2; parts2.push(`攻击 +${b.atkUp}（${b.atkUpTurns || 2}回合）`); }
+        if (b.shield) { c.shield += b.shield; parts2.push(`护盾 +${b.shield}`); }
+        if (b.vuln) { c.vuln = b.vuln; c.vulnTurns = b.vulnTurns || 3; parts2.push(`目标易伤 +${b.vuln}%（${b.vulnTurns || 3}回合）`); }
+        if (b.sanityCost) { c.playerSanity = clamp(c.playerSanity - b.sanityCost, 0, st.maxSanity); parts2.push(`理智 -${b.sanityCost}`); }
+        // 收尸人镇魂符对不亡者额外引发凋零
+        if (act.key === "collector_ward" && e.undead) { c.dot = 6; c.dotTurns = 2; parts2.push(`不亡者凋零 6/回合（2回合）`); }
+        push("player", `你祭出【${item.name}】——${parts2.join("，")}。`);
       }
     }
   } else if (act.kind === "meditate") {

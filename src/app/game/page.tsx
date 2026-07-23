@@ -274,7 +274,7 @@ export default function GamePage() {
     const cur = gsRef.current;
     if (!cur) return;
     const item = ITEMS[id];
-    if (!item?.usable || item.usable === "combatDmg" || !(cur.inv[id] > 0)) return;
+    if (!item?.usable || item.usable === "combatDmg" || item.usable === "combatBuff" || !(cur.inv[id] > 0)) return;
     let st: GameState = { ...cur, inv: { ...cur.inv, [id]: cur.inv[id] - 1 } };
     if (st.inv[id] <= 0) delete st.inv[id];
     const fx: Effect[] =

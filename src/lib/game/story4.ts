@@ -105,6 +105,11 @@ export const STORY_4: StoryNode[] = [
         req: { minPounds: 10, hint: "值这个价" },
         next: "c5_shop", effects: [{ t: "pounds", v: -10 }, { t: "item", k: "charm_anchor", v: 1 }, { t: "maxSanity", v: 10 }, { t: "sanity", v: 10 }],
       },
+      {
+        text: "购买【封印左轮】（12镑）", sub: "战斗基础攻击+6（终局兵刃，限购）", once: "bought_sealrev",
+        req: { minPounds: 12, hint: "压箱底的硬货" },
+        next: "c5_shop", effects: [{ t: "pounds", v: -12 }, { t: "item", k: "seal_revolver", v: 1 }],
+      },
       { text: "离开黑市", next: "c5_hub" },
     ],
   },
