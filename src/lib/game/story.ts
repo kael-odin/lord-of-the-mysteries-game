@@ -30,6 +30,8 @@ export const ENDINGS: Record<string, { title: string; tone: "gold" | "red" | "gr
   shikong: { title: "失控", tone: "red" },
   death: { title: "长眠", tone: "gray" },
   civilian: { title: "平凡即坟墓", tone: "green" },
+  // 第四章专属结局
+  bellkeeper: { title: "第三十一年", tone: "gray" },
   // 第五章新结局
   fool2: { title: "灰雾的第二次邀约", tone: "gold" },
   usurper: { title: "篡夺者", tone: "purple" },

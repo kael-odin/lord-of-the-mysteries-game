@@ -49,6 +49,14 @@ export const STORY_4: StoryNode[] = [
           fail: "c5_disguise_fail", failEffects: [{ t: "sanity", v: -3 }],
         },
       },
+      {
+        text: "踩点霍伊剧院的后门与逃生路线", sub: "体魄判定：摸清退路，代价是体力", once: "scouted_theater",
+        check: {
+          attr: "physique", dc: 12, label: "踩点退路",
+          pass: "c5_scout_pass", passEffects: [{ t: "flag", k: "escape_route", v: 1 }, { t: "hp", v: -2 }],
+          fail: "c5_scout_fail", failEffects: [{ t: "hp", v: -5 }, { t: "sanity", v: -1 }],
+        },
+      },
       { text: "动身赴舞会（主线）", sub: "月升之时", next: "c5_arrive" },
     ],
   },
@@ -133,6 +141,26 @@ export const STORY_4: StoryNode[] = [
     ],
     choices: [{ text: "戴上面具", next: "c5_hub" }],
   },
+  {
+    id: "c5_scout_pass",
+    chapter: 5,
+    art: "city",
+    text: [
+      "你绕着霍伊剧院走了一圈，记下了后巷那扇生锈的演员出入门、二楼包厢外年久失修的消防梯、以及后庭花圃尽头一截可以翻出去的矮墙。",
+      "「好的猎人，永远先想好退路。」你默念。万一舞会失控，你至少能多带一条命出来。",
+    ],
+    choices: [{ text: "记下退路，回旅馆", next: "c5_hub" }],
+  },
+  {
+    id: "c5_scout_fail",
+    chapter: 5,
+    art: "city",
+    text: [
+      "你想摸清剧院的后门，却撞上了巡夜的私人保安——对方显然被某位「贵客」打过招呼，对任何靠近后巷的人都格外警惕。你被驱赶着绕了一大圈，腿酸肋疼，什么也没记下来。",
+      "更糟的是，你怀疑自己已经被盯上了。",
+    ],
+    choices: [{ text: "甩掉尾巴，回旅馆", next: "c5_hub" }],
+  },
   // ---------- 舞会现场 ----------
   {
     id: "c5_arrive",
@@ -170,7 +198,37 @@ export const STORY_4: StoryNode[] = [
       {
         text: "拦截一位正向宾客扑去的失控者", sub: "他的假面下已长出多余的手臂", once: "c5_masquer_seen", next: "c5_masquer",
       },
+      {
+        text: "趁乱溜进二楼更衣室翻找宾客名册", sub: "灵感判定：高风险，高回报", once: "c5_roster_seen",
+        check: {
+          attr: "inspiration", dc: 15, label: "窃取名册",
+          pass: "c5_roster_pass", passEffects: [{ t: "flag", k: "roster", v: 1 }, { t: "flag", k: "guest_located", v: 1 }, { t: "digestion", v: 6 }],
+          fail: "c5_roster_fail", failEffects: [{ t: "sanity", v: -4 }, { t: "hp", v: -3 }],
+        },
+      },
     ],
+  },
+  {
+    id: "c5_roster_pass",
+    chapter: 5,
+    art: "ritual",
+    text: [
+      "你借着一名醉倒宾客的掩护，从更衣室的铜管衣帽架上摸下了一本烫金名册。借着窗外绯红月光，你飞快地扫过名单——",
+      "「罗德·阿贾克斯」，座位赫然标注在西侧绯红包厢。而在名册最后一页的「特邀贵客」栏里，你看见了一个被墨水反复涂抹、却仍能辨认的名字：「银鹿」。旁边是一行小字：「仪式之锚，待定。」",
+      "你把名册塞回原处，心跳如鼓。谁是「锚」，谁就是今晚的猎物——或者，祭品。",
+    ],
+    choices: [{ text: "回到舞池，锁定包厢", next: "c5_approach_guest" }],
+  },
+  {
+    id: "c5_roster_fail",
+    chapter: 5,
+    art: "ritual",
+    text: [
+      "你刚摸到名册，一只戴黑天鹅绒手套的手就按在了你的手背上。一名戴无面假像的侍者凑到你耳边，声音没有温度：「先生，更衣室不接待戴鸦羽面具的客人。请回舞池。」",
+      "他没用强力，但你分明感觉到，他的「气」远在你之上。你被「礼貌」地请了出去，后脑勺还撞上了门框——这一下让你多少有些发懵。",
+      "名册没到手，但你至少确认了一件事：这场舞会的安保，本身就是非凡者。",
+    ],
+    choices: [{ text: "揉着后脑勺回到舞池", next: "c5_cultists" }],
   },
   {
     id: "c5_masquer",
@@ -396,7 +454,25 @@ export const STORY_4: StoryNode[] = [
         req: { pathway: "hunter", hint: "需要猎人的设伏本能" },
         next: "ending_hunter_legend", effects: [{ t: "digestion", v: 16 }],
       },
+      {
+        text: "按踩点好的退路，带宾客从后门撤离", sub: "需要 escape_route：丢下主线，保住一舞池的命",
+        req: { flag: "escape_route", flagVal: 1, hint: "你没有摸清退路，硬撤只会让更多人死" },
+        next: "c5_retreat", effects: [{ t: "flag", k: "retreated", v: 1 }, { t: "sanity", v: -4 }],
+      },
     ],
+  },
+  {
+    id: "c5_retreat",
+    chapter: 5,
+    art: "city",
+    title: "后门",
+    text: [
+      "你没有去拦那个跃下包厢的、序列6的存在。你转身，抓起最近的一名昏迷宾客，从你踩点时记下的后门冲了出去。",
+      "消防梯在脚下嘎吱作响，矮墙的砖块硌得手心生疼，但你和七八名被你拽出来的宾客，硬是从那场献祭里活了下来。身后，霍伊剧院的绯红月光大盛——兽被罗德收走了，廷根从此多了一头不该存在的秘偶。",
+      "你没有成为英雄，也没有成为锚。你只是，在不可能的局面里，多救出了几条命。",
+      "邓恩在安全屋接到你时，看着你身后那一排惊魂未定的宾客，沉默良久，最后把你按进了一把椅子里：「……先喝口茶。剩下的，我来。」",
+    ],
+    choices: [{ text: "瘫坐在椅子里", next: "ending_survivor" }],
   },
   {
     id: "c5_seal_beast",
