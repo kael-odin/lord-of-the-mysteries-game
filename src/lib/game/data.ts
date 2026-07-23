@@ -263,6 +263,8 @@ export interface EnemyMove {
   msg: string;
   dmg?: number;
   sanity?: number;
+  bleed?: number; // 对玩家造成持续流血（每回合伤害）
+  bleedTurns?: number;
   w: number; // 权重
   minTurn?: number;
   belowHalf?: boolean; // 半血后解锁
@@ -320,7 +322,7 @@ export const ENEMIES: Record<string, Enemy> = {
     intro: "斗篷男人从阴影里站起身，指间一柄涂着墨绿毒液的匕首。他的眼神平静得像在祷告——为猎物祷告。",
     moves: [
       { name: "毒刃连刺", msg: "匕首化作两道绿光刺来", dmg: 7, w: 3 },
-      { name: "淬毒一击", msg: "刀尖掠过伤口，毒素渗入血脉", dmg: 5, sanity: 2, w: 2 },
+      { name: "淬毒一击", msg: "刀尖掠过伤口，毒素渗入血脉", dmg: 5, sanity: 2, bleed: 3, bleedTurns: 3, w: 2 },
       { name: "阴影滑步", msg: "他的身形忽然模糊，垫步侧移", w: 1 },
     ],
     loot: [{ t: "pounds", v: 5 }, { t: "item", k: "potion_heal", v: 1 }],
@@ -421,7 +423,7 @@ export const ENEMIES: Record<string, Enemy> = {
     intro: "雾衣大师从假面兽的余烬中走出——不，是「滑」出来的，仿佛空间在他脚下折叠。他抬手，你的影子竟然违背你地动了一下。「了不起的小值夜者，」他的声音直接在颅骨内响起，「让我看看，你的线有多长。」",
     moves: [
       { name: "秘偶提线", msg: "你的影子被无形之线拉扯，四肢不受控地抽搐", dmg: 10, sanity: 5, w: 3 },
-      { name: "雾刃千割", msg: "灰雾凝成无数薄刃，把你切成一幅血画", dmg: 13, w: 2 },
+      { name: "雾刃千割", msg: "灰雾凝成无数薄刃，把你切成一幅血画", dmg: 13, bleed: 3, bleedTurns: 3, w: 2 },
       { name: "记忆窃取", msg: "他探进你的意识，偷走一段关于「家」的记忆", sanity: 8, w: 2, minTurn: 2 },
       { name: "同构", msg: "他试图让你也成为他的秘偶——你咬碎舌尖才挣脱", dmg: 6, sanity: 7, w: 1, belowHalf: true },
     ],
@@ -482,7 +484,7 @@ export const ENEMIES: Record<string, Enemy> = {
     intro: "钟楼二层堆杂物的角落里，一具木与铜丝扎成的人偶自行站了起来，关节嘎吱作响。它没有脸，胸口却嵌着一枚锈蚀的齿轮——像一颗还在跳的心。它显然是某个被放弃的仪式留下的残骸，但残骸也会伤人。",
     moves: [
       { name: "齿轮拳击", msg: "人偶的铜拳带着机括声砸来", dmg: 7, w: 3 },
-      { name: "发条缠绕", msg: "它胸口弹出更多铜丝，缠向你的手腕", dmg: 5, w: 2 },
+      { name: "发条缠绕", msg: "它胸口弹出更多铜丝，缠向你的手腕", dmg: 5, bleed: 2, bleedTurns: 3, w: 2 },
       { name: "残骸抽搐", msg: "它诡异地抽搐一下，仿佛在回忆自己曾是谁", w: 1 },
     ],
     loot: [{ t: "pounds", v: 4 }, { t: "flag", k: "puppet_down", v: 1 }],
@@ -496,7 +498,7 @@ export const ENEMIES: Record<string, Enemy> = {
     hp: 42, atk: 8, dodge: 12, sanitySight: 6,
     intro: "舞池边缘，一位戴着猩红长喙假面的宾客踉跄过来，礼服下伸出多余的、不属于人类的手臂。他还没完全失控——眼里残留着求救的光，但嘴已在念不属于他的祷词。",
     moves: [
-      { name: "醉步扑击", msg: "宾客以舞步的节奏扑来，多余的手臂乱抓", dmg: 8, w: 3 },
+      { name: "醉步扑击", msg: "宾客以舞步的节奏扑来，多余的手臂乱抓", dmg: 8, bleed: 2, bleedTurns: 2, w: 3 },
       { name: "假面低语", msg: "他的长喙假面里渗出一段祷词，你的太阳穴发紧", dmg: 3, sanity: 4, w: 2 },
       { name: "挣扎清醒", msg: "他猛地一颤，短暂夺回了自己的身体", w: 1 },
       { name: "彻底失控", msg: "最后的人性被吞没，他发出非人的嘶吼扑来", dmg: 10, w: 2, belowHalf: true },

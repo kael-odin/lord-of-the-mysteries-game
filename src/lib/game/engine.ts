@@ -268,6 +268,8 @@ export function newCombat(enemyKey: string, s: GameState, winNext: string, loseN
     vuln: 0, vulnTurns: 0,
     eAtkDown: 0, eAtkTurns: 0,
     dot: 0, dotTurns: 0,
+    pDot: 0, pDotTurns: 0,
+    guard: 0,
     playerHp: s.hp,
     playerSp: s.pathway === "sleepless" ? clamp(s.sp + 2, 0, s.maxSp) : s.sp,
     playerSanity: sanity,
@@ -289,7 +291,7 @@ export function playerBaseAtk(s: GameState): number {
 }
 
 export interface PlayerAction {
-  kind: "attack" | "ability" | "item" | "meditate";
+  kind: "attack" | "ability" | "item" | "meditate" | "defend";
   key?: string;
 }
 
@@ -383,11 +385,28 @@ export function playerAct(s: GameState, cs: CombatState, act: PlayerAction): { s
         push("player", `你祭出【${item.name}】——${parts2.join("，")}。`);
       }
     }
+  } else if (act.kind === "defend") {
+    // 防御：以逸待劳。护盾 = 4 + 意志/2（向上取整），本回合敌方攻击闪避 +35%，并止血（清除玩家流血）
+    const shieldGain = 4 + Math.ceil(s.attrs.will / 2);
+    c.shield += shieldGain;
+    c.guard = 35;
+    const parts3: string[] = [`护盾 +${shieldGain}`];
+    if (c.pDotTurns > 0) {
+      parts3.push(`止血（清除流血 ${c.pDot}×${c.pDotTurns}）`);
+      c.pDot = 0; c.pDotTurns = 0;
+    }
+    push("player", `你沉肩举盾、压低重心——${parts3.join("，")}，本回合闪避 +35%。`);
   } else if (act.kind === "meditate") {
     const spGain = 4 + (s.pathway === "sleepless" ? 2 : 0);
     c.playerSp = clamp(c.playerSp + spGain, 0, st.maxSp);
     c.playerSanity = clamp(c.playerSanity + 2, 0, st.maxSanity);
-    push("player", `你闭眼调息，默念赫密斯语咒文的反义折返……灵性 +${spGain}，理智 +2。`);
+    let medMsg = `你闭眼调息，默念赫密斯语咒文的反义折返……灵性 +${spGain}，理智 +2。`;
+    if (c.pDotTurns > 0) {
+      c.pDotTurns = Math.max(0, c.pDotTurns - 1);
+      if (c.pDotTurns === 0) { c.pDot = 0; medMsg += "（调息止血，流血已止。）"; }
+      else medMsg += `（调息止血，流血剩余 ${c.pDotTurns} 回合。）`;
+    }
+    push("player", medMsg);
   }
 
   // 计算易伤
@@ -430,6 +449,15 @@ export function playerAct(s: GameState, cs: CombatState, act: PlayerAction): { s
   if (c.dodgeTurns > 0) { c.dodgeTurns -= 1; if (c.dodgeTurns === 0) c.dodgeUp = 0; }
   if (c.eAtkTurns > 0) { c.eAtkTurns -= 1; if (c.eAtkTurns === 0) c.eAtkDown = 0; }
   if (c.vulnTurns > 0) { c.vulnTurns -= 1; if (c.vulnTurns === 0) c.vuln = 0; }
+  // 玩家流血结算（先扣血，再判断死亡）
+  if (c.pDotTurns > 0 && !c.over) {
+    c.playerHp = Math.max(0, c.playerHp - c.pDot);
+    push("sys", `伤口流血不止：-${c.pDot} 生命。`);
+    c.pDotTurns -= 1;
+    if (c.pDotTurns === 0) c.pDot = 0;
+  }
+  // 防御架势仅持续到下回合开始
+  c.guard = 0;
   c.turn += 1;
 
   // 玩家战败
@@ -462,7 +490,7 @@ function enemyAct(s: GameState, c: CombatState, push: (side: "player" | "enemy" 
     return;
   }
   // 玩家闪避
-  const dodgeChance = c.dodgeUp + (s.pathway === "collector" && e.undead ? 15 : 0) + (s.pathway === "reader" && c.turn === 1 ? 20 : 0);
+  const dodgeChance = c.dodgeUp + c.guard + (s.pathway === "collector" && e.undead ? 15 : 0) + (s.pathway === "reader" && c.turn === 1 ? 20 : 0);
   if (mv.dmg && Math.random() * 100 < dodgeChance) {
     push("player", `你预感到危险的轨迹，侧身避开！（闪避成功）`);
     if (mv.sanity) {
@@ -484,6 +512,11 @@ function enemyAct(s: GameState, c: CombatState, push: (side: "player" | "enemy" 
     const loss = s.inv["charm_anchor"] ? Math.max(1, Math.round(mv.sanity / 2)) : s.inv["charm_dog"] ? Math.max(1, mv.sanity - 1) : mv.sanity;
     c.playerSanity = clamp(c.playerSanity - loss, 0, s.maxSanity);
     parts.push(`理智 -${loss}`);
+  }
+  if (mv.bleed) {
+    c.pDot = Math.max(c.pDot, mv.bleed);
+    c.pDotTurns = Math.max(c.pDotTurns, mv.bleedTurns || 2);
+    parts.push(`流血 ${mv.bleed}/回合（${mv.bleedTurns || 2}回合）`);
   }
   push("enemy", `${mv.msg}！${parts.join("，")}。`);
 }

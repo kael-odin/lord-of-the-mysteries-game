@@ -110,6 +110,9 @@ export interface CombatState {
   eAtkTurns: number;
   dot: number;
   dotTurns: number;
+  pDot: number; // 玩家受到的持续流血
+  pDotTurns: number;
+  guard: number; // 防御下回合提供的额外闪避%
   playerHp: number;
   playerSp: number;
   playerSanity: number;

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Swords, Sparkles, Package, Wind, Heart, Brain, Ghost, ShieldPlus } from "lucide-react";
+import { Swords, Sparkles, Package, Wind, Heart, Brain, Ghost, ShieldPlus, Shield } from "lucide-react";
 import type { CombatState, GameState } from "@/lib/game/types";
 import { ENEMIES, ITEMS, PATHWAYS } from "@/lib/game/data";
 import { newCombat, playerAct, playerBaseAtk, type PlayerAction } from "@/lib/game/engine";
@@ -155,6 +155,8 @@ export default function CombatPanel({
             )}
             {cs.atkUp > 0 && <span className="text-orange-300">攻击 +{cs.atkUp}（{cs.atkUpTurns}回合）</span>}
             {cs.dodgeUp > 0 && <span className="text-teal-300">闪避 +{cs.dodgeUp}%（{cs.dodgeTurns}回合）</span>}
+            {cs.guard > 0 && <span className="text-sky-300">防御架势（闪避+{cs.guard}%）</span>}
+            {cs.pDotTurns > 0 && <span className="text-red-400">流血 {cs.pDot}/回合（{cs.pDotTurns}回合）</span>}
           </div>
 
           {bagOpen && (
@@ -234,6 +236,17 @@ export default function CombatPanel({
                 <Wind className="h-4 w-4" /> 冥想调息
               </span>
               <span className="text-[10px] text-white/40">回复灵性与少许理智</span>
+            </button>
+
+            <button
+              onClick={() => act({ kind: "defend" })}
+              disabled={cs.over}
+              className="flex flex-col items-center gap-1 rounded-lg border border-sky-400/25 bg-sky-500/10 px-3 py-3 transition hover:bg-sky-500/20 disabled:opacity-40"
+            >
+              <span className="flex items-center gap-1.5 text-xs text-sky-200">
+                <Shield className="h-4 w-4" /> 防御
+              </span>
+              <span className="text-[10px] text-white/40">护盾+{4 + Math.ceil(gs.attrs.will / 2)} · 闪避+35% · 止血</span>
             </button>
           </div>
         </div>
