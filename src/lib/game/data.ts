@@ -346,7 +346,7 @@ export const ENEMIES: Record<string, Enemy> = {
     key: "shadow",
     name: "安提哥努斯的残影",
     title: "被污染的古籍守卫",
-    hp: 58, atk: 9, dodge: 18, undead: true, sanitySight: 10,
+    hp: 58, atk: 9, dodge: 18, undead: true, sanitySight: 7,
     intro: "笔记上方的空气扭曲起来。无数张重叠的人脸在黑暗里睁开，那是安提哥努斯家族百年来所有亡灵的缝合——它只有一句话，用几百个声音同时说：把……笔记……留下……",
     moves: [
       { name: "恐怖凝视", msg: "数百只眼睛同时看向你", dmg: 3, sanity: 6, w: 3 },
@@ -376,7 +376,7 @@ export const ENEMIES: Record<string, Enemy> = {
     key: "hound",
     name: "月影犬",
     title: "被仪式扭曲的看门兽",
-    hp: 30, atk: 7, dodge: 20, undead: true, sanitySight: 4,
+    hp: 30, atk: 7, dodge: 15, undead: true, sanitySight: 4,
     intro: "钟楼台阶上伏着一只瘦骨嶙峋的黑犬。它抬起头，脸上却没有眼鼻的位置——只有一张咧到耳根的、布满人齿的嘴。它「认出」了你身上的活人气息。",
     moves: [
       { name: "阴影撕咬", msg: "月影犬无声扑来，利齿咬住手臂", dmg: 8, w: 3 },

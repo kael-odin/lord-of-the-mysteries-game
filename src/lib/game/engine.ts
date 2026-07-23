@@ -281,6 +281,29 @@ export function newCombat(enemyKey: string, s: GameState, winNext: string, loseN
     ehp = Math.max(1, e.hp - preempt);
     log.push({ side: "player", text: `${label}——抢得先机，一击削去 ${preempt} 点生命。` });
   }
+  // c2 子夜歌声：意志判定决定谁抢得先机。
+  // 通过 → 玩家镇定反杀，开局削去怨魂一截生命；失败 → 怨魂先发制人，玩家开局即受伤。
+  let pHp = s.hp;
+  if (enemyKey === "wraith" && s.flags?.wraith_steadied) {
+    const preempt = Math.max(2, Math.round(e.hp * 0.2));
+    ehp = Math.max(1, e.hp - preempt);
+    log.push({ side: "player", text: `你趁着它迟疑的半秒率先开火——削去 ${preempt} 点生命。` });
+  } else if (enemyKey === "wraith" && s.flags?.wraith_ambush) {
+    const hurt = Math.max(2, Math.round(e.atk * 0.8));
+    pHp = Math.max(1, s.hp - hurt);
+    log.push({ side: "enemy", text: `幻象散去时它已扑到身前——你硬吃了一记 ${hurt} 点伤害才稳住阵脚。` });
+  }
+  // c3 老鼠莫里：灵感判定决定伏击的走向。
+  // 通过 → 玩家已瞥见杀手方位，开局先手；失败 → 杀手先发制人，玩家开局受伤。
+  if (enemyKey === "cultist" && s.flags?.ambush_seen) {
+    const preempt = Math.max(2, Math.round(e.hp * 0.18));
+    ehp = Math.max(1, e.hp - preempt);
+    log.push({ side: "player", text: `你早一步瞥见他的方位——抢上一枪，削去 ${preempt} 点生命。` });
+  } else if (enemyKey === "cultist" && s.flags?.cultist_ambush) {
+    const hurt = Math.max(2, Math.round(e.atk * 0.7));
+    pHp = Math.max(1, s.hp - hurt);
+    log.push({ side: "enemy", text: `他第二柄匕首顺势补到——你又挨了 ${hurt} 点伤害才拉开距离。` });
+  }
   return {
     enemyKey, winNext, loseNext,
     ehp, ehpMax: e.hp,
@@ -292,7 +315,7 @@ export function newCombat(enemyKey: string, s: GameState, winNext: string, loseN
     dot: 0, dotTurns: 0,
     pDot: 0, pDotTurns: 0,
     guard: 0,
-    playerHp: s.hp,
+    playerHp: pHp,
     playerSp: s.pathway === "sleepless" ? clamp(s.sp + 2, 0, s.maxSp) : s.sp,
     playerSanity: sanity,
     turn: 1,

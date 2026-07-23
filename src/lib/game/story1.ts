@@ -1234,8 +1234,8 @@ export const STORY_1: StoryNode[] = [
         text: "稳住呼吸，直面怨魂", sub: "意志判定：恐惧才是最大的破绽",
         check: {
           attr: "will", dc: 12, label: "直面怨魂",
-          pass: "c2_night_pass", passEffects: [{ t: "sanity", v: 2 }],
-          fail: "c2_night_fail", failEffects: [{ t: "sanity", v: -4 }],
+          pass: "c2_night_pass", passEffects: [{ t: "sanity", v: 2 }, { t: "flag", k: "wraith_steadied", v: 1 }],
+          fail: "c2_night_fail", failEffects: [{ t: "sanity", v: -4 }, { t: "flag", k: "wraith_ambush", v: 1 }],
         },
       },
     ],

@@ -75,18 +75,19 @@ export const STORY_2: StoryNode[] = [
     art: "city",
     title: "恶龙酒吧·地下黑市",
     text: [
-      "戴单片眼镜的老摊主还认得你，金牙一闪：「哟，回头客！最近外头可不太平，老头子我的存货都被扫了一半——要买趁早。」",
+      "戴单片眼镜的老摊主还认得你，金牙一闪：「哟，回头客！最近外头可不太平，老头子我的存货都被扫了一半——普通的圣水香膏早断货了，只剩些压箱底的硬货。」",
+      "「要买趁早。再过两天，怕是连这些也凑不齐了。」",
     ],
     choices: [
       {
-        text: "购买【治疗圣水】×1（3镑）", sub: "回复14点生命",
-        req: { minPounds: 3, hint: "还差些金镑" },
-        next: "c3_shop", effects: [{ t: "pounds", v: -3 }, { t: "item", k: "potion_heal", v: 1 }],
+        text: "购买【余烬药剂】×1（6镑）", sub: "回复30点生命（战时余货）",
+        req: { minPounds: 6, hint: "还差些金镑" },
+        next: "c3_shop", effects: [{ t: "pounds", v: -6 }, { t: "item", k: "potion_full", v: 1 }],
       },
       {
-        text: "购买【安眠香膏】×1（2镑）", sub: "回复12点灵性",
-        req: { minPounds: 2, hint: "还差些金镑" },
-        next: "c3_shop", effects: [{ t: "pounds", v: -2 }, { t: "item", k: "potion_calm", v: 1 }],
+        text: "购买【静谧香膏】×1（5镑）", sub: "回复20点灵性、6点理智（教会秘方）",
+        req: { minPounds: 5, hint: "还差些金镑" },
+        next: "c3_shop", effects: [{ t: "pounds", v: -5 }, { t: "item", k: "potion_focus", v: 1 }],
       },
       {
         text: "购买【宁神药剂】×1（3镑）", sub: "回复10点理智",
@@ -94,9 +95,9 @@ export const STORY_2: StoryNode[] = [
         next: "c3_shop", effects: [{ t: "pounds", v: -3 }, { t: "item", k: "potion_mind", v: 1 }],
       },
       {
-        text: "购买【净化子弹】×1（4镑）", sub: "对亡灵有奇效",
-        req: { minPounds: 4, hint: "还差些金镑" },
-        next: "c3_shop", effects: [{ t: "pounds", v: -4 }, { t: "item", k: "bullet_purify", v: 1 }],
+        text: "购买【净化子弹】×2（6镑）", sub: "对亡灵有奇效（战时仅剩散包）",
+        req: { minPounds: 6, hint: "还差些金镑" },
+        next: "c3_shop", effects: [{ t: "pounds", v: -6 }, { t: "item", k: "bullet_purify", v: 2 }],
       },
       {
         text: "购买【黑狗护符】（5镑）", sub: "被动：理智损失-1（限购）", once: "bought_dog",
@@ -175,7 +176,7 @@ export const STORY_2: StoryNode[] = [
         check: {
           attr: "inspiration", dc: 13, label: "危机预感",
           pass: "c3_dodge", passEffects: [{ t: "flag", k: "ambush_seen", v: 1 }],
-          fail: "c3_ambushed", failEffects: [{ t: "hp", v: -4 }],
+          fail: "c3_ambushed", failEffects: [{ t: "hp", v: -4 }, { t: "flag", k: "cultist_ambush", v: 1 }],
         },
       },
     ],

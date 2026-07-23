@@ -179,6 +179,11 @@ export const STORY_3: StoryNode[] = [
         req: { minPounds: 6, hint: "还差些金镑" },
         next: "c4_shop", effects: [{ t: "pounds", v: -6 }, { t: "luck", v: 1 }],
       },
+      {
+        text: "淘换【封印左轮】（14镑）", sub: "战斗基础攻击+6（替代银匕/左轮，限购）", once: "bought_sealrev",
+        req: { minPounds: 14, hint: "还差不少金镑" },
+        next: "c4_shop", effects: [{ t: "pounds", v: -14 }, { t: "item", k: "seal_revolver", v: 1 }],
+      },
       { text: "离开黑市", next: "c4_hub" },
     ],
   },
