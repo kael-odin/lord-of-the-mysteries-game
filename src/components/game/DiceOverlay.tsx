@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Dices } from "lucide-react";
 import type { Check, GameState } from "@/lib/game/types";
 import { rollCheck, type CheckResult } from "@/lib/game/engine";
@@ -16,11 +16,11 @@ export default function DiceOverlay({
 }) {
   const [face, setFace] = useState(20);
   const [result, setResult] = useState<CheckResult | null>(null);
-  const doneRef = useRef(false);
 
   useEffect(() => {
-    if (doneRef.current) return;
-    doneRef.current = true;
+    // Roll once after a brief spin. Cleanup clears both timers so a
+    // StrictMode remount (or unmount) cancels the in-flight roll and the
+    // next mount schedules a fresh one — no stuck "spinning forever" state.
     const timer = setInterval(() => setFace(1 + Math.floor(Math.random() * 20)), 70);
     const stop = setTimeout(() => {
       clearInterval(timer);

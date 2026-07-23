@@ -21,8 +21,8 @@ interface EchoRow {
 const FEATURES = [
   {
     icon: Route,
-    title: "二十二途径 · 五选一",
-    desc: "占卜家、不眠者、收尸人、窥秘人、猎人——饮下序列9魔药，沿着愚者、黑暗、永眠者、隐者、红祭司途径攀升，直至晋升序列8。",
+    title: "二十二途径 · 六选一",
+    desc: "占卜家、不眠者、收尸人、窥秘人、猎人、读运者——饮下序列9魔药，沿着愚者、黑暗、永眠者、隐者、红祭司、门途径攀升，直至晋升序列8。",
   },
   {
     icon: FlaskConical,
@@ -117,7 +117,7 @@ export default function LandingPage() {
           </div>
 
           <p className="mt-6 text-[10px] tracking-[0.2em] text-white/30" style={{ animation: "fadeUp 1s ease both", animationDelay: "0.6s" }}>
-            本地存档 · 五大章节 · {ALL_ENDING_IDS.length} 种结局 · 五条途径攀升至序列8
+            本地存档 · 五大章节 · {ALL_ENDING_IDS.length} 种结局 · 六条途径攀升至序列8
           </p>
         </div>
 

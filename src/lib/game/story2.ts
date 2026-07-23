@@ -47,6 +47,10 @@ export const STORY_2: StoryNode[] = [
         text: "服用物资休整一番", sub: "喝一口邓恩的红茶：生命+8、灵性+6（一次）", once: "rested3",
         next: "c3_hub", effects: [{ t: "hp", v: 8 }, { t: "sp", v: 6 }],
       },
+      {
+        text: "接下「铁十字街连环失踪案」", sub: "可选支线：三条人命，一堵会吃人的墙", once: "took_missing_case",
+        next: "arc_missing_start",
+      },
       { text: "动身前往码头区（主线）", sub: "去见线人莫里", next: "c3_informant" },
     ],
   },
@@ -353,5 +357,154 @@ export const STORY_2: StoryNode[] = [
       "（死亡不是故事的终点——只是这一位旅人的。来生，灰雾再见。）",
     ],
     choices: [],
+  },
+  // ============ 支线：铁十字街连环失踪案 ============
+  {
+    id: "arc_missing_start",
+    chapter: 3,
+    art: "city",
+    title: "铁十字街·第三具尸体",
+    text: [
+      "卷宗上写着：短短十日，铁十字街同一街区失踪三人，皆是独居的工匠。第三具尸体昨晚被发现——没有伤痕，没有挣扎，整个人像被「抽干」了什么，干瘪地贴在自己家的墙上，仿佛成了墙皮的一部分。",
+      "邓恩把案子压在主线之下，低声嘱咐你「有空就看看」。法医的报告里有一行被红笔圈出的小字：三户人家的临街墙面，内侧都发现了「不属于这栋房子的、极细的湿痕」。",
+      "你站在铁十字街街口。暮色里，那排联排红砖房沉默地立着，像一排紧闭的嘴。",
+    ],
+    choices: [
+      { text: "去第三具尸体的现场——7号屋", sub: "实地勘察", next: "arc_scene" },
+      { text: "先向街坊打听三人生前的人际关系", sub: "平凡但扎实的调查", next: "arc_gossip" },
+    ],
+  },
+  {
+    id: "arc_gossip",
+    chapter: 3,
+    art: "city",
+    text: [
+      "杂货铺老板、送奶工、扫街的老约翰——你用一镑的打探费换来了一个共同点：三人失踪前一周，都在装修自家临街的那面墙，雇的是同一个沉默寡言的泥瓦匠——那人左手缺了小指，干完活就没再出现过。",
+      "「那泥瓦匠干活时，」杂货铺老板压低声音，「我亲眼看见他把一根银针钉进了墙缝里——嘴里念叨着什么『把门缝读出来』。我当时以为他是疯子。」",
+      "「把门缝读出来」——这句话让你的脊背一凉。只有懂得「门」的人，才会用这样的措辞。",
+    ],
+    choices: [{ text: "直奔7号屋的墙", next: "arc_scene", effects: [{ t: "pounds", v: -1 }, { t: "flag", k: "arc_gossip", v: 1 }] }],
+  },
+  {
+    id: "arc_scene",
+    chapter: 3,
+    art: "ritual",
+    title: "7号屋·临街的墙",
+    text: [
+      "7号屋的临街墙面已经被法医撬开过一块。你凑近那道豁口，借着煤气灯的光，看清了墙皮内侧：那道「湿痕」不是水渍，而是一行用极淡银水写就的、密密麻麻的符文——某种「门」的咒文，正在缓慢地、自我消耗式地闭合。",
+      "更糟的是，你听见墙里传来一阵极轻的、指甲刮砖的声响。有什么东西，还在墙的另一侧——「墙的那一边」。",
+    ],
+    choices: [
+      {
+        text: "以灵视/通灵辨识墙后的存在", sub: "灵感判定：看清墙后",
+        check: {
+          attr: "inspiration", dc: 13, label: "辨识墙后",
+          pass: "arc_scene_pass", passEffects: [{ t: "flag", k: "arc_clue", v: 1 }, { t: "sanity", v: -2 }],
+          fail: "arc_scene_fail", failEffects: [{ t: "sanity", v: -4 }],
+        },
+      },
+      {
+        text: "「读」出墙上那行咒文的破绽", sub: "【读运者专属扮演】你天生就懂门",
+        req: { pathway: "reader", hint: "需要读运者途径的「门」之识" },
+        next: "arc_scene_reader", effects: [{ t: "digestion", v: 10 }, { t: "flag", k: "arc_clue", v: 1 }],
+      },
+      { text: "拆开这面墙，硬碰", sub: "体魄判定：体力活",
+        check: { attr: "physique", dc: 12, label: "破墙", pass: "arc_scene_bashpass", fail: "arc_scene_bashfail", failEffects: [{ t: "hp", v: -4 }] },
+      },
+    ],
+  },
+  {
+    id: "arc_scene_pass",
+    chapter: 3,
+    art: "ritual",
+    text: [
+      "你的灵性在瞳孔里聚焦。墙后并不是空心的砖石——它后面连着一条极窄的、不属于这栋房子的「夹层」，夹层里蜷着一个由湿痕与银灰符文拼成的、勉强维持人形的东西。",
+      "它察觉到你的注视，墙皮内侧的咒文骤然亮起——它在逃跑，想顺着墙「游」到隔壁去。",
+    ],
+    choices: [
+      { text: "追进夹层，堵住它", sub: "直面雾影窃贼", combat: "mistthief", winNext: "arc_catch", loseNext: "arc_escape" },
+    ],
+  },
+  {
+    id: "arc_scene_reader",
+    chapter: 3,
+    art: "ritual",
+    text: [
+      "你抬手抚上墙面。银色的韵文在你眼中重新排列——这扇「门」被人用拙劣的手法焊死了一半，是为了困住墙后的东西，但困得并不牢。",
+      "你只改动了三个符文，那道错误的「焊缝」就轰然洞开——不是放它出来，而是把门「反锁」，让墙后的东西再也无法顺着墙游走。",
+      "墙后传来一声又惊又怒的、非人的嘶鸣。然后，它从7号屋另一侧的豁口「挤」了出来，直面你——它别无选择了。",
+    ],
+    choices: [
+      { text: "趁它被困，正面收拾它", sub: "雾影窃贼已被削弱", combat: "mistthief", winNext: "arc_catch", loseNext: "arc_escape" },
+    ],
+  },
+  {
+    id: "arc_scene_fail",
+    chapter: 3,
+    art: "ritual",
+    text: [
+      "你看得不够深。墙皮内侧的咒文趁你愣神的工夫自我闭合，等你回过神，墙后的刮擦声已经远去——它顺着墙「游」到别处去了。",
+      "但你记下了它逃走的方向。",
+    ],
+    choices: [{ text: "循着痕迹追下去", next: "arc_chase" }],
+  },
+  {
+    id: "arc_scene_bashpass",
+    chapter: 3,
+    art: "ritual",
+    text: [
+      "你抡起铁镐，连砸三下，红砖与灰泥崩落——墙后露出了那条潮湿的夹层，和里面一团蠕动的人形湿影。它没料到有人会用这么「凡人」的方式破开门。",
+    ],
+    choices: [
+      { text: "逮住它", sub: "出其不意", combat: "mistthief", winNext: "arc_catch", loseNext: "arc_escape" },
+    ],
+  },
+  {
+    id: "arc_scene_bashfail",
+    chapter: 3,
+    art: "ritual",
+    text: [
+      "你砸偏了几下，手腕震得发麻。等你拆开豁口，墙后的东西已经顺着夹层溜走了——只留下一道淡淡的银水湿痕，指向隔壁。",
+    ],
+    choices: [{ text: "循痕追击", next: "arc_chase" }],
+  },
+  {
+    id: "arc_chase",
+    chapter: 3,
+    art: "city",
+    title: "墙缝追逐",
+    text: [
+      "你沿着湿痕追过三户人家的后院。银色的痕迹在9号屋的后墙汇聚、变浓——它就缩在9号屋的墙缝里，喘着不属于活物的气。",
+      "这一次，它无处可「游」了。",
+    ],
+    choices: [
+      { text: "把它从墙缝里逼出来", sub: "雾影窃贼", combat: "mistthief", winNext: "arc_catch", loseNext: "arc_escape" },
+    ],
+  },
+  {
+    id: "arc_catch",
+    chapter: 3,
+    art: "city",
+    title: "案结",
+    text: [
+      "雾影窃贼在9号屋后院溃散成一摊银灰色的湿痕。你从那摊湿痕里捻出一枚缺了小指的、银质的指套——那是「泥瓦匠」留下的工具，一件拙劣的、被改造过的门途径封印物。",
+      "它本是某个低阶门途径非凡者用来「读门缝」窃取民居财物的下作手段，失控之后，开始连人带命一起「偷」。",
+      "邓恩看了你的报告，难得地露出赞许：「案子结了。这条街能安生睡几晚了。」他顿了顿，「至于那个泥瓦匠……恐怕早成了墙皮的一部分。这种事，别深想。」",
+      "魔药在你体内满意地翻涌了一下——你又「扮演」了一回合格的值夜者。",
+    ],
+    onEnter: [{ t: "pounds", v: 5 }, { t: "digestion", v: 8 }, { t: "flag", k: "missing_solved", v: 1 }],
+    choices: [{ text: "凯旋回公司", next: "c3_hub" }],
+  },
+  {
+    id: "arc_escape",
+    chapter: 3,
+    art: "city",
+    text: [
+      "雾影窃贼从你指缝间滑走，溶进墙缝，再也找不到了。你没能结案，但至少那东西受了重创，短时间内不敢再在这条街作案。",
+      "邓恩没说什么重话，只拍了拍你的肩：「有些案子，能压住就算赢。回去歇着吧。」",
+      "你心里清楚，这一回，扮演得不算圆满——魔药也因此消化得慢了些。",
+    ],
+    onEnter: [{ t: "pounds", v: 2 }, { t: "sanity", v: -2 }],
+    choices: [{ text: "带着遗憾回公司", next: "c3_hub" }],
   },
 ];

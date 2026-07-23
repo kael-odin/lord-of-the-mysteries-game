@@ -443,7 +443,7 @@ function enemyAct(s: GameState, c: CombatState, push: (side: "player" | "enemy" 
     return;
   }
   // 玩家闪避
-  const dodgeChance = c.dodgeUp + (s.pathway === "collector" && e.undead ? 15 : 0);
+  const dodgeChance = c.dodgeUp + (s.pathway === "collector" && e.undead ? 15 : 0) + (s.pathway === "reader" && c.turn === 1 ? 20 : 0);
   if (mv.dmg && Math.random() * 100 < dodgeChance) {
     push("player", `你预感到危险的轨迹，侧身避开！（闪避成功）`);
     if (mv.sanity) {

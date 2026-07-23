@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Swords, Sparkles, Package, Wind, Heart, Brain, Ghost, ShieldPlus, Skull } from "lucide-react";
+import { Swords, Sparkles, Package, Wind, Heart, Brain, Ghost, ShieldPlus } from "lucide-react";
 import type { CombatState, GameState } from "@/lib/game/types";
 import { ENEMIES, ITEMS, PATHWAYS } from "@/lib/game/data";
 import { newCombat, playerAct, playerBaseAtk, type PlayerAction } from "@/lib/game/engine";
+import { Emblem } from "@/components/game/Emblem";
+import type { PathwayKey } from "@/lib/game/emblems";
 
 export default function CombatPanel({
   gs0,
@@ -87,11 +89,17 @@ export default function CombatPanel({
               回合 <span className="text-lg text-red-200">{cs.turn}</span>
             </div>
           </div>
-          <div className="h-2.5 w-full overflow-hidden rounded-full bg-white/10">
+          <div className="relative h-3 w-full overflow-hidden rounded-full bg-white/10 ring-1 ring-inset ring-black/40">
             <div
               className="h-full rounded-full bg-gradient-to-r from-red-800 via-red-500 to-orange-400 transition-all duration-500"
               style={{ width: `${ehpPct}%` }}
             />
+            {/* 分段刻度：每 25% 一道，让伤害削切更直观 */}
+            <div className="pointer-events-none absolute inset-0 flex justify-between px-[12.5%]">
+              {[0, 1, 2].map((i) => (
+                <span key={i} className="h-full w-px bg-black/35" />
+              ))}
+            </div>
           </div>
           <p className="mt-1 text-right text-[11px] tabular-nums text-white/50">
             {cs.ehp} / {cs.ehpMax}
@@ -192,7 +200,10 @@ export default function CombatPanel({
                   title={desc}
                 >
                   <span className="flex items-center gap-1.5 text-xs text-indigo-200">
-                    <Skull className="h-3.5 w-3.5" /> {name}
+                    <span style={{ ["--ember-color" as string]: "#c7d2fe" } as React.CSSProperties} className="inline-block">
+                      <Emblem k={gs.pathway as PathwayKey} size={18} />
+                    </span>
+                    {name}
                   </span>
                   <span className="text-[10px] text-white/40">
                     灵性-{ab.sp}

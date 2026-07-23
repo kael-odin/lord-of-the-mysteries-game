@@ -183,9 +183,35 @@ export const PATHWAYS: Record<string, Pathway> = {
       },
     ],
   },
+  reader: {
+    key: "reader",
+    name: "读运者",
+    seq8: "盗火者",
+    road: "门途径",
+    motto: "「所有的门，本质都是一道等待被读出的咒语。」",
+    desc: "能读懂空间「门」之韵律的人。墙、窗、上锁的抽屉——只要有边界，就有门。代价是：你越习惯穿行，越分不清哪一边才是「真实」的那一侧。",
+    bonus: { inspiration: 2, will: 2, physique: 1, maxSp: 10, sp: 10, maxSanity: 4 },
+    passive: { name: "穿门之识", desc: "被动：剧情中可识破并打开隐藏的「门」；战斗首回合闪避+20%。" },
+    drinkNode: "c2_drink_reader",
+    flavor: "读运者的魔药像一汪倒映着无数门扉的银水，每一滴里都映着一扇不同的门——有的通往你熟悉的地方，有的通往你不该去的地方。",
+    abilities: [
+      {
+        key: "phantom_step", name: "虚相穿门", desc: "化作一缕银雾穿过敌人防御：8+灵感×1.1 伤害（无视闪避），并令自身闪避+20%，2回合",
+        sp: 5, fx: { dmg: 8, dmgAttr: 1.1, dmgAttrKey: "inspiration", dodgeUp: 20, dodgeTurns: 2 },
+        upName: "裂隙穿梭", upDesc: "12+灵感×1.4 伤害（无视闪避），闪避+30%/2回合",
+        upFx: { dmg: 12, dmgAttr: 1.4, dodgeUp: 30, dodgeTurns: 2 },
+      },
+      {
+        key: "pilfer_flame", name: "盗火", desc: "从敌人身上「偷」走一缕生命之火：回复8生命、4灵性，并使敌人攻击-3，2回合",
+        sp: 4, fx: { healHp: 8, healSp: 4, eAtkDown: 3, eAtkTurns: 2 },
+        upName: "窃运之火", upDesc: "回复12生命、6灵性，敌攻-4/2回合，并对其造成凋零3×2回合",
+        upFx: { healHp: 12, healSp: 6, eAtkDown: 4, eAtkTurns: 2, dot: { v: 3, turns: 2 } },
+      },
+    ],
+  },
 };
 
-export const PATHWAY_ORDER = ["seer", "sleepless", "collector", "pryer", "hunter"];
+export const PATHWAY_ORDER = ["seer", "sleepless", "collector", "pryer", "hunter", "reader"];
 
 // ============ 物品 ============
 export interface Item {
@@ -387,5 +413,21 @@ export const ENEMIES: Record<string, Enemy> = {
     ],
     loot: [{ t: "pounds", v: 14 }, { t: "flag", k: "master_down", v: 1 }, { t: "item", k: "potion_mind", v: 2 }],
     digest: 22,
+  },
+  // ---- 铁十字街连环失踪案 支线敌人 ----
+  mistthief: {
+    key: "mistthief",
+    name: "雾影窃贼",
+    title: "穿行于墙缝的影子",
+    hp: 36, atk: 7, dodge: 28, sanitySight: 5,
+    intro: "巷底，一团比夜色更浓的影子从墙缝里「渗」出来。它没有固定的形状，只在你眨眼的瞬间逼近半步——它想从你身上「偷」走什么，也许是钱袋，也许是更不该被偷走的东西。",
+    moves: [
+      { name: "影刃偷袭", msg: "影子凝成一片薄刃，从你最薄弱的角度切入", dmg: 8, w: 3 },
+      { name: "穿身掠夺", msg: "它径直穿过你的身体，顺手牵走一缕气息", dmg: 4, sanity: 4, w: 2 },
+      { name: "雾遁", msg: "它溶回墙缝，你几乎找不到它的轮廓", w: 2 },
+      { name: "窃火反噬", msg: "它偷得太多，胸口那点偷来的火烫伤了它自己", dmg: 0, w: 1, belowHalf: true },
+    ],
+    loot: [{ t: "pounds", v: 4 }, { t: "flag", k: "thief_down", v: 1 }, { t: "item", k: "potion_calm", v: 1 }],
+    digest: 9,
   },
 };

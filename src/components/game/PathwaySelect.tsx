@@ -1,26 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import { Eye, Moon, Skull, BookOpen, Crosshair, ShieldQuestion } from "lucide-react";
 import { PATHWAYS, PATHWAY_ORDER } from "@/lib/game/data";
 import { sceneArt } from "@/lib/game/art";
-
-const ICONS: Record<string, typeof Eye> = {
-  seer: Eye,
-  sleepless: Moon,
-  collector: Skull,
-  pryer: BookOpen,
-  hunter: Crosshair,
-};
+import { Emblem } from "@/components/game/Emblem";
+import type { PathwayKey } from "@/lib/game/emblems";
 
 export default function PathwaySelect({ onPick }: { onPick: (nodeId: string) => void }) {
   const [focus, setFocus] = useState<string | null>(null);
 
   return (
-    <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+    <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
       {PATHWAY_ORDER.map((key, i) => {
         const p = PATHWAYS[key];
-        const Icon = ICONS[key] || ShieldQuestion;
         const active = focus === key;
         return (
           <button
@@ -32,17 +24,17 @@ export default function PathwaySelect({ onPick }: { onPick: (nodeId: string) => 
             className="group relative flex flex-col overflow-hidden rounded-xl border text-left transition-all duration-500 hover:-translate-y-2"
             style={{
               animation: `fadeUp 0.8s ease both`,
-              animationDelay: `${i * 0.1}s`,
+              animationDelay: `${i * 0.08}s`,
               borderColor: active ? "rgba(201,168,106,0.7)" : "rgba(255,255,255,0.12)",
               boxShadow: active ? "0 20px 60px -15px rgba(201,168,106,0.35)" : "none",
             }}
           >
             {/* 卡面纹理 */}
             <div
-              className="absolute inset-0 bg-cover bg-center opacity-30 transition-opacity duration-500 group-hover:opacity-50"
+              className="absolute inset-0 bg-cover bg-center opacity-25 transition-opacity duration-500 group-hover:opacity-45"
               style={{ backgroundImage: sceneArt("ritual") }}
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#0b0c14]/60 via-[#0b0c14]/80 to-[#0b0c14]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0b0c14]/60 via-[#0b0c14]/82 to-[#0b0c14]" />
 
             <div className="relative flex flex-1 flex-col p-5">
               <div className="mb-1 flex items-center justify-between">
@@ -52,11 +44,18 @@ export default function PathwaySelect({ onPick }: { onPick: (nodeId: string) => 
 
               <div className="my-4 flex justify-center">
                 <div
-                  className={`flex h-16 w-16 items-center justify-center rounded-full border transition-all duration-500 ${
-                    active ? "border-[#c9a86a] bg-[#c9a86a]/15 shadow-[0_0_30px_rgba(201,168,106,0.4)]" : "border-white/20 bg-white/5"
+                  className={`flex h-20 w-20 items-center justify-center rounded-full border transition-all duration-500 ${
+                    active
+                      ? "border-[#c9a86a] bg-[#c9a86a]/12 shadow-[0_0_34px_rgba(201,168,106,0.4)]"
+                      : "border-white/15 bg-black/30"
                   }`}
+                  style={
+                    active
+                      ? ({ ["--ember-color" as string]: "#e7d9b8" } as React.CSSProperties)
+                      : ({ ["--ember-color" as string]: "#9aa0b0" } as React.CSSProperties)
+                  }
                 >
-                  <Icon className={`h-7 w-7 transition-colors duration-300 ${active ? "text-[#e7d9b8]" : "text-white/60"}`} />
+                  <Emblem k={key as PathwayKey} size={62} />
                 </div>
               </div>
 

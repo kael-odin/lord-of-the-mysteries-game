@@ -1,14 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { X, BookOpen, Scroll, Eye, Moon, Skull, Crosshair, Lock } from "lucide-react";
+import { X, BookOpen, Scroll, Lock } from "lucide-react";
 import { PATHWAYS, PATHWAY_ORDER } from "@/lib/game/data";
 import { ENDINGS, ALL_ENDING_IDS, CHAPTER_TITLES } from "@/lib/game/story";
 import { getUnlockedEndings, getSeenPathways } from "@/lib/game/persistence/localSaveStore";
-
-const PW_ICONS: Record<string, typeof Eye> = {
-  seer: Eye, sleepless: Moon, collector: Skull, pryer: BookOpen, hunter: Crosshair,
-};
+import { Emblem } from "@/components/game/Emblem";
+import type { PathwayKey } from "@/lib/game/emblems";
 
 const TONE_COLOR: Record<string, string> = {
   gold: "text-[#c9a86a] border-[#c9a86a]/40",
@@ -93,12 +91,13 @@ export default function CodexModal({ onClose }: { onClose: () => void }) {
             <div className="space-y-3">
               {PATHWAY_ORDER.map((key) => {
                 const p = PATHWAYS[key];
-                const Icon = PW_ICONS[key] || Eye;
                 const isSeen = seen.includes(key);
                 return (
                   <div key={key} className="rounded-lg border border-white/10 bg-white/[0.02] p-4">
                     <div className="mb-2 flex items-center gap-2">
-                      <Icon className="h-4 w-4 text-[#c9a86a]" />
+                      <span style={{ ["--ember-color" as string]: "#c9a86a" } as React.CSSProperties} className="inline-block">
+                        <Emblem k={key as PathwayKey} size={20} />
+                      </span>
                       <span className="font-display text-base tracking-[0.2em] text-[#e7d9b8]">{p.name}</span>
                       <span className="text-[11px] text-white/40">→ 序列8 · {p.seq8}</span>
                       <span className="text-[10px] text-white/30">· {p.road}</span>
