@@ -406,8 +406,8 @@ export default function GamePage() {
       {/* 理智过低特效 */}
       {lowSan && (
         <>
-          <div className="sanity-vignette pointer-events-none fixed inset-0 z-40" />
-          <p className="pointer-events-none fixed bottom-24 left-1/2 z-40 -translate-x-1/2 animate-pulse text-center font-display text-lg tracking-[0.3em] text-red-300/70">
+          <div className={`sanity-vignette pointer-events-none fixed inset-0 z-40 ${reducedMotion ? "" : "animate-pulse"}`} />
+          <p className={`pointer-events-none fixed bottom-24 left-1/2 z-40 -translate-x-1/2 text-center font-display text-lg tracking-[0.3em] text-red-300/70 ${reducedMotion ? "" : "animate-pulse"}`}>
             {whisper}
           </p>
         </>
