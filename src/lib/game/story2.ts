@@ -17,6 +17,12 @@ export const STORY_2: StoryNode[] = [
     choices: [
       { text: "先去整备物资，再赴码头", sub: "磨刀不误砍柴工", next: "c3_hub" },
       { text: "直接动身去码头区", sub: "兵贵神速", next: "c3_informant" },
+      {
+        text: "「队长，那枚雾纹袖标……我早就见过。」", sub: "cuff_mark / bar_rumor：旧线索串上了",
+        hidden: { flag: "cuff_mark", flagVal: 1, hint: " " },
+        once: "fog_recalled",
+        next: "c3_start", effects: [{ t: "digestion", v: 4 }, { t: "flag", k: "fog_recalled", v: 1 }],
+      },
     ],
   },
   {
@@ -247,6 +253,25 @@ export const STORY_2: StoryNode[] = [
     ],
     choices: [
       { text: "打断仪式", combat: "deacon", winNext: "c3_ritual_mid" },
+      {
+        text: "熄灭灯火，以不眠者之眼摸黑突入", sub: "【不眠者专属扮演】你本就属于长夜",
+        req: { pathway: "sleepless", hint: "需要不眠者的夜视与耐性" },
+        next: "c3_mansion_sleepless", effects: [{ t: "digestion", v: 10 }, { t: "sanity", v: 4 }, { t: "flag", k: "night_stalker", v: 1 }],
+      },
+    ],
+  },
+  {
+    id: "c3_mansion_sleepless",
+    chapter: 3,
+    art: "ritual",
+    text: [
+      "你吹熄了手里最后一根火柴。对别人，这是把自己交给了黑暗；对你，黑暗才是最熟悉的同伴。",
+      "不眠者的双眼在无光中自成光源。你贴着墙根滑行，避开了三道本会触发警报的符文，从执事诵念的死角绕到了祭坛侧后——他直到你拔枪的瞬间，才意识到屋里多了一个人。",
+      "「你……什么时候——」",
+      "「在你诵完第三遍的时候。」",
+    ],
+    choices: [
+      { text: "趁其惊愕，一击破阵", sub: "执事已被夺先机", combat: "deacon", winNext: "c3_ritual_mid" },
     ],
   },
   {
@@ -364,7 +389,7 @@ export const STORY_2: StoryNode[] = [
     endingId: "shikong",
     endingTitle: "失控",
     endingDesc: "理智的堤坝崩塌了。你从猎手，变成了被猎杀的东西。",
-    art: "ritual",
+    art: "none",
     text: [
       "理智的最后一根弦，断了。",
       "世界在你眼中碎裂成亿万片蠕动的光斑。你听见自己的骨骼在皮肤下拔节、转位，听见血液变成某种粘稠的、歌唱着的东西。那些你一直小心「扮演」、努力「消化」的魔药，此刻终于露出了獠牙——",
@@ -382,7 +407,7 @@ export const STORY_2: StoryNode[] = [
     endingId: "death",
     endingTitle: "长眠",
     endingDesc: "你倒在了守护廷根的路上。值夜者的墓碑很小，但足够干净。",
-    art: "city",
+    art: "none",
     text: [
       "黑暗漫过意识的最后一刻，你倒不算太后悔。",
       "穿越者的人生从来短暂而炽烈——你见过灰雾之上的宫殿，饮下过星辰凝成的魔药，替无数沉睡者守过漫长的夜。这样的一生，值回票价。",
@@ -443,6 +468,11 @@ export const STORY_2: StoryNode[] = [
         req: { pathway: "reader", hint: "需要读运者途径的「门」之识" },
         next: "arc_scene_reader", effects: [{ t: "digestion", v: 10 }, { t: "flag", k: "arc_clue", v: 1 }],
       },
+      {
+        text: "叩墙三下，与夹层里的残魂低语", sub: "【收尸人专属扮演】你听得懂死者的话",
+        req: { pathway: "collector", hint: "需要收尸人的通灵" },
+        next: "arc_scene_collector", effects: [{ t: "digestion", v: 12 }, { t: "sanity", v: -3 }, { t: "flag", k: "arc_clue", v: 1 }],
+      },
       { text: "拆开这面墙，硬碰", sub: "体魄判定：体力活",
         check: { attr: "physique", dc: 12, label: "破墙", pass: "arc_scene_bashpass", fail: "arc_scene_bashfail", failEffects: [{ t: "hp", v: -4 }] },
       },
@@ -471,6 +501,20 @@ export const STORY_2: StoryNode[] = [
     ],
     choices: [
       { text: "趁它被困，正面收拾它", sub: "雾影窃贼已被削弱", combat: "mistthief", winNext: "arc_catch", loseNext: "arc_escape" },
+    ],
+  },
+  {
+    id: "arc_scene_collector",
+    chapter: 3,
+    art: "ritual",
+    text: [
+      "你没有去读墙上的咒文，而是曲起指节，在湿痕最浓的地方叩了三下——这是收尸人与夹缝里亡魂打交道的旧礼。",
+      "墙后的刮擦声顿了顿。然后，一个比鼠叫还细的声音，从砖缝里渗进你的颅骨：『……别……别让它……把我……缝进去……它……把门……焊死……我出不去……也死不了……』",
+      "你听懂了。墙后那东西不是凶手——它是最初的受害者之一，被「泥瓦匠」缝进了夹层，活成了这面墙的「眼睛」。凶手借着它看路、借着它游走。",
+      "你低声许诺：会把它「取」出来，让它真正地死。残魂颤了颤，把凶手的去向——9号屋后墙——连同它最后一点怨毒，一起交给了你。",
+    ],
+    choices: [
+      { text: "循着残魂指引，直扑9号屋", sub: "雾影窃贼已无藏身处", combat: "mistthief", winNext: "arc_catch", loseNext: "arc_escape" },
     ],
   },
   {

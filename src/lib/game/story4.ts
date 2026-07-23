@@ -253,7 +253,7 @@ export const STORY_4: StoryNode[] = [
       "一位戴孔雀面具的女人从你身侧擦过，声音只有你能听见：「身手不错。可惜，今夜谁来都拦不住——银鹿大人的第三支舞，快奏响了。」",
       "魔药在体内翻涌了一下：在失控的边缘拉回一个灵魂，这是值夜者最该做的事。",
     ],
-    onEnter: [{ t: "digestion", v: 8 }, { t: "flag", k: "masquer_saved", v: 1 }, { t: "pounds", v: 0 }],
+    onEnter: [{ t: "digestion", v: 8 }, { t: "flag", k: "masquer_saved", v: 1 }, { t: "pounds", v: 2 }],
     choices: [{ text: "锁定那群同步起舞的宾客", next: "c5_cultists" }],
   },
   {
@@ -441,8 +441,8 @@ export const STORY_4: StoryNode[] = [
     ],
     choices: [
       {
-        text: "阻止他收兽为偶", sub: "直面真正的幕后黑手",
-        combat: "master", winNext: "c5_victory",
+        text: "阻止他收兽为偶", sub: "直面真正的幕后黑手——先稳一口气",
+        next: "c5_breath",
       },
       {
         text: "用符文银弹强行封印兽的残魂", sub: "宁可毁了也不让他得手",
@@ -459,6 +459,46 @@ export const STORY_4: StoryNode[] = [
         req: { flag: "escape_route", flagVal: 1, hint: "你没有摸清退路，硬撤只会让更多人死" },
         next: "c5_retreat", effects: [{ t: "flag", k: "retreated", v: 1 }, { t: "sanity", v: -4 }],
       },
+    ],
+  },
+  {
+    id: "c5_breath",
+    chapter: 5,
+    art: "ritual",
+    title: "三分钟的喘息",
+    text: [
+      "罗德从包厢跃下的瞬间，并没有立刻扑来——他在半空顿了顿，绯红的雾气在他身周凝聚、塑形，像在调试一具新的躯壳。这给了你宝贵的几秒。",
+      "兽将散未散的残魂还在低声呜咽，舞池里昏迷的宾客横七竖八。你咬牙稳住重心，必须在它「成型」之前，把状态拉回能打的一线。",
+    ],
+    choices: [
+      {
+        text: "灌下一瓶药剂，强提一口元气", sub: "回复12生命、8灵性（一次）", once: "breathed5",
+        next: "c5_breath", effects: [{ t: "hp", v: 12 }, { t: "sp", v: 8 }],
+      },
+      {
+        text: "闭眼调息，压下翻涌的疯狂", sub: "回复6理智（一次）", once: "calmed5",
+        next: "c5_breath", effects: [{ t: "sanity", v: 6 }],
+      },
+      {
+        text: "翻出从钟楼带走的发条齿轮与还愿小钟", sub: "puppet_gear / bell_clue：你认出了他仪式的「底座」",
+        hidden: { flag: "puppet_gear", flagVal: 1, hint: " " },
+        next: "c5_breath", effects: [{ t: "flag", k: "master_foreseen", v: 1 }, { t: "sp", v: 4 }],
+      },
+      {
+        text: "不再等待，趁他尚未成型扑上去", sub: "master_foreseen 可占先手",
+        next: "c5_master_fight",
+      },
+    ],
+  },
+  {
+    id: "c5_master_fight",
+    chapter: 5,
+    art: "ritual",
+    text: [
+      "你不再等了。趁着那具绯红躯壳尚未完全塑形，你抢先一步扑向罗德·阿贾克斯——这一步先机，是你用整条廷根的安危换来的。",
+    ],
+    choices: [
+      { text: "与序列6·秘偶操纵者正面交锋", sub: "master_foreseen 时你已占得先手", combat: "master", winNext: "c5_victory" },
     ],
   },
   {
@@ -506,8 +546,8 @@ export const STORY_4: StoryNode[] = [
         next: "ending_fool2", effects: [{ t: "flag", k: "sealed_beast", v: 1 }],
       },
       {
-        text: "伸手「收」了这股力量", sub: "需要灵感≥8……以及承担代价的勇气",
-        req: { attr: { k: "inspiration", min: 8 }, hint: "你的容器还不够大（灵感≥8）" },
+        text: "伸手「收」了这股力量", sub: "需要灵感≥7……以及承担代价的勇气",
+        req: { attr: { k: "inspiration", min: 7 }, hint: "你的容器还不够大（灵感≥7）" },
         next: "ending_usurper", effects: [{ t: "sanity", v: -25 }, { t: "attr", k: "inspiration", v: 3 }, { t: "flag", k: "usurped", v: 1 }],
       },
       {
@@ -518,6 +558,12 @@ export const STORY_4: StoryNode[] = [
         text: "用你的「锚」之力，中和这股力量", sub: "需要 charm_anchor：把它与你自己的灵魂绑定",
         req: { item: "charm_anchor", hint: "需要罗塞尔的「锚」作为媒介" },
         next: "ending_anchor", effects: [{ t: "sanity", v: -10 }, { t: "flag", k: "anchored", v: 1 }],
+      },
+      {
+        text: "让那位置你于死地的宾客，先去作证", sub: "masquer_saved：活下来的人，是最好的证人",
+        hidden: { flag: "masquer_saved", flagVal: 1, hint: " " },
+        once: "testified",
+        next: "c5_victory", effects: [{ t: "pounds", v: 4 }, { t: "digestion", v: 6 }],
       },
     ],
   },
@@ -619,7 +665,7 @@ export const STORY_4: StoryNode[] = [
     endingId: "martyr",
     endingTitle: "殉锚",
     endingDesc: "你成了舞会的「锚」，但你的容器没能撑住三分钟。你碎了，兽也碎了，廷根却保住了。",
-    art: "ritual",
+    art: "none",
     text: [
       "你站到圆心，成为「锚」的瞬间，就知道自己撑不过三分钟。你的容器——一个序列8（或9）的躯壳，装不下第四纪活体仪式的重量。",
       "但你没有退。你知道，你退一步，兽就会扑向那一舞池的宾客。",

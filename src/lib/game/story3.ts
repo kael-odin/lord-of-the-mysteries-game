@@ -30,6 +30,26 @@ export const STORY_3: StoryNode[] = [
     choices: [
       { text: "先去整备，再赴钟楼", sub: "万全之策", next: "c4_hub" },
       { text: "直接去钟楼现场勘察", sub: "兵贵神速", next: "c4_scene" },
+      {
+        text: "「邓恩队长，铁十字街那条线……」", sub: "missing_solved：旧案的回响",
+        hidden: { flag: "missing_solved", flagVal: 1, hint: " " },
+        once: "missing_recalled",
+        next: "c4_brief_recall", effects: [{ t: "item", k: "potion_heal", v: 1 }, { t: "digestion", v: 4 }],
+      },
+    ],
+  },
+  {
+    id: "c4_brief_recall",
+    chapter: 4,
+    art: "city",
+    text: [
+      "「铁十字街那条线，你办得干净。」邓恩翻档案的手顿了顿，灰眸里掠过一丝少见的赞许，「没让一个泥瓦匠的失控，变成一整条街的失踪。这次也稳着点。」",
+      "他从抽屉里摸出一瓶备用圣水推给你：「拿着。办过那种案子的人，不该在铜钟底下空着手。」",
+      "老尼尔在门边嘟囔：「上次那个墙缝里的玩意儿，跟这口钟是一个味道——都是把活人当『回声』收。你这鼻子，比我们灵。」",
+    ],
+    choices: [
+      { text: "收好圣水，整装备战", next: "c4_hub" },
+      { text: "直接去钟楼现场", next: "c4_scene" },
     ],
   },
   // ---------- 中心 ----------
@@ -65,6 +85,11 @@ export const STORY_3: StoryNode[] = [
           fail: "c4_study_fail", failEffects: [{ t: "sanity", v: -4 }],
         },
       },
+      {
+        text: "以窥秘人之法，解构古籍的咒文层", sub: "【窥秘人专属扮演】你天生读得懂禁忌",
+        hidden: { pathway: "pryer" }, once: "studied_bell",
+        next: "c4_study_pryer", effects: [{ t: "flag", k: "bell_lore", v: 1 }, { t: "digestion", v: 10 }],
+      },
       { text: "动身前往钟楼（主线）", sub: "夜幕降临前抵达", next: "c4_scene" },
     ],
   },
@@ -88,6 +113,19 @@ export const STORY_3: StoryNode[] = [
       "老尼尔啪地合上书：「够了，再读下去你就要变成它的回声了。走吧，到现场再想办法。」",
     ],
     choices: [{ text: "揉着太阳穴起身", next: "c4_hub" }],
+  },
+  {
+    id: "c4_study_pryer",
+    chapter: 4,
+    art: "city",
+    title: "咒文的解剖图",
+    text: [
+      "你没有顺着文字去「读」它——你把它倒过来，拆成一层层咒文的结构，像在解剖一具标本。",
+      "窥秘人的本能让你看见了别人看不见的东西：书页边缘那些看似装饰的花体，其实是一圈圈叠套的「封缄咒」，用来把某段声音锁进钟里。三层封缄，最内一层已经被磨损得只剩残痕——三十年前，有人从内部把它磨断过。",
+      "「钟惧于『新声』。」你喃喃念出弱点，又补上老尼尔都没查到的一行注释，「……而且它已经被磨过一次。再磨，就不用三条命，一条就够。」",
+      "魔药在你体内满意地翻涌——你「扮演」了一回合格的窥秘人：不是去知道，而是去解构「知道」本身。",
+    ],
+    choices: [{ text: "合上书，动身去钟楼", next: "c4_scene", effects: [{ t: "flag", k: "bell_lore", v: 1 }, { t: "flag", k: "bell_weak", v: 1 }] }],
   },
   {
     id: "c4_promote",
@@ -354,6 +392,12 @@ export const STORY_3: StoryNode[] = [
         text: "先击倒被钟操控的司钟人", sub: "解放守塔人，才能动那口钟",
         combat: "bellkeeper", winNext: "c4_bell_choice",
       },
+      {
+        text: "先「读」出活板门与钟架的结构破绽", sub: "【读运者专属扮演】你天生读得懂门与缝",
+        req: { pathway: "reader", hint: "需要读运者的「门」之识" },
+        once: "read_top",
+        next: "c4_top", effects: [{ t: "digestion", v: 10 }, { t: "flag", k: "read_top", v: 1 }],
+      },
     ],
   },
   {
@@ -373,6 +417,16 @@ export const STORY_3: StoryNode[] = [
         text: "用「新声」震散它的回声", sub: "需要 bell_lore：唱出一段它从未听过的旋律",
         hidden: { flag: "bell_lore", flagVal: 1, hint: "你还没找到它的弱点" },
         next: "c4_newvoice", effects: [{ t: "flag", k: "bell_solved", v: 1 }, { t: "digestion", v: 12 }],
+      },
+      {
+        text: "以磨断第三层封缄的方式，让一段「残声」反噬它", sub: "需要 bell_weak：你解构过它的咒文层",
+        hidden: { flag: "bell_weak", flagVal: 1, hint: "你尚未看穿它的封缄结构" },
+        next: "c4_newvoice", effects: [{ t: "flag", k: "bell_solved", v: 1 }, { t: "sanity", v: -4 }, { t: "digestion", v: 14 }],
+      },
+      {
+        text: "祭出还愿小钟，以「旧声」引「新声」", sub: "需要 bell_clue：用证物作媒介，分担反噬",
+        hidden: { flag: "bell_clue", flagVal: 1, hint: "你没有可作媒介的证物" },
+        next: "c4_newvoice", effects: [{ t: "flag", k: "bell_solved", v: 1 }, { t: "sanity", v: -2 }, { t: "digestion", v: 12 }],
       },
       {
         text: "用净化子弹与圣徽强行封印", sub: "需要净化子弹×1：代价是理智",

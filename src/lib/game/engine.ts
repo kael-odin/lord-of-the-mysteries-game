@@ -156,6 +156,8 @@ export function rollCheck(s: GameState, c: Check): CheckResult {
   }
   // 占卜家灵视：灵感判定+2
   if (c.attr !== "luck" && c.attr === "inspiration" && s.pathway === "seer") bonus += 2;
+  // 窥秘人「博闻强识」：博学可替代部分灵感，灵感判定+1
+  if (c.attr !== "luck" && c.attr === "inspiration" && s.pathway === "pryer") bonus += 1;
   if (c.attr !== "luck") bonus += Math.floor(s.luck / 2);
   const roll = 1 + Math.floor(Math.random() * 20);
   const total = roll + bonus;
@@ -259,9 +261,29 @@ export function newCombat(enemyKey: string, s: GameState, winNext: string, loseN
   if (s.pathway === "sleepless") {
     log.push({ side: "sys", text: "【夜之眷顾】灵性 +2" });
   }
+  // c4/c5: 玩家若以途径扮演或前期证据「看穿」了敌人的位置/仪式底座，
+  // 在对应战斗中抢占先机——敌人开局已受伤。
+  let ehp = e.hp;
+  const preemptFlags: Record<string, { flag: string; ratio: number; label: string }> = {
+    master: { flag: "master_foreseen", ratio: 0.15, label: "他仪式的「底座」仍在塑形" },
+    hound: { flag: "foreseen", ratio: 0.2, label: "你已预知它的伏击点位" },
+    deacon: { flag: "night_stalker", ratio: 0.18, label: "你从诵念的死角绕到了他身后" },
+    bellkeeper: { flag: "read_top", ratio: 0.12, label: "你读出了钟架的结构破绽" },
+  };
+  const pf = preemptFlags[enemyKey];
+  const houndAmbush = enemyKey === "hound" && (s.flags?.foreseen || s.flags?.hunter_route);
+  if ((pf && s.flags?.[pf.flag]) || houndAmbush) {
+    const ratio = enemyKey === "hound" ? 0.2 : pf.ratio;
+    const label = enemyKey === "hound"
+      ? (s.flags?.hunter_route ? "你从暗梯绕到它身后" : "你已预知它的伏击点位")
+      : pf.label;
+    const preempt = Math.max(1, Math.round(e.hp * ratio));
+    ehp = Math.max(1, e.hp - preempt);
+    log.push({ side: "player", text: `${label}——抢得先机，一击削去 ${preempt} 点生命。` });
+  }
   return {
     enemyKey, winNext, loseNext,
-    ehp: e.hp, ehpMax: e.hp,
+    ehp, ehpMax: e.hp,
     shield: 0,
     atkUp: 0, atkUpTurns: 0,
     dodgeUp: 0, dodgeTurns: 0,

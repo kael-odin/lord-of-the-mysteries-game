@@ -194,11 +194,13 @@ export default function CombatPanel({
               const desc = up && ab.upDesc ? ab.upDesc : ab.desc;
               const aff = cs.playerSp >= ab.sp;
               const sanityCost = gs.pathway === "pryer" ? Math.max(0, (ab.sanity || 0) - 1) : (ab.sanity || 0);
+              const blockedReason = cs.over ? null : !aff ? `灵性不足：需要 ${ab.sp}，当前 ${cs.playerSp}` : null;
               return (
                 <button
                   key={ab.key}
                   onClick={() => act({ kind: "ability", key: ab.key })}
                   disabled={cs.over || !aff}
+                  aria-label={`${name}。${blockedReason ? blockedReason + "。" : `消耗灵性 ${ab.sp}${sanityCost ? `，理智 ${sanityCost}` : ""}。`}${desc}`}
                   className="flex flex-col items-center gap-1 rounded-lg border border-indigo-400/30 bg-indigo-500/10 px-3 py-3 transition hover:bg-indigo-500/25 disabled:opacity-40"
                   title={desc}
                 >
@@ -208,10 +210,14 @@ export default function CombatPanel({
                     </span>
                     {name}
                   </span>
-                  <span className="text-[10px] text-white/40">
-                    灵性-{ab.sp}
-                    {sanityCost ? ` · 理智-${sanityCost}` : ""}
-                  </span>
+                  {blockedReason ? (
+                    <span className="text-[10px] text-red-300/80">{blockedReason}</span>
+                  ) : (
+                    <span className="text-[10px] text-white/40">
+                      灵性-{ab.sp}
+                      {sanityCost ? ` · 理智-${sanityCost}` : ""}
+                    </span>
+                  )}
                 </button>
               );
             })}

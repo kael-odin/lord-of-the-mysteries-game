@@ -80,7 +80,8 @@ export default function CodexModal({ onClose }: { onClose: () => void }) {
                       {seen ? <Scroll className="h-3.5 w-3.5" /> : <Lock className="h-3.5 w-3.5" />}
                       <span className="text-sm font-medium">{seen ? e.title : "？？？ 未揭示的结局"}</span>
                     </div>
-                    {seen && <p className="mt-1 text-[11px] text-white/45">{e.title}</p>}
+                    {seen && e.hint && <p className="mt-1 text-[11px] text-white/45">{e.hint}</p>}
+                    {!seen && <p className="mt-1 text-[11px] text-white/25">封缄之雾遮蔽着它的轮廓。</p>}
                   </div>
                 );
               })}

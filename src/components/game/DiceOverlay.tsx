@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Dices } from "lucide-react";
 import type { Check, GameState } from "@/lib/game/types";
 import { rollCheck, type CheckResult } from "@/lib/game/engine";
@@ -32,6 +32,28 @@ export default function DiceOverlay({
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // Once the result is in, let keyboard players dismiss with Enter/Space
+  // without tabbing to the button, and announce the outcome to assistive tech.
+  useEffect(() => {
+    if (!result) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
+        e.preventDefault();
+        onDone(result);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [result]);
+
+  const continueBtnRef = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    // Move focus to 继续 so screen readers announce the outcome, and
+    // keyboard players can press Enter again (the window listener also fires).
+    continueBtnRef.current?.focus();
+  }, [result]);
 
   return (
     <div className="fixed inset-0 z-[80] flex items-center justify-center bg-black/75 backdrop-blur-sm">
@@ -75,11 +97,17 @@ export default function DiceOverlay({
               {result.success ? "成 功" : "失 败"}
             </p>
             <button
+              ref={continueBtnRef}
               onClick={() => onDone(result)}
               className="w-full rounded-lg border border-[#c9a86a]/50 bg-[#c9a86a]/10 py-2.5 text-sm tracking-[0.3em] text-[#e7d9b8] transition hover:bg-[#c9a86a]/25"
             >
               继续
             </button>
+            <p className="sr-only" role="status" aria-live="assertive">
+              {result.success
+                ? `${check.label}判定成功，掷出 ${result.roll}，加补正 ${result.bonus}，合计 ${result.total}，超过难度 ${result.dc}。按回车继续。`
+                : `${check.label}判定失败，掷出 ${result.roll}，加补正 ${result.bonus}，合计 ${result.total}，未达难度 ${result.dc}。按回车继续。`}
+            </p>
           </div>
         ) : (
           <p className="animate-pulse text-xs tracking-[0.4em] text-white/40">骰面旋转，命运未定……</p>

@@ -79,6 +79,7 @@ export default function Hud({ gs, onUseItem, onOpenSlots, onOpenCodex, saveStatu
           {onManualSave && (
             <button
               onClick={onManualSave}
+              aria-label={saveStatus === "offline" ? "本地存档（云端未启用）" : saveStatus === "saved" ? "已留存，再次点击手动存档" : "手动存档"}
               title={saveStatus === "offline" ? "本地存档（云端未启用）" : saveStatus === "saved" ? "已留存" : "存档"}
               className="flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-[11px] text-white/70 transition hover:border-[#c9a86a]/50 hover:text-[#e7d9b8]"
             >
@@ -88,6 +89,7 @@ export default function Hud({ gs, onUseItem, onOpenSlots, onOpenCodex, saveStatu
           {onOpenCodex && (
             <button
               onClick={onOpenCodex}
+              aria-label="打开秘典（结局与途径图鉴）"
               title="秘典"
               className="flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-[11px] text-white/70 transition hover:border-[#c9a86a]/50 hover:text-[#e7d9b8]"
             >
@@ -97,7 +99,8 @@ export default function Hud({ gs, onUseItem, onOpenSlots, onOpenCodex, saveStatu
           {onOpenSlots && (
             <button
               onClick={onOpenSlots}
-              title="存档"
+              aria-label="存档位管理（读取与覆盖存档槽）"
+              title="存档槽"
               className="flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-[11px] text-white/70 transition hover:border-[#c9a86a]/50 hover:text-[#e7d9b8]"
             >
               <Moon className="h-3.5 w-3.5" />

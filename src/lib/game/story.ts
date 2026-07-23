@@ -24,21 +24,21 @@ export function getNode(id: string): StoryNode {
   return n;
 }
 
-export const ENDINGS: Record<string, { title: string; tone: "gold" | "red" | "gray" | "green" | "purple" }> = {
-  fool: { title: "灰雾之邀", tone: "gold" },
-  knowledge: { title: "博学的代价", tone: "gray" },
-  shikong: { title: "失控", tone: "red" },
-  death: { title: "长眠", tone: "gray" },
-  civilian: { title: "平凡即坟墓", tone: "green" },
+export const ENDINGS: Record<string, { title: string; tone: "gold" | "red" | "gray" | "green" | "purple"; hint?: string }> = {
+  fool: { title: "灰雾之邀", tone: "gold", hint: "守护廷根，守住自己——祂记下了你的名字。" },
+  knowledge: { title: "博学的代价", tone: "gray", hint: "你窥见了一页不该读的纸。知识烙进了灵魂。" },
+  shikong: { title: "失控", tone: "red", hint: "理智的堤坝崩塌。你成了被猎杀的东西。" },
+  death: { title: "长眠", tone: "gray", hint: "你倒在了守护廷根的路上。墓碑很小，但足够干净。" },
+  civilian: { title: "平凡即坟墓", tone: "green", hint: "在成为非凡者之前，你已先被凡俗吞没。" },
   // 第四章专属结局
-  bellkeeper: { title: "第三十一年", tone: "gray" },
+  bellkeeper: { title: "第三十一年", tone: "gray", hint: "你接下钟绳，把自己钉成了新的锚。" },
   // 第五章新结局
-  fool2: { title: "灰雾的第二次邀约", tone: "gold" },
-  usurper: { title: "篡夺者", tone: "purple" },
-  survivor: { title: "幸存者", tone: "green" },
-  anchor: { title: "锚", tone: "gold" },
-  hunter_legend: { title: "廷根之狼", tone: "red" },
-  martyr: { title: "殉锚", tone: "purple" },
+  fool2: { title: "灰雾的第二次邀约", tone: "gold", hint: "两次拒绝力量，两次守住职责。第二十三张椅子为你留着。" },
+  usurper: { title: "篡夺者", tone: "purple", hint: "你收下了第四纪的力量。你是新的器皿。" },
+  survivor: { title: "幸存者", tone: "green", hint: "不贪功，不揽险。活着，本身就是胜利。" },
+  anchor: { title: "锚", tone: "gold", hint: "你用前辈的锚，把力量与灵魂绑定。你是廷根新的司钟人。" },
+  hunter_legend: { title: "廷根之狼", tone: "red", hint: "以猎人之道，你猎杀了舞会上最强的存在。" },
+  martyr: { title: "殉锚", tone: "purple", hint: "你的容器没能撑住三分钟。你碎了，廷根却保住了。" },
 };
 
 export const ALL_ENDING_IDS = Object.keys(ENDINGS);

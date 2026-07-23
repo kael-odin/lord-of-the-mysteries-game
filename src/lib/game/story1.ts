@@ -669,9 +669,9 @@ export const STORY_1: StoryNode[] = [
     ],
     choices: [
       {
-        text: "去公司地下靶场练枪", sub: "花2镑弹药费，体魄+1（一次）", once: "trained",
+        text: "去公司地下靶场练枪", sub: "花2镑弹药费，体魄+1（可重复）",
         req: { minPounds: 2, hint: "弹药费至少2镑" },
-        next: "c2_hub", effects: [{ t: "pounds", v: -2 }, { t: "attr", k: "physique", v: 1 }],
+        next: "c2_hub", effects: [{ t: "pounds", v: -2 }, { t: "attr", k: "physique", v: 1 }, { t: "digestion", v: 2 }],
       },
       {
         text: "去圣赛琳娜教堂祈祷", sub: "捐献1镑，理智+14",

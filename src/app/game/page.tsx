@@ -160,6 +160,16 @@ export default function GamePage() {
     }
   }, [gs, reducedMotion]);
 
+  // Allow Escape to dismiss the chapter banner early.
+  useEffect(() => {
+    if (banner === null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setBanner(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [banner]);
+
   // ---------- 记录途径 ----------
   useEffect(() => {
     if (gs?.pathway) recordPathway(gs.pathway);
@@ -466,11 +476,18 @@ export default function GamePage() {
 
       {/* 章节横幅 */}
       {banner !== null && (
-        <div className="chapter-banner fixed inset-0 z-[60] flex items-center justify-center bg-black/85 backdrop-blur-sm">
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={CHAPTER_TITLES[banner]}
+          onClick={() => setBanner(null)}
+          className="chapter-banner fixed inset-0 z-[60] flex cursor-pointer items-center justify-center bg-black/85 backdrop-blur-sm"
+        >
           <div className="text-center">
             <div className="mx-auto mb-6 h-px w-40 bg-gradient-to-r from-transparent via-[#c9a86a] to-transparent" />
             <h2 className="font-display text-5xl tracking-[0.5em] text-[#e7d9b8] md:text-6xl">{CHAPTER_TITLES[banner]}</h2>
             <div className="mx-auto mt-6 h-px w-40 bg-gradient-to-r from-transparent via-[#c9a86a] to-transparent" />
+            <p className="mt-8 text-[10px] tracking-[0.4em] text-white/30">点击或按 Esc 跳过</p>
           </div>
         </div>
       )}

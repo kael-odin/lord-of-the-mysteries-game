@@ -39,7 +39,13 @@ export default function EndingScreen({
         <h1 className={`font-display mb-2 text-6xl tracking-[0.3em] md:text-7xl ${TONE[meta.tone]}`}>
           {node.endingTitle || meta.title}
         </h1>
-        <p className="mb-10 text-sm text-white/50">{node.endingDesc || meta.title}</p>
+        {meta.hint && (
+          <p className={`mb-3 text-sm italic tracking-[0.15em] ${TONE[meta.tone]} opacity-80`}>「{meta.hint}」</p>
+        )}
+        {node.endingDesc && node.endingDesc !== meta.title && (
+          <p className="mb-10 text-sm text-white/50">{node.endingDesc}</p>
+        )}
+        {!node.endingDesc && <div className="mb-10" />}
 
         <div className="mb-10 w-full max-w-xl space-y-4 text-left">
           {node.text.map((t, i) => (
