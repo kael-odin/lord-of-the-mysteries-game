@@ -49,7 +49,7 @@ const WHISPERS = [
   "……回声需要一个新的家，你的骨头很合适……",
 ];
 
-type Phase = "boot" | "name" | "slots" | "play";
+type Phase = "boot" | "slots" | "play";
 
 export default function GamePage() {
   const [phase, setPhase] = useState<Phase>("boot");
@@ -375,42 +375,6 @@ export default function GamePage() {
         onDelete={deleteSlotById}
         onQuickStart={startGame}
       />
-    );
-  }
-
-  if (phase === "name") {
-    return (
-      <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#05060a]">
-        <div className="absolute inset-0 bg-cover bg-center opacity-40" style={{ backgroundImage: sceneArt("fog") }} />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#05060a]/60 via-[#05060a]/80 to-[#05060a]" />
-        <div className="fog-layer" />
-        <div className="relative z-10 w-[min(92vw,480px)] rounded-2xl border border-white/10 bg-[#0b0c14]/80 p-10 text-center backdrop-blur-md">
-          <p className="mb-2 text-[10px] tracking-[0.5em] text-white/40">灵魂登记处 · REGISTRY OF SOULS</p>
-          <h1 className="font-display mb-6 text-4xl tracking-[0.3em] text-[#e7d9b8]">报上你的名字</h1>
-          <p className="mb-6 text-xs leading-relaxed text-white/50">
-            在你坠入这具身体之前，你的名字是什么？
-            <br />
-            灰雾的回响名录上，将以此铭记你的轮回。
-          </p>
-          <input
-            value={nameInput}
-            onChange={(e) => setNameInput(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && startGame()}
-            maxLength={12}
-            placeholder="无名者"
-            className="mb-4 w-full rounded-lg border border-white/15 bg-black/40 px-4 py-3 text-center text-lg tracking-[0.3em] text-[#e7d9b8] outline-none transition placeholder:text-white/20 focus:border-[#c9a86a]/60"
-          />
-          <button
-            onClick={startGame}
-            className="w-full rounded-lg border border-[#c9a86a]/60 bg-[#c9a86a]/15 py-3 text-sm tracking-[0.5em] text-[#e7d9b8] transition hover:bg-[#c9a86a]/30"
-          >
-            睁 开 眼 睛
-          </button>
-          <a href="/" className="mt-5 block text-[11px] text-white/30 transition hover:text-white/60">
-            返回灰雾之门
-          </a>
-        </div>
-      </div>
     );
   }
 
