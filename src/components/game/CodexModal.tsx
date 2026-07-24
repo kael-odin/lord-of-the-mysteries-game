@@ -15,6 +15,21 @@ const TONE_COLOR: Record<string, string> = {
   green: "text-emerald-300 border-emerald-400/40",
   purple: "text-purple-300 border-purple-400/40",
 };
+const TONE_GLOW: Record<string, string> = {
+  gold: "shadow-[0_8px_30px_-12px_rgba(201,168,106,0.45)] bg-[#c9a86a]/[0.04]",
+  red: "shadow-[0_8px_30px_-12px_rgba(248,113,113,0.35)] bg-red-500/[0.04]",
+  gray: "shadow-none bg-white/[0.02]",
+  green: "shadow-[0_8px_30px_-12px_rgba(110,231,183,0.3)] bg-emerald-500/[0.04]",
+  purple: "shadow-[0_8px_30px_-12px_rgba(216,180,254,0.3)] bg-purple-500/[0.04]",
+};
+
+// 结局按章节归档，便于在「灰雾长桌」上分组陈列。
+const ENDING_GROUPS: { label: string; ids: string[] }[] = [
+  { label: "第一章 · 安提哥努斯之影", ids: ["fool", "knowledge"] },
+  { label: "失控与长眠", ids: ["shikong", "death", "civilian"] },
+  { label: "第四章 · 钟楼回声", ids: ["bellkeeper"] },
+  { label: "第五章 · 绯红假面舞会", ids: ["fool2", "usurper", "survivor", "anchor", "hunter_legend", "martyr", "nightwatcher"] },
+];
 
 type Tab = "endings" | "pathways" | "guide";
 
@@ -64,25 +79,73 @@ export default function CodexModal({ onClose }: { onClose: () => void }) {
         {/* body */}
         <div className="flex-1 overflow-y-auto px-5 py-4">
           {tab === "endings" && (
-            <div className="space-y-2">
-              <p className="mb-3 text-[11px] text-white/40">
-                已揭示 {unlocked.length} / {ALL_ENDING_IDS.length} 种结局。未达成的结局将以封缄之雾遮蔽。
-              </p>
-              {ALL_ENDING_IDS.map((id) => {
-                const e = ENDINGS[id];
-                const seen = unlocked.includes(id);
+            <div className="space-y-6">
+              <div className="border-b border-white/8 pb-3">
+                <div className="flex items-baseline justify-between">
+                  <h3 className="font-display text-sm tracking-[0.25em] text-[#e7d9b8]">灰雾长桌</h3>
+                  <span className="text-[11px] text-[#c9a86a]/80">{unlocked.length} / {ALL_ENDING_IDS.length} 椅已落座</span>
+                </div>
+                <p className="mt-1.5 text-[11px] leading-relaxed text-white/40">
+                  长桌尽头，第二十三张椅子一直空着——祂为每一段走完的旅程留了位置。未达成的结局，椅背隐入雾中，只余轮廓。
+                </p>
+              </div>
+              {ENDING_GROUPS.map((group) => {
+                const seenInGroup = group.ids.filter((id) => unlocked.includes(id)).length;
                 return (
-                  <div
-                    key={id}
-                    className={`rounded-lg border p-3 ${seen ? TONE_COLOR[e.tone] : "border-white/8 text-white/30"}`}
-                  >
-                    <div className="flex items-center gap-2">
-                      {seen ? <Scroll className="h-3.5 w-3.5" /> : <Lock className="h-3.5 w-3.5" />}
-                      <span className="text-sm font-medium">{seen ? e.title : "？？？ 未揭示的结局"}</span>
+                  <section key={group.label} className="space-y-2">
+                    <div className="flex items-center gap-2 px-0.5">
+                      <span className="font-display text-[11px] tracking-[0.2em] text-[#c9a86a]/70">{group.label}</span>
+                      <span className="h-px flex-1 bg-gradient-to-r from-[#c9a86a]/20 to-transparent" />
+                      <span className="text-[10px] text-white/30">{seenInGroup}/{group.ids.length}</span>
                     </div>
-                    {seen && e.hint && <p className="mt-1 text-[11px] text-white/45">{e.hint}</p>}
-                    {!seen && <p className="mt-1 text-[11px] text-white/25">封缄之雾遮蔽着它的轮廓。</p>}
-                  </div>
+                    <div className="grid gap-2">
+                      {group.ids.map((id) => {
+                        const e = ENDINGS[id];
+                        const isSeen = unlocked.includes(id);
+                        return (
+                          <div
+                            key={id}
+                            className={`relative overflow-hidden rounded-lg border p-3 transition ${
+                              isSeen
+                                ? `${TONE_COLOR[e.tone]} ${TONE_GLOW[e.tone]}`
+                                : "border-white/8 bg-white/[0.015] text-white/25"
+                            }`}
+                          >
+                            <div className="flex items-start gap-3">
+                              {/* 椅背图标：已揭示则染色，未揭示则雾中 */}
+                              <span
+                                className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center font-display text-[13px] ${
+                                  isSeen ? "opacity-90" : "opacity-30"
+                                }`}
+                                aria-hidden
+                              >
+                                {isSeen ? "☾" : "·"}
+                              </span>
+                              <div className="min-w-0 flex-1">
+                                <div className="flex items-center gap-2">
+                                  {isSeen ? (
+                                    <Scroll className="h-3.5 w-3.5 shrink-0" />
+                                  ) : (
+                                    <Lock className="h-3.5 w-3.5 shrink-0" />
+                                  )}
+                                  <span className="text-sm font-medium tracking-wide">
+                                    {isSeen ? e.title : "封缄之雾"}
+                                  </span>
+                                </div>
+                                {isSeen && e.hint ? (
+                                  <p className="mt-1.5 text-[11px] leading-relaxed text-white/55">{e.hint}</p>
+                                ) : (
+                                  <p className="mt-1.5 text-[11px] italic leading-relaxed text-white/20">
+                                    椅背没入雾中，尚不可辨。
+                                  </p>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </section>
                 );
               })}
             </div>
