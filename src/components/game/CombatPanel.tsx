@@ -61,6 +61,10 @@ export default function CombatPanel({
   );
 
   const ehpPct = (cs.ehp / cs.ehpMax) * 100;
+  const hpPct = (cs.playerHp / gs.maxHp) * 100;
+  // 玩家低血时剪影泛红，敌人低血时剪影虚化——让血量在视觉层先行传达。
+  const playerHurt = hpPct < 35;
+  const enemyWaning = ehpPct < 35;
 
   return (
     <div className="fixed inset-0 z-[70] flex flex-col bg-[#05060a]/97 backdrop-blur-sm">
@@ -111,6 +115,69 @@ export default function CombatPanel({
               {cs.dotTurns > 0 && <span className="rounded bg-emerald-500/15 px-2 py-0.5 text-emerald-300">凋零 {cs.dot}/回合（{cs.dotTurns}回合）</span>}
             </div>
           )}
+        </div>
+      </div>
+
+      {/* 战场剪影：雾中敌我对峙，让血量先于数字传达危机 */}
+      <div className="relative mx-auto w-full max-w-3xl px-4" aria-hidden>
+        <div className="relative h-20 overflow-hidden rounded-xl border border-white/8 bg-gradient-to-b from-[#0c0a12]/80 to-[#06070c]/90 sm:h-24">
+          {/* 雾气分层 */}
+          <div className="fog-layer fog-layer-slow absolute inset-0 opacity-60" />
+          <div
+            className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#06070c] to-transparent"
+            style={{ opacity: 0.8 }}
+          />
+          {/* 中线：交锋的距离感 */}
+          <div className="absolute left-1/2 top-1/2 h-px w-[58%] -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-transparent via-[#c9a86a]/20 to-transparent" />
+
+          {/* 玩家剪影（左） */}
+          <div className="absolute bottom-1.5 left-4 flex flex-col items-center">
+            <div
+              className={`relative flex h-12 w-8 items-end justify-center transition-all duration-500 ${
+                playerHurt ? "animate-pulse" : ""
+              }`}
+            >
+              {/* 剪影本体 */}
+              <div
+                className={`h-full w-full rounded-t-lg transition-all duration-500 ${
+                  playerHurt
+                    ? "bg-gradient-to-t from-red-900/80 to-red-600/40 shadow-[0_0_18px_-2px_rgba(248,113,113,0.5)]"
+                    : "bg-gradient-to-t from-[#1a1c28] to-[#3a3d52] shadow-[0_0_14px_-4px_rgba(231,217,184,0.3)]"
+                }`}
+                style={{ clipPath: "polygon(40% 0, 60% 0, 70% 18%, 80% 100%, 20% 100%, 30% 18%)" }}
+              />
+              {/* 途径徽记微光，作为「锚」 */}
+              {pw && (
+                <span
+                  className="absolute -top-3 left-1/2 -translate-x-1/2 opacity-70"
+                  style={{ ["--ember-color" as string]: "#c9a86a" } as React.CSSProperties}
+                >
+                  <Emblem k={gs.pathway as PathwayKey} size={16} />
+                </span>
+              )}
+            </div>
+          </div>
+
+          {/* 敌方剪影（右）——血量越低越虚化 */}
+          <div className="absolute bottom-1.5 right-4 flex flex-col items-center">
+            <div
+              className={`flex h-14 w-9 items-end justify-center transition-all duration-500 ${
+                cs.shake ? "" : enemyWaning ? "animate-pulse" : ""
+              }`}
+              style={cs.shake ? { animation: "shakeX 0.45s ease" } : undefined}
+            >
+              <div
+                className={`h-full w-full rounded-t-lg transition-all duration-500 ${
+                  enemyWaning
+                    ? "bg-gradient-to-t from-red-950/70 to-red-700/30 shadow-[0_0_22px_-4px_rgba(248,113,113,0.45)]"
+                    : enemy.undead
+                      ? "bg-gradient-to-t from-[#1c1426] to-[#3d2b52] shadow-[0_0_18px_-4px_rgba(168,85,247,0.35)]"
+                      : "bg-gradient-to-t from-[#1a0c0e] to-[#4a1f24] shadow-[0_0_16px_-4px_rgba(220,70,70,0.35)]"
+                }`}
+                style={{ clipPath: "polygon(35% 0, 65% 0, 78% 22%, 72% 100%, 28% 100%, 22% 22%)" }}
+              />
+            </div>
+          </div>
         </div>
       </div>
 
