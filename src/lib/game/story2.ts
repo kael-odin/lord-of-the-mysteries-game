@@ -572,7 +572,7 @@ export const STORY_2: StoryNode[] = [
       "邓恩看了你的报告，难得地露出赞许：「案子结了。这条街能安生睡几晚了。」他顿了顿，「至于那个泥瓦匠……恐怕早成了墙皮的一部分。这种事，别深想。」",
       "魔药在你体内满意地翻涌了一下——你又「扮演」了一回合格的值夜者。",
     ],
-    onEnter: [{ t: "pounds", v: 5 }, { t: "digestion", v: 8 }, { t: "flag", k: "missing_solved", v: 1 }],
+    onEnter: [{ t: "pounds", v: 5 }, { t: "digestion", v: 8 }, { t: "flag", k: "missing_solved", v: 1 }, { t: "flag", k: "case_closed", v: 1 }],
     choices: [{ text: "凯旋回公司", next: "c3_hub" }],
   },
   {

@@ -1251,7 +1251,7 @@ export const STORY_1: StoryNode[] = [
       "老尼尔听完，啧啧称奇：「镜途径的下脚料，失控了。原本靠『映』进别人家偷东西，如今连人带命一起『映』走。你小子头一回单独办差就拾掇了它，行啊。」",
       "他把一面小铜镜塞给你当纪念：「回头给罗珊说说，她最爱听这种。」魔药在你体内满意地翻涌了一下——又「扮演」了一回合格的值夜者。",
     ],
-    onEnter: [{ t: "pounds", v: 4 }, { t: "digestion", v: 8 }, { t: "flag", k: "c2_narcissus_solved", v: 1 }],
+    onEnter: [{ t: "pounds", v: 4 }, { t: "digestion", v: 8 }, { t: "flag", k: "c2_narcissus_solved", v: 1 }, { t: "flag", k: "case_closed", v: 1 }],
     choices: [{ text: "凯旋回公司", next: "c2_hub" }],
   },
   {

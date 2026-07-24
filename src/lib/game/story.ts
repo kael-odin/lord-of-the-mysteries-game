@@ -39,6 +39,7 @@ export const ENDINGS: Record<string, { title: string; tone: "gold" | "red" | "gr
   anchor: { title: "锚", tone: "gold", hint: "你用前辈的锚，把力量与灵魂绑定。你是廷根新的司钟人。" },
   hunter_legend: { title: "廷根之狼", tone: "red", hint: "以猎人之道，你猎杀了舞会上最强的存在。" },
   martyr: { title: "殉锚", tone: "purple", hint: "你的容器没能撑住三分钟。你碎了，廷根却保住了。" },
+  nightwatcher: { title: "廷根的守夜人", tone: "gold", hint: "两桩悬案俱破，宾客存活。你把扮演刻进了骨血。" },
 };
 
 export const ALL_ENDING_IDS = Object.keys(ENDINGS);
