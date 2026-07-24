@@ -690,6 +690,10 @@ export const STORY_1: StoryNode[] = [
         text: "接下「水仙花街窃影案」", sub: "可选支线：一面凭空消失的穿衣镜", once: "took_narcissus_case",
         next: "c2_narcissus_start",
       },
+      {
+        text: "「今晚我留在队里值夜。」", sub: "可选支线：与同僚共度的寻常一夜", once: "took_duty",
+        next: "c2_duty_start",
+      },
       { text: "去队长室看看有没有案子", sub: "推进主线", next: "c2_case_intro" },
     ],
   },
@@ -1140,6 +1144,171 @@ export const STORY_1: StoryNode[] = [
       "醉汉躺在地上哼哼，围观人群为你鼓掌。你从他那打满补丁的衣袋里没收了一枚金镑——按码头区的规矩，这叫「保证金」。",
     ],
     choices: [{ text: "扬长而去", next: "c2_hub" }],
+  },
+  // ============ 支线：值夜同僚 ============
+  {
+    id: "c2_duty_start",
+    chapter: 2,
+    art: "city",
+    title: "黑荆棘·值夜",
+    text: [
+      "暮色压下来时，你主动留在了队里。邓恩点头：「难得。今晚没大案子，正好让你们几个熟络熟络。」他把值班室的灯调暗一档，自己抱着一摞旧卷宗回了里间。",
+      "值班室里，煤油灯把三张椅子映出三道长短不一的影子。伦纳德在窗边，弗莱在炉边，老尼尔不知何时已端着红茶坐到了你对面——桌上还压着那张永远签不完的报销单。",
+      "长夜漫漫，总得找个人说说话。",
+    ],
+    choices: [
+      { text: "去窗边找伦纳德", sub: "诗人与神秘学家", next: "c2_duty_leonard" },
+      { text: "去炉边找弗莱", sub: "沉默的收尾人", next: "c2_duty_frye" },
+      { text: "听老尼尔絮叨", sub: "队里的活化石", next: "c2_duty_neil" },
+      { text: "谁也别聊了，主动要求巡夜", sub: "把这一夜过完", next: "c2_duty_patrol" },
+    ],
+  },
+  {
+    id: "c2_duty_leonard",
+    chapter: 2,
+    art: "city",
+    title: "窗边的十四行诗",
+    text: [
+      "伦纳德正把一首诗写在卷宗的页脚——你看了一眼，押韵的地方全押错了韵。见你过来，他毫不遮掩地把纸推过来让你看：「如何？我打算投稿《廷根晚邮》，署名『一位不愿透露姓名的英俊值夜者』。」",
+      "你斟酌着措辞。他笑着摆手，压低了声音：「说正经的——你有没有觉得，这城里有些『人』，活得不像人？比如，准时得像钟表、从不眨眼、影子比本人晚半拍的那种。」",
+      "「别盯着看。」他忽然收敛了笑意，绿眼眸在灯下像两片薄冰，「神秘学家最忌讳的就是多看一眼。你看见了，它就也知道你看见了——这笔账，划不来的。」",
+    ],
+    choices: [
+      {
+        text: "「那你写诗，是为了不看吗？」", sub: "灵感+1，与伦纳德熟络",
+        next: "c2_duty_hub", effects: [{ t: "attr", k: "inspiration", v: 1 }, { t: "flag", k: "rapport_leonard", v: 1 }, { t: "sanity", v: -2 }],
+      },
+      {
+        text: "「老实说，诗写得不怎么样。」", sub: "伦纳德反而来了兴致",
+        next: "c2_duty_hub", effects: [{ t: "flag", k: "rapport_leonard", v: 1 }, { t: "digestion", v: 2 }],
+      },
+    ],
+  },
+  {
+    id: "c2_duty_frye",
+    chapter: 2,
+    art: "city",
+    title: "炉边的消毒液",
+    text: [
+      "弗莱没抬头。他在用一块白布反复擦拭一支注射器，袖口那股消毒液的气味近了才闻得清——底下还压着更淡的、像是福尔马林的味道。",
+      "「队里的事，分两种。」他终于开口，声音平得像一条尺子，「能解决的，和必须收尾的。邓恩负责前者，我负责后者。你刚来，最好祈祷自己永远只碰前者。」",
+      "炉火噼啪。他停下手里的动作，看了你一眼：「但如果哪天，你不得不碰后者——记住，别让死者睁着眼。眼睛这东西，关上了才算真的结束。」",
+    ],
+    choices: [
+      {
+        text: "「……为什么要关上眼睛？」", sub: "意志+1，弗莱默许了你的发问",
+        next: "c2_duty_hub", effects: [{ t: "attr", k: "will", v: 1 }, { t: "flag", k: "rapport_frye", v: 1 }, { t: "sanity", v: -3 }],
+      },
+      {
+        text: "默默点头，不再追问", sub: "保持距离，也是一种尊重",
+        next: "c2_duty_hub", effects: [{ t: "flag", k: "rapport_frye", v: 1 }, { t: "digestion", v: 3 }],
+      },
+    ],
+  },
+  {
+    id: "c2_duty_neil",
+    chapter: 2,
+    art: "city",
+    title: "红茶与报销单",
+    text: [
+      "老尼尔把红茶推到你面前，杯沿茶渍斑斑。没等你客气，他已经开始絮叨——从三十年前廷根还没电灯时的旧案，讲到某个失踪的同事「后来大概去了南方」。",
+      "讲着讲着，他忽然停下来，盯着你看了很久：「孩子，你这双眼睛，有点像他。」他没说是谁，也没继续讲，只是把那张报销单往你手边又推了推。",
+      "「签字这事，我再提醒你一次——」他压低声音，语气却像在念一段背了三十年的台词，「老尼尔的单子，一个字都别签。不是怕你赔钱，是怕你赔得不知不觉。」",
+    ],
+    choices: [
+      {
+        text: "「老尼尔先生，那签字到底会怎样？」", sub: "窥见一点旧事，理智-2，神秘学+1",
+        next: "c2_duty_hub", effects: [{ t: "sanity", v: -2 }, { t: "attr", k: "inspiration", v: 1 }, { t: "flag", k: "rapport_neil", v: 1 }],
+      },
+      {
+        text: "把红茶喝完，把报销单推回去", sub: "体面地挡了回去",
+        next: "c2_duty_hub", effects: [{ t: "flag", k: "rapport_neil", v: 1 }, { t: "pounds", v: -1 }, { t: "digestion", v: 2 }],
+      },
+    ],
+  },
+  {
+    id: "c2_duty_hub",
+    chapter: 2,
+    art: "city",
+    title: "夜深了",
+    text: [
+      "炉火矮了下去，红茶续到了第三杯。窗外的雾压得更低，廷根的钟楼敲过十一下。值班室里那种独属于「共同守夜」的默契，正在三个人和你之间慢慢成形。",
+      "邓恩在里间咳了一声，像在提醒：值夜不是只来聊天的。",
+    ],
+    choices: [
+      { text: "再找伦纳德聊聊", hidden: { flagVal: 0, flag: "rapport_leonard" }, next: "c2_duty_leonard" },
+      { text: "再陪弗莱坐会儿", hidden: { flagVal: 0, flag: "rapport_frye" }, next: "c2_duty_frye" },
+      { text: "再听老尼尔讲两句", hidden: { flagVal: 0, flag: "rapport_neil" }, next: "c2_duty_neil" },
+      { text: "该巡夜了", next: "c2_duty_patrol" },
+    ],
+  },
+  {
+    id: "c2_duty_patrol",
+    chapter: 2,
+    art: "fog",
+    title: "联合巡夜",
+    text: [
+      "你随同僚踏出公司。雾把街灯的光切成了零碎的橘色斑块。伦纳德走最前，嘴里哼着跑调的小夜曲；弗莱断后，脚步轻得像没踩在地上；老尼尔在中段，不时停下来，对着某扇紧闭的窗户摇摇头。",
+      "走到铁十字街口，老尼尔忽然拉住你：「前面那盏路灯——你看，是不是在闪？」",
+      "那盏路灯确实在闪，但不是普通的接触不良。它的光在以一种极规律的节奏明灭，像是在……点发莫尔斯电码。",
+    ],
+    choices: [
+      {
+        text: "凭借灵感判断那盏灯在「说」什么", sub: "灵感检定 DC13",
+        next: "c2_duty_patrol_resolved",
+        check: {
+          attr: "inspiration", dc: 13, label: "灵光一闪",
+          pass: "c2_duty_lamp_pass", passEffects: [{ t: "attr", k: "inspiration", v: 1 }, { t: "digestion", v: 4 }, { t: "flag", k: "lamp_decoded", v: 1 }],
+          fail: "c2_duty_lamp_fail", failEffects: [{ t: "sanity", v: -4 }],
+        },
+      },
+      {
+        text: "「或许是灯泡松了。」不深究，继续巡夜", sub: "稳妥，但少了一分收获",
+        next: "c2_duty_patrol_resolved", effects: [{ t: "digestion", v: 2 }],
+      },
+    ],
+  },
+  {
+    id: "c2_duty_lamp_pass",
+    chapter: 2,
+    art: "fog",
+    title: "会说话的灯",
+    text: [
+      "你凝神听了一会儿，破译出那串明灭：「……有人在……地下……求……」——信号忽然断了，路灯恢复了正常的暖黄。",
+      "老尼尔拍拍你的肩：「好耳朵。这城里，会说话的灯不止一盏。」",
+    ],
+    choices: [{ text: "继续走完这一夜", next: "c2_duty_patrol_resolved" }],
+  },
+  {
+    id: "c2_duty_lamp_fail",
+    chapter: 2,
+    art: "fog",
+    title: "看不懂的别硬看",
+    text: [
+      "你盯着那盏灯看了太久，光斑在视网膜上烧出残影，却什么也没读出来。",
+      "弗莱按住你的肩膀把你拉回来：「别看。看不懂的，别硬看。」",
+    ],
+    choices: [{ text: "继续走完这一夜", next: "c2_duty_patrol_resolved" }],
+  },
+  {
+    id: "c2_duty_patrol_resolved",
+    chapter: 2,
+    art: "fog",
+    title: "巡夜归来",
+    text: [
+      "剩下的路程风平浪静。黎明前最暗的那段时辰，你们绕着廷根的旧城区走了一大圈，没遇到任何需要拔枪的事——这本身就是值夜者最想要的结局。",
+      "回到黑荆棘，伦纳德打了个长长的哈欠，把一张写着新诗的纸条塞进你的口袋：「赠你一首，记得别投稿。」弗莱默默地把一支擦得锃亮的备用注射器放进值班室的抽屉，算作给你的见面礼。老尼尔则在你的红茶杯底压了一枚铜便士：「值夜人的老规矩，头回平安归来，压个硬币压压惊。」",
+      "邓恩从里间探出头：「都回来了？好。今天可以早点歇着。」",
+      "这一夜没有惊天动地，但你知道——在这座被雾笼罩的城市里，你已经不再是一个人了。",
+    ],
+    onEnter: [
+      { t: "pounds", v: 2 },
+      { t: "sanity", v: 6 },
+      { t: "digestion", v: 6 },
+      { t: "flag", k: "duty_done", v: 1 },
+      { t: "flag", k: "case_closed", v: 1 },
+    ],
+    choices: [{ text: "回到清晨的廷根", next: "c2_hub" }],
   },
   // ============ 支线：水仙花街的窃影 ============
   {
