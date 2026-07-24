@@ -305,6 +305,12 @@ export function newCombat(enemyKey: string, s: GameState, winNext: string, loseN
     pHp = Math.max(1, s.hp - hurt);
     log.push({ side: "enemy", text: `他第二柄匕首顺势补到——你又挨了 ${hurt} 点伤害才拉开距离。` });
   }
+  // c4 灰河守墓人：若玩家已在现场勘破钟铃牵引之线，开局可斩断一截尸骸。
+  if (enemyKey === "sewer_husk" && s.flags?.husk_clue) {
+    const preempt = Math.max(3, Math.round(e.hp * 0.2));
+    ehp = Math.max(1, e.hp - preempt);
+    log.push({ side: "player", text: `你看清了串起尸骸的那根钟铃之线——一刀斩断，守墓人少了一截身躯，削去 ${preempt} 点生命。` });
+  }
   return {
     enemyKey, winNext, loseNext,
     ehp, ehpMax: e.hp,
@@ -531,9 +537,21 @@ function enemyAct(s: GameState, c: CombatState, push: (side: "player" | "enemy" 
   let mv = pool[0];
   for (const m of pool) { roll -= m.w; if (roll <= 0) { mv = m; break; } }
 
-  if (!mv.dmg && !mv.sanity) {
+  if (!mv.dmg && !mv.sanity && !mv.heal) {
     push("enemy", `${mv.msg}。`);
     return;
+  }
+  // 敌人自我回复
+  if (mv.heal) {
+    const before = c.ehp;
+    c.ehp = clamp(c.ehp + mv.heal, 0, c.ehpMax);
+    const gained = c.ehp - before;
+    if (gained > 0) {
+      push("enemy", `${mv.msg}——它缝补自身，回复了 ${gained} 点生命。`);
+    } else {
+      push("enemy", `${mv.msg}——但它已无从缝补。`);
+    }
+    if (!mv.dmg && !mv.sanity) return;
   }
   // 玩家闪避
   const dodgeChance = c.dodgeUp + c.guard + (s.pathway === "collector" && e.undead ? 15 : 0) + (s.pathway === "reader" && c.turn === 1 ? 20 : 0);

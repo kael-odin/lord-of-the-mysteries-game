@@ -91,6 +91,10 @@ export const STORY_3: StoryNode[] = [
         next: "c4_study_pryer", effects: [{ t: "flag", k: "bell_lore", v: 1 }, { t: "digestion", v: 10 }],
       },
       { text: "动身前往钟楼（主线）", sub: "夜幕降临前抵达", next: "c4_scene" },
+      {
+        text: "「队长，我想到灰河下水道走一趟。」", sub: "可选支线：失踪铜匠的最后一单货，交在下水道口",
+        once: "took_sewer_case", next: "c4_sewer_start",
+      },
     ],
   },
   {
@@ -551,6 +555,168 @@ export const STORY_3: StoryNode[] = [
       "（第四章·完。最大的承担，是把自己变成永远。——你成为了「钟」，让钟不再是钟。）",
     ],
     choices: [],
+  },
+  // ============ 支线：灰河下水道的守墓人 ============
+  {
+    id: "c4_sewer_start",
+    chapter: 4,
+    art: "city",
+    title: "灰河口·最后一单货",
+    text: [
+      "失踪的铜匠奥古斯都，最后一单货交在灰河下水道的铁闸口——那里是廷根地下排污的尽头，老司钟人三十年前常用的「清钟灰」的秘密抛料点。",
+      "卷宗上写着：交付当夜，有人听见下水道深处传来一阵极轻的铜铃声，像在给什么人点名。第二天，奥古斯都就没再回家。",
+      "你站在铁闸口。污浊的河水从黑漆漆的拱洞里淌出来，带着一股铁锈与陈年香灰混在一起的味道——这不是寻常下水道的气味。",
+    ],
+    choices: [
+      { text: "举灯深入下水道", sub: "沿铜铃声摸过去", next: "c4_sewer_mouth" },
+      { text: "先去闸口值守的老司炉打听", sub: "花1镑买消息", next: "c4_sewer_gossip", effects: [{ t: "pounds", v: -1 }] },
+    ],
+  },
+  {
+    id: "c4_sewer_gossip",
+    chapter: 4,
+    art: "city",
+    text: [
+      "老司炉蹲在铁闸边的石墩上，旱烟锅子一明一灭。你递过去一镑，他咧嘴笑了，露出缺了门牙的豁口：",
+      "「奥古斯都那晚下来，是替人清一炉『钟灰』——就是旧钟楼换下来的香灰与铜屑，按老规矩得倒进灰河深处。可那晚他没倒成。」",
+      "「下水道里，有人——不，是『有东西』，在用铜铃点名收人。点一个，水面就浮一具。三天两头，灰河的水都是黏的。」他压低嗓门，「警官，那东西见不得『新声』。你若非要下去，嘴里千万——别出声。」",
+      "「见不得新声」——和老尼尔那本第四纪古籍上的话，一字不差。",
+    ],
+    choices: [{ text: "记下这条线索，举灯深入", next: "c4_sewer_mouth", effects: [{ t: "flag", k: "husk_clue", v: 1 }] }],
+  },
+  {
+    id: "c4_sewer_mouth",
+    chapter: 4,
+    art: "ritual",
+    title: "蓄水池·点名铃",
+    text: [
+      "下水道在第七个岔口后豁然开阔，汇入一座砖砌的蓄水池。池水黑得发亮，水面漂着一层香灰与铜屑的薄膜。",
+      "池边立着一根锈蚀的铁柱，柱顶拴着一串铜铃——铃舌早已不在，却被什么人用一截人骨顶替。你刚一靠近，铜铃无风自响，叮的一声，在拱顶里来回撞。",
+      "水面应声翻涌。七八具被铁链串成一串的尸骸，从黑水里缓缓立了起来。它们脖颈上都挂着同款的铜铃，每一具的腐烂程度都不同——最早的，怕是死了三十年；最近的，手腕上还戴着铜匠的护腕。",
+      "守墓人——不，守墓「们」——齐齐转向你。它们的嘴一开一合，像在替谁清点亡魂。",
+    ],
+    choices: [
+      {
+        text: "屏息凝神，辨认串起尸骸的「钟铃之线」", sub: "灵感判定：看清牵引之线",
+        check: {
+          attr: "inspiration", dc: 14, label: "辨铃",
+          pass: "c4_sewer_clue_pass", passEffects: [{ t: "flag", k: "husk_clue", v: 1 }, { t: "sanity", v: -2 }],
+          fail: "c4_sewer_clue_fail", failEffects: [{ t: "sanity", v: -4 }],
+        },
+      },
+      {
+        text: "「这水里有门。」——以读运者之法读出下水道的「出口」", sub: "【读运者专属扮演】你天生懂「门」",
+        req: { pathway: "reader", hint: "需要读运者对「门」的识见" },
+        next: "c4_sewer_reader", effects: [{ t: "digestion", v: 10 }, { t: "flag", k: "husk_clue", v: 1 }],
+      },
+      {
+        text: "叩池壁三下，与水里被串起的亡者低语", sub: "【收尸人专属扮演】你听得懂死者的话",
+        req: { pathway: "collector", hint: "需要收尸人的通灵" },
+        next: "c4_sewer_collector", effects: [{ t: "digestion", v: 12 }, { t: "sanity", v: -3 }, { t: "flag", k: "husk_clue", v: 1 }],
+      },
+      { text: "拔枪正面强攻", sub: "体魄判定：硬碰", check: { attr: "physique", dc: 12, label: "强攻", pass: "c4_sewer_bashpass", fail: "c4_sewer_bashfail", failEffects: [{ t: "hp", v: -4 }] } },
+    ],
+  },
+  {
+    id: "c4_sewer_clue_pass",
+    chapter: 4,
+    art: "ritual",
+    text: [
+      "你的灵视在水汽里聚焦。蓄水池的铁柱是锚，柱顶那串铜铃是钥匙——一根肉眼几乎看不见的、由「钟声」凝成的细线，从铃舌串起水里每一具尸骸的咽喉。",
+      "只要斩断那根线，守墓人就会散成一池不会再被点名的、真正的亡者。",
+      "但你得先让它从水里出来，正面够得着。",
+    ],
+    choices: [
+      { text: "叩柱引它现身，再断其线", sub: "灰河守墓人", combat: "sewer_husk", winNext: "c4_sewer_resolve", loseNext: "c4_sewer_retreat" },
+    ],
+  },
+  {
+    id: "c4_sewer_reader",
+    chapter: 4,
+    art: "ritual",
+    text: [
+      "你没有去看那根钟铃之线——你去看水。灰河的水在你眼中重新排列：这座蓄水池的出水口被人用一道拙劣的「闭门咒」焊死了一半，水才积成了这副死样子。",
+      "而水底那根串尸的线，本质就是一道半开的「门」——旧钟楼在用它把亡者一只只「读」进来。",
+      "你只动了出水口上三个符文，焊缝轰然洞开——不是放水，是把门「反锁」。水底那根线骤然绷紧，又被反锁的门绞得发颤。守墓人怒吼着从黑水里整个立起，直面你——它再也无法顺着水「游」回钟楼了。",
+    ],
+    choices: [
+      { text: "趁它被困于门，正面收拾", sub: "灰河守墓人已被削弱", combat: "sewer_husk", winNext: "c4_sewer_resolve", loseNext: "c4_sewer_retreat" },
+    ],
+  },
+  {
+    id: "c4_sewer_collector",
+    chapter: 4,
+    art: "ritual",
+    text: [
+      "你曲起指节，在蓄水池边沿叩了三下——收尸人与夹缝里亡魂打交道的旧礼。",
+      "黑水翻涌了一下。一个比铜铃声还细的声音，从水面渗进你的颅骨：『……别……让它……再点名……了……我……做不完的钟……做不完……』",
+      "你听懂了。水里最早的亡者，是三十年前「病故」的老司钟人——他没真死，是被旧钟「点名」收进了灰河，活成了守墓人的「骨架」。后来的铜匠、钟表匠、货郎，都是被旧钟顺着他的怨，一个一个点名拽下来的。",
+      "你低声许诺：会替他断铃、散魂，让他真正地死。老司钟人的残念颤了颤，把守墓人那根钟铃之线的弱点——铁柱根部的那道锈裂——连同他最后一丝怨毒，一起交给了你。",
+    ],
+    choices: [
+      { text: "循残念指引，劈柱断铃", sub: "灰河守墓人已无退路", combat: "sewer_husk", winNext: "c4_sewer_resolve", loseNext: "c4_sewer_retreat" },
+    ],
+  },
+  {
+    id: "c4_sewer_clue_fail",
+    chapter: 4,
+    art: "ritual",
+    text: [
+      "水汽太重，你的灵视在水面上糊成一片。等你回过神，铜铃声已经齐齐响过一遍——守墓人知道了你的位置，正朝你淌水过来。",
+      "没时间再辨认那根线了。只能硬碰。",
+    ],
+    choices: [
+      { text: "拔枪应战", sub: "灰河守墓人", combat: "sewer_husk", winNext: "c4_sewer_resolve", loseNext: "c4_sewer_retreat" },
+    ],
+  },
+  {
+    id: "c4_sewer_bashpass",
+    chapter: 4,
+    art: "ritual",
+    text: [
+      "你一脚踹翻池边的铁柱，锈蚀的柱根「咔」地裂开半截——串尸的那根钟铃之线骤然一松，守墓人整个身形歪了一歪，少了一截身躯的协调。",
+    ],
+    choices: [
+      { text: "趁它失衡，正面收拾", sub: "出其不意", combat: "sewer_husk", winNext: "c4_sewer_resolve", loseNext: "c4_sewer_retreat" },
+    ],
+  },
+  {
+    id: "c4_sewer_bashfail",
+    chapter: 4,
+    art: "ritual",
+    text: [
+      "铁柱纹丝不动，你倒被反震得手腕发麻。守墓人已经整个立出水面，铜铃齐鸣，朝你压了过来。",
+    ],
+    choices: [
+      { text: "硬着头皮迎战", sub: "灰河守墓人", combat: "sewer_husk", winNext: "c4_sewer_resolve", loseNext: "c4_sewer_retreat" },
+    ],
+  },
+  {
+    id: "c4_sewer_resolve",
+    chapter: 4,
+    art: "city",
+    title: "灰河归静",
+    text: [
+      "守墓人散成了一池不会再被点名的亡者。铜铃的线断了，水面的香灰与铜屑慢慢沉了下去，露出黑水下几十年积下的、一具又一具终于能安息的尸骨。",
+      "你在铁柱根部找到了老司钟人三十年前刻下的一行小字：「钟不止，铃不歇。愿点名者，终被点名。」——他早知道会有这一天。",
+      "你把铁柱上的铜铃取下，塞进了证物袋。回去的路上，灰河的水，第一次不那么黏了。",
+      "魔药在你体内满意地翻涌——你又「扮演」了一回合格的值夜者：把不该被牵连的亡者，从钟声里解出来。",
+    ],
+    onEnter: [{ t: "pounds", v: 5 }, { t: "digestion", v: 8 }, { t: "sanity", v: 3 }, { t: "flag", k: "sewer_solved", v: 1 }, { t: "flag", k: "case_closed", v: 1 }],
+    choices: [{ text: "从铁闸口返回地面", next: "c4_hub" }],
+  },
+  {
+    id: "c4_sewer_retreat",
+    chapter: 4,
+    art: "city",
+    text: [
+      "守墓人太重，你没能拿下。你趁铜铃一记空响的间隙，顺着读出的「门」退回了铁闸口，把栅栏哐地拉上。黑水那头传来一声非人的闷吼，却没追出来——它被这道「门」暂时隔在了灰河深处。",
+      "你没结了这桩案子，但至少拦住了它再点名拽人的路数。短时间内，灰河的水，不会再变黏了。",
+      "邓恩听完只叹了口气：「有些案子，能压住就算赢。回头让弗莱带一队人，把铁闸焊死。」",
+      "你心里清楚，这一回扮演得不算圆满——魔药也消化得慢了些。",
+    ],
+    onEnter: [{ t: "pounds", v: 2 }, { t: "sanity", v: -2 }],
+    choices: [{ text: "带着遗憾回公司", next: "c4_hub" }],
   },
   {
     id: "c4_end",

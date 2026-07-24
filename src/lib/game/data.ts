@@ -263,6 +263,7 @@ export interface EnemyMove {
   msg: string;
   dmg?: number;
   sanity?: number;
+  heal?: number; // 敌人自我回复生命（半血后解锁常见）
   bleed?: number; // 对玩家造成持续流血（每回合伤害）
   bleedTurns?: number;
   w: number; // 权重
@@ -445,6 +446,22 @@ export const ENEMIES: Record<string, Enemy> = {
     ],
     loot: [{ t: "pounds", v: 4 }, { t: "flag", k: "thief_down", v: 1 }, { t: "item", k: "potion_calm", v: 1 }],
     digest: 9,
+  },
+  // ---- 第四章支线·灰河下水道 ----
+  sewer_husk: {
+    key: "sewer_husk",
+    name: "灰河守墓人",
+    title: "被钟声唤回的聚合亡者",
+    hp: 42, atk: 8, dodge: 10, undead: true, sanitySight: 7,
+    intro: "下水道尽头的蓄水池里，黑水翻涌。七八具被铁链串成一串的尸骸从水里缓缓立起——它们早已腐烂得面目模糊，却被同一缕钟声牵着，拼成一具笨重而执拗的「守墓人」。它每动一下，身上的铜铃就叮叮作响，像在替那口旧钟清点亡魂。",
+    moves: [
+      { name: "铜铃重锤", msg: "守墓人抡起串着尸骸的铁链，铜铃在风中尖啸", dmg: 9, w: 3 },
+      { name: "黑水漫灌", msg: "它一脚踩进蓄水池，激起一蓬腥臭的黑水扑面而来", dmg: 4, sanity: 3, w: 2 },
+      { name: "亡者拼补", msg: "它从水底拽起一截新尸，缝补到自己身上", heal: 6, w: 2, belowHalf: true },
+      { name: "钟声牵引", msg: "远处旧钟楼传来一声闷响，守墓人浑身一震，铜铃齐鸣", sanity: 5, w: 1 },
+    ],
+    loot: [{ t: "pounds", v: 6 }, { t: "flag", k: "husk_down", v: 1 }, { t: "item", k: "potion_mind", v: 1 }],
+    digest: 11,
   },
   // ---- 第二章·值夜者巡逻偶遇敌人 ----
   mugger: {
