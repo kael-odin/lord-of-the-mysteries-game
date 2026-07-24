@@ -686,6 +686,10 @@ export const STORY_1: StoryNode[] = [
         text: "在廷根的街头闲逛", sub: "随机遭遇：机遇与危险并存",
         next: "c2_street",
       },
+      {
+        text: "接下「水仙花街窃影案」", sub: "可选支线：一面凭空消失的穿衣镜", once: "took_narcissus_case",
+        next: "c2_narcissus_start",
+      },
       { text: "去队长室看看有没有案子", sub: "推进主线", next: "c2_case_intro" },
     ],
   },
@@ -1136,6 +1140,130 @@ export const STORY_1: StoryNode[] = [
       "醉汉躺在地上哼哼，围观人群为你鼓掌。你从他那打满补丁的衣袋里没收了一枚金镑——按码头区的规矩，这叫「保证金」。",
     ],
     choices: [{ text: "扬长而去", next: "c2_hub" }],
+  },
+  // ============ 支线：水仙花街的窃影 ============
+  {
+    id: "c2_narcissus_start",
+    chapter: 2,
+    art: "city",
+    title: "水仙花街·空屋",
+    text: [
+      "卷宗是老尼尔悄悄塞给你的：「这桩不算大，但挺邪门——值夜者不愿意接，你练手正合适。」",
+      "水仙花街17号，一对夫妇外出半月，回来发现屋内物件原封未动，唯独墙上那面穿衣镜不翼而飞。更怪的是：镜框还在墙上钉着，框里那面镜子却像被人从「里面」取走了，连灰都没落一点。",
+      "邻居起誓说，半夜听见屋里有人低声说话，可那屋子分明空着。你推开17号的门，霉味与一种极淡的、像旧相片显影液的酸味混在一起。",
+      "那面空镜框对着你。框内不是墙——而是一片比屋子更深的、微微晃动的黑。",
+    ],
+    choices: [
+      {
+        text: "凑近镜框，用灵视辨别「黑」的来路", sub: "灵感判定：辨别镜后",
+        check: {
+          attr: "inspiration", dc: 12, label: "辨别镜后",
+          pass: "c2_narcissus_pass", passEffects: [{ t: "flag", k: "mistthief_seen", v: 1 }, { t: "sanity", v: -2 }],
+          fail: "c2_narcissus_fail", failEffects: [{ t: "sanity", v: -3 }],
+        },
+      },
+      {
+        text: "以占卜在水盆里映出它的去向", sub: "【占卜家专属扮演】你天生会「看」",
+        req: { pathway: "seer", hint: "需要占卜家的灵视" },
+        next: "c2_narcissus_seer", effects: [{ t: "digestion", v: 10 }, { t: "flag", k: "mistthief_seen", v: 1 }, { t: "sanity", v: -1 }],
+      },
+      { text: "把镜框整个摘下来带走", sub: "体魄判定：连框端走", once: "narcissus_taken",
+        check: { attr: "physique", dc: 12, label: "摘框", pass: "c2_narcissus_take_pass", fail: "c2_narcissus_take_fail", failEffects: [{ t: "hp", v: -3 }] },
+      },
+    ],
+  },
+  {
+    id: "c2_narcissus_pass",
+    chapter: 2,
+    art: "ritual",
+    text: [
+      "你的灵性在瞳孔里聚焦。那片「黑」不是暗，而是一道被折叠进镜框里的、极窄的夹层——有个东西正缩在夹层深处，借着镜面偷看这间屋子。",
+      "它察觉到你的注视，镜框里的黑猛地一缩，像受惊的猫，顺着墙根往邻屋方向「游」去。",
+    ],
+    choices: [
+      { text: "追着它的去路堵截", sub: "窃影已被你看见", combat: "mistthief", winNext: "c2_narcissus_end", loseNext: "c2_narcissus_flee" },
+    ],
+  },
+  {
+    id: "c2_narcissus_seer",
+    chapter: 2,
+    art: "ritual",
+    text: [
+      "你在脸盆里盛了半盆清水，撒了一撮盐，凝神注视。水面上慢慢浮起影像：那东西此刻正缩在19号屋的墙缝里，抱着偷来的镜面，像抱着自己的孩子。",
+      "占卜的本质是先一步看见——你已经看见了它的藏身处，它却还没察觉到你。",
+    ],
+    choices: [
+      { text: "直接扑去19号堵门", sub: "窃影已被你定位", combat: "mistthief", winNext: "c2_narcissus_end", loseNext: "c2_narcissus_flee" },
+    ],
+  },
+  {
+    id: "c2_narcissus_fail",
+    chapter: 2,
+    art: "ritual",
+    text: [
+      "你看得不够深。那片黑趁你愣神的工夫自我收敛，等你回过神，镜框里只剩普通的墙皮——它顺着墙「游」走了，只留下一道若有若无的、指向邻屋的酸味。",
+      "你迟了半步，但味道还在。",
+    ],
+    choices: [{ text: "循着酸味追下去", next: "c2_narcissus_chase" }],
+  },
+  {
+    id: "c2_narcissus_take_pass",
+    chapter: 2,
+    art: "city",
+    text: [
+      "你用大衣裹住镜框，连框带「黑」一起端走。怀里的框猛地一沉一挣，那东西在夹层里发了疯地撞，却被框木困住，甩不脱。",
+      "带回公司再处理，总比在凶宅里和它周旋稳妥。",
+    ],
+    choices: [
+      { text: "把困在框里的东西带回去审", sub: "窃影已被困住", combat: "mistthief", winNext: "c2_narcissus_end", loseNext: "c2_narcissus_flee" },
+    ],
+  },
+  {
+    id: "c2_narcissus_take_fail",
+    chapter: 2,
+    art: "city",
+    text: [
+      "你用力过猛，镜框的钉脚崩开，那片黑趁乱「滑」出，顺着墙根游走了。你手腕被框木划了一道，不算重伤，但东西是跟丢了。",
+      "好歹酸味还在，能循着追。",
+    ],
+    choices: [{ text: "捂着手追下去", next: "c2_narcissus_chase" }],
+  },
+  {
+    id: "c2_narcissus_chase",
+    chapter: 2,
+    art: "city",
+    title: "酸味追逐",
+    text: [
+      "你顺着那股显影液般的酸味追过两户人家的后院。味道在19号屋的后墙汇聚、变浓——它就缩在19号的墙缝里，抱着偷来的镜面，以为没人找得到它。",
+      "这一次，它无处可「游」了。",
+    ],
+    choices: [
+      { text: "把它从墙缝里逼出来", sub: "窃影", combat: "mistthief", winNext: "c2_narcissus_end", loseNext: "c2_narcissus_flee" },
+    ],
+  },
+  {
+    id: "c2_narcissus_end",
+    chapter: 2,
+    art: "city",
+    title: "结案·镜归原主",
+    text: [
+      "窃影在19号屋后院溃散成一摊银灰色的湿痕，那面穿衣镜从湿痕里完整地「吐」了出来，连个划痕都没有。",
+      "老尼尔听完，啧啧称奇：「镜途径的下脚料，失控了。原本靠『映』进别人家偷东西，如今连人带命一起『映』走。你小子头一回单独办差就拾掇了它，行啊。」",
+      "他把一面小铜镜塞给你当纪念：「回头给罗珊说说，她最爱听这种。」魔药在你体内满意地翻涌了一下——又「扮演」了一回合格的值夜者。",
+    ],
+    onEnter: [{ t: "pounds", v: 4 }, { t: "digestion", v: 8 }, { t: "flag", k: "c2_narcissus_solved", v: 1 }],
+    choices: [{ text: "凯旋回公司", next: "c2_hub" }],
+  },
+  {
+    id: "c2_narcissus_flee",
+    chapter: 2,
+    art: "city",
+    text: [
+      "窃影从你指缝间滑走，溶进墙缝，再也找不到了。镜子没能追回来，但那东西受了重创，短时间内不敢再在水仙花街作祟。",
+      "老尼尔拍拍你的肩：「头一回嘛，能压住就算赢。下次就有数了。」你心里清楚，这回扮演得不算圆满——魔药也消化得慢了些。",
+    ],
+    onEnter: [{ t: "pounds", v: 1 }, { t: "sanity", v: -2 }],
+    choices: [{ text: "带着遗憾回公司", next: "c2_hub" }],
   },
   {
     id: "c2_case_intro",

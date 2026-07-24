@@ -269,6 +269,7 @@ export function newCombat(enemyKey: string, s: GameState, winNext: string, loseN
     hound: { flag: "foreseen", ratio: 0.2, label: "你已预知它的伏击点位" },
     deacon: { flag: "night_stalker", ratio: 0.18, label: "你从诵念的死角绕到了他身后" },
     bellkeeper: { flag: "read_top", ratio: 0.12, label: "你读出了钟架的结构破绽" },
+    mistthief: { flag: "mistthief_seen", ratio: 0.18, label: "你已摸清这类窃影的藏身路数" },
   };
   const pf = preemptFlags[enemyKey];
   const houndAmbush = enemyKey === "hound" && (s.flags?.foreseen || s.flags?.hunter_route);
