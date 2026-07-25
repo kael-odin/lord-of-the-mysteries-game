@@ -55,7 +55,7 @@ export interface StoryNode {
   id: string;
   chapter?: number;
   title?: string;
-  art?: "city" | "fog" | "ritual" | "sea" | "north" | "none";
+  art?: "city" | "fog" | "ritual" | "sea" | "north" | "ruin" | "none";
   text: string[]; // 支持 {name} 占位
   onEnter?: Effect[];
   choices: Choice[];

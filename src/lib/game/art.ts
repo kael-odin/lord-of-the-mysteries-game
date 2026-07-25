@@ -301,12 +301,90 @@ const SEA = svg(`
   <rect width="1600" height="900" fill="#05070a" opacity="0.1"/>
 `);
 
+// 旧都·瑟塔尔：第三纪被废王都的遗址。内陆干风荒原、断柱残宫、半塌的拱门、
+// 尘土里斜插的纪功碑、远处一轮被风沙磨白的、不属于这个纪元的黯日。
+const RUIN = svg(`
+  <defs>
+    <linearGradient id="rsky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0c0a08"/>
+      <stop offset="0.4" stop-color="#14100a"/>
+      <stop offset="0.6" stop-color="#0e0b08"/>
+      <stop offset="1" stop-color="#070504"/>
+    </linearGradient>
+    <radialGradient id="dimsun" cx="0.74" cy="0.22" r="0.26">
+      <stop offset="0" stop-color="#c89a5a" stop-opacity="0.34"/>
+      <stop offset="0.55" stop-color="#6a4a26" stop-opacity="0.1"/>
+      <stop offset="1" stop-color="#0a0a10" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="dust" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1a140c"/>
+      <stop offset="0.55" stop-color="#0e0a06"/>
+      <stop offset="1" stop-color="#060403"/>
+    </linearGradient>
+    <radialGradient id="ember" cx="0.34" cy="0.66" r="0.26">
+      <stop offset="0" stop-color="#e0a44a" stop-opacity="0.16"/>
+      <stop offset="0.7" stop-color="#5a3a16" stop-opacity="0.04"/>
+      <stop offset="1" stop-color="#0a0a10" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#rsky)"/>
+  <rect width="1600" height="900" fill="url(#dimsun)"/>
+  <!-- a pale, sanded-down sun disc -->
+  <circle cx="1184" cy="198" r="46" fill="#b89058" opacity="0.18"/>
+  <circle cx="1184" cy="198" r="28" fill="#c89a5a" opacity="0.22"/>
+  <!-- distant broken colonnade -->
+  <g fill="#0a0806" opacity="0.92">
+    <rect x="120" y="470" width="20" height="120"/>
+    <rect x="160" y="460" width="20" height="130"/>
+    <rect x="200" y="478" width="20" height="112"/>
+    <rect x="240" y="452" width="20" height="138"/>
+    <rect x="280" y="486" width="20" height="104"/>
+    <rect x="120" y="448" width="200" height="14"/>
+  </g>
+  <!-- collapsed palace: half-arches + leaning obelisk -->
+  <g opacity="0.95">
+    <polygon points="560,560 560,400 612,360 612,560" fill="#0c0906"/>
+    <polygon points="612,560 612,380 680,330 680,560" fill="#0a0806"/>
+    <polygon points="680,560 680,420 740,390 740,560" fill="#0c0906"/>
+    <!-- broken arch -->
+    <path d="M 760 560 L 760 440 Q 880 360 1000 440 L 1000 560" fill="none" stroke="#0c0906" stroke-width="22"/>
+    <!-- leaning obelisk -->
+    <polygon points="1080,560 1090,360 1100,560" fill="#0a0806"/>
+    <polygon points="1085,360 1090,348 1095,360" fill="#0a0806"/>
+  </g>
+  <!-- a few fallen column drums on the ground -->
+  <g fill="#0a0806" opacity="0.85">
+    <ellipse cx="470" cy="572" rx="34" ry="10"/>
+    <ellipse cx="540" cy="580" rx="26" ry="8"/>
+    <ellipse cx="900" cy="576" rx="30" ry="9"/>
+  </g>
+  <!-- dust ground -->
+  <rect y="560" width="1600" height="340" fill="url(#dust)"/>
+  <!-- a single embered brazier by a tent -->
+  <rect x="380" y="528" width="34" height="34" fill="#0a0806"/>
+  <polygon points="380,528 397,512 414,528" fill="#0a0806"/>
+  <circle cx="397" cy="546" r="3" fill="#e0a44a" opacity="0.9"/>
+  <circle cx="397" cy="546" r="16" fill="#e0a44a" opacity="0.16"/>
+  <rect width="1600" height="900" fill="url(#ember)"/>
+  <!-- blowing dust streaks -->
+  <g fill="#3a2c1a" opacity="0.22">
+    ${Array.from({ length: 14 }).map((_, i) => {
+      const y = 580 + (i % 7) * 38;
+      const x = (i * 137) % 1600;
+      const w = 80 + (i % 4) * 50;
+      return `<rect x="${x}" y="${y}" width="${w}" height="1.5"/>`;
+    }).join("")}
+  </g>
+  <rect y="760" width="1600" height="140" fill="#050403" opacity="0.55"/>
+`);
+
 export const SCENE_ART: Record<string, string> = {
   city: CITY,
   fog: FOG,
   ritual: RITUAL,
   sea: SEA,
   north: NORTH,
+  ruin: RUIN,
   none: NONE,
 };
 

@@ -261,6 +261,7 @@ export const ITEMS: Record<string, Item> = {
   // ---- 第十章·北陆·霜砚镇·北地硬货 ----
   frost_charm: { id: "frost_charm", name: "霜镜残符", desc: "凛冬·偷名者身上捻得的低阶咒符。剧情中可照亮旧驿道遗址腔室里被磨平的「霜门」，亦能在北地亡灵面前，让你看穿它镜脸的破绽。磨成霜镜状，刻着「无名，无痛」。", price: 5, passive: "frostSight" },
   tide_charm: { id: "tide_charm", name: "潮盘残符", desc: "漫游·偷向者身上捻得的低阶咒符。剧情中可照亮旧航道遗址腔室里被磨平的「潮门」，亦能在南港亡灵面前，让你看穿它罗盘脸的破绽。磨成罗盘状，刻着「无向，无达」。", price: 5, passive: "tideSight" },
+  hearth_charm: { id: "hearth_charm", name: "故土残符", desc: "塌缩·偷根者身上捻得的低阶咒符。剧情中可照亮旧都遗址腔室里被磨平的「根门」，亦能在内陆亡灵面前，让你看穿它门脸的破绽。磨成一截断柱状，刻着「无根，无归」。", price: 5, passive: "hearthSight" },
 };
 
 // ============ 敌人 ============
@@ -702,6 +703,37 @@ export const ENEMIES: Record<string, Enemy> = {
     ],
     loot: [{ t: "pounds", v: 18 }, { t: "flag", k: "drifter_down", v: 1 }, { t: "item", k: "seal_card", v: 1 }, { t: "item", k: "charm_anchor", v: 1 }, { t: "sanity", v: -8 }],
     digest: 22,
+  },
+  // ---- 第十二章·旧都·塌缩学派·偷根之物 ----
+  hearth_culler: {
+    key: "hearth_culler",
+    name: "塌缩·偷根者",
+    title: "塌缩学派遣来收根的暗哨",
+    hp: 56, atk: 11, dodge: 16, undead: true, sanitySight: 10,
+    intro: "旧都瑟塔尔那片断柱残宫的废墟里，一个裹着被风沙磨白的、灰麻布的人形，从一根斜插的纪功碑后，「缩」了出来——不是走，是缩，像要把整个身形，缩进比自己更小的、一截被磨平的断柱里。他没有脸，只有一面被磨平的、不反光的、像夯土凝成的门脸。他不开口，只把一只干白的手，缓缓朝你伸来：他不是要你的命，他是要，你的「来处」。你掌心那枚刻着你塔罗会代号的铜币，烫了一下——他认得，这是比凡俗来处更「值钱」的根。",
+    moves: [
+      { name: "门脸之掌", msg: "偷根者一掌印来，掌心的门脸要夯走你的根", dmg: 11, w: 3 },
+      { name: "夺根低语", msg: "他门脸般的脸里渗出一段不属于人声的低语，直钻你的脑后", dmg: 4, sanity: 5, w: 2 },
+      { name: "土壁凝门", msg: "他在身前夯出一面厚土门，挡住这一击", ward: 13, w: 2 },
+      { name: "枯根反噬", msg: "他偷根偷得太多，门脸裂开一道缝，自己的根反漏了出来", thorns: 9, w: 1, belowHalf: true },
+    ],
+    loot: [{ t: "pounds", v: 11 }, { t: "flag", k: "culler12_down", v: 1 }, { t: "item", k: "hearth_charm", v: 1 }, { t: "item", k: "potion_mind", v: 1 }],
+    digest: 16,
+  },
+  hearth_aspect: {
+    key: "hearth_aspect",
+    name: "故土聚合体",
+    title: "旧都遗址下「没人再回去过的地方」长成之物",
+    hp: 78, atk: 13, dodge: 11, undead: true, sanitySight: 15,
+    intro: "旧都瑟塔尔地下，是一处被风沙与夯土填平的、更早的、没人再记得来处的旧王宫遗址。遗址腔室正中悬浮着这团东西——它由太多被「塌缩学派」偷走的、没人再回去过的地方聚成，时而像一截截叠在一起的、磨平的断柱，时而像无数只干白、向下伸、却够不到任何「我来自」的手。它不看你——它透过夯土看你掌心那枚刻着代号的铜币，像在认，下一个该被它「收」、从此再没人能回去的，是不是你。它饿的，不是「向」——是「来处」。",
+    moves: [
+      { name: "千门之涌", msg: "它身上无数面磨平的门脸同时朝你张开，涌出一股干白的尘气", dmg: 11, sanity: 5, w: 3 },
+      { name: "收根", msg: "它像读一卷磨了字的旧土书，翻读你「从哪儿来」", sanity: 10, w: 2 },
+      { name: "吞根补土", msg: "它把一缕属于某位没根了的人的「我来」吞回腔室，缝补自己", heal: 11, w: 1, belowHalf: true },
+      { name: "土冢成壁", msg: "干白的尘气在它身周夯成一座土冢般的厚壁", ward: 15, w: 2 },
+    ],
+    loot: [{ t: "pounds", v: 20 }, { t: "flag", k: "hearth_down", v: 1 }, { t: "item", k: "seal_card", v: 1 }, { t: "item", k: "charm_anchor", v: 1 }, { t: "sanity", v: -9 }],
+    digest: 24,
   },
   // ---- 第四章·钟楼支线敌人 ----
   puppet: {

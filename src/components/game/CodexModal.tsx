@@ -35,6 +35,7 @@ const ENDING_GROUPS: { label: string; ids: string[] }[] = [
   { label: "第九章 · 海上之城", ids: ["tidebreaker"] },
   { label: "第十章 · 北陆·霜砚镇", ids: ["namekeeper"] },
   { label: "第十一章 · 南港归潮", ids: ["waykeeper"] },
+  { label: "第十二章 · 旧都·回声", ids: ["rootkeeper"] },
 ];
 
 type Tab = "endings" | "pathways" | "dossier" | "guide";
@@ -259,6 +260,9 @@ const DOSSIER: DossierSection[] = [
       { flag: "warden_down", title: "漫游·偷向者·罗盘碎", desc: "南港栈桥尽头海雾里，漫游学派遣来收向的暗哨，那面磨平的罗盘脸，被你碎成了几瓣。每一瓣里，都映着一个被偷走的、不属于自己的「去向」。" },
       { flag: "drifter_down", title: "漫游聚合体·向归", desc: "南港沉船巷下旧航道遗址腔室里，那团由太多「没人再去过的地方」长成、终于咬合成一个会自我漂移的漫游之物，被你停了转。南港人停了半月的「要去哪儿」，重新被拨了回来。" },
       { flag: "pilot_down", title: "芮恩森·向锚·补", desc: "巷尾废领航塔底，芮恩·芮恩森五十年前用自己「去向」钉下的那道「向之锚」，被你用铜币的温热，补了一层。沉船巷，认你了。" },
+      { flag: "culler12_down", title: "塌缩·偷根者·门脸碎", desc: "旧都瑟塔尔断柱残宫的风沙里，塌缩学派遣来收根的暗哨，那面磨平的门脸，被你碎成了几瓣。每一瓣里，都映着一个被偷走的、不属于自己的「来处」。" },
+      { flag: "hearth_down", title: "故土聚合体·根归", desc: "旧都残卷阁下旧王宫遗址腔室里，那团由太多「没人再回去过的地方」长成、终于咬合成一个会自我塌缩的故土之物，被你停了转。旧都人停了半月的「从哪儿来」，重新被夯了回来。" },
+      { flag: "archivist_down", title: "赫斯森·根锚·补", desc: "残卷阁深处废档塔底，赫斯·赫斯森五十年前用自己「来处」钉下的那道「根之锚」，被你用铜币的温热，补了一层。残卷阁，认你了。" },
     ],
   },
   {

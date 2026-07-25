@@ -294,7 +294,8 @@ export const STORY_10: StoryNode[] = [
       { text: "在酒馆外廊生火休整", sub: "一壶海盐烈酒：生命+8、灵性+6（每夜一次）", once: "rested11", next: "c11_hub", effects: [{ t: "hp", v: 8 }, { t: "sp", v: 6 }] },
       { text: "替老芮恩去巷尾废领航塔看一看", sub: "可选支线：旧领航塔里，有一段关于「方向是锚」的旧事", once: "took_pilot", next: "arc_pilot_start" },
       { text: "合上眼，顺印记上桌（塔罗会）", sub: "灰雾之上，你的椅子温着", hidden: { flag: "tarot_fourth_climax" }, next: "c11_climax" },
-      { text: "启程·回贝克兰德市中心", sub: "雾都的灯，也该回去看一眼了", req: { flag: "tarot_fourth_done" }, next: "ending_waykeeper" },
+      { text: "启程·赴内陆旧都·瑟塔尔", sub: "灰雾之上那册书，又翻了一页·「旧」「都」", req: { flag: "tarot_fourth_done" }, next: "c12_start" },
+      { text: "【终】就此收手·守向者是我的了", sub: "达成第三卷·南港结局（不再北上内陆）", req: { flag: "tarot_fourth_done" }, next: "ending_waykeeper" },
     ],
   },
   {
