@@ -30,6 +30,7 @@ const ENDING_GROUPS: { label: string; ids: string[] }[] = [
   { label: "失控与长眠", ids: ["shikong", "death", "civilian"] },
   { label: "第四章 · 钟楼回声", ids: ["bellkeeper"] },
   { label: "第五章 · 绯红假面舞会", ids: ["fool2", "usurper", "survivor", "anchor", "hunter_legend", "martyr", "nightwatcher"] },
+  { label: "第七章 · 大雾霾", ids: ["fogbreaker"] },
 ];
 
 type Tab = "endings" | "pathways" | "dossier" | "guide";
@@ -234,6 +235,9 @@ const DOSSIER: DossierSection[] = [
       { flag: "husk_down", title: "守墓人之铃", desc: "灰河尽头的铜铃不再为旧钟清点亡魂——你替它们按下了休止符。" },
       { flag: "courier_down", title: "雾纹断线", desc: "码头区验关亭里那只密修会遣来的暗哨，被你拔了——连同他掌心那张半封的密信。" },
       { flag: "drifter_down", title: "雾散·归人", desc: "贝克兰德雾深处那团偷人「最近几天」的失控残骸，被你斩断了书脊般的裂缝。三位被挖走记忆的归人，醒了过来。" },
+      { flag: "chorister_down", title: "失序司仪·棒断", desc: "城东煤气储塔顶上那位戴破碎歌剧面具的司仪，被你逼停了合颂。他手里那根由十几段「最近」缠成的指挥棒，断了。" },
+      { flag: "aspect_down", title: "三日大雾·根清", desc: "储塔碗底那团由太多被偷走的「惦记」长出了自己的聚合体，被你斩断了六十年的根。三日大雾，散了。" },
+      { flag: "smuggler_down", title: "借雾倒货·根拔", desc: "码头区后巷那伙趁大雾倒腾灰土王国非凡货的混混，被你绑在了栈房柱子上。雾一散，自有巡警来收。" },
     ],
   },
   {

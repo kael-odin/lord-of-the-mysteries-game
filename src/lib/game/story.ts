@@ -4,8 +4,9 @@ import { STORY_2 } from "./story2";
 import { STORY_3 } from "./story3";
 import { STORY_4 } from "./story4";
 import { STORY_5 } from "./story5";
+import { STORY_6 } from "./story6";
 
-export const ALL_NODES: StoryNode[] = [...STORY_1, ...STORY_2, ...STORY_3, ...STORY_4, ...STORY_5];
+export const ALL_NODES: StoryNode[] = [...STORY_1, ...STORY_2, ...STORY_3, ...STORY_4, ...STORY_5, ...STORY_6];
 
 export const STORY_MAP: Record<string, StoryNode> = Object.fromEntries(
   ALL_NODES.map((n) => [n.id, n]),
@@ -41,6 +42,8 @@ export const ENDINGS: Record<string, { title: string; tone: "gold" | "red" | "gr
   hunter_legend: { title: "廷根之狼", tone: "red", hint: "以猎人之道，你猎杀了舞会上最强的存在。" },
   martyr: { title: "殉锚", tone: "purple", hint: "你的容器没能撑住三分钟。你碎了，廷根却保住了。" },
   nightwatcher: { title: "廷根的守夜人", tone: "gold", hint: "两桩悬案俱破，宾客存活。你把扮演刻进了骨血。" },
+  // 第七章新结局
+  fogbreaker: { title: "破雾者", tone: "gold", hint: "三日大雾的源头被你斩断，灰雾之上第一次朝你致意。第二十三张椅子，为你拉开。" },
 };
 
 export const ALL_ENDING_IDS = Object.keys(ENDINGS);
@@ -52,4 +55,5 @@ export const CHAPTER_TITLES: Record<number, string> = {
   4: "第四章 · 钟楼失踪案",
   5: "第五章 · 绯红假面舞会",
   6: "第六章 · 贝克兰德的雾",
+  7: "第七章 · 大雾霾",
 };

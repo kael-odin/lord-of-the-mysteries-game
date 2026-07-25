@@ -61,6 +61,7 @@ export const STORY_5: StoryNode[] = [
       { text: "在公寓里生火休整", sub: "烧一壶贝克兰德的苦茶：生命+8、灵性+6（一次）", once: "rested6", next: "c6_hub", effects: [{ t: "hp", v: 8 }, { t: "sp", v: 6 }] },
       { text: "接下「雾中拾遗」的差事", sub: "可选支线：大雾里走丢的人，比报上写的多", once: "took_haze_case", next: "arc_haze_start" },
       { text: "循着印记，赴那场隐秘聚会（主线）", sub: "灰雾印记指向城东——也许能见到「同类」", next: "c6_gathering_intro" },
+      { text: "收到心理炼金会的急召——大雾霾第三夜", sub: "第七章·入会且已结雾案者可见", hidden: { flag: "alchemy_member", flagVal: 1 }, next: "c7_start" },
     ],
   },
   {

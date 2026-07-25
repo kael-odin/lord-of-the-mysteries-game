@@ -542,6 +542,37 @@ export const ENEMIES: Record<string, Enemy> = {
     loot: [{ t: "pounds", v: 7 }, { t: "flag", k: "drifter_down", v: 1 }, { t: "item", k: "potion_mind", v: 1 }],
     digest: 12,
   },
+  // ---- 第七章·大雾霾·雾后仪式的司仪与聚合体 ----
+  fog_chorister: {
+    key: "fog_chorister",
+    name: "黄雾中的失序司仪",
+    title: "雾后仪式的主持者",
+    hp: 52, atk: 9, dodge: 10, sanitySight: 9,
+    intro: "雾最浓的那一夜，你在城东那座废弃的煤气储塔顶找到了他——一个穿着燕尾服、戴着破碎歌剧面具的男人。他站在储塔正中一道用黄雾凝成的「祭坛」前，手里捏着一根指挥棒般的、由许多人「最近几天」缠在一起的细绳。见你上来，他像在指挥一场无人听见的交响，挥了一下棒——雾里，凭空多出了两根朝你指来的、灰白色的雾指。「请安静，」他用一种被雾泡软的、优雅的嗓音说，「第三日的合颂，正到了最关键的乐章。」",
+    moves: [
+      { name: "雾指合奏", msg: "司仪一挥棒，雾里同时刺出两根灰白的手指", dmg: 10, w: 3 },
+      { name: "合颂之雾", msg: "他领着雾里无数失声的喉咙，唱出刺入神智的合颂", sanity: 7, w: 2 },
+      { name: "祭坛之壁", msg: "黄雾在司仪身前凝成一道厚重的雾壁，替他挡下这一击", ward: 12, w: 2 },
+      { name: "反噬回环", msg: "他把雾指收拢成环，引你打向自己", thorns: 7, w: 1, belowHalf: true },
+    ],
+    loot: [{ t: "pounds", v: 9 }, { t: "flag", k: "chorister_down", v: 1 }, { t: "item", k: "potion_mind", v: 2 }, { t: "item", k: "charm_anchor", v: 1 }],
+    digest: 14,
+  },
+  smog_aspect: {
+    key: "smog_aspect",
+    name: "黄雾聚合体",
+    title: "三日大雾真正的主人",
+    hp: 60, atk: 10, dodge: 8, undead: true, sanitySight: 12,
+    intro: "储塔祭坛之下，是一个被黄雾填满的、像倒扣的碗一样的地下腔室。腔室正中悬浮着一团比雾更稠、比夜更黄的东西——它没有固定的形，时而像一张张叠在一起的人脸，时而像无数张被翻烂的书页，时而又什么都不像，只是一团饥渴地、缓慢地蠕动着的「最近」。这就是三日大雾真正的源头：一个由太多被偷走的「有人惦记的日子」、聚到一起、终于长出了自己的饥饿的东西。它不看你——它透过雾看你掌心那枚印记，像在认，下一个该被它「记住」的，是不是你。",
+    moves: [
+      { name: "千面之涌", msg: "聚合体里无数张人脸同时朝你张开嘴，涌出一股黄雾", dmg: 8, sanity: 5, w: 3 },
+      { name: "翻读你", msg: "它像翻一本旧书一样，翻读你「最近这几天」", sanity: 9, w: 2 },
+      { name: "吞日补己", msg: "它把一缕属于别人的「惦记」吞回腔室，缝补自己", heal: 10, w: 1, belowHalf: true },
+      { name: "雾壁成冢", msg: "黄雾在它身周凝成一座坟冢般的厚壁", ward: 14, w: 2 },
+    ],
+    loot: [{ t: "pounds", v: 12 }, { t: "flag", k: "aspect_down", v: 1 }, { t: "item", k: "seal_card", v: 1 }, { t: "sanity", v: -6 }],
+    digest: 18,
+  },
   // ---- 第四章·钟楼支线敌人 ----
   puppet: {
     key: "puppet",
