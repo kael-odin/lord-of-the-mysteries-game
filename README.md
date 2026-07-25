@@ -31,7 +31,20 @@ npm run dev
 
 浏览器打开 **http://localhost:3000** 即可。构建与运行**不依赖 PostgreSQL**——数据库仅在配置了 `DATABASE_URL` 时启用，用于可选的云端存档备份，未配置时游戏照常运行。
 
-> 仓库已附带 `node_modules` 的依赖清单（`package.json`），`npm install` 一次即可。开发服务器默认端口 3000。
+### 双击即玩（不会命令行也能玩）
+
+仓库根目录附了一键启动脚本，免去手动敲命令：
+
+| 系统 | 操作 |
+| --- | --- |
+| **Windows** | 双击 `play.bat` |
+| **macOS / Linux** | 终端运行 `./play.sh`，或 `node play.mjs` |
+
+脚本会自动完成：检测 Node.js → 缺依赖时自动 `npm install` → 启动开发服务器 → **自动打开浏览器到 http://localhost:3000**。玩够了，关掉弹出的那个窗口即可停止服务器。
+
+> 唯一前置条件：已安装 [Node.js 18+](https://nodejs.org/zh-cn/download)（LTS 版本即可，一路下一步）。若未安装，`play.bat` 会提示下载地址。
+
+> 开发服务器默认端口 3000。`node_modules` 已在依赖清单 `package.json` 中声明，首次运行 `npm install` 一次即可。
 
 ## 六章剧情脉络
 
@@ -67,6 +80,7 @@ Next.js 16（Turbopack）· React 19 · TypeScript · Tailwind CSS v4 · Drizzle
 ## 目录结构
 
 ```
+play.bat / play.sh / play.mjs   双击即玩启动器（检测 Node → 装依赖 → 启动 → 开浏览器）
 src/
   app/
     page.tsx                落地页
