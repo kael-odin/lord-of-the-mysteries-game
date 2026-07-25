@@ -263,6 +263,7 @@ export const ITEMS: Record<string, Item> = {
   tide_charm: { id: "tide_charm", name: "潮盘残符", desc: "漫游·偷向者身上捻得的低阶咒符。剧情中可照亮旧航道遗址腔室里被磨平的「潮门」，亦能在南港亡灵面前，让你看穿它罗盘脸的破绽。磨成罗盘状，刻着「无向，无达」。", price: 5, passive: "tideSight" },
   hearth_charm: { id: "hearth_charm", name: "故土残符", desc: "塌缩·偷根者身上捻得的低阶咒符。剧情中可照亮旧都遗址腔室里被磨平的「根门」，亦能在内陆亡灵面前，让你看穿它门脸的破绽。磨成一截断柱状，刻着「无根，无归」。", price: 5, passive: "hearthSight" },
   husk_charm: { id: "husk_charm", name: "人形残符", desc: "空壳·偷人者身上捻得的低阶咒符。剧情中可照亮灰原骨冢腔室里被磨平的「人门」，亦能在骨冢亡灵面前，让你看穿它壳脸的破绽。磨成一只空面具状，刻着「无人，无痛」。", price: 5, passive: "huskSight" },
+  mirror_charm: { id: "mirror_charm", name: "真我残符", desc: "镜我·偷我者身上捻得的低阶咒符。剧情中可照亮灰雾深处镜心冢里被磨平的「我门」，亦能在镜中亡灵面前，让你看穿它镜脸的破绽。磨成一面凹镜状，刻着「无我，无痛」。", price: 6, passive: "mirrorSight" },
 };
 
 // ============ 敌人 ============
@@ -766,6 +767,37 @@ export const ENEMIES: Record<string, Enemy> = {
     ],
     loot: [{ t: "pounds", v: 22 }, { t: "flag", k: "husk_down", v: 1 }, { t: "item", k: "seal_card", v: 1 }, { t: "item", k: "charm_anchor", v: 1 }, { t: "sanity", v: -10 }],
     digest: 26,
+  },
+  // ---- 第十四章·灰雾深处·镜我学派·偷我之物（第三卷·终篇）----
+  mirror_culler: {
+    key: "mirror_culler",
+    name: "镜我·偷我者",
+    title: "镜我学派遣来收我的暗哨",
+    hp: 60, atk: 12, dodge: 18, undead: true, sanitySight: 12,
+    intro: "灰雾深处那片被雾本身磨成镜的、倒映着无数「我」的镜心冢外，一个裹着被灰雾泡透了洞的、雾麻布的人形，从一面磨平的雾镜后，「映」了出来——不是走，是映，像没有自己，又像所有「我」，都是它的映。它没有脸，只有一面被磨平的、不反光的、像雾凝成的凹镜脸。它不开口，只把一只灰白的手，缓缓朝你伸来：它不是要你的命，它是要，你的「真我」。你掌心那枚刻着你塔罗会代号的铜币，烫了一下——它认得，这是比凡俗之躯更「值钱」的真我。",
+    moves: [
+      { name: "镜脸之掌", msg: "偷我者一掌印来，掌心的凹镜要映走你的真我", dmg: 12, w: 3 },
+      { name: "夺我低语", msg: "它镜脸般的脸里渗出一段不属于人声的低语，直钻你的脑后", dmg: 4, sanity: 7, w: 2 },
+      { name: "雾壁凝镜", msg: "它在身前凝出一面厚雾镜，挡住这一击", ward: 14, w: 2 },
+      { name: "空我反噬", msg: "它偷我偷得太多，镜脸裂开一道缝，自己的真我反漏了出来", thorns: 10, w: 1, belowHalf: true },
+    ],
+    loot: [{ t: "pounds", v: 14 }, { t: "flag", k: "culler14_down", v: 1 }, { t: "item", k: "mirror_charm", v: 1 }, { t: "item", k: "potion_mind", v: 2 }],
+    digest: 18,
+  },
+  mirror_aspect: {
+    key: "mirror_aspect",
+    name: "真我聚合体",
+    title: "灰雾深处镜心冢里「没人再是我」长成之物",
+    hp: 84, atk: 14, dodge: 13, undead: true, sanitySight: 18,
+    intro: "灰雾深处镜心冢，是一处被雾本身磨成镜的、倒映着无数「我」的、没人再记得真我的旧镜冢。冢腔正中悬浮着这团东西——它由太多被「镜我学派」偷走的、没人再是自己的真我聚成，时而像一只只叠在一起的、磨平的凹镜，时而像无数只灰白、向内映、却映不到任何「我是真我」的手。它不看你——它透过雾镜看你掌心那枚刻着代号的铜币，像在认，下一个该被它「收」、从此再不是真我的，是不是你。它饿的，不是「人」——是「真我」。",
+    moves: [
+      { name: "千镜之涌", msg: "它身上无数面磨平的凹镜同时朝你张开，涌出一股灰白的雾气", dmg: 12, sanity: 7, w: 3 },
+      { name: "收我", msg: "它像读一卷磨了字的旧我书，翻读你「是不是真我」", sanity: 12, w: 2 },
+      { name: "吞我补镜", msg: "它把一缕属于某位不再是我的人的「我是」吞回家腔，缝补自己", heal: 12, w: 1, belowHalf: true },
+      { name: "雾冢成壁", msg: "灰白的雾气在它身周凝成一座雾冢般的厚壁", ward: 16, w: 2 },
+    ],
+    loot: [{ t: "pounds", v: 26 }, { t: "flag", k: "mirror_down", v: 1 }, { t: "item", k: "seal_card", v: 2 }, { t: "item", k: "charm_anchor", v: 1 }, { t: "sanity", v: -11 }],
+    digest: 30,
   },
   // ---- 第四章·钟楼支线敌人 ----
   puppet: {

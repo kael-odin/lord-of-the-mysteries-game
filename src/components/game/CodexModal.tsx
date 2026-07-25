@@ -37,6 +37,7 @@ const ENDING_GROUPS: { label: string; ids: string[] }[] = [
   { label: "第十一章 · 南港归潮", ids: ["waykeeper"] },
   { label: "第十二章 · 旧都·回声", ids: ["rootkeeper"] },
   { label: "第十三章 · 灰原骨冢·先人回响", ids: ["personkeeper"] },
+  { label: "第十四章 · 灰雾深处·真我", ids: ["truthkeeper"] },
 ];
 
 type Tab = "endings" | "pathways" | "dossier" | "guide";
@@ -267,6 +268,9 @@ const DOSSIER: DossierSection[] = [
       { flag: "culler13_down", title: "空壳·偷人者·壳脸碎", desc: "灰原骨冢先人石冢林的风沙里，空壳学派遣来收人的暗哨，那面磨平的壳脸，被你碎成了几瓣。每一瓣里，都映着一个被偷走的、不属于自己的「为人」。" },
       { flag: "husk_down", title: "空壳聚合体·人归", desc: "骨冢残碑阁下旧先人冢室腔里，那团由太多「没人再是人」长成、终于咬合成一个会自我退壳的空壳之物，被你停了转。骨冢人停了半月的「是不是人」，重新被认了回来。" },
       { flag: "herald_down", title: "赫丝森·人锚·补", desc: "残碑阁深处废碑塔底，赫丝·赫丝森五十年前用自己「为人」钉下的那道「人之锚」，被你用铜币的温热，补了一层。残碑阁，认你了。" },
+      { flag: "culler14_down", title: "镜我·偷我者·镜脸碎", desc: "灰雾深处镜心冢雾镜林里，镜我学派遣来收我的暗哨，那面磨平的凹镜脸，被你碎成了几瓣。每一瓣里，都映着一个被偷走的、不属于自己的「真我」。" },
+      { flag: "mirror_down", title: "真我聚合体·我归", desc: "残映阁下旧镜心冢腔里，那团由太多「没人再是我」长成、终于咬合成一个会自我映穿的镜我之物，被你停了转。镜心冢人停了半月的「是不是真我」，重新被映了回来。" },
+      { flag: "reflection_down", title: "灰森·我锚·补", desc: "残映阁深处废映塔底，灰·灰森五十年前用自己「真我」钉下的那道「我之锚」，被你用铜币的温热，补了一层。残映阁，认你了。" },
     ],
   },
   {

@@ -295,7 +295,8 @@ export const STORY_12: StoryNode[] = [
       { text: "在阁外石冢下生火休整", sub: "一壶骨粉烈酒：生命+8、灵性+6（每夜一次）", once: "rested13", next: "c13_hub", effects: [{ t: "hp", v: 8 }, { t: "sp", v: 6 }] },
       { text: "替老赫丝去残碑阁深处废碑塔看一看", sub: "可选支线：废碑塔里，有一段关于「为人是锚」的旧事", once: "took_herald", next: "arc_herald_start" },
       { text: "合上眼，顺印记上桌（塔罗会）", sub: "灰雾之上，你的椅子温着", hidden: { flag: "tarot_sixth_climax" }, next: "c13_climax" },
-      { text: "启程·回贝克兰德市中心", sub: "雾都的灯，也该回去看一眼了", req: { flag: "tarot_sixth_done" }, next: "ending_personkeeper" },
+      { text: "合上眼，顺印记沉进灰雾深处", sub: "灰雾之上那册书，又翻了一页·「真」「我」", req: { flag: "tarot_sixth_done" }, next: "c14_start" },
+      { text: "【终】守人者·第六桩差事，是我的了", sub: "达成第三卷·骨冢结局", req: { flag: "tarot_sixth_done" }, next: "ending_personkeeper" },
     ],
   },
   {

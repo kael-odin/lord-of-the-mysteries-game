@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 150" width="100%" role="img" aria-label="十三章剧情脉络：苏醒、值夜者、安提哥努斯之影、钟楼失踪案、绯红假面舞会、贝克兰德的雾、大雾霾、灰雾之上·塔罗会、海上之城、北陆·霜砚镇、南港归潮、旧都·回声、灰原骨冢·先人回响">
-  <title>十三章剧情脉络</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 150" width="100%" role="img" aria-label="十四章剧情脉络：苏醒、值夜者、安提哥努斯之影、钟楼失踪案、绯红假面舞会、贝克兰德的雾、大雾霾、灰雾之上·塔罗会、海上之城、北陆·霜砚镇、南港归潮、旧都·回声、灰原骨冢·先人回响、灰雾深处·真我">
+  <title>十四章剧情脉络</title>
   <defs>
     <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0" stop-color="#c9a86a" stop-opacity="0"/>
@@ -9,12 +9,12 @@
       <stop offset="1" stop-color="#c9a86a" stop-opacity="0"/>
     </linearGradient>
   </defs>
-  <rect width="1400" height="150" fill="#0a0b12"/>
+  <rect width="1500" height="150" fill="#0a0b12"/>
 
   <!-- connecting ember line -->
-  <rect x="60" y="74" width="1280" height="1.5" fill="url(#line)"/>
+  <rect x="60" y="74" width="1380" height="1.5" fill="url(#line)"/>
 
-  <!-- thirteen chapter nodes -->
+  <!-- fourteen chapter nodes -->
   <g font-family="Georgia, 'Times New Roman', serif" text-rendering="geometricPrecision">
     <!-- 1 -->
     <circle cx="105" cy="75" r="8" fill="#0a0b12" stroke="#c9a86a" stroke-width="1.5"/>
@@ -22,65 +22,70 @@
     <text x="105" y="108" text-anchor="middle" font-size="15" fill="#e7d9b8">苏 醒</text>
     <text x="105" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">水仙花街·清晨</text>
     <!-- 2 -->
-    <circle cx="208" cy="75" r="8" fill="#0a0b12" stroke="#c9a86a" stroke-width="1.5"/>
-    <text x="208" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#7a7f90">第 二 章</text>
-    <text x="208" y="108" text-anchor="middle" font-size="15" fill="#e7d9b8">值 夜 者</text>
-    <text x="208" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">黑荆棘公司</text>
+    <circle cx="207" cy="75" r="8" fill="#0a0b12" stroke="#c9a86a" stroke-width="1.5"/>
+    <text x="207" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#7a7f90">第 二 章</text>
+    <text x="207" y="108" text-anchor="middle" font-size="15" fill="#e7d9b8">值 夜 者</text>
+    <text x="207" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">黑荆棘公司</text>
     <!-- 3 -->
-    <circle cx="311" cy="75" r="8" fill="#0a0b12" stroke="#c9a86a" stroke-width="1.5"/>
-    <text x="311" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#7a7f90">第 三 章</text>
-    <text x="311" y="108" text-anchor="middle" font-size="13" fill="#e7d9b8">安提哥努斯之影</text>
-    <text x="311" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">密修会·笔记</text>
+    <circle cx="309" cy="75" r="8" fill="#0a0b12" stroke="#c9a86a" stroke-width="1.5"/>
+    <text x="309" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#7a7f90">第 三 章</text>
+    <text x="309" y="108" text-anchor="middle" font-size="13" fill="#e7d9b8">安提哥努斯之影</text>
+    <text x="309" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">密修会·笔记</text>
     <!-- 4 -->
-    <circle cx="414" cy="75" r="8" fill="#0a0b12" stroke="#c9a86a" stroke-width="1.5"/>
-    <text x="414" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#7a7f90">第 四 章</text>
-    <text x="414" y="108" text-anchor="middle" font-size="15" fill="#e7d9b8">钟楼失踪案</text>
-    <text x="414" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">钟绳·秘偶</text>
+    <circle cx="411" cy="75" r="8" fill="#0a0b12" stroke="#c9a86a" stroke-width="1.5"/>
+    <text x="411" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#7a7f90">第 四 章</text>
+    <text x="411" y="108" text-anchor="middle" font-size="15" fill="#e7d9b8">钟楼失踪案</text>
+    <text x="411" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">钟绳·秘偶</text>
     <!-- 5 -->
-    <circle cx="517" cy="75" r="8" fill="#0a0b12" stroke="#c9a86a" stroke-width="1.5"/>
-    <text x="517" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#7a7f90">第 五 章</text>
-    <text x="517" y="108" text-anchor="middle" font-size="15" fill="#e7d9b8">绯红假面舞会</text>
-    <text x="517" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">残魂·抉择</text>
+    <circle cx="513" cy="75" r="8" fill="#0a0b12" stroke="#c9a86a" stroke-width="1.5"/>
+    <text x="513" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#7a7f90">第 五 章</text>
+    <text x="513" y="108" text-anchor="middle" font-size="15" fill="#e7d9b8">绯红假面舞会</text>
+    <text x="513" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">残魂·抉择</text>
     <!-- 6 -->
-    <circle cx="620" cy="75" r="9" fill="#0a0b12" stroke="#c9a86a" stroke-width="1.5"/>
-    <text x="620" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#7a7f90">第 六 章</text>
-    <text x="620" y="108" text-anchor="middle" font-size="15" fill="#e7d9b8">贝克兰德的雾</text>
-    <text x="620" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">雾都·第二卷</text>
+    <circle cx="615" cy="75" r="9" fill="#0a0b12" stroke="#c9a86a" stroke-width="1.5"/>
+    <text x="615" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#7a7f90">第 六 章</text>
+    <text x="615" y="108" text-anchor="middle" font-size="15" fill="#e7d9b8">贝克兰德的雾</text>
+    <text x="615" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">雾都·第二卷</text>
     <!-- 7 -->
-    <circle cx="723" cy="75" r="9" fill="#0a0b12" stroke="#c9a86a" stroke-width="1.5"/>
-    <text x="723" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#7a7f90">第 七 章</text>
-    <text x="723" y="108" text-anchor="middle" font-size="16" fill="#e7d9b8">大 雾 霾</text>
-    <text x="723" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">三日雾·根清</text>
+    <circle cx="717" cy="75" r="9" fill="#0a0b12" stroke="#c9a86a" stroke-width="1.5"/>
+    <text x="717" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#7a7f90">第 七 章</text>
+    <text x="717" y="108" text-anchor="middle" font-size="16" fill="#e7d9b8">大 雾 霾</text>
+    <text x="717" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">三日雾·根清</text>
     <!-- 8 -->
-    <circle cx="826" cy="75" r="9" fill="#0a0b12" stroke="#c9a86a" stroke-width="1.5"/>
-    <text x="826" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#7a7f90">第 八 章</text>
-    <text x="826" y="108" text-anchor="middle" font-size="13" fill="#e7d9b8">灰雾之上·塔罗会</text>
-    <text x="826" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">第二十三张椅子</text>
+    <circle cx="819" cy="75" r="9" fill="#0a0b12" stroke="#c9a86a" stroke-width="1.5"/>
+    <text x="819" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#7a7f90">第 八 章</text>
+    <text x="819" y="108" text-anchor="middle" font-size="13" fill="#e7d9b8">灰雾之上·塔罗会</text>
+    <text x="819" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">第二十三张椅子</text>
     <!-- 9 -->
-    <circle cx="929" cy="75" r="9" fill="#0a0b12" stroke="#c9a86a" stroke-width="1.5"/>
-    <text x="929" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#7a7f90">第 九 章</text>
-    <text x="929" y="108" text-anchor="middle" font-size="15" fill="#e7d9b8">海 上 之 城</text>
-    <text x="929" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">破潮者·两枚铜币</text>
+    <circle cx="921" cy="75" r="9" fill="#0a0b12" stroke="#c9a86a" stroke-width="1.5"/>
+    <text x="921" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#7a7f90">第 九 章</text>
+    <text x="921" y="108" text-anchor="middle" font-size="15" fill="#e7d9b8">海 上 之 城</text>
+    <text x="921" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">破潮者·两枚铜币</text>
     <!-- 10 -->
-    <circle cx="1032" cy="75" r="9" fill="#0a0b12" stroke="#c9a86a" stroke-width="1.5"/>
-    <text x="1032" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#7a7f90">第 十 章</text>
-    <text x="1032" y="108" text-anchor="middle" font-size="13" fill="#e7d9b8">北陆·霜砚镇</text>
-    <text x="1032" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">守名者·三枚铜币</text>
+    <circle cx="1023" cy="75" r="9" fill="#0a0b12" stroke="#c9a86a" stroke-width="1.5"/>
+    <text x="1023" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#7a7f90">第 十 章</text>
+    <text x="1023" y="108" text-anchor="middle" font-size="13" fill="#e7d9b8">北陆·霜砚镇</text>
+    <text x="1023" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">守名者·三枚铜币</text>
     <!-- 11 -->
-    <circle cx="1124" cy="75" r="9" fill="#0a0b12" stroke="#c9a86a" stroke-width="1.5"/>
-    <text x="1124" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#7a7f90">第 十 一 章</text>
-    <text x="1124" y="108" text-anchor="middle" font-size="15" fill="#e7d9b8">南港归潮</text>
-    <text x="1124" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">守向者·四枚铜币</text>
+    <circle cx="1115" cy="75" r="9" fill="#0a0b12" stroke="#c9a86a" stroke-width="1.5"/>
+    <text x="1115" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#7a7f90">第 十 一 章</text>
+    <text x="1115" y="108" text-anchor="middle" font-size="15" fill="#e7d9b8">南港归潮</text>
+    <text x="1115" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">守向者·四枚铜币</text>
     <!-- 12 -->
-    <circle cx="1216" cy="75" r="9" fill="#0a0b12" stroke="#c9a86a" stroke-width="1.5"/>
-    <text x="1216" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#7a7f90">第 十 二 章</text>
-    <text x="1216" y="108" text-anchor="middle" font-size="13" fill="#e7d9b8">旧都·回声</text>
-    <text x="1216" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">守根者·五枚铜币</text>
-    <!-- 13 (current frontier) -->
-    <circle cx="1316" cy="75" r="11" fill="#c9a86a" opacity="0.18"/>
-    <circle cx="1316" cy="75" r="7" fill="#c9a86a"/>
-    <text x="1316" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#c9a86a" opacity="0.9">第十三章 · 新</text>
-    <text x="1316" y="108" text-anchor="middle" font-size="12" fill="#e7d9b8">先人回响</text>
-    <text x="1316" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">守人者·六枚铜币</text>
+    <circle cx="1207" cy="75" r="9" fill="#0a0b12" stroke="#c9a86a" stroke-width="1.5"/>
+    <text x="1207" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#7a7f90">第 十 二 章</text>
+    <text x="1207" y="108" text-anchor="middle" font-size="13" fill="#e7d9b8">旧都·回声</text>
+    <text x="1207" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">守根者·五枚铜币</text>
+    <!-- 13 -->
+    <circle cx="1299" cy="75" r="9" fill="#0a0b12" stroke="#c9a86a" stroke-width="1.5"/>
+    <text x="1299" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#7a7f90">第 十 三 章</text>
+    <text x="1299" y="108" text-anchor="middle" font-size="13" fill="#e7d9b8">先人回响</text>
+    <text x="1299" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">守人者·六枚铜币</text>
+    <!-- 14 (current frontier — Vol.3 finale) -->
+    <circle cx="1406" cy="75" r="11" fill="#c9a86a" opacity="0.18"/>
+    <circle cx="1406" cy="75" r="7" fill="#c9a86a"/>
+    <text x="1406" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#c9a86a" opacity="0.9">第十四章 · 合</text>
+    <text x="1406" y="108" text-anchor="middle" font-size="12" fill="#e7d9b8">真我·第三卷合</text>
+    <text x="1406" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">守真者·七枚铜币</text>
   </g>
 </svg>

@@ -20,6 +20,7 @@ function effectTag(item: Item): string | null {
   if (item.passive === "tideSight") return "剧情·潮盘";
   if (item.passive === "hearthSight") return "剧情·根门";
   if (item.passive === "huskSight") return "剧情·人门";
+  if (item.passive === "mirrorSight") return "剧情·我门";
   if (item.usable === "healHp") return `生命 +${item.v}`;
   if (item.usable === "healSp") {
     const base = `灵性 +${item.v}`;

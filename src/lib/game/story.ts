@@ -11,8 +11,9 @@ import { STORY_9 } from "./story9";
 import { STORY_10 } from "./story10";
 import { STORY_11 } from "./story11";
 import { STORY_12 } from "./story12";
+import { STORY_13 } from "./story13";
 
-export const ALL_NODES: StoryNode[] = [...STORY_1, ...STORY_2, ...STORY_3, ...STORY_4, ...STORY_5, ...STORY_6, ...STORY_7, ...STORY_8, ...STORY_9, ...STORY_10, ...STORY_11, ...STORY_12];
+export const ALL_NODES: StoryNode[] = [...STORY_1, ...STORY_2, ...STORY_3, ...STORY_4, ...STORY_5, ...STORY_6, ...STORY_7, ...STORY_8, ...STORY_9, ...STORY_10, ...STORY_11, ...STORY_12, ...STORY_13];
 
 export const STORY_MAP: Record<string, StoryNode> = Object.fromEntries(
   ALL_NODES.map((n) => [n.id, n]),
@@ -61,7 +62,9 @@ export const ENDINGS: Record<string, { title: string; tone: "gold" | "red" | "gr
   // 第十二章新结局
   rootkeeper: { title: "守根者", tone: "gold", hint: "你停了旧都那东西。五枚铜币并排在扶手上——塔罗会，开始依靠你了。" },
   // 第十三章新结局
-  personkeeper: { title: "守人者", tone: "gold", hint: "你停了骨冢那东西。六枚铜币并排在扶手上——塔罗会，开始信任你了。" },
+  personkeeper: { title: "守人者", tone: "gold", hint: "你停了骨冢那东西。六枚铜币并排在扶手上——塔罗会，开始倚仗你了。" },
+  // 第十四章新结局（第三卷·合）
+  truthkeeper: { title: "守真者", tone: "gold", hint: "你停了镜心冢那东西。七枚铜币并排在扶手上——塔罗会，开始引路你了。第三卷，合。" },
 };
 
 export const ALL_ENDING_IDS = Object.keys(ENDINGS);
@@ -80,4 +83,5 @@ export const CHAPTER_TITLES: Record<number, string> = {
   11: "第十一章 · 南港归潮",
   12: "第十二章 · 旧都·回声",
   13: "第十三章 · 灰原骨冢·先人回响",
+  14: "第十四章 · 灰雾深处·真我",
 };
