@@ -5,8 +5,9 @@ import { STORY_3 } from "./story3";
 import { STORY_4 } from "./story4";
 import { STORY_5 } from "./story5";
 import { STORY_6 } from "./story6";
+import { STORY_7 } from "./story7";
 
-export const ALL_NODES: StoryNode[] = [...STORY_1, ...STORY_2, ...STORY_3, ...STORY_4, ...STORY_5, ...STORY_6];
+export const ALL_NODES: StoryNode[] = [...STORY_1, ...STORY_2, ...STORY_3, ...STORY_4, ...STORY_5, ...STORY_6, ...STORY_7];
 
 export const STORY_MAP: Record<string, StoryNode> = Object.fromEntries(
   ALL_NODES.map((n) => [n.id, n]),
@@ -44,6 +45,8 @@ export const ENDINGS: Record<string, { title: string; tone: "gold" | "red" | "gr
   nightwatcher: { title: "廷根的守夜人", tone: "gold", hint: "两桩悬案俱破，宾客存活。你把扮演刻进了骨血。" },
   // 第七章新结局
   fogbreaker: { title: "破雾者", tone: "gold", hint: "三日大雾的源头被你斩断，灰雾之上第一次朝你致意。第二十三张椅子，为你拉开。" },
+  // 第八章新结局
+  chair_seated: { title: "第二十三张椅子", tone: "gold", hint: "你坐稳了那张椅子。灰雾之上，塔罗会，正式有了你的代号。" },
 };
 
 export const ALL_ENDING_IDS = Object.keys(ENDINGS);
@@ -56,4 +59,5 @@ export const CHAPTER_TITLES: Record<number, string> = {
   5: "第五章 · 绯红假面舞会",
   6: "第六章 · 贝克兰德的雾",
   7: "第七章 · 大雾霾",
+  8: "第八章 · 灰雾之上·塔罗会",
 };

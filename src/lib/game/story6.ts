@@ -322,7 +322,7 @@ export const STORY_6: StoryNode[] = [
     ],
     onEnter: [{ t: "flag", k: "c7_done", v: 1 }, { t: "sanity", v: 6 }],
     choices: [
-      { text: "合上眼，先睡到天黑再说", sub: "第三卷的雾，还远", next: "c7_hub" },
+      { text: "暂不上桌，先在贝克兰德多留几日", sub: "灰雾之上的椅子，等你准备好了再去", next: "c8_start", effects: [{ t: "hp", v: 4 }, { t: "sp", v: 4 }] },
       { text: "【终】灰雾之上，第二十三张椅子，为我留着", sub: "达成第二卷·破雾者结局", req: { flag: "tarot_invited" }, next: "ending_fogbreaker" },
     ],
   },

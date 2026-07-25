@@ -31,6 +31,7 @@ const ENDING_GROUPS: { label: string; ids: string[] }[] = [
   { label: "第四章 · 钟楼回声", ids: ["bellkeeper"] },
   { label: "第五章 · 绯红假面舞会", ids: ["fool2", "usurper", "survivor", "anchor", "hunter_legend", "martyr", "nightwatcher"] },
   { label: "第七章 · 大雾霾", ids: ["fogbreaker"] },
+  { label: "第八章 · 灰雾之上·塔罗会", ids: ["chair_seated"] },
 ];
 
 type Tab = "endings" | "pathways" | "dossier" | "guide";
@@ -238,6 +239,10 @@ const DOSSIER: DossierSection[] = [
       { flag: "chorister_down", title: "失序司仪·棒断", desc: "城东煤气储塔顶上那位戴破碎歌剧面具的司仪，被你逼停了合颂。他手里那根由十几段「最近」缠成的指挥棒，断了。" },
       { flag: "aspect_down", title: "三日大雾·根清", desc: "储塔碗底那团由太多被偷走的「惦记」长出了自己的聚合体，被你斩断了六十年的根。三日大雾，散了。" },
       { flag: "smuggler_down", title: "借雾倒货·根拔", desc: "码头区后巷那伙趁大雾倒腾灰土王国非凡货的混混，被你绑在了栈房柱子上。雾一散，自有巡警来收。" },
+      { flag: "machinist_down", title: "机械信徒·义肢断", desc: "东区纺织厂那位半边身子是黄铜的玫瑰学派信徒，被你按倒。他那只嵌着别人灵性之心的黄铜义肢，断了。" },
+      { flag: "clockwork_down", title: "发条心·停转", desc: "纺织厂地下那颗靠偷凡俗工人「累」「想家」喂成的、会自我运转的黄铜之心，被你停了转。几位没醒来的工人，醒了。" },
+      { flag: "latenight_down", title: "门房·结案", desc: "纺织厂停工那夜被勒死的夜班门房，那条黄铜灭口线，被你替值夜者贝克兰德分部，摸到了。" },
+      { flag: "alchemy_inner_down", title: "霍恩·手按住", desc: "心理炼金会私吞封存非凡物的二级会员霍恩，那只伸进封存柜的手，被你按在了柜门上。" },
     ],
   },
   {

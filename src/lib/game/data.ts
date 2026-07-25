@@ -573,6 +573,37 @@ export const ENEMIES: Record<string, Enemy> = {
     loot: [{ t: "pounds", v: 12 }, { t: "flag", k: "aspect_down", v: 1 }, { t: "item", k: "seal_card", v: 1 }, { t: "sanity", v: -6 }],
     digest: 18,
   },
+  // ---- 第八章·塔罗会时期·玫瑰学派的机械信徒 ----
+  rose_machinist: {
+    key: "rose_machinist",
+    name: "机械之心的信徒",
+    title: "玫瑰学派·机械神教派的工匠",
+    hp: 50, atk: 9, dodge: 9, sanitySight: 6,
+    intro: "贝克兰德东区一座被废弃的纺织厂里，你找到了这位玫瑰学派「机械神教派」的信徒。他半个左臂已被自己改造成了一具精巧的黄铜义肢，义肢掌心嵌着一枚还在跳的、不属于他的心脏——一颗从某位「不眠者」身上取下的、被磨成齿轮形状的灵性之心。他见你进来，没有停下手里的活：他正把一根根凡俗工人的「疲惫」抽进那颗心，喂给它，让它转得更快。「你不懂，」他头也不抬，黄铜义肢咔哒一响，「肉体是会累的。可机械不会。把累的、痛的、惦记的，都交给齿轮——人就轻了，人就，接近神了。」",
+    moves: [
+      { name: "黄铜义肢·铆击", msg: "他的黄铜左臂抡圆，铆钉一样的拳头砸来", dmg: 10, w: 3 },
+      { name: "抽疲喂心", msg: "他从你身上抽走一缕「疲惫」，喂进那颗齿轮之心", dmg: 4, sanity: 4, w: 2 },
+      { name: "机括护壁", msg: "义肢弹出一排咬合的铜片，在他身前组成护壁", ward: 11, w: 2 },
+      { name: "齿轮反咬", msg: "他把那颗心调到反咬模式，引你打向转动的齿轮", thorns: 8, w: 1, belowHalf: true },
+    ],
+    loot: [{ t: "pounds", v: 8 }, { t: "flag", k: "machinist_down", v: 1 }, { t: "item", k: "silver_dagger", v: 1 }, { t: "sanity", v: -3 }],
+    digest: 14,
+  },
+  clockwork_aspect: {
+    key: "clockwork_aspect",
+    name: "发条聚合体",
+    title: "纺织厂地下的机械心脏",
+    hp: 64, atk: 11, dodge: 7, undead: true, sanitySight: 10,
+    intro: "纺织厂地下，是一个被无数黄铜管道和传送带填满的、像巨型发条盒一样的腔室。腔室正中悬浮着那颗被信徒喂了太多「疲惫」的、已经长出了自己的齿轮之心——它不再需要信徒，它把信徒也吞进了自己的机括。它是一团由太多被偷走的「累」「痛」「惦记」、被磨成齿轮形状、终于咬合成一具会自我运转的机械的东西。它没有脸，只有无数转动的齿轮，和一颗在所有齿轮中央、跳得又稳又冷的灵性之心。它看你——像在看一颗，下一刻就该被它磨进机括的，新的齿轮。",
+    moves: [
+      { name: "万轮齐转", msg: "它身上无数齿轮一齐咬合转动，朝你绞来", dmg: 9, sanity: 4, w: 3 },
+      { name: "磨你成齿", msg: "它想把你「累」「痛」的部分磨成一颗新齿轮", sanity: 8, bleed: 3, bleedTurns: 3, w: 2 },
+      { name: "吞疲补机", msg: "它把厂里残留的一缕「疲惫」吞回机括，自我修补", heal: 11, w: 1, belowHalf: true },
+      { name: "铜壁咬合", msg: "黄铜管道在它身周咬合成一道厚壁", ward: 15, w: 2 },
+    ],
+    loot: [{ t: "pounds", v: 14 }, { t: "flag", k: "clockwork_down", v: 1 }, { t: "item", k: "seal_card", v: 1 }, { t: "item", k: "charm_anchor", v: 1 }, { t: "sanity", v: -8 }],
+    digest: 20,
+  },
   // ---- 第四章·钟楼支线敌人 ----
   puppet: {
     key: "puppet",
