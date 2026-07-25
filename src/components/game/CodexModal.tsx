@@ -232,6 +232,7 @@ const DOSSIER: DossierSection[] = [
       { flag: "plate_down", title: "旧铺的活铠", desc: "附在仪仗铠甲里的百年戾气散了，留下一枚旧骑士的徽记与一句未竟之诫。" },
       { flag: "wraith_down", title: "铁十字街怨魂", desc: "凶宅里那脖子歪折的怨魂，被你值夜者的封缄送去了该去的地方。" },
       { flag: "husk_down", title: "守墓人之铃", desc: "灰河尽头的铜铃不再为旧钟清点亡魂——你替它们按下了休止符。" },
+      { flag: "courier_down", title: "雾纹断线", desc: "码头区验关亭里那只密修会遣来的暗哨，被你拔了——连同他掌心那张半封的密信。" },
     ],
   },
   {

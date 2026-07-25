@@ -510,6 +510,22 @@ export const ENEMIES: Record<string, Enemy> = {
     loot: [{ t: "pounds", v: 5 }, { t: "flag", k: "plate_down", v: 1 }, { t: "item", k: "potion_calm", v: 1 }],
     digest: 10,
   },
+  // ---- 第三章支线·雾纹信使的守门人（密修会暗哨，护盾+反伤复合）----
+  mist_courier: {
+    key: "mist_courier",
+    name: "雾纹守门人",
+    title: "密修会遣来的封口者",
+    hp: 40, atk: 7, dodge: 8, sanitySight: 7,
+    intro: "码头区那座被废弃的验关亭里，一袭灰袍的蒙面人拦住了你的去路。他不像打手，更像是被特意留下来「收尾」的暗哨——袍角绣着一圈细密的、会随雾气微微游动的银灰纹路，那正是密修会的「雾纹」。他不开口，只是把一只手掌缓缓按在身后的门上，掌心纹路亮起一层薄光——他在等你自己撞上来。",
+    moves: [
+      { name: "雾纹鞭", msg: "他袍袖一甩，一道银灰纹路如鞭梢般抽来", dmg: 8, w: 3 },
+      { name: "封缄之壁", msg: "他双手按地，雾纹从指缝涌出，在身前凝成一面光壁", ward: 10, w: 2 },
+      { name: "反噬刺纹", msg: "他袍角的反纹骤然竖起，摆出以守代攻的架势", thorns: 6, w: 2 },
+      { name: "夺念低语", msg: "雾纹里渗出一段不属于人声的低语，直钻你的脑后", sanity: 5, w: 1 },
+    ],
+    loot: [{ t: "pounds", v: 6 }, { t: "flag", k: "courier_down", v: 1 }, { t: "item", k: "potion_calm", v: 1 }],
+    digest: 11,
+  },
   // ---- 第四章·钟楼支线敌人 ----
   puppet: {
     key: "puppet",

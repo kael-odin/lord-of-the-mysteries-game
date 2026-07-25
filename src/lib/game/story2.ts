@@ -57,6 +57,10 @@ export const STORY_2: StoryNode[] = [
         text: "接下「铁十字街连环失踪案」", sub: "可选支线：三条人命，一堵会吃人的墙", once: "took_missing_case",
         next: "arc_missing_start",
       },
+      {
+        text: "追查「雾纹信使」的踪迹", sub: "可选支线：密修会遣来收尾的暗哨", once: "took_courier_case",
+        next: "arc_courier_start",
+      },
       { text: "动身前往码头区（主线）", sub: "去见线人莫里", next: "c3_informant" },
     ],
   },
@@ -586,5 +590,162 @@ export const STORY_2: StoryNode[] = [
     ],
     onEnter: [{ t: "pounds", v: 2 }, { t: "sanity", v: -2 }],
     choices: [{ text: "带着遗憾回公司", next: "c3_hub" }],
+  },
+  // ============ 支线：雾纹信使 ============
+  {
+    id: "arc_courier_start",
+    chapter: 3,
+    art: "city",
+    title: "码头区·会游动的纹路",
+    text: [
+      "线人莫里在主线之外，又压了一张折了三折的纸条到你手里：「这条不收钱，但你最好趁今晚去办——再晚，廷根就要多一具自己跳进河里的尸体。」",
+      "纸条上写着：近一周，码头区有三名搬运工在凌晨离奇溺亡，每具尸体的掌心都被人用银灰墨水画了一道「会游动的纹路」。验关亭的老值守说，那纹路和密修会传递密信时用的「雾纹」一模一样。",
+      "——密修会的人在廷根布了暗哨，正用「雾纹」给不相干的人下封口指令。再不拔掉，下一个「自己跳河」的，可能就是看见过什么的人。",
+      "你抵达废弃的验关亭。海雾从港口漫上来，亭子门口的煤气灯明明灭灭，像在替谁打信号。",
+    ],
+    choices: [
+      { text: "摸近验关亭，先看清里头有几只暗哨", sub: "灵感判定：辨认雾纹的走向", next: "arc_courier_recon" },
+      { text: "大摇大摆走进去，引出暗哨本人", sub: "体魄判定：硬碰硬的赌", next: "arc_courier_bait" },
+    ],
+  },
+  {
+    id: "arc_courier_recon",
+    chapter: 3,
+    art: "city",
+    text: [
+      "你贴着栈道的湿木栏靠近。海雾里，验关亭的窗口透出一点不正常的银灰微光——那不是灯火，是有人在用雾纹「写字」。",
+      "你想辨清那纹路在朝哪个方向游、连向亭子里的哪一处，好绕开它的警戒。",
+    ],
+    choices: [
+      {
+        text: "凝神辨认雾纹的脉络", sub: "灵感判定：看清纹路的走向",
+        check: {
+          attr: "inspiration", dc: 13, label: "辨纹",
+          pass: "arc_courier_recon_pass", passEffects: [{ t: "flag", k: "courier_clue", v: 1 }, { t: "sanity", v: -2 }],
+          fail: "arc_courier_recon_fail", failEffects: [{ t: "sanity", v: -4 }],
+        },
+      },
+      {
+        text: "「读」出雾纹里藏的那句密信", sub: "【读运者专属扮演】你天生就读得懂门与符",
+        req: { pathway: "reader", hint: "需要读运者途径的「门」之识" },
+        next: "arc_courier_reader", effects: [{ t: "digestion", v: 10 }, { t: "flag", k: "courier_clue", v: 1 }, { t: "sanity", v: -2 }],
+      },
+      {
+        text: "听雾纹里那缕将散未散的执念", sub: "【收尸人专属扮演】你听得见死者未寄出的信",
+        req: { pathway: "collector", hint: "需要收尸人的通灵" },
+        next: "arc_courier_collector", effects: [{ t: "digestion", v: 12 }, { t: "sanity", v: -3 }, { t: "flag", k: "courier_clue", v: 1 }],
+      },
+    ],
+  },
+  {
+    id: "arc_courier_recon_pass",
+    chapter: 3,
+    art: "city",
+    text: [
+      "你看清了——雾纹从亭子里的验关台游出，连着一个人形的源头。那暗哨只有一人，背对着门，正把掌心按在一张封好的密信上「封缄」。",
+      "更重要的是，你看见了他袍角反纹的破绽：那层反纹是「以守代攻」的架势，正面硬撞，必被反噬。绕到验关台侧后，从盲区出手，才能逼他撤纹应战。",
+      "你无声地绕了过去。",
+    ],
+    choices: [{ text: "从盲区逼他撤纹", sub: "先机在手", combat: "mist_courier", winNext: "arc_courier_win", loseNext: "arc_courier_escape" }],
+  },
+  {
+    id: "arc_courier_recon_fail",
+    chapter: 3,
+    art: "city",
+    text: [
+      "雾纹在你眼前游成一团乱麻，你怎么也辨不清它的走向。等你回过神，亭子里的暗哨已经察觉——他缓缓转过身，掌心的纹路亮起了一层薄光。",
+      "没有先机了，只能正面接下。",
+    ],
+    choices: [{ text: "硬着头皮上", sub: "正面交锋", combat: "mist_courier", winNext: "arc_courier_win", loseNext: "arc_courier_escape" }],
+  },
+  {
+    id: "arc_courier_reader",
+    chapter: 3,
+    art: "ritual",
+    text: [
+      "你凝神「读」那行游动的雾纹——它本就是「门」之一途的低阶咒文，对你而言，和读一行字没有分别。",
+      "你读出了一句未寄出的密信：「……廷根的钉子已拔三，余者候潮……」——原来那三名搬运工，是被密修会当成了「钉子」逐一拔除。",
+      "更妙的是，你顺着纹路的源头，读出了暗哨此刻的破绽：他正把全部心神压在那封密信的「封缄」上，反纹的架势还没真正立稳。",
+      "你抬手，把那行咒文「读」回了他自己身上——他的封缄被打断，仓促应战。",
+    ],
+    choices: [{ text: "趁他撤纹，一击制敌", sub: "读运者先机", combat: "mist_courier", winNext: "arc_courier_win", loseNext: "arc_courier_escape" }],
+  },
+  {
+    id: "arc_courier_collector",
+    chapter: 3,
+    art: "ritual",
+    text: [
+      "你没有去读那纹路，而是去听——听它背后那一缕将散未散的、属于被害搬运工的执念。",
+      "雾纹里浮起一个粗哑的声音，断断续续：「……我不该……看那封信……」「……他说，跳进河里，就当没看见……」",
+      "三名死者的执念被你这一句句听清，反而聚成了力量——你借这股未散的怨，把暗哨的反纹架势「压」了下去。他原本想用以守代攻等你撞上来，此刻却被死者的怨气缠住袍角，不得不撤纹自救。",
+      "你替那些没来得及寄出求救的人，先开了口。",
+    ],
+    choices: [{ text: "趁怨缠袍，正面拿下", sub: "收尸人先机", combat: "mist_courier", winNext: "arc_courier_win", loseNext: "arc_courier_escape" }],
+  },
+  {
+    id: "arc_courier_bait",
+    chapter: 3,
+    art: "city",
+    text: [
+      "你不躲不藏，径直走进验关亭。门「吱呀」一声推开，里头那袭灰袍的暗哨缓缓抬头——掌心的雾纹已经亮起，反纹的架势摆得稳稳的。",
+      "你赌的就是他能被你引出来正面应战。先机没了，但至少不用在雾里和他捉迷藏。",
+    ],
+    choices: [
+      {
+        text: "以体魄硬扛他的第一道反纹", sub: "体魄判定：扛住反噬再近身",
+        check: {
+          attr: "physique", dc: 13, label: "扛反纹",
+          pass: "arc_courier_bait_pass", passEffects: [{ t: "hp", v: -3 }, { t: "flag", k: "courier_clue", v: 1 }],
+          fail: "arc_courier_bait_fail", failEffects: [{ t: "hp", v: -6 }, { t: "sanity", v: -3 }],
+        },
+      },
+    ],
+  },
+  {
+    id: "arc_courier_bait_pass",
+    chapter: 3,
+    art: "city",
+    text: [
+      "他的反纹在你身上炸开一道银灰的刺痛，你咬着牙没退——借着这股反冲的力，你已经欺身到他的盲区，逼他撤纹应战。",
+      "先机，硬扛出来了。",
+    ],
+    choices: [{ text: "近身逼他撤纹", sub: "硬扛换来的先机", combat: "mist_courier", winNext: "arc_courier_win", loseNext: "arc_courier_escape" }],
+  },
+  {
+    id: "arc_courier_bait_fail",
+    chapter: 3,
+    art: "city",
+    text: [
+      "反纹的反噬比你预料的更重——你被震退两步，嘴角渗出血丝。暗哨不给你喘息的机会，掌心的雾纹重新聚拢。",
+      "你硬扛没扛住，只能乱中求胜。",
+    ],
+    choices: [{ text: "咬牙再上", sub: "无先机正面交锋", combat: "mist_courier", winNext: "arc_courier_win", loseNext: "arc_courier_escape" }],
+  },
+  {
+    id: "arc_courier_win",
+    chapter: 3,
+    art: "city",
+    title: "雾纹断线",
+    text: [
+      "雾纹守门人瘫倒在验关台旁，袍角的银灰纹路一寸寸黯淡下去，像被掐断的灯芯。你从他掌心剥下那张尚未封好的密信，又捻起一枚刻着密修会徽记的银针——那是用来「画纹」下指令的工具。",
+      "密信上只写了半句：「……候潮之夜，廷根余钉尽拔……」——你今晚拔掉的，正是那只会画纹的「手」。",
+      "邓恩看过密信，神色凝重：「密修会的人盯上廷根，不是冲咱们来的，是冲着更上面的东西。这封信我得上报，你做的对——再晚几日，码头区怕是要清一色『自溺』的卷宗。」",
+      "魔药在你体内翻涌——你又一次扮演了一个合格的值夜者，挡在了一座城和它看不见的敌人之间。",
+    ],
+    onEnter: [{ t: "pounds", v: 6 }, { t: "digestion", v: 10 }, { t: "flag", k: "courier_down", v: 1 }, { t: "flag", k: "case_closed", v: 1 }, { t: "sanity", v: -2 }],
+    choices: [{ text: "收缴证物，回公司复命", next: "c3_hub" }],
+  },
+  {
+    id: "arc_courier_escape",
+    chapter: 3,
+    art: "city",
+    text: [
+      "雾纹守门人趁你一个破绽，整个人化进海雾里，只留下一句不属于人声的低笑，顺着潮气散去。验关台上的密信被他临走时一并带走了。",
+      "你没能拿到那封信，但至少把他从廷根「惊」了出去——短期内，他不敢再回这座码头画纹。",
+      "邓恩听完，叹了口气：「跑了就跑了。密修会的暗哨，能吓退已经算本事。只是那封信……咱们得提防着『候潮之夜』。」",
+      "扮演不算圆满，魔药也因此消化得慢了些。",
+    ],
+    onEnter: [{ t: "pounds", v: 3 }, { t: "sanity", v: -3 }],
+    choices: [{ text: "带着未竟回公司", next: "c3_hub" }],
   },
 ];
