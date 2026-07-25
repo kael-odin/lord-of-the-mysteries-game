@@ -296,7 +296,8 @@ export const STORY_11: StoryNode[] = [
       { text: "在阁外断柱下生火休整", sub: "一壶干草烈酒：生命+8、灵性+6（每夜一次）", once: "rested12", next: "c12_hub", effects: [{ t: "hp", v: 8 }, { t: "sp", v: 6 }] },
       { text: "替老赫斯去残卷阁深处废档塔看一看", sub: "可选支线：废档塔里，有一段关于「故土是根」的旧事", once: "took_archivist", next: "arc_archivist_start" },
       { text: "合上眼，顺印记上桌（塔罗会）", sub: "灰雾之上，你的椅子温着", hidden: { flag: "tarot_fifth_climax" }, next: "c12_climax" },
-      { text: "启程·回贝克兰德市中心", sub: "雾都的灯，也该回去看一眼了", req: { flag: "tarot_fifth_done" }, next: "ending_rootkeeper" },
+      { text: "启程·赴灰原骨冢·先人石冢", sub: "灰雾之上那册书，又翻了一页·「先」「人」", req: { flag: "tarot_fifth_done" }, next: "c13_start" },
+      { text: "【终】就此收手·守人者是我的了", sub: "达成第三卷·旧都结局（不再深入骨冢）", req: { flag: "tarot_fifth_done" }, next: "ending_rootkeeper" },
     ],
   },
   {

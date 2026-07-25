@@ -262,6 +262,7 @@ export const ITEMS: Record<string, Item> = {
   frost_charm: { id: "frost_charm", name: "霜镜残符", desc: "凛冬·偷名者身上捻得的低阶咒符。剧情中可照亮旧驿道遗址腔室里被磨平的「霜门」，亦能在北地亡灵面前，让你看穿它镜脸的破绽。磨成霜镜状，刻着「无名，无痛」。", price: 5, passive: "frostSight" },
   tide_charm: { id: "tide_charm", name: "潮盘残符", desc: "漫游·偷向者身上捻得的低阶咒符。剧情中可照亮旧航道遗址腔室里被磨平的「潮门」，亦能在南港亡灵面前，让你看穿它罗盘脸的破绽。磨成罗盘状，刻着「无向，无达」。", price: 5, passive: "tideSight" },
   hearth_charm: { id: "hearth_charm", name: "故土残符", desc: "塌缩·偷根者身上捻得的低阶咒符。剧情中可照亮旧都遗址腔室里被磨平的「根门」，亦能在内陆亡灵面前，让你看穿它门脸的破绽。磨成一截断柱状，刻着「无根，无归」。", price: 5, passive: "hearthSight" },
+  husk_charm: { id: "husk_charm", name: "人形残符", desc: "空壳·偷人者身上捻得的低阶咒符。剧情中可照亮灰原骨冢腔室里被磨平的「人门」，亦能在骨冢亡灵面前，让你看穿它壳脸的破绽。磨成一只空面具状，刻着「无人，无痛」。", price: 5, passive: "huskSight" },
 };
 
 // ============ 敌人 ============
@@ -734,6 +735,37 @@ export const ENEMIES: Record<string, Enemy> = {
     ],
     loot: [{ t: "pounds", v: 20 }, { t: "flag", k: "hearth_down", v: 1 }, { t: "item", k: "seal_card", v: 1 }, { t: "item", k: "charm_anchor", v: 1 }, { t: "sanity", v: -9 }],
     digest: 24,
+  },
+  // ---- 第十三章·灰原骨冢·空壳学派·偷人之物 ----
+  husk_culler: {
+    key: "husk_culler",
+    name: "空壳·偷人者",
+    title: "空壳学派遣来收人的暗哨",
+    hp: 58, atk: 11, dodge: 17, undead: true, sanitySight: 11,
+    intro: "灰原骨冢那片被风沙磨白的、更早的先人石冢间，一个裹着被风沙磨透了洞的、灰麻布的人形，从一座半塌的石冢后，「退」了出来——不是走，是退，像要把整个身形，退进比自己更空的、一只被磨平的空面具里。他没有脸，只有一面被磨平的、不反光的、像骨灰凝成的壳脸。他不开口，只把一只灰白的手，缓缓朝你伸来：他不是要你的命，他是要，你的「为人」。你掌心那枚刻着你塔罗会代号的铜币，烫了一下——他认得，这是比凡俗之躯更「值钱」的人。",
+    moves: [
+      { name: "壳脸之掌", msg: "偷人者一掌印来，掌心的壳脸要剥走你的为人", dmg: 11, w: 3 },
+      { name: "夺人低语", msg: "他壳脸般的脸里渗出一段不属于人声的低语，直钻你的脑后", dmg: 4, sanity: 6, w: 2 },
+      { name: "骨壁凝壳", msg: "他在身前凝出一面厚骨壳，挡住这一击", ward: 13, w: 2 },
+      { name: "空人反噬", msg: "他偷人偷得太多，壳脸裂开一道缝，自己的人反漏了出来", thorns: 9, w: 1, belowHalf: true },
+    ],
+    loot: [{ t: "pounds", v: 12 }, { t: "flag", k: "culler13_down", v: 1 }, { t: "item", k: "husk_charm", v: 1 }, { t: "item", k: "potion_mind", v: 2 }],
+    digest: 17,
+  },
+  husk_aspect: {
+    key: "husk_aspect",
+    name: "空壳聚合体",
+    title: "灰原骨冢下「没人再是人」长成之物",
+    hp: 80, atk: 13, dodge: 12, undead: true, sanitySight: 16,
+    intro: "灰原骨冢地下，是一处被骨灰与浊气填平的、更早的、没人再记得为人的旧先人冢室。冢室正中悬浮着这团东西——它由太多被「空壳学派」偷走的、没人再是人的先人聚成，时而像一只只叠在一起的、磨平的空面具，时而像无数只灰白、向内缩、却够不到任何「我是」的手。它不看你——它透过骨灰看你掌心那枚刻着代号的铜币，像在认，下一个该被它「收」、从此再不是人的，是不是你。它饿的，不是「根」——是「为人」。",
+    moves: [
+      { name: "千壳之涌", msg: "它身上无数面磨平的壳脸同时朝你张开，涌出一股灰白的骨气", dmg: 11, sanity: 6, w: 3 },
+      { name: "收人", msg: "它像读一卷磨了字的旧人书，翻读你「是不是人」", sanity: 11, w: 2 },
+      { name: "吞人补壳", msg: "它把一缕属于某位不再是人的人的「我是」吞回家室，缝补自己", heal: 12, w: 1, belowHalf: true },
+      { name: "骨冢成壁", msg: "灰白的骨气在它身周凝成一座骨冢般的厚壁", ward: 15, w: 2 },
+    ],
+    loot: [{ t: "pounds", v: 22 }, { t: "flag", k: "husk_down", v: 1 }, { t: "item", k: "seal_card", v: 1 }, { t: "item", k: "charm_anchor", v: 1 }, { t: "sanity", v: -10 }],
+    digest: 26,
   },
   // ---- 第四章·钟楼支线敌人 ----
   puppet: {

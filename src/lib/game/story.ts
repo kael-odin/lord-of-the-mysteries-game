@@ -10,8 +10,9 @@ import { STORY_8 } from "./story8";
 import { STORY_9 } from "./story9";
 import { STORY_10 } from "./story10";
 import { STORY_11 } from "./story11";
+import { STORY_12 } from "./story12";
 
-export const ALL_NODES: StoryNode[] = [...STORY_1, ...STORY_2, ...STORY_3, ...STORY_4, ...STORY_5, ...STORY_6, ...STORY_7, ...STORY_8, ...STORY_9, ...STORY_10, ...STORY_11];
+export const ALL_NODES: StoryNode[] = [...STORY_1, ...STORY_2, ...STORY_3, ...STORY_4, ...STORY_5, ...STORY_6, ...STORY_7, ...STORY_8, ...STORY_9, ...STORY_10, ...STORY_11, ...STORY_12];
 
 export const STORY_MAP: Record<string, StoryNode> = Object.fromEntries(
   ALL_NODES.map((n) => [n.id, n]),
@@ -59,6 +60,8 @@ export const ENDINGS: Record<string, { title: string; tone: "gold" | "red" | "gr
   waykeeper: { title: "守向者", tone: "gold", hint: "你停了南港那东西。四枚铜币并排在扶手上——塔罗会，开始托付你了。" },
   // 第十二章新结局
   rootkeeper: { title: "守根者", tone: "gold", hint: "你停了旧都那东西。五枚铜币并排在扶手上——塔罗会，开始依靠你了。" },
+  // 第十三章新结局
+  personkeeper: { title: "守人者", tone: "gold", hint: "你停了骨冢那东西。六枚铜币并排在扶手上——塔罗会，开始信任你了。" },
 };
 
 export const ALL_ENDING_IDS = Object.keys(ENDINGS);
@@ -76,4 +79,5 @@ export const CHAPTER_TITLES: Record<number, string> = {
   10: "第十章 · 北陆·霜砚镇",
   11: "第十一章 · 南港归潮",
   12: "第十二章 · 旧都·回声",
+  13: "第十三章 · 灰原骨冢·先人回响",
 };
