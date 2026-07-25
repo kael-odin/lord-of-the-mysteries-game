@@ -112,6 +112,8 @@ export interface CombatState {
   dotTurns: number;
   pDot: number; // 玩家受到的持续流血
   pDotTurns: number;
+  eShield: number; // 敌人伤害吸收护盾（ward 招式刷新）
+  thorns: number; // 敌人反伤架势：玩家下次命中受到反弹伤害
   guard: number; // 防御下回合提供的额外闪避%
   playerHp: number;
   playerSp: number;

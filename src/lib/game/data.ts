@@ -269,6 +269,8 @@ export interface EnemyMove {
   w: number; // 权重
   minTurn?: number;
   belowHalf?: boolean; // 半血后解锁
+  ward?: number; // 敌人架起护盾，吸收等量伤害（刷新覆盖）
+  thorns?: number; // 敌人进入反伤架势，玩家下次命中受到反弹伤害
 }
 
 export interface Enemy {
@@ -491,6 +493,22 @@ export const ENEMIES: Record<string, Enemy> = {
     ],
     loot: [{ t: "pounds", v: 3 }, { t: "item", k: "potion_heal", v: 1 }],
     digest: 5,
+  },
+  // ---- 支线·古董铺的旧铠（首例「护盾+反伤」复合敌人）----
+  haunted_plate: {
+    key: "haunted_plate",
+    name: "旧铺的活铠",
+    title: "附在仪仗铠甲里的怨灵",
+    hp: 38, atk: 7, dodge: 5, undead: true, sanitySight: 6,
+    intro: "古董铺后堂立着一具落满灰尘的仪仗铠甲。你刚伸手去碰那面圆盾，铠甲的眼睛缝里突然亮起两簇幽蓝——锈蚀的关节一节节咔哒咔哒地扭正，空荡荡的铁手套握住了身旁的长戟。它没有声音，但你能感到一股被冒犯的、属于百年前的戾气正从甲缝里渗出来。",
+    moves: [
+      { name: "长戟横斩", msg: "锈戟划出一道沉闷的弧光", dmg: 8, w: 3 },
+      { name: "盾墙架起", msg: "它把圆盾平平推出，挡在身前", ward: 9, w: 2 },
+      { name: "甲刺反震", msg: "铠甲的护肩猛地弹出一圈倒刺，摆出以守代攻的架势", thorns: 5, w: 2 },
+      { name: "亡灵威压", msg: "甲缝里涌出的戾气压向你的心神", sanity: 4, w: 1 },
+    ],
+    loot: [{ t: "pounds", v: 5 }, { t: "flag", k: "plate_down", v: 1 }, { t: "item", k: "potion_calm", v: 1 }],
+    digest: 10,
   },
   // ---- 第四章·钟楼支线敌人 ----
   puppet: {

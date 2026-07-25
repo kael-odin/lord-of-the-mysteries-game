@@ -115,6 +115,12 @@ export default function CombatPanel({
               {cs.dotTurns > 0 && <span className="rounded bg-emerald-500/15 px-2 py-0.5 text-emerald-300">凋零 {cs.dot}/回合（{cs.dotTurns}回合）</span>}
             </div>
           )}
+          {(cs.eShield > 0 || cs.thorns > 0) && (
+            <div className="mt-1 flex flex-wrap gap-2 text-[10px]">
+              {cs.eShield > 0 && <span className="flex items-center gap-1 rounded bg-sky-500/15 px-2 py-0.5 text-sky-300"><Shield className="h-3 w-3" /> 屏障 {cs.eShield}</span>}
+              {cs.thorns > 0 && <span className="rounded bg-amber-500/15 px-2 py-0.5 text-amber-300 animate-pulse">反伤架势 · 近身反弹 {cs.thorns}</span>}
+            </div>
+          )}
         </div>
       </div>
 

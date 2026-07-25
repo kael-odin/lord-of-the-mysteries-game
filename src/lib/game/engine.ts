@@ -321,6 +321,8 @@ export function newCombat(enemyKey: string, s: GameState, winNext: string, loseN
     eAtkDown: 0, eAtkTurns: 0,
     dot: 0, dotTurns: 0,
     pDot: 0, pDotTurns: 0,
+    eShield: 0,
+    thorns: 0,
     guard: 0,
     playerHp: pHp,
     playerSp: s.pathway === "sleepless" ? clamp(s.sp + 2, 0, s.maxSp) : s.sp,
@@ -463,6 +465,30 @@ export function playerAct(s: GameState, cs: CombatState, act: PlayerAction): { s
 
   // 计算易伤
   if (dmg > 0 && c.vuln > 0 && c.vulnTurns > 0) dmg = Math.round(dmg * (1 + c.vuln / 100));
+  // 敌方护盾吸收（ward 招式架起的屏障）
+  if (dmg > 0 && c.eShield > 0) {
+    const absorbed = Math.min(c.eShield, dmg);
+    c.eShield -= absorbed; dmg -= absorbed;
+    if (absorbed > 0) push("sys", `敌方屏障吸收了 ${absorbed} 点伤害（剩余 ${c.eShield}）。`);
+  }
+  // 反伤架势：命中即触发反弹，护盾可抵
+  if (dmg > 0 && c.thorns > 0) {
+    const reflect = c.thorns;
+    c.thorns = 0;
+    push("enemy", `${e.name}的反伤架势触发——${reflect} 点伤害反弹向你！`);
+    if (c.shield > 0) {
+      const absorbed = Math.min(c.shield, reflect);
+      c.shield -= absorbed;
+      const remain = reflect - absorbed;
+      if (absorbed > 0) push("sys", `护盾抵消了 ${absorbed} 点反伤。`);
+      if (remain > 0) {
+        c.playerHp = Math.max(0, c.playerHp - remain);
+        push("sys", `反伤穿透护盾，你受到 ${remain} 点伤害。`);
+      }
+    } else {
+      c.playerHp = Math.max(0, c.playerHp - reflect);
+    }
+  }
   if (dmg > 0) {
     c.ehp = Math.max(0, c.ehp - dmg);
     c.shake = 1;
@@ -537,7 +563,7 @@ function enemyAct(s: GameState, c: CombatState, push: (side: "player" | "enemy" 
   let mv = pool[0];
   for (const m of pool) { roll -= m.w; if (roll <= 0) { mv = m; break; } }
 
-  if (!mv.dmg && !mv.sanity && !mv.heal) {
+  if (!mv.dmg && !mv.sanity && !mv.heal && !mv.ward && !mv.thorns) {
     push("enemy", `${mv.msg}。`);
     return;
   }
@@ -551,6 +577,18 @@ function enemyAct(s: GameState, c: CombatState, push: (side: "player" | "enemy" 
     } else {
       push("enemy", `${mv.msg}——但它已无从缝补。`);
     }
+    if (!mv.dmg && !mv.sanity && !mv.ward && !mv.thorns) return;
+  }
+  // 敌人架起护盾屏障（ward）
+  if (mv.ward) {
+    c.eShield = mv.ward;
+    push("enemy", `${mv.msg}——一层屏障笼在它身周，可吸收 ${mv.ward} 点伤害。`);
+    if (!mv.dmg && !mv.sanity && !mv.thorns) return;
+  }
+  // 敌人进入反伤架势（thorns）：玩家下次命中触发反弹
+  if (mv.thorns) {
+    c.thorns = mv.thorns;
+    push("enemy", `${mv.msg}——它摆出反伤的架势，近身者必将反受其害！`);
     if (!mv.dmg && !mv.sanity) return;
   }
   // 玩家闪避
