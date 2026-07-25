@@ -573,7 +573,7 @@ export default function GamePage() {
       )}
 
       {/* 秘典 */}
-      {showCodex && <CodexModal onClose={() => setShowCodex(false)} />}
+      {showCodex && <CodexModal onClose={() => setShowCodex(false)} gs={gs} />}
     </div>
   );
 }

@@ -694,8 +694,26 @@ export const STORY_1: StoryNode[] = [
         text: "「今晚我留在队里值夜。」", sub: "可选支线：与同僚共度的寻常一夜", once: "took_duty",
         next: "c2_duty_start",
       },
+      {
+        text: "向邓恩领本周的周薪", sub: "三镑，值夜者的卖身钱",
+        hidden: { flag: "duty_done" }, once: "paid_week1",
+        next: "c2_weekly_pay",
+      },
       { text: "去队长室看看有没有案子", sub: "推进主线", next: "c2_case_intro" },
     ],
+  },
+  {
+    id: "c2_weekly_pay",
+    chapter: 2,
+    art: "city",
+    title: "周薪",
+    text: [
+      "邓恩从抽屉里数出三枚金镑，推到你面前，又把一张签收单压在上面。「这一周的。」他顿了顿，「我知道不多。但值夜者领的不是卖命钱，是——守着别人能安稳睡觉的那份心安。」",
+      "你把金镑一枚一枚收进口袋，钢笔在签收单上划过自己的名字。墨水未干，邓恩已经把单子归进了桌角那本牛皮纸夹里——和你秘典里的「廷根卷宗」是同一本。",
+      "「下周一，」他头也不抬，「别迟到。迟到扣半镑。」",
+    ],
+    onEnter: [{ t: "pounds", v: 3 }, { t: "digestion", v: 2 }],
+    choices: [{ text: "把周薪收好，回到街上", next: "c2_hub" }],
   },
   {
     id: "c2_church",
