@@ -294,7 +294,7 @@ export const STORY_7: StoryNode[] = [
     ],
     onEnter: [{ t: "flag", k: "c8_done", v: 1 }, { t: "sanity", v: 6 }],
     choices: [
-      { text: "合上眼，先在贝克兰德多留几日", sub: "海上那座城，还远", next: "c8_hub" },
+      { text: "接下第二桩差事·赴海上之城", sub: "灰雾之上那册书，又翻了一页", next: "c9_start" },
       { text: "【终】第二十三张椅子，是我的了", sub: "达成第二卷·入会结局", req: { flag: "tarot_member" }, next: "ending_chair_seated" },
     ],
   },

@@ -32,6 +32,7 @@ const ENDING_GROUPS: { label: string; ids: string[] }[] = [
   { label: "第五章 · 绯红假面舞会", ids: ["fool2", "usurper", "survivor", "anchor", "hunter_legend", "martyr", "nightwatcher"] },
   { label: "第七章 · 大雾霾", ids: ["fogbreaker"] },
   { label: "第八章 · 灰雾之上·塔罗会", ids: ["chair_seated"] },
+  { label: "第九章 · 海上之城", ids: ["tidebreaker"] },
 ];
 
 type Tab = "endings" | "pathways" | "dossier" | "guide";
@@ -243,6 +244,9 @@ const DOSSIER: DossierSection[] = [
       { flag: "clockwork_down", title: "发条心·停转", desc: "纺织厂地下那颗靠偷凡俗工人「累」「想家」喂成的、会自我运转的黄铜之心，被你停了转。几位没醒来的工人，醒了。" },
       { flag: "latenight_down", title: "门房·结案", desc: "纺织厂停工那夜被勒死的夜班门房，那条黄铜灭口线，被你替值夜者贝克兰德分部，摸到了。" },
       { flag: "alchemy_inner_down", title: "霍恩·手按住", desc: "心理炼金会私吞封存非凡物的二级会员霍恩，那只伸进封存柜的手，被你按在了柜门上。" },
+      { flag: "reef_down", title: "海渊礁卫·珊瑚碎", desc: "风暴之海那夜攀上蓝鳕鱼号船舷的、海渊教会从沉船尸骸拼出的礁卫，被你碎了珊瑚。" },
+      { flag: "abyss_down", title: "海渊合颂体·念归", desc: "海上之城下沉城废墟底那团由太多「还惦记着岸上的人」长成的海中之物，被你停了转。城东那排熄了半月的煤气灯，重新亮了。" },
+      { flag: "lighthouse_down", title: "赫斯特之锚·补", desc: "城北废灯塔塔底，赫斯特三十年前钉下的那道「锚」，被你用塔罗会铜币的温热，补了一层。海上之城，认你了。" },
     ],
   },
   {

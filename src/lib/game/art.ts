@@ -163,10 +163,81 @@ const RITUAL = svg(`
 
 const NONE = svg(`<rect width="1600" height="900" fill="#05060a"/>`);
 
+// 海上之城：风暴之海上的远航与雾中浮城。墨黑海面、铅灰浪脊、远处浮岛的灯火、
+// 天顶一道撕裂的闪电——读作蒸汽煤气灯时代的「远海夜航」。
+const SEA = svg(`
+  <defs>
+    <linearGradient id="seasky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#070a0e"/>
+      <stop offset="0.45" stop-color="#0c1118"/>
+      <stop offset="0.55" stop-color="#0a0e14"/>
+      <stop offset="1" stop-color="#05070a"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0a1014"/>
+      <stop offset="0.5" stop-color="#070b10"/>
+      <stop offset="1" stop-color="#04060a"/>
+    </linearGradient>
+    <radialGradient id="lightning" cx="0.32" cy="0.12" r="0.28">
+      <stop offset="0" stop-color="#9fb4c8" stop-opacity="0.5"/>
+      <stop offset="0.5" stop-color="#6a7a90" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#0a0a10" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="isle" cx="0.74" cy="0.5" r="0.22">
+      <stop offset="0" stop-color="#e0a44a" stop-opacity="0.3"/>
+      <stop offset="0.6" stop-color="#9a6a2a" stop-opacity="0.1"/>
+      <stop offset="1" stop-color="#0a0a10" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="mist" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#1a2030" stop-opacity="0.7"/>
+      <stop offset="0.7" stop-color="#0a0e14" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#05070a" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#seasky)"/>
+  <rect width="1600" height="900" fill="url(#lightning)"/>
+  <!-- distant floating city: stacked dim spires + a few gaslit windows -->
+  <g opacity="0.9">
+    <rect x="1110" y="430" width="180" height="120" fill="#0a0d12"/>
+    <polygon points="1110,430 1140,360 1170,430" fill="#0a0d12"/>
+    <polygon points="1180,420 1220,340 1260,420" fill="#0a0d12"/>
+    <polygon points="1240,430 1280,370 1290,430" fill="#0a0d12"/>
+    <rect x="1230" y="360" width="14" height="80" fill="#0d1016"/>
+  </g>
+  <g>
+    <circle cx="1150" cy="470" r="3" fill="#e0a44a" opacity="0.85"/>
+    <circle cx="1200" cy="450" r="3" fill="#e0a44a" opacity="0.8"/>
+    <circle cx="1245" cy="475" r="2.5" fill="#e0a44a" opacity="0.7"/>
+    <circle cx="1180" cy="495" r="2" fill="#e0a44a" opacity="0.6"/>
+  </g>
+  <rect width="1600" height="900" fill="url(#isle)"/>
+  <!-- sea -->
+  <rect y="560" width="1600" height="340" fill="url(#sea)"/>
+  <!-- wave crests -->
+  <g fill="#1a2230" opacity="0.5">
+    <path d="M0 600 Q 100 590 200 600 T 400 600 T 600 600 T 800 600 T 1000 600 T 1200 600 T 1400 600 T 1600 600 V 620 H 0 Z"/>
+  </g>
+  <g fill="#0d1218" opacity="0.8">
+    <path d="M0 640 Q 120 625 240 640 T 480 640 T 720 640 T 960 640 T 1200 640 T 1440 640 T 1600 640 V 720 H 0 Z"/>
+    <path d="M0 720 Q 160 700 320 720 T 640 720 T 960 720 T 1280 720 T 1600 720 V 900 H 0 Z"/>
+  </g>
+  <!-- a lone ship's mast + lamp, silhouetted on the swell -->
+  <g opacity="0.85">
+    <rect x="180" y="560" width="6" height="90" fill="#080a0e"/>
+    <rect x="150" y="585" width="66" height="6" fill="#080a0e"/>
+    <polygon points="150,588 210,588 210,560 150,560" fill="#0d1218" opacity="0.6"/>
+    <circle cx="183" cy="655" r="5" fill="#e0a44a" opacity="0.85"/>
+    <circle cx="183" cy="655" r="18" fill="#e0a44a" opacity="0.16"/>
+  </g>
+  <rect y="700" width="1600" height="200" fill="url(#mist)"/>
+  <rect width="1600" height="900" fill="#05070a" opacity="0.1"/>
+`);
+
 export const SCENE_ART: Record<string, string> = {
   city: CITY,
   fog: FOG,
   ritual: RITUAL,
+  sea: SEA,
   none: NONE,
 };
 

@@ -255,6 +255,9 @@ export const ITEMS: Record<string, Item> = {
   sleepless_incense: { id: "sleepless_incense", name: "不眠安息香", desc: "【不眠者专属】战斗中点燃：灵性充盈，自身攻击+4持续3回合，并获得6点护盾。守夜者从不需要真正睡着。", price: 5, usable: "combatBuff", pathway: "sleepless", buff: { atkUp: 4, atkUpTurns: 3, shield: 6 } },
   collector_ward: { id: "collector_ward", name: "收尸人的镇魂符", desc: "【收尸人专属】战斗中贴出：敌人易伤+30%持续3回合；若敌人是不亡者，额外引发凋零（每回合6点，持续2回合）。死亡是收尸人的本行。", price: 5, usable: "combatBuff", pathway: "collector", buff: { vuln: 30, vulnTurns: 3 } },
   pryer_grimoire: { id: "pryer_grimoire", name: "窥秘人的禁忌书页", desc: "【窥秘人专属】战斗中诵读：以知识为刃，自身攻击+5持续2回合，代价是理智-4。知识就是力量，字面意义上。", price: 5, usable: "combatBuff", pathway: "pryer", buff: { atkUp: 5, atkUpTurns: 2, sanityCost: 4 } },
+  // ---- 第九章·海上之城·海上硬货 ----
+  salt_rope: { id: "salt_rope", name: "海盐旧缆绳", desc: "凯利船长给的旧物。剧情中「能拴住「还想回岸上的人」那点念头」；海上之城城北旧灯塔那道「锚」认这根绳。", passive: "keepsake" },
+  sea_lantern: { id: "sea_lantern", name: "海煤提灯", desc: "剧情中照亮海上之城隐藏的「海门」；战斗首回合闪避+15%（每场一次）。浸了海盐的煤油灯，比雾都的灯，更经得住浪。", price: 4, passive: "seaLamp" },
 };
 
 // ============ 敌人 ============
@@ -602,6 +605,37 @@ export const ENEMIES: Record<string, Enemy> = {
       { name: "铜壁咬合", msg: "黄铜管道在它身周咬合成一道厚壁", ward: 15, w: 2 },
     ],
     loot: [{ t: "pounds", v: 14 }, { t: "flag", k: "clockwork_down", v: 1 }, { t: "item", k: "seal_card", v: 1 }, { t: "item", k: "charm_anchor", v: 1 }, { t: "sanity", v: -8 }],
+    digest: 20,
+  },
+  // ---- 第九章·海上之城·风暴之海与海渊教会 ----
+  reef_sentinel: {
+    key: "reef_sentinel",
+    name: "海渊礁卫",
+    title: "海渊教会遣来的守船之物",
+    hp: 46, atk: 8, dodge: 14, undead: true, sanitySight: 7,
+    intro: "风暴最急的那一夜，船舷外的黑浪里浮起一具半人半珊瑚的东西。它本是海渊教会从沉船尸骸里拼出的「礁卫」——身上覆满了藤壶与发黑的珊瑚，胸腔嵌着一枚随浪起伏的、像海月水母一样的灵性之心。它不张牙，只是攀住船舷，一只覆满贝甲的手，缓缓探向桅杆下那个还不会水的新水手。",
+    moves: [
+      { name: "藤壶铁拳", msg: "礁卫一拳砸在甲板上，藤壶碎裂如飞镖", dmg: 9, w: 3 },
+      { name: "咸潮灌顶", msg: "它从胸腔挤出一股腥咸的黑潮，劈头浇下", dmg: 4, sanity: 4, w: 2 },
+      { name: "珊瑚护甲", msg: "它把身上的活珊瑚催生一层，封住伤口", ward: 10, w: 2 },
+      { name: "扯索拖船", msg: "它抓住缆绳要把船拖向礁石——你及时斩断了绳", dmg: 6, bleed: 2, bleedTurns: 2, w: 1, belowHalf: true },
+    ],
+    loot: [{ t: "pounds", v: 7 }, { t: "flag", k: "reef_down", v: 1 }, { t: "item", k: "potion_calm", v: 1 }],
+    digest: 12,
+  },
+  abyssal_choir: {
+    key: "abyssal_choir",
+    name: "海渊合颂体",
+    title: "沉了一座城的「惦记」长成的海中之物",
+    hp: 68, atk: 11, dodge: 9, undead: true, sanitySight: 13,
+    intro: "海上之城下方，沉着一座更早的、被海吞了的城市。腔室般的废墟里悬浮着这团东西——它由太多沉城之夜被海水偷走的「还惦记着岸上的人」聚成，时而像一张张叠在一起的水泡脸，时而像无数只向上伸的、已经泡白的手。它不看你——它透过海水看你掌心那枚塔罗会的铜币，像在认，下一个该被它「记住」、拖进海里去的，是不是你。",
+    moves: [
+      { name: "千手之涌", msg: "它身上无数只泡白的手同时朝你探来", dmg: 9, sanity: 5, w: 3 },
+      { name: "沉读你", msg: "它像读一本浸了水的旧账，翻读你「还惦记着的人」", sanity: 9, w: 2 },
+      { name: "吞念补海", msg: "它把一缕属于沉城的「惦记」吞回腔室，缝补自己", heal: 10, w: 1, belowHalf: true },
+      { name: "水壁成冢", msg: "海水在它身周凝成一座坟冢般的厚水壁", ward: 14, w: 2 },
+    ],
+    loot: [{ t: "pounds", v: 14 }, { t: "flag", k: "abyss_down", v: 1 }, { t: "item", k: "seal_card", v: 1 }, { t: "item", k: "charm_anchor", v: 1 }, { t: "sanity", v: -7 }],
     digest: 20,
   },
   // ---- 第四章·钟楼支线敌人 ----
