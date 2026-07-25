@@ -258,6 +258,8 @@ export const ITEMS: Record<string, Item> = {
   // ---- 第九章·海上之城·海上硬货 ----
   salt_rope: { id: "salt_rope", name: "海盐旧缆绳", desc: "凯利船长给的旧物。剧情中「能拴住「还想回岸上的人」那点念头」；海上之城城北旧灯塔那道「锚」认这根绳。", passive: "keepsake" },
   sea_lantern: { id: "sea_lantern", name: "海煤提灯", desc: "剧情中照亮海上之城隐藏的「海门」；战斗首回合闪避+15%（每场一次）。浸了海盐的煤油灯，比雾都的灯，更经得住浪。", price: 4, passive: "seaLamp" },
+  // ---- 第十章·北陆·霜砚镇·北地硬货 ----
+  frost_charm: { id: "frost_charm", name: "霜镜残符", desc: "凛冬·偷名者身上捻得的低阶咒符。剧情中可照亮旧驿道遗址腔室；战斗首回合令亡灵敌人易伤20%（每场一次）。磨成霜镜状，刻着「无名，无痛」。", price: 5, passive: "frostSight" },
 };
 
 // ============ 敌人 ============
@@ -637,6 +639,37 @@ export const ENEMIES: Record<string, Enemy> = {
     ],
     loot: [{ t: "pounds", v: 14 }, { t: "flag", k: "abyss_down", v: 1 }, { t: "item", k: "seal_card", v: 1 }, { t: "item", k: "charm_anchor", v: 1 }, { t: "sanity", v: -7 }],
     digest: 20,
+  },
+  // ---- 第十章·北陆·凛冬学派·偷名之物 ----
+  frost_culler: {
+    key: "frost_culler",
+    name: "凛冬·偷名者",
+    title: "凛冬学派遣来收名的暗哨",
+    hp: 52, atk: 10, dodge: 16, undead: true, sanitySight: 9,
+    intro: "霜砚镇外那片被雪压弯的针叶林里，一个裹着灰白皮氅的人形，从树影里「渗」了出来。他没有脸——准确说，他的脸是一面磨平的、不反光的、像霜凝成的镜。他不开口，只把一只冻白的手，缓缓朝你伸来：他不是要你的命，他是要，你的「名字」。你掌心那枚刻着你塔罗会代号的铜币，烫了一下——他认得，这是比凡俗名字更「值钱」的名。",
+    moves: [
+      { name: "霜镜之掌", msg: "偷名者一掌印来，掌心的霜镜要映走你的名", dmg: 10, w: 3 },
+      { name: "夺名低语", msg: "他镜面般的脸里渗出一段不属于人声的低语，直钻你的脑后", dmg: 4, sanity: 5, w: 2 },
+      { name: "霜壁凝镜", msg: "他在身前凝出一面厚霜镜，挡住这一击", ward: 12, w: 2 },
+      { name: "寒名反噬", msg: "他偷名偷得太多，镜面裂开一道缝，自己的名反漏了出来", thorns: 8, w: 1, belowHalf: true },
+    ],
+    loot: [{ t: "pounds", v: 9 }, { t: "flag", k: "culler_down", v: 1 }, { t: "item", k: "potion_mind", v: 2 }],
+    digest: 14,
+  },
+  nameless_aspect: {
+    key: "nameless_aspect",
+    name: "无名聚合体",
+    title: "北陆冰原下「没人再惦记的名字」长成之物",
+    hp: 72, atk: 12, dodge: 10, undead: true, sanitySight: 14,
+    intro: "霜砚镇地下，是一处被冰封的、更早的、没人再记得名字的旧驿道遗址。遗址腔室正中悬浮着这团东西——它由太多被「凛冬学派」偷走的、没人再惦记的名字聚成，时而像一张张叠在一起的、磨平的镜脸，时而像无数只冻白、向上伸、却够不到任何「我」的手。它不看你——它透过冰看你掌心那枚刻着代号的铜币，像在认，下一个该被它「收」、从此再没人惦记的，是不是你。它饿的，不是「惦记」——是「名」。",
+    moves: [
+      { name: "千镜之涌", msg: "它身上无数面磨平的镜脸同时朝你张开，涌出一股冻白的寒气", dmg: 10, sanity: 5, w: 3 },
+      { name: "收名", msg: "它像读一本磨了字的旧册，翻读你「叫什么名字」", sanity: 9, w: 2 },
+      { name: "吞名补寒", msg: "它把一缕属于某位没名了的人的「我」吞回腔室，缝补自己", heal: 10, w: 1, belowHalf: true },
+      { name: "霜冢成壁", msg: "冻白的寒气在它身周凝成一座霜冢般的厚壁", ward: 14, w: 2 },
+    ],
+    loot: [{ t: "pounds", v: 16 }, { t: "flag", k: "nameless_down", v: 1 }, { t: "item", k: "seal_card", v: 1 }, { t: "item", k: "charm_anchor", v: 1 }, { t: "sanity", v: -8 }],
+    digest: 22,
   },
   // ---- 第四章·钟楼支线敌人 ----
   puppet: {

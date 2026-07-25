@@ -33,6 +33,7 @@ const ENDING_GROUPS: { label: string; ids: string[] }[] = [
   { label: "第七章 · 大雾霾", ids: ["fogbreaker"] },
   { label: "第八章 · 灰雾之上·塔罗会", ids: ["chair_seated"] },
   { label: "第九章 · 海上之城", ids: ["tidebreaker"] },
+  { label: "第十章 · 北陆·霜砚镇", ids: ["namekeeper"] },
 ];
 
 type Tab = "endings" | "pathways" | "dossier" | "guide";
@@ -251,6 +252,9 @@ const DOSSIER: DossierSection[] = [
       { flag: "reef_down", title: "海渊礁卫·珊瑚碎", desc: "风暴之海那夜攀上蓝鳕鱼号船舷的、海渊教会从沉船尸骸拼出的礁卫，被你碎了珊瑚。" },
       { flag: "abyss_down", title: "海渊合颂体·念归", desc: "海上之城下沉城废墟底那团由太多「还惦记着岸上的人」长成的海中之物，被你停了转。城东那排熄了半月的煤气灯，重新亮了。" },
       { flag: "lighthouse_down", title: "赫斯特之锚·补", desc: "城北废灯塔塔底，赫斯特三十年前钉下的那道「锚」，被你用塔罗会铜币的温热，补了一层。海上之城，认你了。" },
+      { flag: "culler_down", title: "凛冬·偷名者·霜镜碎", desc: "北陆驿道第七座驿亭外，凛冬学派遣来收名的暗哨，那面磨平的镜脸，被你碎成了几瓣。每一瓣里，都映着一个被偷走的、不属于自己的名。" },
+      { flag: "nameless_down", title: "无名聚合体·名归", desc: "霜砚镇下旧驿道遗址腔室里，那团由太多「没人再惦记的名字」长成、终于咬合成一个会自我沉浮的无名之物，被你停了转。镇民熄了半月的「叫什么」，重新被喊了回来。" },
+      { flag: "inkmill_down", title: "赫斯特森·名锚·补", desc: "镇东废磨坊底，赫斯特·赫斯特森四十年前用自己「姓」钉下的那道「名之锚」，被你用铜币的温热，补了一层。霜砚镇，认你了。" },
     ],
   },
   {

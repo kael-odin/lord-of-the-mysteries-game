@@ -161,7 +161,75 @@ const RITUAL = svg(`
   <rect width="1600" height="900" fill="url(#rglow)"/>
 `);
 
+// 北陆·霜砚镇：极北边镇的霜夜。墨蓝雪原、针叶林剪影、镇上几点煤气灯与
+// 一座歪斜的木钟楼——读作「煤气灯时代最北的驿道尽头」。
 const NONE = svg(`<rect width="1600" height="900" fill="#05060a"/>`);
+const NORTH = svg(`
+  <defs>
+    <linearGradient id="nsky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#080b14"/>
+      <stop offset="0.45" stop-color="#0c1220"/>
+      <stop offset="0.6" stop-color="#0a0f1a"/>
+      <stop offset="1" stop-color="#06080f"/>
+    </linearGradient>
+    <radialGradient id="aurora" cx="0.5" cy="0.16" r="0.5">
+      <stop offset="0" stop-color="#3a6a5a" stop-opacity="0.28"/>
+      <stop offset="0.5" stop-color="#1f4040" stop-opacity="0.1"/>
+      <stop offset="1" stop-color="#0a0a10" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="snow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#10141e"/>
+      <stop offset="0.6" stop-color="#0a0d14"/>
+      <stop offset="1" stop-color="#05070c"/>
+    </linearGradient>
+    <radialGradient id="town" cx="0.4" cy="0.62" r="0.28">
+      <stop offset="0" stop-color="#e0a44a" stop-opacity="0.22"/>
+      <stop offset="0.7" stop-color="#7a4a1a" stop-opacity="0.06"/>
+      <stop offset="1" stop-color="#0a0a10" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#nsky)"/>
+  <rect width="1600" height="900" fill="url(#aurora)"/>
+  <!-- distant pine ridge -->
+  <g fill="#070a12" opacity="0.95">
+    ${Array.from({ length: 22 }).map((_, i) => {
+      const x = i * 76;
+      const h = 80 + (i % 5) * 26;
+      return `<polygon points="${x},${560} ${x+38},${560-h} ${x+76},${560}"/>`;
+    }).join("")}
+  </g>
+  <!-- snow ground -->
+  <rect y="560" width="1600" height="340" fill="url(#snow)"/>
+  <!-- town: a few dim wooden houses + a leaning clock tower -->
+  <g opacity="0.92">
+    <rect x="440" y="500" width="120" height="80" fill="#0a0d14"/>
+    <polygon points="440,500 500,460 560,500" fill="#0a0d14"/>
+    <rect x="600" y="520" width="90" height="60" fill="#0a0d14"/>
+    <polygon points="600,520 645,488 690,520" fill="#0a0d14"/>
+    <rect x="740" y="470" width="34" height="160" fill="#0b0e16"/>
+    <polygon points="734,470 757,440 780,470" fill="#0b0e16"/>
+    <rect x="820" y="510" width="110" height="70" fill="#0a0d14"/>
+    <polygon points="820,510 875,472 930,510" fill="#0a0d14"/>
+  </g>
+  <g>
+    <circle cx="490" cy="535" r="2.5" fill="#e0a44a" opacity="0.85"/>
+    <circle cx="640" cy="548" r="2.5" fill="#e0a44a" opacity="0.8"/>
+    <circle cx="865" cy="540" r="2.5" fill="#e0a44a" opacity="0.8"/>
+    <circle cx="757" cy="510" r="3" fill="#e0a44a" opacity="0.85"/>
+    <circle cx="757" cy="510" r="14" fill="#e0a44a" opacity="0.14"/>
+  </g>
+  <rect width="1600" height="900" fill="url(#town)"/>
+  <!-- snow flecks -->
+  <g fill="#cfd6e0" opacity="0.5">
+    ${Array.from({ length: 60 }).map(() => {
+      const x = Math.floor(Math.random() * 1600);
+      const y = Math.floor(Math.random() * 560);
+      const r = (Math.random() * 1.2 + 0.4).toFixed(1);
+      return `<circle cx="${x}" cy="${y}" r="${r}"/>`;
+    }).join("")}
+  </g>
+  <rect y="760" width="1600" height="140" fill="#05070c" opacity="0.6"/>
+`);
 
 // 海上之城：风暴之海上的远航与雾中浮城。墨黑海面、铅灰浪脊、远处浮岛的灯火、
 // 天顶一道撕裂的闪电——读作蒸汽煤气灯时代的「远海夜航」。
@@ -238,6 +306,7 @@ export const SCENE_ART: Record<string, string> = {
   fog: FOG,
   ritual: RITUAL,
   sea: SEA,
+  north: NORTH,
   none: NONE,
 };
 

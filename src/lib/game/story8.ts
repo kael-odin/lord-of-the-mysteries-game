@@ -311,7 +311,7 @@ export const STORY_8: StoryNode[] = [
     ],
     onEnter: [{ t: "flag", k: "c9_done", v: 1 }, { t: "sanity", v: 6 }],
     choices: [
-      { text: "先在海上之城留几日，再随蓝鳕鱼号回贝克兰德", sub: "两枚铜币，在塔罗会，算站稳了", next: "c9_hub" },
+      { text: "随蓝鳕鱼号北上·赴那片「陆」「北」之地", sub: "灰雾之上那册书，又翻了一页", next: "c10_start" },
       { text: "【终】破潮者·第二桩差事，是我的了", sub: "达成第二卷·远航结局", req: { flag: "tarot_second_done" }, next: "ending_tidebreaker" },
     ],
   },
