@@ -292,7 +292,8 @@ export const STORY_9: StoryNode[] = [
       { text: "在磨坊外廊生火休整", sub: "一壶松脂烈酒：生命+8、灵性+6（每夜一次）", once: "rested10", next: "c10_hub", effects: [{ t: "hp", v: 8 }, { t: "sp", v: 6 }] },
       { text: "替赫斯特去镇东废磨坊看一看", sub: "可选支线：旧磨坊里，有一段关于「名字是锚」的旧事", once: "took_inkmill", next: "arc_inkmill_start" },
       { text: "合上眼，顺印记上桌（塔罗会）", sub: "灰雾之上，你的椅子温着", hidden: { flag: "tarot_third_climax" }, next: "c10_climax" },
-      { text: "启程南下·回贝克兰德", sub: "雾都的灯，也该回去看一眼了", req: { flag: "tarot_third_done" }, next: "ending_namekeeper" },
+      { text: "启程南下·回贝克兰德·南港", sub: "灰雾之上那册书，又翻了一页·「南」「海」", req: { flag: "tarot_third_done" }, next: "c11_start" },
+      { text: "【终】就此收手·守名者是我的了", sub: "达成第三卷·北陆结局（不再南下）", req: { flag: "tarot_third_done" }, next: "ending_namekeeper" },
     ],
   },
   {

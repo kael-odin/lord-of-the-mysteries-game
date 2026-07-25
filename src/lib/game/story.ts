@@ -8,8 +8,9 @@ import { STORY_6 } from "./story6";
 import { STORY_7 } from "./story7";
 import { STORY_8 } from "./story8";
 import { STORY_9 } from "./story9";
+import { STORY_10 } from "./story10";
 
-export const ALL_NODES: StoryNode[] = [...STORY_1, ...STORY_2, ...STORY_3, ...STORY_4, ...STORY_5, ...STORY_6, ...STORY_7, ...STORY_8, ...STORY_9];
+export const ALL_NODES: StoryNode[] = [...STORY_1, ...STORY_2, ...STORY_3, ...STORY_4, ...STORY_5, ...STORY_6, ...STORY_7, ...STORY_8, ...STORY_9, ...STORY_10];
 
 export const STORY_MAP: Record<string, StoryNode> = Object.fromEntries(
   ALL_NODES.map((n) => [n.id, n]),
@@ -53,6 +54,8 @@ export const ENDINGS: Record<string, { title: string; tone: "gold" | "red" | "gr
   tidebreaker: { title: "破潮者", tone: "gold", hint: "你停了海里那东西。两枚铜币并排在扶手上——塔罗会，开始记住你了。" },
   // 第十章新结局
   namekeeper: { title: "守名者", tone: "gold", hint: "你停了北陆那东西。三枚铜币并排在扶手上——塔罗会，开始信任你了。" },
+  // 第十一章新结局
+  waykeeper: { title: "守向者", tone: "gold", hint: "你停了南港那东西。四枚铜币并排在扶手上——塔罗会，开始托付你了。" },
 };
 
 export const ALL_ENDING_IDS = Object.keys(ENDINGS);
@@ -68,4 +71,5 @@ export const CHAPTER_TITLES: Record<number, string> = {
   8: "第八章 · 灰雾之上·塔罗会",
   9: "第九章 · 海上之城",
   10: "第十章 · 北陆·霜砚镇",
+  11: "第十一章 · 南港归潮",
 };

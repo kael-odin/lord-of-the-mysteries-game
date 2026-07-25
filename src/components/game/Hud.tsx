@@ -13,6 +13,11 @@ function effectTag(item: Item): string | null {
   if (item.passive === "atk6") return "攻击 +6";
   if (item.passive === "sanityShield") return "理智损失 -1";
   if (item.passive === "anchor") return "理智减半·上限+10";
+  // 剧情·信物类：不提供数值，但在剧情判定中被认可
+  if (item.passive === "keepsake") return "剧情·信物";
+  if (item.passive === "seaLamp") return "剧情·海门";
+  if (item.passive === "frostSight") return "剧情·霜镜";
+  if (item.passive === "tideSight") return "剧情·潮盘";
   if (item.usable === "healHp") return `生命 +${item.v}`;
   if (item.usable === "healSp") {
     const base = `灵性 +${item.v}`;

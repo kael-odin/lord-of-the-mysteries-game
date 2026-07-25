@@ -34,6 +34,7 @@ const ENDING_GROUPS: { label: string; ids: string[] }[] = [
   { label: "第八章 · 灰雾之上·塔罗会", ids: ["chair_seated"] },
   { label: "第九章 · 海上之城", ids: ["tidebreaker"] },
   { label: "第十章 · 北陆·霜砚镇", ids: ["namekeeper"] },
+  { label: "第十一章 · 南港归潮", ids: ["waykeeper"] },
 ];
 
 type Tab = "endings" | "pathways" | "dossier" | "guide";
@@ -255,6 +256,9 @@ const DOSSIER: DossierSection[] = [
       { flag: "culler_down", title: "凛冬·偷名者·霜镜碎", desc: "北陆驿道第七座驿亭外，凛冬学派遣来收名的暗哨，那面磨平的镜脸，被你碎成了几瓣。每一瓣里，都映着一个被偷走的、不属于自己的名。" },
       { flag: "nameless_down", title: "无名聚合体·名归", desc: "霜砚镇下旧驿道遗址腔室里，那团由太多「没人再惦记的名字」长成、终于咬合成一个会自我沉浮的无名之物，被你停了转。镇民熄了半月的「叫什么」，重新被喊了回来。" },
       { flag: "inkmill_down", title: "赫斯特森·名锚·补", desc: "镇东废磨坊底，赫斯特·赫斯特森四十年前用自己「姓」钉下的那道「名之锚」，被你用铜币的温热，补了一层。霜砚镇，认你了。" },
+      { flag: "warden_down", title: "漫游·偷向者·罗盘碎", desc: "南港栈桥尽头海雾里，漫游学派遣来收向的暗哨，那面磨平的罗盘脸，被你碎成了几瓣。每一瓣里，都映着一个被偷走的、不属于自己的「去向」。" },
+      { flag: "drifter_down", title: "漫游聚合体·向归", desc: "南港沉船巷下旧航道遗址腔室里，那团由太多「没人再去过的地方」长成、终于咬合成一个会自我漂移的漫游之物，被你停了转。南港人停了半月的「要去哪儿」，重新被拨了回来。" },
+      { flag: "pilot_down", title: "芮恩森·向锚·补", desc: "巷尾废领航塔底，芮恩·芮恩森五十年前用自己「去向」钉下的那道「向之锚」，被你用铜币的温热，补了一层。沉船巷，认你了。" },
     ],
   },
   {

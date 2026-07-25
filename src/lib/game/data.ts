@@ -259,7 +259,8 @@ export const ITEMS: Record<string, Item> = {
   salt_rope: { id: "salt_rope", name: "海盐旧缆绳", desc: "凯利船长给的旧物。剧情中「能拴住「还想回岸上的人」那点念头」；海上之城城北旧灯塔那道「锚」认这根绳。", passive: "keepsake" },
   sea_lantern: { id: "sea_lantern", name: "海煤提灯", desc: "剧情中照亮海上之城隐藏的「海门」；战斗首回合闪避+15%（每场一次）。浸了海盐的煤油灯，比雾都的灯，更经得住浪。", price: 4, passive: "seaLamp" },
   // ---- 第十章·北陆·霜砚镇·北地硬货 ----
-  frost_charm: { id: "frost_charm", name: "霜镜残符", desc: "凛冬·偷名者身上捻得的低阶咒符。剧情中可照亮旧驿道遗址腔室；战斗首回合令亡灵敌人易伤20%（每场一次）。磨成霜镜状，刻着「无名，无痛」。", price: 5, passive: "frostSight" },
+  frost_charm: { id: "frost_charm", name: "霜镜残符", desc: "凛冬·偷名者身上捻得的低阶咒符。剧情中可照亮旧驿道遗址腔室里被磨平的「霜门」，亦能在北地亡灵面前，让你看穿它镜脸的破绽。磨成霜镜状，刻着「无名，无痛」。", price: 5, passive: "frostSight" },
+  tide_charm: { id: "tide_charm", name: "潮盘残符", desc: "漫游·偷向者身上捻得的低阶咒符。剧情中可照亮旧航道遗址腔室里被磨平的「潮门」，亦能在南港亡灵面前，让你看穿它罗盘脸的破绽。磨成罗盘状，刻着「无向，无达」。", price: 5, passive: "tideSight" },
 };
 
 // ============ 敌人 ============
@@ -669,6 +670,37 @@ export const ENEMIES: Record<string, Enemy> = {
       { name: "霜冢成壁", msg: "冻白的寒气在它身周凝成一座霜冢般的厚壁", ward: 14, w: 2 },
     ],
     loot: [{ t: "pounds", v: 16 }, { t: "flag", k: "nameless_down", v: 1 }, { t: "item", k: "seal_card", v: 1 }, { t: "item", k: "charm_anchor", v: 1 }, { t: "sanity", v: -8 }],
+    digest: 22,
+  },
+  // ---- 第十一章·南港·漫游学派 ----
+  tide_warden: {
+    key: "tide_warden",
+    name: "漫游·偷向者",
+    title: "漫游学派遣来收向的暗哨",
+    hp: 54, atk: 10, dodge: 16, undead: true, sanitySight: 9,
+    intro: "南港栈桥尽头的海雾里，一个裹着湿漉漉的、被海雾泡胀的灰帆布的人形，从雾里「漂」了出来——不是走，是漂。它没有脸，只有一张被磨平的、像海雾凝成的罗盘面。它不开口，只把一只湿白的手，缓缓朝你伸来：它不是要你的命，它是要，你的「去向」。你掌心那枚刻着你塔罗会代号的铜币，烫了一下——它认得，这是比凡俗去向更「值钱」的向。",
+    moves: [
+      { name: "罗盘之掌", msg: "它湿白的手像一枚拨乱的罗盘，砸向你的额前", dmg: 10, w: 3 },
+      { name: "夺向低语", msg: "它像读一张磨了字的航海图，翻读你「要去哪儿」", dmg: 4, sanity: 5, w: 2 },
+      { name: "雾壁凝盘", msg: "海雾在它身周凝成一面磨平的罗盘壁", ward: 12, w: 2 },
+      { name: "潮名反噬", msg: "它被你拨乱了罗盘面，反手一记潮水般的反噬", thorns: 8, w: 1, belowHalf: true },
+    ],
+    loot: [{ t: "pounds", v: 10 }, { t: "flag", k: "warden_down", v: 1 }, { t: "item", k: "tide_charm", v: 1 }, { t: "item", k: "potion_mind", v: 1 }],
+    digest: 15,
+  },
+  drifter_aspect: {
+    key: "drifter_aspect",
+    name: "漫游聚合体",
+    title: "南港旧航道下「没人再去过的地方」长成之物",
+    hp: 74, atk: 12, dodge: 11, undead: true, sanitySight: 14,
+    intro: "南港沉船巷地下，是一处被海泥与浊水泡烂的、更早的、没人再记得去处的旧航道遗址。遗址腔室正中悬浮着这团东西——它由太多被「漫游学派」偷走的、没人再去过的地方聚成，时而像一张张叠在一起的、磨平的罗盘脸，时而像无数只湿白、向所有方向伸、却够不到任何「我去」的手。它不看你——它透过海雾看你掌心那枚刻着代号的铜币，像在认，下一个该被它「收」、从此再没人朝他去的，是不是你。它饿的，不是「向」——是「去向」。",
+    moves: [
+      { name: "千盘之涌", msg: "它身上无数面磨平的罗盘脸同时朝你张开，涌出一股湿白的潮气", dmg: 10, sanity: 5, w: 3 },
+      { name: "收向", msg: "它像读一张磨了字的航海图，翻读你「要去哪儿」", sanity: 9, w: 2 },
+      { name: "吞向补潮", msg: "它把一缕属于某位没向了的人的「我去」吞回腔室，缝补自己", heal: 10, w: 1, belowHalf: true },
+      { name: "潮冢成壁", msg: "湿白的潮气在它身周凝成一座潮冢般的厚壁", ward: 14, w: 2 },
+    ],
+    loot: [{ t: "pounds", v: 18 }, { t: "flag", k: "drifter_down", v: 1 }, { t: "item", k: "seal_card", v: 1 }, { t: "item", k: "charm_anchor", v: 1 }, { t: "sanity", v: -8 }],
     digest: 22,
   },
   // ---- 第四章·钟楼支线敌人 ----
