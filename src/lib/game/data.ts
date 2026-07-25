@@ -526,6 +526,22 @@ export const ENEMIES: Record<string, Enemy> = {
     loot: [{ t: "pounds", v: 6 }, { t: "flag", k: "courier_down", v: 1 }, { t: "item", k: "potion_calm", v: 1 }],
     digest: 11,
   },
+  // ---- 第六章·贝克兰德雾霾中的失控者 ----
+  haze_drifter: {
+    key: "haze_drifter",
+    name: "雾中失控者",
+    title: "被黄雾吞没的非凡残骸",
+    hp: 44, atk: 8, dodge: 12, undead: true, sanitySight: 8,
+    intro: "贝克兰德浓黄雾的深处，一团不断变形的人形轮廓缓缓朝你漂来。它曾是某位低阶非凡者——也许是「阅读者」，也许是「窥秘人」——但在那场烧了三天三夜的大雾里，它的容器碎了，只剩一缕依附在雾气上的、饥饿的残念。它没有脸，胸腔的位置开着一道竖直的、像书脊一样裂开的缝，缝里不停地向外渗着黄雾。它不扑人，只是飘近——而你只要直视那道缝，就有什么东西在往外抽。",
+    moves: [
+      { name: "雾指穿刺", msg: "它凝出一根灰白的手指，斜斜刺向你的胸口", dmg: 9, w: 3 },
+      { name: "雾气漫灌", msg: "黄雾从它胸腔那道缝里涌出来，要把你一并吞没", dmg: 4, sanity: 4, w: 2 },
+      { name: "缝中之读", msg: "那道书脊般的裂缝一张一合，像在「读」你的记忆", sanity: 6, w: 2 },
+      { name: "残念补缝", msg: "它从雾里抓回一缕散逸的思绪，缝补自己破碎的容器", heal: 7, w: 1, belowHalf: true },
+    ],
+    loot: [{ t: "pounds", v: 7 }, { t: "flag", k: "drifter_down", v: 1 }, { t: "item", k: "potion_mind", v: 1 }],
+    digest: 12,
+  },
   // ---- 第四章·钟楼支线敌人 ----
   puppet: {
     key: "puppet",

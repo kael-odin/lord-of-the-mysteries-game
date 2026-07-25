@@ -572,6 +572,10 @@ export const STORY_4: StoryNode[] = [
         req: { flag: "case_closed", flagVal: 2, hint: "还有未结的案子——扮演尚未圆满" },
         next: "ending_nightwatcher", effects: [{ t: "flag", k: "nightwatcher", v: 1 }, { t: "digestion", v: 20 }],
       },
+      {
+        text: "婉拒勋章，登上开往贝克兰德的蒸汽列车", sub: "廷根的故事已了，雾都的新章正在展开",
+        next: "c6_start", effects: [{ t: "flag", k: "left_tingen", v: 1 }, { t: "sanity", v: 4 }],
+      },
     ],
   },
   // ============ 新结局 ============

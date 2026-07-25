@@ -199,7 +199,7 @@ export default function GamePage() {
       st = r.state;
       allNotes.push(...r.notes);
     }
-    if ((nextNodeId === "c3_promote" || nextNodeId === "c3_promote_late" || nextNodeId === "c4_promote" || nextNodeId === "c4_promote_late" || nextNodeId === "c5_promote") && st.seq === 9) {
+    if ((nextNodeId === "c3_promote" || nextNodeId === "c3_promote_late" || nextNodeId === "c4_promote" || nextNodeId === "c4_promote_late" || nextNodeId === "c5_promote" || nextNodeId === "c6_promote") && st.seq === 9) {
       const r = applyPromotion(st);
       st = r.state;
       allNotes.push("晋升序列 8，新的大门已经洞开", ...r.notes);

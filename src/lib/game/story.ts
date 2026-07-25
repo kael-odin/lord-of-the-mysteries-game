@@ -3,8 +3,9 @@ import { STORY_1 } from "./story1";
 import { STORY_2 } from "./story2";
 import { STORY_3 } from "./story3";
 import { STORY_4 } from "./story4";
+import { STORY_5 } from "./story5";
 
-export const ALL_NODES: StoryNode[] = [...STORY_1, ...STORY_2, ...STORY_3, ...STORY_4];
+export const ALL_NODES: StoryNode[] = [...STORY_1, ...STORY_2, ...STORY_3, ...STORY_4, ...STORY_5];
 
 export const STORY_MAP: Record<string, StoryNode> = Object.fromEntries(
   ALL_NODES.map((n) => [n.id, n]),
@@ -50,4 +51,5 @@ export const CHAPTER_TITLES: Record<number, string> = {
   3: "第三章 · 安提哥努斯的阴影",
   4: "第四章 · 钟楼失踪案",
   5: "第五章 · 绯红假面舞会",
+  6: "第六章 · 贝克兰德的雾",
 };
