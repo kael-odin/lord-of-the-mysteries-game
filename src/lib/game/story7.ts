@@ -312,7 +312,7 @@ export const STORY_7: StoryNode[] = [
       { text: "去码头区后巷的黑市补货", sub: "雾散后的货，比雾夜便宜一档", next: "c8_shop" },
       { text: "去圣劳伦斯教堂祈祷", sub: "捐献2镑，理智+16", req: { minPounds: 2, hint: "捐献2镑" }, next: "c8_church", effects: [{ t: "pounds", v: -2 }, { t: "sanity", v: 16 }] },
       { text: "在公寓生火休整", sub: "一壶苦茶：生命+8、灵性+6（每夜一次）", once: "rested8", next: "c8_hub", effects: [{ t: "hp", v: 8 }, { t: "sp", v: 6 }] },
-      { text: "接值夜者贝克兰德分部的借调差事", sub: "可选支线：你挂过的旧牌子，还没摘", once: "took_latenight", hidden: { flag: "left_tinge" }, next: "arc_latenight_start" },
+      { text: "接值夜者贝克兰德分部的借调差事", sub: "可选支线：你挂过的旧牌子，还没摘", once: "took_latenight", hidden: { flag: "left_tingen" }, next: "arc_latenight_start" },
       { text: "替心理炼金会查一桩会内的事", sub: "可选支线：会员里，有人私吞非凡物", once: "took_alchemy_inner", hidden: { flag: "alchemy_member" }, next: "arc_alchemy_inner_start" },
       { text: "合上眼，顺印记上桌（塔罗会）", sub: "灰雾之上，你的椅子温着", hidden: { flag: "tarot_member" }, next: "c8_table" },
     ],

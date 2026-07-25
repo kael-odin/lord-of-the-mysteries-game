@@ -449,7 +449,7 @@ export const ENEMIES: Record<string, Enemy> = {
       { name: "雾遁", msg: "它溶回墙缝，你几乎找不到它的轮廓", w: 2 },
       { name: "窃火反噬", msg: "它偷得太多，胸口那点偷来的火烫伤了它自己", dmg: 0, w: 1, belowHalf: true },
     ],
-    loot: [{ t: "pounds", v: 4 }, { t: "flag", k: "thief_down", v: 1 }, { t: "item", k: "potion_calm", v: 1 }],
+    loot: [{ t: "pounds", v: 4 }, { t: "item", k: "potion_calm", v: 1 }],
     digest: 9,
   },
   // ---- 第四章支线·灰河下水道 ----

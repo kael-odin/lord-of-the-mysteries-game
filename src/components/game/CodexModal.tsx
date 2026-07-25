@@ -230,12 +230,16 @@ const DOSSIER: DossierSection[] = [
     label: "已结之案",
     entries: [
       { flag: "c2_narcissus_solved", title: "水仙花街窃影案", desc: "那面凭空消失的穿衣镜，连同镜里的东西，被你从「映」里拽了回来。" },
-      { flag: "sewer_solved", title: "灰河守墓人", desc: "下水道蓄水池里那具被钟声串起的聚合亡者，被你斩断了钟铃之线。" },
       { flag: "puppet_down", title: "钟楼发条秘偶", desc: "钟楼二层那具被遗弃的人偶仪式残骸，停在了它回忆自己的那一刻。" },
+      { flag: "sewer_solved", title: "灰河守墓人", desc: "下水道蓄水池里那具被钟声串起的聚合亡者，被你斩断了钟铃之线。" },
+      { flag: "hound_down", title: "月影犬·断齿", desc: "钟楼台阶上那只被仪式扭曲的、脸上只有一张人齿嘴的看门兽，被你断了齿。" },
+      { flag: "boss_down", title: "安提哥努斯·残影散", desc: "笔记上方那无数张重叠的、安提哥努斯家族百年亡灵的缝合残影，被你从「不该被读」的边缘，逼散了。" },
       { flag: "plate_down", title: "旧铺的活铠", desc: "附在仪仗铠甲里的百年戾气散了，留下一枚旧骑士的徽记与一句未竟之诫。" },
       { flag: "wraith_down", title: "铁十字街怨魂", desc: "凶宅里那脖子歪折的怨魂，被你值夜者的封缄送去了该去的地方。" },
       { flag: "husk_down", title: "守墓人之铃", desc: "灰河尽头的铜铃不再为旧钟清点亡魂——你替它们按下了休止符。" },
       { flag: "courier_down", title: "雾纹断线", desc: "码头区验关亭里那只密修会遣来的暗哨，被你拔了——连同他掌心那张半封的密信。" },
+      { flag: "beast_down", title: "绯红之兽·面具碎", desc: "舞池正中那尊由无数宾客假面拼成的、鹿角狮口蝶翼的活体仪式，被你碎了面具。" },
+      { flag: "master_down", title: "雾衣大师·线断", desc: "从假面兽余烬里滑出的、序列6的秘偶操纵者，那根提你影子的无形之线，被你断了。" },
       { flag: "drifter_down", title: "雾散·归人", desc: "贝克兰德雾深处那团偷人「最近几天」的失控残骸，被你斩断了书脊般的裂缝。三位被挖走记忆的归人，醒了过来。" },
       { flag: "chorister_down", title: "失序司仪·棒断", desc: "城东煤气储塔顶上那位戴破碎歌剧面具的司仪，被你逼停了合颂。他手里那根由十几段「最近」缠成的指挥棒，断了。" },
       { flag: "aspect_down", title: "三日大雾·根清", desc: "储塔碗底那团由太多被偷走的「惦记」长出了自己的聚合体，被你斩断了六十年的根。三日大雾，散了。" },
@@ -258,11 +262,23 @@ const DOSSIER: DossierSection[] = [
     ],
   },
   {
+    label: "灰雾之赐",
+    entries: [
+      { flag: "tarot_fool", title: "「愚者」之赐", desc: "你在灰雾之上选了「愚者」——一切的起点与终点。祂记下了你的名字，也添了你一缕幸运。" },
+      { flag: "tarot_wheel", title: "「命运之轮」之赐", desc: "你在灰雾之上选了「命运之轮」——无常的轮转。你的心智，被拓宽了一道缝。" },
+      { flag: "tarot_strength", title: "「力量」之赐", desc: "你在灰雾之上选了「力量」——驯服野兽之人。你的血脉，被锤实了一分。" },
+    ],
+  },
+  {
     label: "街头线索",
     entries: [
       { flag: "patrol_clue", title: "巡逻见闻", desc: "你在夜间巡逻与街头奇遇中，记下了不止一条值得立案的线索。" },
       { flag: "lamp_decoded", title: "会说话的灯", desc: "铁十字街口那盏路灯的明灭，被你破译成一句从地下传来的求救。" },
       { flag: "notebook_clue", title: "安提哥努斯笔记", desc: "那本让韦尔奇丧命的笔记，你已隐约触到它「不该被读」的边缘。" },
+      { flag: "dream_fog", title: "灰雾之梦", desc: "你记得自己死而复生那夜，梦里那片比贝克兰德任何雾都更古老的灰雾——与日后灰雾之上那张椅子，是同一片。" },
+      { flag: "roselle", title: "罗塞尔日记残页", desc: "你在某处读到一页穿越者前辈的日记残页。它字迹潦草，却让你，莫名地，安心了一分。" },
+      { flag: "bar_rumor", title: "酒馆夜话", desc: "你多花了一镑，让盐鳍鱼酒馆的老板娘今晚别打烊太早。换来的那句闲话，比一镑值钱。" },
+      { flag: "dock_raided", title: "码头查私", desc: "你替值夜者查了一趟码头私货，记下了几条「不该出现在廷根港」的货路。" },
     ],
   },
   {
