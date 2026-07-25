@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" width="100%" role="img" aria-label="雾中余烬 · 灰雾之上的长桌与第二十三张椅子">
+  <title>雾中余烬 · 灰雾之上的长桌与第二十三张椅子</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0a0b12"/>
+      <stop offset="0.55" stop-color="#10101a"/>
+      <stop offset="1" stop-color="#070709"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.46" r="0.5">
+      <stop offset="0" stop-color="#c9a86a" stop-opacity="0.14"/>
+      <stop offset="0.5" stop-color="#c9a86a" stop-opacity="0.04"/>
+      <stop offset="1" stop-color="#0a0a10" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="fogL" cx="0.5" cy="0.95" r="0.75">
+      <stop offset="0" stop-color="#3a3f4e" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="#0a0a10" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="ember" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#c9a86a" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#c9a86a" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#c9a86a" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- backdrop -->
+  <rect width="1200" height="480" fill="url(#bg)"/>
+  <rect width="1200" height="480" fill="url(#fogL)"/>
+
+  <!-- floating palace: long table + columns -->
+  <g opacity="0.9">
+    <!-- columns -->
+    <g fill="#13141d">
+      <rect x="120" y="150" width="22" height="200"/>
+      <rect x="180" y="150" width="22" height="200"/>
+      <rect x="978" y="150" width="22" height="200"/>
+      <rect x="1038" y="150" width="22" height="200"/>
+    </g>
+    <rect x="110" y="138" width="960" height="24" fill="#1a1c28"/>
+    <!-- long table -->
+    <rect x="150" y="318" width="900" height="40" fill="#171822"/>
+    <rect x="150" y="316" width="900" height="6" fill="#23252f"/>
+  </g>
+
+  <!-- twenty-two chair silhouettes (the pathway lords) -->
+  <g fill="#0a0a12" opacity="0.78">
+    <!-- left row -->
+    <g>
+      <rect x="195" y="288" width="20" height="44"/><rect x="191" y="278" width="28" height="16"/>
+      <rect x="255" y="288" width="20" height="44"/><rect x="251" y="278" width="28" height="16"/>
+      <rect x="315" y="288" width="20" height="44"/><rect x="311" y="278" width="28" height="16"/>
+      <rect x="375" y="288" width="20" height="44"/><rect x="371" y="278" width="28" height="16"/>
+      <rect x="435" y="288" width="20" height="44"/><rect x="431" y="278" width="28" height="16"/>
+      <rect x="495" y="288" width="20" height="44"/><rect x="491" y="278" width="28" height="16"/>
+    </g>
+    <!-- right row -->
+    <g>
+      <rect x="685" y="288" width="20" height="44"/><rect x="681" y="278" width="28" height="16"/>
+      <rect x="745" y="288" width="20" height="44"/><rect x="741" y="278" width="28" height="16"/>
+      <rect x="805" y="288" width="20" height="44"/><rect x="801" y="278" width="28" height="16"/>
+      <rect x="865" y="288" width="20" height="44"/><rect x="861" y="278" width="28" height="16"/>
+      <rect x="925" y="288" width="20" height="44"/><rect x="921" y="278" width="28" height="16"/>
+      <rect x="985" y="288" width="20" height="44"/><rect x="981" y="278" width="28" height="16"/>
+    </g>
+  </g>
+
+  <!-- head chair (empty, the watcher's seat) -->
+  <rect x="578" y="276" width="44" height="58" fill="#c9a86a" opacity="0.05"/>
+  <rect x="586" y="286" width="28" height="48" fill="#0a0a12" opacity="0.85"/>
+  <rect x="582" y="276" width="36" height="18" fill="#0a0a12" opacity="0.9"/>
+  <circle cx="600" cy="240" r="120" fill="#c9a86a" opacity="0.045"/>
+
+  <!-- the 23rd chair, across from the head — lit, the player's seat -->
+  <rect x="586" y="372" width="28" height="40" fill="#c9a86a" opacity="0.22"/>
+  <rect x="582" y="408" width="36" height="14" fill="#c9a86a" opacity="0.3"/>
+  <circle cx="600" cy="360" r="6" fill="#e7d9b8"/>
+
+  <!-- central glow -->
+  <rect width="1200" height="480" fill="url(#glow)"/>
+
+  <!-- title block -->
+  <g font-family="Georgia, 'Times New Roman', serif" text-rendering="geometricPrecision">
+    <text x="600" y="92" text-anchor="middle" font-size="13" letter-spacing="8" fill="#9aa0b0" opacity="0.75">REGISTRY · OF · THE · FOG</text>
+    <text x="600" y="172" text-anchor="middle" font-size="58" letter-spacing="6" fill="#e7d9b8">雾 中 余 烬</text>
+    <text x="600" y="206" text-anchor="middle" font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="12" letter-spacing="3" fill="#c9a86a" opacity="0.9">诡秘之主 · 非官方同人互动冒险</text>
+  </g>
+
+  <!-- bottom ember line -->
+  <rect x="200" y="448" width="800" height="1.5" fill="url(#ember)" opacity="0.7"/>
+  <text x="600" y="468" text-anchor="middle" font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="10" letter-spacing="2" fill="#7a7f90" opacity="0.8">饮下魔药 · 扮演序列 · 守住理智 · 直到祂记下你的名字</text>
+</svg>

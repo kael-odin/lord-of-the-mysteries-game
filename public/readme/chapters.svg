@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 150" width="100%" role="img" aria-label="六章剧情脉络：苏醒、值夜者、安提哥努斯之影、钟楼失踪案、绯红假面舞会、贝克兰德的雾">
+  <title>六章剧情脉络</title>
+  <defs>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#c9a86a" stop-opacity="0"/>
+      <stop offset="0.12" stop-color="#c9a86a" stop-opacity="0.7"/>
+      <stop offset="0.88" stop-color="#c9a86a" stop-opacity="0.7"/>
+      <stop offset="1" stop-color="#c9a86a" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="150" fill="#0a0b12"/>
+
+  <!-- connecting ember line -->
+  <rect x="80" y="74" width="1040" height="1.5" fill="url(#line)"/>
+
+  <!-- six chapter nodes -->
+  <g font-family="Georgia, 'Times New Roman', serif" text-rendering="geometricPrecision">
+    <!-- 1 -->
+    <circle cx="140" cy="75" r="9" fill="#0a0b12" stroke="#c9a86a" stroke-width="1.5"/>
+    <text x="140" y="44" text-anchor="middle" font-size="11" letter-spacing="2" fill="#7a7f90">第 一 章</text>
+    <text x="140" y="108" text-anchor="middle" font-size="16" fill="#e7d9b8">苏 醒</text>
+    <text x="140" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="9" fill="#6a6f80">水仙花街·清晨</text>
+    <!-- 2 -->
+    <circle cx="320" cy="75" r="9" fill="#0a0b12" stroke="#c9a86a" stroke-width="1.5"/>
+    <text x="320" y="44" text-anchor="middle" font-size="11" letter-spacing="2" fill="#7a7f90">第 二 章</text>
+    <text x="320" y="108" text-anchor="middle" font-size="16" fill="#e7d9b8">值 夜 者</text>
+    <text x="320" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="9" fill="#6a6f80">黑荆棘公司</text>
+    <!-- 3 -->
+    <circle cx="500" cy="75" r="9" fill="#0a0b12" stroke="#c9a86a" stroke-width="1.5"/>
+    <text x="500" y="44" text-anchor="middle" font-size="11" letter-spacing="2" fill="#7a7f90">第 三 章</text>
+    <text x="500" y="108" text-anchor="middle" font-size="15" fill="#e7d9b8">安提哥努斯之影</text>
+    <text x="500" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="9" fill="#6a6f80">密修会·笔记</text>
+    <!-- 4 -->
+    <circle cx="680" cy="75" r="9" fill="#0a0b12" stroke="#c9a86a" stroke-width="1.5"/>
+    <text x="680" y="44" text-anchor="middle" font-size="11" letter-spacing="2" fill="#7a7f90">第 四 章</text>
+    <text x="680" y="108" text-anchor="middle" font-size="16" fill="#e7d9b8">钟楼失踪案</text>
+    <text x="680" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="9" fill="#6a6f80">钟绳·秘偶</text>
+    <!-- 5 -->
+    <circle cx="860" cy="75" r="9" fill="#0a0b12" stroke="#c9a86a" stroke-width="1.5"/>
+    <text x="860" y="44" text-anchor="middle" font-size="11" letter-spacing="2" fill="#7a7f90">第 五 章</text>
+    <text x="860" y="108" text-anchor="middle" font-size="16" fill="#e7d9b8">绯红假面舞会</text>
+    <text x="860" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="9" fill="#6a6f80">残魂·抉择</text>
+    <!-- 6 (current frontier) -->
+    <circle cx="1060" cy="75" r="11" fill="#c9a86a" opacity="0.18"/>
+    <circle cx="1060" cy="75" r="7" fill="#c9a86a"/>
+    <text x="1060" y="44" text-anchor="middle" font-size="11" letter-spacing="2" fill="#c9a86a" opacity="0.9">第 六 章 · 新</text>
+    <text x="1060" y="108" text-anchor="middle" font-size="16" fill="#e7d9b8">贝克兰德的雾</text>
+    <text x="1060" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="9" fill="#6a6f80">雾都·第二卷</text>
+  </g>
+</svg>
