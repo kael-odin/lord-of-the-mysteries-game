@@ -25,8 +25,9 @@ import { STORY_23 } from "./story23";
 import { STORY_24 } from "./story24";
 import { STORY_25 } from "./story25";
 import { STORY_26 } from "./story26";
+import { STORY_27 } from "./story27";
 
-export const ALL_NODES: StoryNode[] = [...STORY_1, ...STORY_2, ...STORY_3, ...STORY_4, ...STORY_5, ...STORY_6, ...STORY_7, ...STORY_8, ...STORY_9, ...STORY_10, ...STORY_11, ...STORY_12, ...STORY_13, ...STORY_14, ...STORY_15, ...STORY_16, ...STORY_17, ...STORY_18, ...STORY_19, ...STORY_20, ...STORY_21, ...STORY_22, ...STORY_23, ...STORY_24, ...STORY_25, ...STORY_26];
+export const ALL_NODES: StoryNode[] = [...STORY_1, ...STORY_2, ...STORY_3, ...STORY_4, ...STORY_5, ...STORY_6, ...STORY_7, ...STORY_8, ...STORY_9, ...STORY_10, ...STORY_11, ...STORY_12, ...STORY_13, ...STORY_14, ...STORY_15, ...STORY_16, ...STORY_17, ...STORY_18, ...STORY_19, ...STORY_20, ...STORY_21, ...STORY_22, ...STORY_23, ...STORY_24, ...STORY_25, ...STORY_26, ...STORY_27];
 
 export const STORY_MAP: Record<string, StoryNode> = Object.fromEntries(
   ALL_NODES.map((n) => [n.id, n]),
@@ -104,6 +105,8 @@ export const ENDINGS: Record<string, { title: string; tone: "gold" | "red" | "gr
   heartknower: { title: "认心者", tone: "gold", hint: "你在塔罗会之外被派的差事之外走完定完的路之外认出没被叫出名字的东西之外认名被忘了名字的之外认人被藏起来的人之外自己认出一颗被藏起来的心把它认出来。十九枚铜币并排在扶手上——塔罗会的椅子，替你，记你认出来的那颗心。第六卷，合。" },
   // 第二十七章新结局（第七卷·开）——变奏章：留章，自己往灰雾里留一笔自己的；玩家自己翻开第七卷空白封皮
   leaver: { title: "留者", tone: "gold", hint: "你在塔罗会之外被派的差事之外走完定完的路之外认出没被叫出名字的东西之外认名被忘了名字的之外认人被藏起来的人之外认心被藏起来的心之外自己往灰雾里留一笔自己的把它留下。二十枚铜币并排在扶手上——塔罗会的椅子，替你，记你留下来的那一笔。第七卷，开。" },
+  // 第二十八章新结局（第七卷·承）——变奏章：留名章，自己往灰雾里留一个名字
+  nameleaver: { title: "留名者", tone: "gold", hint: "你在塔罗会之外被派的差事之外走完定完的路之外认出没被叫出名字的东西之外认名被忘了名字的之外认人被藏起来的人之外认心被藏起来的心之外留下一笔你的之外自己往灰雾里留一个名字把它留下。二十一枚铜币并排在扶手上——塔罗会的椅子，替你，记你留下来的那个名字。第七卷，承。" },
 };
 
 export const ALL_ENDING_IDS = Object.keys(ENDINGS);
@@ -136,4 +139,5 @@ export const CHAPTER_TITLES: Record<number, string> = {
   25: "第二十五章 · 灰雾之下·认人",
   26: "第二十六章 · 灰雾之下·认心",
   27: "第二十七章 · 灰雾之下·留",
+  28: "第二十八章 · 灰雾之下·留名",
 };

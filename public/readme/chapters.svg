@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2890 150" width="100%" role="img" aria-label="二十七章剧情脉络：苏醒、值夜者、安提哥努斯之影、钟楼失踪案、绯红假面舞会、贝克兰德的雾、大雾霾、灰雾之上·塔罗会、海上之城、北陆·霜砚镇、南港归潮、旧都·回声、灰原骨冢·先人回响、灰雾深处·真我、灰雾最深处·归处、灰雾更深处·归名、灰雾之上·忆归、灰雾之上·归处、灰雾之下·行路、灰雾之下·同路、灰雾之下·各自、灰雾之下·自定、灰雾之下·认、灰雾之下·认名、灰雾之下·认人、灰雾之下·认心、灰雾之下·留">
-  <title>二十七章剧情脉络</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3000 150" width="100%" role="img" aria-label="二十八章剧情脉络：苏醒、值夜者、安提哥努斯之影、钟楼失踪案、绯红假面舞会、贝克兰德的雾、大雾霾、灰雾之上·塔罗会、海上之城、北陆·霜砚镇、南港归潮、旧都·回声、灰原骨冢·先人回响、灰雾深处·真我、灰雾最深处·归处、灰雾更深处·归名、灰雾之上·忆归、灰雾之上·归处、灰雾之下·行路、灰雾之下·同路、灰雾之下·各自、灰雾之下·自定、灰雾之下·认、灰雾之下·认名、灰雾之下·认人、灰雾之下·认心、灰雾之下·留、灰雾之下·留名">
+  <title>二十八章剧情脉络</title>
   <defs>
     <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0" stop-color="#c9a86a" stop-opacity="0"/>
@@ -9,10 +9,10 @@
       <stop offset="1" stop-color="#c9a86a" stop-opacity="0"/>
     </linearGradient>
   </defs>
-  <rect width="2890" height="150" fill="#0a0b12"/>
+  <rect width="3000" height="150" fill="#0a0b12"/>
 
   <!-- connecting ember line -->
-  <rect x="60" y="74" width="2770" height="1.5" fill="url(#line)"/>
+  <rect x="60" y="74" width="2880" height="1.5" fill="url(#line)"/>
 
   <!-- Vol.5 opener marker: a thin amber tick where the new volume begins -->
   <rect x="1932" y="60" width="1" height="30" fill="#c9a86a" opacity="0.35"/>
@@ -156,11 +156,16 @@
     <text x="2715" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#7a7f90">第 二 十 六 章</text>
     <text x="2715" y="108" text-anchor="middle" font-size="13" fill="#e7d9b8">认心·第六卷合</text>
     <text x="2715" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">认心者·十九枚铜币</text>
-    <!-- 27 (current frontier — Vol.7 开·变奏章：留章·自己往灰雾里留一笔自己的；玩家自己翻开第七卷空白封皮) -->
-    <circle cx="2825" cy="75" r="11" fill="#c9a86a" opacity="0.18"/>
-    <circle cx="2825" cy="75" r="7" fill="#c9a86a"/>
-    <text x="2825" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#c9a86a" opacity="0.9">第二十七章 · 开</text>
-    <text x="2825" y="108" text-anchor="middle" font-size="12" fill="#e7d9b8">留·第七卷开</text>
+    <!-- 27 (Vol.7 开 — closed) -->
+    <circle cx="2825" cy="75" r="9" fill="#0a0b12" stroke="#c9a86a" stroke-width="1.5"/>
+    <text x="2825" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#7a7f90">第 二 十 七 章</text>
+    <text x="2825" y="108" text-anchor="middle" font-size="13" fill="#e7d9b8">留·第七卷开</text>
     <text x="2825" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">留者·二十枚铜币</text>
+    <!-- 28 (current frontier — Vol.7 承·变奏章：留名章·自己往灰雾里留一个名字) -->
+    <circle cx="2935" cy="75" r="11" fill="#c9a86a" opacity="0.18"/>
+    <circle cx="2935" cy="75" r="7" fill="#c9a86a"/>
+    <text x="2935" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#c9a86a" opacity="0.9">第二十八章 · 承</text>
+    <text x="2935" y="108" text-anchor="middle" font-size="12" fill="#e7d9b8">留名·第七卷承</text>
+    <text x="2935" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">留名者·二十一枚铜币</text>
   </g>
 </svg>

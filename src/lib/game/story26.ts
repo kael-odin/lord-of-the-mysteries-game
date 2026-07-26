@@ -252,6 +252,7 @@ export const STORY_26: StoryNode[] = [
       { text: "在路碑边生火休整", sub: "一壶雾灰茶：生命+8、灵性+6（每夜一次）", once: "rested27", next: "c27_hub", effects: [{ t: "hp", v: 8 }, { t: "sp", v: 6 }, { t: "sanity", v: 2 }] },
       { text: "再留一段你留过的旧地方里的旧事", sub: "可选支线：你走过的旧地方里，那点没人再留的，还有一段", once: "took_leaver", req: { flag: "leaver_down" }, next: "arc_leaver_start" },
       { text: "合上眼，顺印记上桌（塔罗会）", sub: "灰雾之上，你的椅子温着", hidden: { flag: "tarot_twentieth_climax" }, next: "c27_climax" },
+      { text: "合上眼，顺印记，往没被留名的旧地方走·留名", sub: "第七卷·承·变奏·留名章", req: { flag: "tarot_twentieth_done" }, next: "c28_start" },
       { text: "【终】留者·自己往灰雾里留一笔自己的，是我的了", sub: "达成第七卷·留结局·开", req: { flag: "tarot_twentieth_done" }, next: "ending_leaver" },
     ],
   },
