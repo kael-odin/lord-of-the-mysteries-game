@@ -252,6 +252,7 @@ export const STORY_29: StoryNode[] = [
       { text: "在路碑边生火休整", sub: "一壶雾灰茶：生命+8、灵性+6（每夜一次）", once: "rested30", next: "c30_hub", effects: [{ t: "hp", v: 8 }, { t: "sp", v: 6 }, { t: "sanity", v: 2 }] },
       { text: "再留心一处你留过心的旧地方里的旧事", sub: "可选支线：你走过的旧地方里，那点没人再留心的，还有一处", once: "took_heartleaver", req: { flag: "heartleaver_down" }, next: "arc_heartleaver_start" },
       { text: "合上眼，顺印记上桌（塔罗会）", sub: "灰雾之上，你的椅子温着", hidden: { flag: "tarot_twentythird_climax" }, next: "c30_climax" },
+      { text: "合上眼，顺印记，往没人再等的地方走·等", sub: "第八卷·开：留下心之后，你，等", req: { flag: "tarot_twentythird_done" }, next: "c31_start" },
       { text: "【终】留心者·自己往灰雾里留一颗心，是我的了", sub: "达成第七卷·留心结局·合", req: { flag: "tarot_twentythird_done" }, next: "ending_heartleaver" },
     ],
   },
