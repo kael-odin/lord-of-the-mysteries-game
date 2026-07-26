@@ -38,6 +38,7 @@ const ENDING_GROUPS: { label: string; ids: string[] }[] = [
   { label: "第十二章 · 旧都·回声", ids: ["rootkeeper"] },
   { label: "第十三章 · 灰原骨冢·先人回响", ids: ["personkeeper"] },
   { label: "第十四章 · 灰雾深处·真我", ids: ["truthkeeper"] },
+  { label: "第十五章 · 灰雾最深处·归处", ids: ["homekeeper"] },
 ];
 
 type Tab = "endings" | "pathways" | "dossier" | "guide";
@@ -271,6 +272,9 @@ const DOSSIER: DossierSection[] = [
       { flag: "culler14_down", title: "镜我·偷我者·镜脸碎", desc: "灰雾深处镜心冢雾镜林里，镜我学派遣来收我的暗哨，那面磨平的凹镜脸，被你碎成了几瓣。每一瓣里，都映着一个被偷走的、不属于自己的「真我」。" },
       { flag: "mirror_down", title: "真我聚合体·我归", desc: "残映阁下旧镜心冢腔里，那团由太多「没人再是我」长成、终于咬合成一个会自我映穿的镜我之物，被你停了转。镜心冢人停了半月的「是不是真我」，重新被映了回来。" },
       { flag: "reflection_down", title: "灰森·我锚·补", desc: "残映阁深处废映塔底，灰·灰森五十年前用自己「真我」钉下的那道「我之锚」，被你用铜币的温热，补了一层。残映阁，认你了。" },
+      { flag: "culler15_down", title: "归墟·夺归者·门环碎", desc: "灰雾最深处归墟门环林里，归墟学派遣来收归念的暗哨，那面磨平的门环脸，被你碎成了几瓣。每一瓣里，都半掩着一个被夺走的、不属于任何处的「归处」。" },
+      { flag: "home_down", title: "归念聚合体·归回", desc: "残归阁下旧归墟腔里，那团由太多「没人再归得回」长成、终于咬合成一个会自我归穿的门环之物，被你停了转。归墟人停了半月的「该回哪儿」，重新被归了回来。" },
+      { flag: "wayfarer_down", title: "雾森·归锚·补", desc: "残归阁深处废归塔底，雾·雾森五十年前用自己「归念」钉下的那道「归之锚」，被你用八枚铜币的温热，补了一层。残归阁，认你了。" },
     ],
   },
   {

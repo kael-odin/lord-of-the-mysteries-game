@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 150" width="100%" role="img" aria-label="十四章剧情脉络：苏醒、值夜者、安提哥努斯之影、钟楼失踪案、绯红假面舞会、贝克兰德的雾、大雾霾、灰雾之上·塔罗会、海上之城、北陆·霜砚镇、南港归潮、旧都·回声、灰原骨冢·先人回响、灰雾深处·真我">
-  <title>十四章剧情脉络</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 150" width="100%" role="img" aria-label="十五章剧情脉络：苏醒、值夜者、安提哥努斯之影、钟楼失踪案、绯红假面舞会、贝克兰德的雾、大雾霾、灰雾之上·塔罗会、海上之城、北陆·霜砚镇、南港归潮、旧都·回声、灰原骨冢·先人回响、灰雾深处·真我、灰雾最深处·归处">
+  <title>十五章剧情脉络</title>
   <defs>
     <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0" stop-color="#c9a86a" stop-opacity="0"/>
@@ -9,12 +9,12 @@
       <stop offset="1" stop-color="#c9a86a" stop-opacity="0"/>
     </linearGradient>
   </defs>
-  <rect width="1500" height="150" fill="#0a0b12"/>
+  <rect width="1600" height="150" fill="#0a0b12"/>
 
   <!-- connecting ember line -->
-  <rect x="60" y="74" width="1380" height="1.5" fill="url(#line)"/>
+  <rect x="60" y="74" width="1480" height="1.5" fill="url(#line)"/>
 
-  <!-- fourteen chapter nodes -->
+  <!-- fifteen chapter nodes -->
   <g font-family="Georgia, 'Times New Roman', serif" text-rendering="geometricPrecision">
     <!-- 1 -->
     <circle cx="105" cy="75" r="8" fill="#0a0b12" stroke="#c9a86a" stroke-width="1.5"/>
@@ -81,11 +81,16 @@
     <text x="1299" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#7a7f90">第 十 三 章</text>
     <text x="1299" y="108" text-anchor="middle" font-size="13" fill="#e7d9b8">先人回响</text>
     <text x="1299" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">守人者·六枚铜币</text>
-    <!-- 14 (current frontier — Vol.3 finale) -->
-    <circle cx="1406" cy="75" r="11" fill="#c9a86a" opacity="0.18"/>
-    <circle cx="1406" cy="75" r="7" fill="#c9a86a"/>
-    <text x="1406" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#c9a86a" opacity="0.9">第十四章 · 合</text>
-    <text x="1406" y="108" text-anchor="middle" font-size="12" fill="#e7d9b8">真我·第三卷合</text>
+    <!-- 14 (Vol.3 finale — closed) -->
+    <circle cx="1406" cy="75" r="9" fill="#0a0b12" stroke="#c9a86a" stroke-width="1.5"/>
+    <text x="1406" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#7a7f90">第 十 四 章</text>
+    <text x="1406" y="108" text-anchor="middle" font-size="13" fill="#e7d9b8">真我·第三卷合</text>
     <text x="1406" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">守真者·七枚铜币</text>
+    <!-- 15 (current frontier — Vol.4 opener) -->
+    <circle cx="1497" cy="75" r="11" fill="#c9a86a" opacity="0.18"/>
+    <circle cx="1497" cy="75" r="7" fill="#c9a86a"/>
+    <text x="1497" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#c9a86a" opacity="0.9">第十五章 · 开</text>
+    <text x="1497" y="108" text-anchor="middle" font-size="12" fill="#e7d9b8">归处·第四卷开</text>
+    <text x="1497" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">守归者·八枚铜币</text>
   </g>
 </svg>

@@ -298,7 +298,8 @@ export const STORY_13: StoryNode[] = [
       { text: "在阁外雾镜下生火休整", sub: "一壶雾灰烈酒：生命+8、灵性+6（每夜一次）", once: "rested14", next: "c14_hub", effects: [{ t: "hp", v: 8 }, { t: "sp", v: 6 }] },
       { text: "替老灰去残映阁深处废映塔看一看", sub: "可选支线：废映塔里，有一段关于「真我是锚」的旧事", once: "took_reflection", next: "arc_reflection_start" },
       { text: "合上眼，顺印记上桌（塔罗会）", sub: "灰雾之上，你的椅子温着", hidden: { flag: "tarot_seventh_climax" }, next: "c14_climax" },
-      { text: "启程·回贝克兰德市中心", sub: "雾都的灯，也该回去看一眼了", req: { flag: "tarot_seventh_done" }, next: "ending_truthkeeper" },
+      { text: "合上眼，顺印记沉进灰雾最深处", sub: "灰雾之上那册书，翻到了第四卷·「归」「处」", req: { flag: "tarot_seventh_done" }, next: "c15_start" },
+      { text: "【终】守真者·第七桩差事，是我的了", sub: "达成第三卷·镜心冢结局·合", req: { flag: "tarot_seventh_done" }, next: "ending_truthkeeper" },
     ],
   },
   {

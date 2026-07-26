@@ -264,6 +264,7 @@ export const ITEMS: Record<string, Item> = {
   hearth_charm: { id: "hearth_charm", name: "故土残符", desc: "塌缩·偷根者身上捻得的低阶咒符。剧情中可照亮旧都遗址腔室里被磨平的「根门」，亦能在内陆亡灵面前，让你看穿它门脸的破绽。磨成一截断柱状，刻着「无根，无归」。", price: 5, passive: "hearthSight" },
   husk_charm: { id: "husk_charm", name: "人形残符", desc: "空壳·偷人者身上捻得的低阶咒符。剧情中可照亮灰原骨冢腔室里被磨平的「人门」，亦能在骨冢亡灵面前，让你看穿它壳脸的破绽。磨成一只空面具状，刻着「无人，无痛」。", price: 5, passive: "huskSight" },
   mirror_charm: { id: "mirror_charm", name: "真我残符", desc: "镜我·偷我者身上捻得的低阶咒符。剧情中可照亮灰雾深处镜心冢里被磨平的「我门」，亦能在镜中亡灵面前，让你看穿它镜脸的破绽。磨成一面凹镜状，刻着「无我，无痛」。", price: 6, passive: "mirrorSight" },
+  home_charm: { id: "home_charm", name: "归念残符", desc: "归墟·夺归者身上捻得的低阶咒符。剧情中可照亮灰雾最深处归墟里被磨平的「归门」，亦能在归墟亡灵面前，让你看穿它门环脸的破绽。磨成一只半掩的门环状，刻着「无归，无痛」。", price: 6, passive: "homeSight" },
 };
 
 // ============ 敌人 ============
@@ -798,6 +799,36 @@ export const ENEMIES: Record<string, Enemy> = {
     ],
     loot: [{ t: "pounds", v: 26 }, { t: "flag", k: "mirror_down", v: 1 }, { t: "item", k: "seal_card", v: 2 }, { t: "item", k: "charm_anchor", v: 1 }, { t: "sanity", v: -11 }],
     digest: 30,
+  },
+  home_culler: {
+    key: "home_culler",
+    name: "归墟·夺归者",
+    title: "归墟学派遣来收归念的暗哨",
+    hp: 62, atk: 12, dodge: 17, undead: true, sanitySight: 13,
+    intro: "灰雾最深处归墟外那片半掩的门环林里，一个裹着被灰雾泡透了边、风干成门板状的、灰麻布的人形，从一只半掩的、磨平了门环的旧门后，「归」了出来——不是走，是归，像没有来处，又像所有来处，都归到它身上。它没有脸，只有一面被磨平的、像雾凝成的、半掩的门环脸。它不开口，只把一只灰白的手，缓缓朝你伸来：它不是要你的命，它是要，你的「归念」——你心里那点「该回哪儿」的劲。你掌心那枚刻着你塔罗会代号的铜币，烫了一下——它认得，这是比凡俗之躯更「值钱」的归念。",
+    moves: [
+      { name: "门环之掌", msg: "夺归者一掌印来，掌心的门环要归走你的归念", dmg: 13, w: 3 },
+      { name: "夺归低语", msg: "它门环般的脸里渗出一段不属于人声的低语，直钻你脑后那点「该回哪儿」的劲", dmg: 4, sanity: 7, w: 2 },
+      { name: "雾门半掩", msg: "它在身前凝出一扇半掩的厚雾门，挡住这一击", ward: 15, w: 2 },
+      { name: "无归反噬", msg: "它夺归夺得太多，门环裂开一道缝，自己的归念反漏了出来", thorns: 11, w: 1, belowHalf: true },
+    ],
+    loot: [{ t: "pounds", v: 15 }, { t: "flag", k: "culler15_down", v: 1 }, { t: "item", k: "home_charm", v: 1 }, { t: "item", k: "potion_mind", v: 2 }],
+    digest: 20,
+  },
+  home_aspect: {
+    key: "home_aspect",
+    name: "归念聚合体",
+    title: "灰雾最深处归墟里「没人再归得回」长成之物",
+    hp: 88, atk: 14, dodge: 14, undead: true, sanitySight: 19,
+    intro: "灰雾最深处归墟，是一处被雾本身磨成门环的、半掩着无数「归处」的、没人再归得回的旧归冢。冢腔正中悬浮着这团东西——它由太多被「归墟学派」夺走的、没人再有归念的真我聚成，时而像一只只叠在一起的、半掩的、磨平了门环的旧门，时而像无数只灰白、向内归、却归不到任何「我该回哪儿」的手。它不看你——它透过门环看你掌心那枚刻着代号的铜币，像在认，下一个该被它「收」、从此再归不得回的，是不是你。它饿的，不是「真我」——是「归念」。",
+    moves: [
+      { name: "千门之归", msg: "它身上无数扇半掩的雾门同时朝你张开，归出一股灰白的雾气", dmg: 13, sanity: 8, w: 3 },
+      { name: "收归", msg: "它像读一卷磨了字的旧归书，翻读你「该回哪儿」", sanity: 13, w: 2 },
+      { name: "吞归补门", msg: "它把一缕属于某位不再归得回的人的「归念」吞回家腔，缝补自己", heal: 13, w: 1, belowHalf: true },
+      { name: "雾冢成门", msg: "灰白的雾气在它身周凝成一座雾冢般的、半掩的厚门壁", ward: 17, w: 2 },
+    ],
+    loot: [{ t: "pounds", v: 30 }, { t: "flag", k: "home_down", v: 1 }, { t: "item", k: "seal_card", v: 2 }, { t: "item", k: "charm_anchor", v: 1 }, { t: "sanity", v: -12 }],
+    digest: 34,
   },
   // ---- 第四章·钟楼支线敌人 ----
   puppet: {
