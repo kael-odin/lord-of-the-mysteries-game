@@ -235,7 +235,8 @@ export const STORY_19: StoryNode[] = [
       { text: "在路碑边生火休整", sub: "一壶雾灰茶：生命+8、灵性+6（每夜一次）", once: "rested20", next: "c20_hub", effects: [{ t: "hp", v: 8 }, { t: "sp", v: 6 }, { t: "sanity", v: 2 }] },
       { text: "再走一段你与同路人同走认完的那段旧道", sub: "可选支线：你们同走的那段，那点余烬，还有一段没散尽的旧事", once: "took_samepath", req: { flag: "samepath_down" }, next: "arc_samepath_start" },
       { text: "合上眼，顺印记上桌（塔罗会）", sub: "灰雾之上，你的椅子温着", hidden: { flag: "tarot_thirteenth_climax" }, next: "c20_climax" },
-      { text: "启程·回贝克兰德·煤气灯街", sub: "雾都的灯，也该回去看一眼了", req: { flag: "tarot_thirteenth_done" }, next: "ending_samepath" },
+      { text: "合上眼，顺印记，往各自那一段走·各自", sub: "雾都的灯，也该回去看一眼了；下一程，各自，走", req: { flag: "tarot_thirteenth_done" }, next: "c21_start" },
+      { text: "【终】同路者·与同路人同走一段，是我的了", sub: "达成第五卷·同路结局·承", req: { flag: "tarot_thirteenth_done" }, next: "ending_samepath" },
     ],
   },
   {
