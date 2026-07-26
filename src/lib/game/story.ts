@@ -22,8 +22,9 @@ import { STORY_20 } from "./story20";
 import { STORY_21 } from "./story21";
 import { STORY_22 } from "./story22";
 import { STORY_23 } from "./story23";
+import { STORY_24 } from "./story24";
 
-export const ALL_NODES: StoryNode[] = [...STORY_1, ...STORY_2, ...STORY_3, ...STORY_4, ...STORY_5, ...STORY_6, ...STORY_7, ...STORY_8, ...STORY_9, ...STORY_10, ...STORY_11, ...STORY_12, ...STORY_13, ...STORY_14, ...STORY_15, ...STORY_16, ...STORY_17, ...STORY_18, ...STORY_19, ...STORY_20, ...STORY_21, ...STORY_22, ...STORY_23];
+export const ALL_NODES: StoryNode[] = [...STORY_1, ...STORY_2, ...STORY_3, ...STORY_4, ...STORY_5, ...STORY_6, ...STORY_7, ...STORY_8, ...STORY_9, ...STORY_10, ...STORY_11, ...STORY_12, ...STORY_13, ...STORY_14, ...STORY_15, ...STORY_16, ...STORY_17, ...STORY_18, ...STORY_19, ...STORY_20, ...STORY_21, ...STORY_22, ...STORY_23, ...STORY_24];
 
 export const STORY_MAP: Record<string, StoryNode> = Object.fromEntries(
   ALL_NODES.map((n) => [n.id, n]),
@@ -95,6 +96,8 @@ export const ENDINGS: Record<string, { title: string; tone: "gold" | "red" | "gr
   knowpath: { title: "认者", tone: "gold", hint: "你在塔罗会之外被派的差事之外走完定完的路之外自己认出一桩灰雾里没被叫出名字的没被认出过的东西。十六枚铜币并排在扶手上——塔罗会的椅子，替你，记你自己认出来的那张脸。第六卷，开。" },
   // 第二十四章新结局（第六卷·承）——变奏章：认名章，自己认出一个被忘了的名字
   nameknower: { title: "认名者", tone: "gold", hint: "你在塔罗会之外被派的差事之外走完定完的路之外认出没被叫出名字的东西之外自己认出一个被忘了名字的旧物重新叫出它的名字。十七枚铜币并排在扶手上——塔罗会的椅子，替你，记你认出来的那个名字。第六卷，承。" },
+  // 第二十五章新结局（第六卷·转）——变奏章：认人章，自己认出一个被藏起来的人
+  personknower: { title: "认人者", tone: "gold", hint: "你在塔罗会之外被派的差事之外走完定完的路之外认出没被叫出名字的东西之外认名被忘了名字的之外自己认出一个被藏起来的人把他认出来。十八枚铜币并排在扶手上——塔罗会的椅子，替你，记你认出来的那个人。第六卷，转。" },
 };
 
 export const ALL_ENDING_IDS = Object.keys(ENDINGS);
@@ -124,4 +127,5 @@ export const CHAPTER_TITLES: Record<number, string> = {
   22: "第二十二章 · 灰雾之下·自定",
   23: "第二十三章 · 灰雾之下·认",
   24: "第二十四章 · 灰雾之下·认名",
+  25: "第二十五章 · 灰雾之下·认人",
 };
