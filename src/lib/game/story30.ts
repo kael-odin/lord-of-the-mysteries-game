@@ -255,6 +255,7 @@ export const STORY_30: StoryNode[] = [
       { text: "在路碑边生火休整", sub: "一壶雾灰茶：生命+8、灵性+6（每夜一次）", once: "rested31", next: "c31_hub", effects: [{ t: "hp", v: 8 }, { t: "sp", v: 6 }, { t: "sanity", v: 2 }] },
       { text: "再等一程你等过的地方里的旧事", sub: "可选支线：你走过的旧地方里，那点没人再等的，还有一处", once: "took_waiter", req: { flag: "waiter_down" }, next: "arc_waiter_start" },
       { text: "合上眼，顺印记上桌（塔罗会）", sub: "灰雾之上，你的椅子温着", hidden: { flag: "tarot_twentyfourth_climax" }, next: "c31_climax" },
+      { text: "合上眼，顺印记，往没人再等名的地方走·等名", sub: "第八卷·承：等下一程后，你，等名", req: { flag: "tarot_twentyfourth_done" }, next: "c32_start" },
       { text: "【终】等者·自己往灰雾里等一程，是我的了", sub: "达成第八卷·等结局·开", req: { flag: "tarot_twentyfourth_done" }, next: "ending_waiter" },
     ],
   },
