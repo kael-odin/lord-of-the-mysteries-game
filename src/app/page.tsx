@@ -38,8 +38,8 @@ const FEATURES = [
   },
   {
     icon: Scroll,
-    title: "廷根 · 五章冒险",
-    desc: "从水仙花街的死而复生开始，加入值夜者，调查安提哥努斯笔记——直面密修会、钟楼回声、绯红假面舞会，直到灰雾之上的第二次邀约。",
+    title: "四卷 · 十八章冒险",
+    desc: "从水仙花街的死而复生开始，加入值夜者，调查安提哥努斯笔记——直面粉红舞会、大雾霾、灰雾之上·塔罗会，再随海渊、北陆、南港、旧都、骨冢、镜心一路沉入灰雾深处的归墟、归名，最后回到廷根忆归、停在贝克兰德的此刻。四卷母题：守护→偷→归→此刻。",
   },
 ];
 
@@ -116,7 +116,7 @@ export default function LandingPage() {
           </div>
 
           <p className="mt-6 text-[10px] tracking-[0.2em] text-white/30" style={{ animation: "fadeUp 1s ease both", animationDelay: "0.6s" }}>
-            本地存档 · 五大章节 · {ALL_ENDING_IDS.length} 种结局 · 六条途径攀升至序列8
+            本地存档 · 四卷十八章 · {ALL_ENDING_IDS.length} 种结局 · 六条途径攀升至序列8
           </p>
         </div>
 
