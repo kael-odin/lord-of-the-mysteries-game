@@ -13,8 +13,9 @@ import { STORY_11 } from "./story11";
 import { STORY_12 } from "./story12";
 import { STORY_13 } from "./story13";
 import { STORY_14 } from "./story14";
+import { STORY_15 } from "./story15";
 
-export const ALL_NODES: StoryNode[] = [...STORY_1, ...STORY_2, ...STORY_3, ...STORY_4, ...STORY_5, ...STORY_6, ...STORY_7, ...STORY_8, ...STORY_9, ...STORY_10, ...STORY_11, ...STORY_12, ...STORY_13, ...STORY_14];
+export const ALL_NODES: StoryNode[] = [...STORY_1, ...STORY_2, ...STORY_3, ...STORY_4, ...STORY_5, ...STORY_6, ...STORY_7, ...STORY_8, ...STORY_9, ...STORY_10, ...STORY_11, ...STORY_12, ...STORY_13, ...STORY_14, ...STORY_15];
 
 export const STORY_MAP: Record<string, StoryNode> = Object.fromEntries(
   ALL_NODES.map((n) => [n.id, n]),
@@ -68,6 +69,8 @@ export const ENDINGS: Record<string, { title: string; tone: "gold" | "red" | "gr
   truthkeeper: { title: "守真者", tone: "gold", hint: "你停了镜心冢那东西。七枚铜币并排在扶手上——塔罗会，开始引路你了。第三卷，合。" },
   // 第十五章新结局（第四卷·开）
   homekeeper: { title: "守归者", tone: "gold", hint: "你停了归墟那东西。八枚铜币并排在扶手上——塔罗会的椅子，开始自己引路你了。第四卷，开。" },
+  // 第十六章新结局（第四卷·承）
+  namehomekeeper: { title: "守归名者", tone: "gold", hint: "你停了归名冢那东西。九枚铜币并排在扶手上——塔罗会的椅子，替你记归名了。第四卷，承。" },
 };
 
 export const ALL_ENDING_IDS = Object.keys(ENDINGS);
@@ -88,4 +91,5 @@ export const CHAPTER_TITLES: Record<number, string> = {
   13: "第十三章 · 灰原骨冢·先人回响",
   14: "第十四章 · 灰雾深处·真我",
   15: "第十五章 · 灰雾最深处·归处",
+  16: "第十六章 · 灰雾更深处·归名",
 };

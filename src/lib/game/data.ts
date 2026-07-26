@@ -265,6 +265,7 @@ export const ITEMS: Record<string, Item> = {
   husk_charm: { id: "husk_charm", name: "人形残符", desc: "空壳·偷人者身上捻得的低阶咒符。剧情中可照亮灰原骨冢腔室里被磨平的「人门」，亦能在骨冢亡灵面前，让你看穿它壳脸的破绽。磨成一只空面具状，刻着「无人，无痛」。", price: 5, passive: "huskSight" },
   mirror_charm: { id: "mirror_charm", name: "真我残符", desc: "镜我·偷我者身上捻得的低阶咒符。剧情中可照亮灰雾深处镜心冢里被磨平的「我门」，亦能在镜中亡灵面前，让你看穿它镜脸的破绽。磨成一面凹镜状，刻着「无我，无痛」。", price: 6, passive: "mirrorSight" },
   home_charm: { id: "home_charm", name: "归念残符", desc: "归墟·夺归者身上捻得的低阶咒符。剧情中可照亮灰雾最深处归墟里被磨平的「归门」，亦能在归墟亡灵面前，让你看穿它门环脸的破绽。磨成一只半掩的门环状，刻着「无归，无痛」。", price: 6, passive: "homeSight" },
+  name_charm: { id: "name_charm", name: "归名残符", desc: "归名·夺名者身上捻得的低阶咒符。剧情中可照亮灰雾更深处归名冢里被磨平门环的「名门」，亦能在归名亡灵面前，让你看穿它那面磨平了门环的脸的破绽。磨成一只磨平了门环的旧门状，刻着「无归名，无痛」。", price: 6, passive: "nameSight" },
 };
 
 // ============ 敌人 ============
@@ -829,6 +830,36 @@ export const ENEMIES: Record<string, Enemy> = {
     ],
     loot: [{ t: "pounds", v: 30 }, { t: "flag", k: "home_down", v: 1 }, { t: "item", k: "seal_card", v: 2 }, { t: "item", k: "charm_anchor", v: 1 }, { t: "sanity", v: -12 }],
     digest: 34,
+  },
+  name_culler: {
+    key: "name_culler",
+    name: "归名·夺名者",
+    title: "归名派遣来收归名的暗哨",
+    hp: 66, atk: 13, dodge: 17, undead: true, sanitySight: 14,
+    intro: "灰雾更深处归名冢外那片磨平了门环的无名林里，一个裹着被灰雾泡透了边、风干成磨平了门环的旧门板状的、灰麻布的人形，从一扇半掩的、连门环都磨平了的旧门后，「归」了出来——不是走，是归，像没有归名，又像所有归名，都归到它身上。它没有脸，只有一面被磨平了门环的、像雾凝成的、连「归名」都一并磨平的门环脸。它不开口，只把一只灰白的手，缓缓朝你伸来：它不是要你的命，它是要，你的「归名」——你心里那点「我是谁的归人」的劲。你掌心那枚刻着你塔罗会代号的铜币，烫了一下——它认得，这是比凡俗之躯更「值钱」的归名。",
+    moves: [
+      { name: "无名之掌", msg: "夺名者一掌印来，掌心那面磨平了门环的旧门要归走你的归名", dmg: 14, w: 3 },
+      { name: "夺名低语", msg: "它那面磨平了门环的脸里渗出一段不属于人声的低语，直钻你脑后那点「我是谁的归人」的劲", dmg: 4, sanity: 7, w: 2 },
+      { name: "雾门磨名", msg: "它在身前凝出一扇磨平了门环的厚雾门，挡住这一击", ward: 16, w: 2 },
+      { name: "无名反噬", msg: "它夺名夺得太多，那面磨平了门环的脸裂开一道缝，自己的归名反漏了出来", thorns: 12, w: 1, belowHalf: true },
+    ],
+    loot: [{ t: "pounds", v: 16 }, { t: "flag", k: "culler16_down", v: 1 }, { t: "item", k: "name_charm", v: 1 }, { t: "item", k: "potion_mind", v: 2 }],
+    digest: 22,
+  },
+  name_aspect: {
+    key: "name_aspect",
+    name: "归名聚合体",
+    title: "灰雾更深处归名冢里「没人再归于谁」长成之物",
+    hp: 92, atk: 15, dodge: 14, undead: true, sanitySight: 20,
+    intro: "灰雾更深处归名冢，是一处被雾本身磨平了门环的、半掩着无数「归名」的、没人再「归于谁」的旧归名冢。冢腔正中悬浮着这团东西——它由太多被「归名派」夺走的、没人再有归名的真我聚成，时而像一只只叠在一起的、磨平了门环的、连「归名」都一并磨平的旧门，时而像无数只灰白、向内归、却归不到任何「我是谁的归人」的手。它不看你——它透过那面磨平了门环的脸看你掌心那枚刻着代号的铜币，像在认，下一个该被它「收」、从此再不归于任何「谁」的，是不是你。它饿的，不是「归念」——是「归名」。",
+    moves: [
+      { name: "千门之归名", msg: "它身上无数扇磨平了门环的雾门同时朝你张开，归出一股灰白的雾气", dmg: 14, sanity: 8, w: 3 },
+      { name: "收名", msg: "它像读一卷磨了字的旧归名书，翻读你「是谁的归人」", sanity: 14, w: 2 },
+      { name: "吞名补门", msg: "它把一缕属于某位不再归于谁的人的「归名」吞回家腔，缝补自己", heal: 14, w: 1, belowHalf: true },
+      { name: "雾冢成名", msg: "灰白的雾气在它身周凝成一座雾冢般的、磨平了门环的厚门壁", ward: 18, w: 2 },
+    ],
+    loot: [{ t: "pounds", v: 32 }, { t: "flag", k: "name_down", v: 1 }, { t: "item", k: "seal_card", v: 2 }, { t: "item", k: "charm_anchor", v: 1 }, { t: "sanity", v: -13 }],
+    digest: 36,
   },
   // ---- 第四章·钟楼支线敌人 ----
   puppet: {

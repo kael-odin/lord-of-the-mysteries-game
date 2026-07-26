@@ -306,7 +306,8 @@ export const STORY_14: StoryNode[] = [
       { text: "在阁外雾门下生火休整", sub: "一壶雾灰烈酒：生命+8、灵性+6（每夜一次）", once: "rested15", next: "c15_hub", effects: [{ t: "hp", v: 8 }, { t: "sp", v: 6 }] },
       { text: "替老雾去残归阁深处废归塔看一看", sub: "可选支线：废归塔里，有一段关于「归念是锚」的旧事", once: "took_wayfarer", next: "arc_wayfarer_start" },
       { text: "合上眼，顺印记上桌（塔罗会）", sub: "灰雾之上，你的椅子温着", hidden: { flag: "tarot_eighth_climax" }, next: "c15_climax" },
-      { text: "启程·回贝克兰德市中心", sub: "雾都的灯，也该回去看一眼了", req: { flag: "tarot_eighth_done" }, next: "ending_homekeeper" },
+      { text: "合上眼，顺印记沉进灰雾更更深处", sub: "灰雾之上那册书，翻到了第四卷第二页·「失」「归」", req: { flag: "tarot_eighth_done" }, next: "c16_start" },
+      { text: "【终】守归者·第八桩差事，是我的了", sub: "达成第四卷·归墟结局·开", req: { flag: "tarot_eighth_done" }, next: "ending_homekeeper" },
     ],
   },
   {
