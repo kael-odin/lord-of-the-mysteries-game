@@ -248,6 +248,7 @@ export const STORY_22: StoryNode[] = [
       { text: "在路碑边生火休整", sub: "一壶雾灰茶：生命+8、灵性+6（每夜一次）", once: "rested23", next: "c23_hub", effects: [{ t: "hp", v: 8 }, { t: "sp", v: 6 }, { t: "sanity", v: 2 }] },
       { text: "再认一段你认过的旧地方里的旧事", sub: "可选支线：你走过的旧地方里，那点没被认出的，还有一段", once: "took_knowpath", req: { flag: "knowpath_down" }, next: "arc_knowpath_start" },
       { text: "合上眼，顺印记上桌（塔罗会）", sub: "灰雾之上，你的椅子温着", hidden: { flag: "tarot_sixteenth_climax" }, next: "c23_climax" },
+      { text: "合上眼，顺印记，往被忘了名字的那一段走·认名", sub: "你认出的那张脸之外，灰雾里，仍有东西，被忘了名字", req: { flag: "tarot_sixteenth_done" }, next: "c24_start" },
       { text: "【终】认者·自己认出一桩灰雾里没被认出过的，是我的了", sub: "达成第六卷·认结局·开", req: { flag: "tarot_sixteenth_done" }, next: "ending_knowpath" },
     ],
   },
