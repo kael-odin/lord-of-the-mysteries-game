@@ -370,7 +370,8 @@ export const STORY_16: StoryNode[] = [
       { text: "在旧公寓门口生火休整", sub: "一壶雾灰茶：生命+8、灵性+6（每夜一次）", once: "rested17", next: "c17_hub", effects: [{ t: "hp", v: 8 }, { t: "sp", v: 6 }] },
       { text: "再去钟楼，听一段没敲完的余声", sub: "可选支线：老钟里，还有一段关于「听钟之人」的旧事", once: "took_echo", next: "arc_echo_start" },
       { text: "合上眼，顺印记上桌（塔罗会）", sub: "灰雾之上，你的椅子温着", hidden: { flag: "tarot_tenth_climax" }, next: "c17_climax" },
-      { text: "启程·回贝克兰德市中心", sub: "雾都的灯，也该回去看一眼了", req: { flag: "tarot_tenth_done" }, next: "ending_memorykeeper" },
+      { text: "合上眼，顺印记去此刻·归处", sub: "第十一桩差事的方向，在当下", req: { flag: "tarot_tenth_done" }, next: "c18_start" },
+      { text: "【终】守忆者·十枚铜币并排，是我的了", sub: "达成第四卷·忆归结局·转", req: { flag: "tarot_tenth_done" }, next: "ending_memorykeeper" },
     ],
   },
   {

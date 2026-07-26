@@ -41,6 +41,7 @@ const ENDING_GROUPS: { label: string; ids: string[] }[] = [
   { label: "第十五章 · 灰雾最深处·归处", ids: ["homekeeper"] },
   { label: "第十六章 · 灰雾更深处·归名", ids: ["namehomekeeper"] },
   { label: "第十七章 · 灰雾之上·忆归", ids: ["memorykeeper"] },
+  { label: "第十八章 · 灰雾之上·归处", ids: ["momentkeeper"] },
 ];
 
 type Tab = "endings" | "pathways" | "dossier" | "guide";
@@ -281,6 +282,7 @@ const DOSSIER: DossierSection[] = [
       { flag: "name_down", title: "归名聚合体·名归", desc: "残名阁下旧归名冢腔里，那团由太多「没人再归于谁」长成、终于咬合成一个会自我归穿的归名之物，被你停了转。归名冢人停了半月的「是谁的归人」，重新被归了回来。" },
       { flag: "anchor16_down", title: "雾名·名锚·补", desc: "残名阁深处废名塔底，雾·雾名五十年前用自己「归名」钉下的那道「名之锚」，被你用九枚铜币的温热，补了一层。残名阁，认你了。" },
       { flag: "echo_down", title: "廷根·老钟的余声·补", desc: "廷根钟楼那口老钟里，某位旧守钟人临终前怕听钟的人以为天不再亮、特意没敲完的、最后一声，被你在钟楼下坐到天亮，认了出来。廷根的雾，又被晨光，拨淡了一寸。" },
+      { flag: "anchor_down", title: "灰河桥·老水手那船·靠", desc: "贝克兰德灰河桥栏边，老水手姓锚的、他「还惦记着」等了半辈子的那条船，被你在桥栏边望到天黑，望了过来——一艘旧得不能再旧的、小渔船，船头挂着一盏比煤气灯暖一档的灯。船自己靠了过来，把老水手，接走了。" },
     ],
   },
   {
