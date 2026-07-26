@@ -251,7 +251,8 @@ export const STORY_21: StoryNode[] = [
       { text: "在路碑边生火休整", sub: "一壶雾灰茶：生命+8、灵性+6（每夜一次）", once: "rested22", next: "c22_hub", effects: [{ t: "hp", v: 8 }, { t: "sp", v: 6 }, { t: "sanity", v: 2 }] },
       { text: "再走一段你自己定要认的那段地方", sub: "可选支线：你自己定的那条路上，那点余声，还有一段没散尽的旧事", once: "took_selfpath", req: { flag: "selfpath_down" }, next: "arc_selfpath_start" },
       { text: "合上眼，顺印记上桌（塔罗会）", sub: "灰雾之上，你的椅子温着", hidden: { flag: "tarot_fifteenth_climax" }, next: "c22_climax" },
-      { text: "启程·回贝克兰德·煤气灯街", sub: "雾都的灯，也该回去看一眼了", req: { flag: "tarot_fifteenth_done" }, next: "ending_selfpath" },
+      { text: "合上眼，顺印记，往没被认出的那一段走·认", sub: "你走完定完的路之外，灰雾里，仍有东西，没被认出", req: { flag: "tarot_fifteenth_done" }, next: "c23_start" },
+      { text: "【终】自定者·自己定往何处去并认完一桩，是我的了", sub: "达成第五卷·自定结局·合", req: { flag: "tarot_fifteenth_done" }, next: "ending_selfpath" },
     ],
   },
   {

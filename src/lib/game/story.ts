@@ -20,8 +20,9 @@ import { STORY_18 } from "./story18";
 import { STORY_19 } from "./story19";
 import { STORY_20 } from "./story20";
 import { STORY_21 } from "./story21";
+import { STORY_22 } from "./story22";
 
-export const ALL_NODES: StoryNode[] = [...STORY_1, ...STORY_2, ...STORY_3, ...STORY_4, ...STORY_5, ...STORY_6, ...STORY_7, ...STORY_8, ...STORY_9, ...STORY_10, ...STORY_11, ...STORY_12, ...STORY_13, ...STORY_14, ...STORY_15, ...STORY_16, ...STORY_17, ...STORY_18, ...STORY_19, ...STORY_20, ...STORY_21];
+export const ALL_NODES: StoryNode[] = [...STORY_1, ...STORY_2, ...STORY_3, ...STORY_4, ...STORY_5, ...STORY_6, ...STORY_7, ...STORY_8, ...STORY_9, ...STORY_10, ...STORY_11, ...STORY_12, ...STORY_13, ...STORY_14, ...STORY_15, ...STORY_16, ...STORY_17, ...STORY_18, ...STORY_19, ...STORY_20, ...STORY_21, ...STORY_22];
 
 export const STORY_MAP: Record<string, StoryNode> = Object.fromEntries(
   ALL_NODES.map((n) => [n.id, n]),
@@ -89,6 +90,8 @@ export const ENDINGS: Record<string, { title: string; tone: "gold" | "red" | "gr
   eachpath: { title: "各自者", tone: "gold", hint: "你与塔罗会同路人在岔口分别后一个人自走一条没走过的旧道独自认完一桩没散尽的余烬。十四枚铜币并排在扶手上——塔罗会的椅子，替你，记你各自走的那段路。第五卷，转。" },
   // 第二十二章新结局（第五卷·合）——变奏章：自定章，自己定往何处去并认完一桩余烬
   selfpath: { title: "自定者", tone: "gold", hint: "你在塔罗会之外被派的差事之外自己定了往何处去独自认完一桩自己定要认的没散尽的余声。十五枚铜币并排在扶手上——塔罗会的椅子，替你，记你自己定的那段路。第五卷，合。" },
+  // 第二十三章新结局（第六卷·开）——变奏章：认章，自己认出一桩灰雾里没被认出过的东西
+  knowpath: { title: "认者", tone: "gold", hint: "你在塔罗会之外被派的差事之外走完定完的路之外自己认出一桩灰雾里没被叫出名字的没被认出过的东西。十六枚铜币并排在扶手上——塔罗会的椅子，替你，记你自己认出来的那张脸。第六卷，开。" },
 };
 
 export const ALL_ENDING_IDS = Object.keys(ENDINGS);
@@ -116,4 +119,5 @@ export const CHAPTER_TITLES: Record<number, string> = {
   20: "第二十章 · 灰雾之下·同路",
   21: "第二十一章 · 灰雾之下·各自",
   22: "第二十二章 · 灰雾之下·自定",
+  23: "第二十三章 · 灰雾之下·认",
 };

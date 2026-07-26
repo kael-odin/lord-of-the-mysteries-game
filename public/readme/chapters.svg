@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2340 150" width="100%" role="img" aria-label="二十二章剧情脉络：苏醒、值夜者、安提哥努斯之影、钟楼失踪案、绯红假面舞会、贝克兰德的雾、大雾霾、灰雾之上·塔罗会、海上之城、北陆·霜砚镇、南港归潮、旧都·回声、灰原骨冢·先人回响、灰雾深处·真我、灰雾最深处·归处、灰雾更深处·归名、灰雾之上·忆归、灰雾之上·归处、灰雾之下·行路、灰雾之下·同路、灰雾之下·各自、灰雾之下·自定">
-  <title>二十二章剧情脉络</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2450 150" width="100%" role="img" aria-label="二十三章剧情脉络：苏醒、值夜者、安提哥努斯之影、钟楼失踪案、绯红假面舞会、贝克兰德的雾、大雾霾、灰雾之上·塔罗会、海上之城、北陆·霜砚镇、南港归潮、旧都·回声、灰原骨冢·先人回响、灰雾深处·真我、灰雾最深处·归处、灰雾更深处·归名、灰雾之上·忆归、灰雾之上·归处、灰雾之下·行路、灰雾之下·同路、灰雾之下·各自、灰雾之下·自定、灰雾之下·认">
+  <title>二十三章剧情脉络</title>
   <defs>
     <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0" stop-color="#c9a86a" stop-opacity="0"/>
@@ -9,15 +9,17 @@
       <stop offset="1" stop-color="#c9a86a" stop-opacity="0"/>
     </linearGradient>
   </defs>
-  <rect width="2340" height="150" fill="#0a0b12"/>
+  <rect width="2450" height="150" fill="#0a0b12"/>
 
   <!-- connecting ember line -->
-  <rect x="60" y="74" width="2220" height="1.5" fill="url(#line)"/>
+  <rect x="60" y="74" width="2330" height="1.5" fill="url(#line)"/>
 
   <!-- Vol.5 opener marker: a thin amber tick where the new volume begins -->
   <rect x="1932" y="60" width="1" height="30" fill="#c9a86a" opacity="0.35"/>
   <!-- Vol.5 closer marker: a thin amber tick where the volume closes -->
   <rect x="2272" y="60" width="1" height="30" fill="#c9a86a" opacity="0.35"/>
+  <!-- Vol.6 opener marker: a thin amber tick where the new volume begins -->
+  <rect x="2362" y="60" width="1" height="30" fill="#c9a86a" opacity="0.35"/>
 
   <g font-family="Georgia, 'Times New Roman', serif" text-rendering="geometricPrecision">
     <!-- 1 -->
@@ -125,11 +127,16 @@
     <text x="2160" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#7a7f90">第 二 十 一 章</text>
     <text x="2160" y="108" text-anchor="middle" font-size="13" fill="#e7d9b8">各自·第五卷转</text>
     <text x="2160" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">各自者·十四枚铜币</text>
-    <!-- 22 (current frontier — Vol.5 合·变奏章：自定章·自己定往何处去并认完一桩余烬) -->
-    <circle cx="2275" cy="75" r="11" fill="#c9a86a" opacity="0.18"/>
-    <circle cx="2275" cy="75" r="7" fill="#c9a86a"/>
-    <text x="2275" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#c9a86a" opacity="0.9">第二十二章 · 合</text>
-    <text x="2275" y="108" text-anchor="middle" font-size="12" fill="#e7d9b8">自定·第五卷合</text>
+    <!-- 22 (Vol.5 合 — closed) -->
+    <circle cx="2275" cy="75" r="9" fill="#0a0b12" stroke="#c9a86a" stroke-width="1.5"/>
+    <text x="2275" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#7a7f90">第 二 十 二 章</text>
+    <text x="2275" y="108" text-anchor="middle" font-size="13" fill="#e7d9b8">自定·第五卷合</text>
     <text x="2275" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">自定者·十五枚铜币</text>
+    <!-- 23 (current frontier — Vol.6 开·变奏章：认章·自己认出一桩灰雾里没被叫出名字的东西) -->
+    <circle cx="2385" cy="75" r="11" fill="#c9a86a" opacity="0.18"/>
+    <circle cx="2385" cy="75" r="7" fill="#c9a86a"/>
+    <text x="2385" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#c9a86a" opacity="0.9">第二十三章 · 开</text>
+    <text x="2385" y="108" text-anchor="middle" font-size="12" fill="#e7d9b8">认·第六卷开</text>
+    <text x="2385" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">认者·十六枚铜币</text>
   </g>
 </svg>
