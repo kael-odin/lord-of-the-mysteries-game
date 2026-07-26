@@ -311,7 +311,8 @@ export const STORY_15: StoryNode[] = [
       { text: "在阁外雾门下生火休整", sub: "一壶雾灰烈酒：生命+8、灵性+6（每夜一次）", once: "rested16", next: "c16_hub", effects: [{ t: "hp", v: 8 }, { t: "sp", v: 6 }] },
       { text: "替老雾去残名阁深处废名塔看一看", sub: "可选支线：废名塔里，有一段关于「归名是锚」的旧事", once: "took_nameless", next: "arc_nameless_start" },
       { text: "合上眼，顺印记上桌（塔罗会）", sub: "灰雾之上，你的椅子温着", hidden: { flag: "tarot_ninth_climax" }, next: "c16_climax" },
-      { text: "启程·回贝克兰德市中心", sub: "雾都的灯，也该回去看一眼了", req: { flag: "tarot_ninth_done" }, next: "ending_namehomekeeper" },
+      { text: "合上眼，顺印记往回走·忆归", sub: "第十桩差事的方向，在来处", req: { flag: "tarot_ninth_done" }, next: "c17_start" },
+      { text: "【终】守归名者·九枚铜币并排，是我的了", sub: "达成第四卷·归名结局·承", req: { flag: "tarot_ninth_done" }, next: "ending_namehomekeeper" },
     ],
   },
   {

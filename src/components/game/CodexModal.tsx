@@ -40,6 +40,7 @@ const ENDING_GROUPS: { label: string; ids: string[] }[] = [
   { label: "第十四章 · 灰雾深处·真我", ids: ["truthkeeper"] },
   { label: "第十五章 · 灰雾最深处·归处", ids: ["homekeeper"] },
   { label: "第十六章 · 灰雾更深处·归名", ids: ["namehomekeeper"] },
+  { label: "第十七章 · 灰雾之上·忆归", ids: ["memorykeeper"] },
 ];
 
 type Tab = "endings" | "pathways" | "dossier" | "guide";
@@ -279,6 +280,7 @@ const DOSSIER: DossierSection[] = [
       { flag: "culler16_down", title: "归名·夺名者·门环磨平", desc: "灰雾更深处归名冢无名林里，归名派遣来收归名的暗哨，那面磨平了门环的脸，被你碎成了几瓣。每一瓣里，都半掩着一个被夺走的、不归于任何「谁」的「归名」。" },
       { flag: "name_down", title: "归名聚合体·名归", desc: "残名阁下旧归名冢腔里，那团由太多「没人再归于谁」长成、终于咬合成一个会自我归穿的归名之物，被你停了转。归名冢人停了半月的「是谁的归人」，重新被归了回来。" },
       { flag: "anchor16_down", title: "雾名·名锚·补", desc: "残名阁深处废名塔底，雾·雾名五十年前用自己「归名」钉下的那道「名之锚」，被你用九枚铜币的温热，补了一层。残名阁，认你了。" },
+      { flag: "echo_down", title: "廷根·老钟的余声·补", desc: "廷根钟楼那口老钟里，某位旧守钟人临终前怕听钟的人以为天不再亮、特意没敲完的、最后一声，被你在钟楼下坐到天亮，认了出来。廷根的雾，又被晨光，拨淡了一寸。" },
     ],
   },
   {
