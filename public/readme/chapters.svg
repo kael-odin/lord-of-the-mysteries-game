@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2670 150" width="100%" role="img" aria-label="二十五章剧情脉络：苏醒、值夜者、安提哥努斯之影、钟楼失踪案、绯红假面舞会、贝克兰德的雾、大雾霾、灰雾之上·塔罗会、海上之城、北陆·霜砚镇、南港归潮、旧都·回声、灰原骨冢·先人回响、灰雾深处·真我、灰雾最深处·归处、灰雾更深处·归名、灰雾之上·忆归、灰雾之上·归处、灰雾之下·行路、灰雾之下·同路、灰雾之下·各自、灰雾之下·自定、灰雾之下·认、灰雾之下·认名、灰雾之下·认人">
-  <title>二十五章剧情脉络</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2780 150" width="100%" role="img" aria-label="二十六章剧情脉络：苏醒、值夜者、安提哥努斯之影、钟楼失踪案、绯红假面舞会、贝克兰德的雾、大雾霾、灰雾之上·塔罗会、海上之城、北陆·霜砚镇、南港归潮、旧都·回声、灰原骨冢·先人回响、灰雾深处·真我、灰雾最深处·归处、灰雾更深处·归名、灰雾之上·忆归、灰雾之上·归处、灰雾之下·行路、灰雾之下·同路、灰雾之下·各自、灰雾之下·自定、灰雾之下·认、灰雾之下·认名、灰雾之下·认人、灰雾之下·认心">
+  <title>二十六章剧情脉络</title>
   <defs>
     <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0" stop-color="#c9a86a" stop-opacity="0"/>
@@ -9,10 +9,10 @@
       <stop offset="1" stop-color="#c9a86a" stop-opacity="0"/>
     </linearGradient>
   </defs>
-  <rect width="2670" height="150" fill="#0a0b12"/>
+  <rect width="2780" height="150" fill="#0a0b12"/>
 
   <!-- connecting ember line -->
-  <rect x="60" y="74" width="2550" height="1.5" fill="url(#line)"/>
+  <rect x="60" y="74" width="2660" height="1.5" fill="url(#line)"/>
 
   <!-- Vol.5 opener marker: a thin amber tick where the new volume begins -->
   <rect x="1932" y="60" width="1" height="30" fill="#c9a86a" opacity="0.35"/>
@@ -20,6 +20,8 @@
   <rect x="2272" y="60" width="1" height="30" fill="#c9a86a" opacity="0.35"/>
   <!-- Vol.6 opener marker: a thin amber tick where the new volume begins -->
   <rect x="2362" y="60" width="1" height="30" fill="#c9a86a" opacity="0.35"/>
+  <!-- Vol.6 closer marker: a thin amber tick where the volume closes -->
+  <rect x="2605" y="60" width="1" height="30" fill="#c9a86a" opacity="0.35"/>
 
   <g font-family="Georgia, 'Times New Roman', serif" text-rendering="geometricPrecision">
     <!-- 1 -->
@@ -142,11 +144,16 @@
     <text x="2495" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#7a7f90">第 二 十 四 章</text>
     <text x="2495" y="108" text-anchor="middle" font-size="13" fill="#e7d9b8">认名·第六卷承</text>
     <text x="2495" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">认名者·十七枚铜币</text>
-    <!-- 25 (current frontier — Vol.6 转·变奏章：认人章·自己认出一个被藏起来的人) -->
-    <circle cx="2605" cy="75" r="11" fill="#c9a86a" opacity="0.18"/>
-    <circle cx="2605" cy="75" r="7" fill="#c9a86a"/>
-    <text x="2605" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#c9a86a" opacity="0.9">第二十五章 · 转</text>
-    <text x="2605" y="108" text-anchor="middle" font-size="12" fill="#e7d9b8">认人·第六卷转</text>
+    <!-- 25 (Vol.6 转 — closed) -->
+    <circle cx="2605" cy="75" r="9" fill="#0a0b12" stroke="#c9a86a" stroke-width="1.5"/>
+    <text x="2605" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#7a7f90">第 二 十 五 章</text>
+    <text x="2605" y="108" text-anchor="middle" font-size="13" fill="#e7d9b8">认人·第六卷转</text>
     <text x="2605" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">认人者·十八枚铜币</text>
+    <!-- 26 (current frontier — Vol.6 合·变奏章：认心章·自己认出一颗被藏起来的心；主位合上第六卷) -->
+    <circle cx="2715" cy="75" r="11" fill="#c9a86a" opacity="0.18"/>
+    <circle cx="2715" cy="75" r="7" fill="#c9a86a"/>
+    <text x="2715" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#c9a86a" opacity="0.9">第二十六章 · 合</text>
+    <text x="2715" y="108" text-anchor="middle" font-size="12" fill="#e7d9b8">认心·第六卷合</text>
+    <text x="2715" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">认心者·十九枚铜币</text>
   </g>
 </svg>
