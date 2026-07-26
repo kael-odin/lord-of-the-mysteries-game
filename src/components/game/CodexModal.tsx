@@ -42,6 +42,7 @@ const ENDING_GROUPS: { label: string; ids: string[] }[] = [
   { label: "第十六章 · 灰雾更深处·归名", ids: ["namehomekeeper"] },
   { label: "第十七章 · 灰雾之上·忆归", ids: ["memorykeeper"] },
   { label: "第十八章 · 灰雾之上·归处", ids: ["momentkeeper"] },
+  { label: "第十九章 · 灰雾之下·行路", ids: ["roadwalker"] },
 ];
 
 type Tab = "endings" | "pathways" | "dossier" | "guide";
@@ -283,6 +284,7 @@ const DOSSIER: DossierSection[] = [
       { flag: "anchor16_down", title: "雾名·名锚·补", desc: "残名阁深处废名塔底，雾·雾名五十年前用自己「归名」钉下的那道「名之锚」，被你用九枚铜币的温热，补了一层。残名阁，认你了。" },
       { flag: "echo_down", title: "廷根·老钟的余声·补", desc: "廷根钟楼那口老钟里，某位旧守钟人临终前怕听钟的人以为天不再亮、特意没敲完的、最后一声，被你在钟楼下坐到天亮，认了出来。廷根的雾，又被晨光，拨淡了一寸。" },
       { flag: "anchor_down", title: "灰河桥·老水手那船·靠", desc: "贝克兰德灰河桥栏边，老水手姓锚的、他「还惦记着」等了半辈子的那条船，被你在桥栏边望到天黑，望了过来——一艘旧得不能再旧的、小渔船，船头挂着一盏比煤气灯暖一档的灯。船自己靠了过来，把老水手，接走了。" },
+      { flag: "road_down", title: "旧道·没走完的那一段·走完", desc: "你自选的那条旧道深处，某位旧脚夫怕走他这条路的人以为路不再有人走、特意没散尽的、最后一段，被你在旧道上走到天亮，认了出来。雾都城外的雾，又被晨光，拨淡了一寸。" },
     ],
   },
   {

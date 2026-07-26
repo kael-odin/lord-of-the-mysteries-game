@@ -479,7 +479,8 @@ export const STORY_17: StoryNode[] = [
       { text: "在街边生火休整", sub: "一碗烫豆浆：生命+8、灵性+6（每夜一次）", once: "rested18", next: "c18_hub", effects: [{ t: "hp", v: 8 }, { t: "sp", v: 6 }, { t: "sanity", v: 2 }] },
       { text: "再去灰河桥，看一看老水手那船", sub: "可选支线：灰河上，那「还惦记着」的船，今儿，来不来", once: "took_anchor", next: "arc_anchor_start" },
       { text: "合上眼，顺印记上桌（塔罗会）", sub: "灰雾之上，你的椅子温着", hidden: { flag: "tarot_eleventh_climax" }, next: "c18_climax" },
-      { text: "启程·回廷根·水仙花街", sub: "廷根的灯，也该回去看一眼了", req: { flag: "tarot_eleventh_done" }, next: "ending_momentkeeper" },
+      { text: "合上眼，顺印记走自己的路·行路", sub: "第十二桩差事的方向，自己走", req: { flag: "tarot_eleventh_done" }, next: "c19_start" },
+      { text: "【终】守此刻者·十一枚铜币并排，是我的了", sub: "达成第四卷·归处结局·合", req: { flag: "tarot_eleventh_done" }, next: "ending_momentkeeper" },
     ],
   },
   {
