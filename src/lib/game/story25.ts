@@ -263,6 +263,7 @@ export const STORY_25: StoryNode[] = [
       { text: "在路碑边生火休整", sub: "一壶雾灰茶：生命+8、灵性+6（每夜一次）", once: "rested26", next: "c26_hub", effects: [{ t: "hp", v: 8 }, { t: "sp", v: 6 }, { t: "sanity", v: 2 }] },
       { text: "再认一段你认过心的旧地方里的旧事", sub: "可选支线：你走过的旧地方里，那点被藏起来的，还有一段", once: "took_heartknower", req: { flag: "heartknower_down" }, next: "arc_heartknower_start" },
       { text: "合上眼，顺印记上桌（塔罗会）", sub: "灰雾之上，你的椅子温着", hidden: { flag: "tarot_nineteenth_climax" }, next: "c26_climax" },
+      { text: "合上眼，顺印记，往没被留下的那一段走·留", sub: "第七卷·开·变奏·留章", req: { flag: "tarot_nineteenth_done" }, next: "c27_start" },
       { text: "【终】认心者·自己认出一颗被藏起来的心，是我的了", sub: "达成第六卷·认心结局·合", req: { flag: "tarot_nineteenth_done" }, next: "ending_heartknower" },
     ],
   },
