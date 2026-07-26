@@ -17,8 +17,9 @@ import { STORY_15 } from "./story15";
 import { STORY_16 } from "./story16";
 import { STORY_17 } from "./story17";
 import { STORY_18 } from "./story18";
+import { STORY_19 } from "./story19";
 
-export const ALL_NODES: StoryNode[] = [...STORY_1, ...STORY_2, ...STORY_3, ...STORY_4, ...STORY_5, ...STORY_6, ...STORY_7, ...STORY_8, ...STORY_9, ...STORY_10, ...STORY_11, ...STORY_12, ...STORY_13, ...STORY_14, ...STORY_15, ...STORY_16, ...STORY_17, ...STORY_18];
+export const ALL_NODES: StoryNode[] = [...STORY_1, ...STORY_2, ...STORY_3, ...STORY_4, ...STORY_5, ...STORY_6, ...STORY_7, ...STORY_8, ...STORY_9, ...STORY_10, ...STORY_11, ...STORY_12, ...STORY_13, ...STORY_14, ...STORY_15, ...STORY_16, ...STORY_17, ...STORY_18, ...STORY_19];
 
 export const STORY_MAP: Record<string, StoryNode> = Object.fromEntries(
   ALL_NODES.map((n) => [n.id, n]),
@@ -80,6 +81,8 @@ export const ENDINGS: Record<string, { title: string; tone: "gold" | "red" | "gr
   momentkeeper: { title: "守此刻者", tone: "gold", hint: "你回贝克兰德守了四个当下。十一枚铜币并排在扶手上——塔罗会的椅子，把你停的此刻，记成，你的归处。第四卷，合。" },
   // 第十九章新结局（第五卷·开）——变奏章：行路章，走自己的路
   roadwalker: { title: "行路者", tone: "gold", hint: "你从贝克兰德出发自选一条旧道走完第一程。十二枚铜币并排在扶手上——塔罗会的椅子，替你，记你自己走的路。第五卷，开。" },
+  // 第二十章新结局（第五卷·承）——变奏章：同路章，与同路人同走一段
+  samepath: { title: "同路者", tone: "gold", hint: "你与塔罗会同路人在岔口认出彼此同走一程共同认完一桩没散尽的余烬。十三枚铜币并排在扶手上——塔罗会的椅子，替你，记你与同路人同走的那段路。第五卷，承。" },
 };
 
 export const ALL_ENDING_IDS = Object.keys(ENDINGS);
@@ -104,4 +107,5 @@ export const CHAPTER_TITLES: Record<number, string> = {
   17: "第十七章 · 灰雾之上·忆归",
   18: "第十八章 · 灰雾之上·归处",
   19: "第十九章 · 灰雾之下·行路",
+  20: "第二十章 · 灰雾之下·同路",
 };
