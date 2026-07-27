@@ -262,6 +262,7 @@ export const STORY_42: StoryNode[] = [
       { text: "在路碑边生火休整", sub: "一壶雾灰茶：生命+8、灵性+6（每夜一次）", once: "rested43", next: "c43_hub", effects: [{ t: "hp", v: 8 }, { t: "sp", v: 6 }, { t: "sanity", v: 2 }] },
       { text: "再递一笔你递过的地方里的旧事", sub: "可选支线：你走过的旧地方里，那点空着手心没承到的，还有一处", once: "took_passer", req: { flag: "passer_down" }, next: "arc_passer_start" },
       { text: "合上眼，顺印记上桌（塔罗会）", sub: "灰雾之上，你的椅子温着", hidden: { flag: "tarot_thirtysixth_climax" }, next: "c43_climax" },
+      { text: "合上眼，顺印记，往没人再递名的地方走·递名", sub: "第四十四程：从递一笔，到递名一个你承下来的名字（第十一卷·承）", req: { flag: "tarot_thirtysixth_done" }, next: "c44_start" },
       { text: "【终】递者·你自己把你承下来的往下一个人空着的手心里递过去一笔，是我的了", sub: "达成第十一卷·递结局·开", req: { flag: "tarot_thirtysixth_done" }, next: "ending_passer" },
     ],
   },

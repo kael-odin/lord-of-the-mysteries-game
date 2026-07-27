@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4780 150" width="100%" role="img" aria-label="四十三章剧情脉络：苏醒、值夜者、安提哥努斯之影、钟楼失踪案、绯红假面舞会、贝克兰德的雾、大雾霾、灰雾之上·塔罗会、海上之城、北陆·霜砚镇、南港归潮、旧都·回声、灰原骨冢·先人回响、灰雾深处·真我、灰雾最深处·归处、灰雾更深处·归名、灰雾之上·忆归、灰雾之上·归处、灰雾之下·行路、灰雾之下·同路、灰雾之下·各自、灰雾之下·自定、灰雾之下·认、灰雾之下·认名、灰雾之下·认人、灰雾之下·认心、灰雾之下·留、灰雾之下·留名、灰雾之下·留路、灰雾之下·留心、灰雾之下·等、灰雾之下·等名、灰雾之下·等路、灰雾之下·等心、灰雾之下·放、灰雾之下·放名、灰雾之下·放路、灰雾之下·放心、灰雾之下·承、灰雾之下·承名、灰雾之下·承路、灰雾之下·承心、灰雾之下·递">
-  <title>四十三章剧情脉络</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4900 150" width="100%" role="img" aria-label="四十四章剧情脉络：苏醒、值夜者、安提哥努斯之影、钟楼失踪案、绯红假面舞会、贝克兰德的雾、大雾霾、灰雾之上·塔罗会、海上之城、北陆·霜砚镇、南港归潮、旧都·回声、灰原骨冢·先人回响、灰雾深处·真我、灰雾最深处·归处、灰雾更深处·归名、灰雾之上·忆归、灰雾之上·归处、灰雾之下·行路、灰雾之下·同路、灰雾之下·各自、灰雾之下·自定、灰雾之下·认、灰雾之下·认名、灰雾之下·认人、灰雾之下·认心、灰雾之下·留、灰雾之下·留名、灰雾之下·留路、灰雾之下·留心、灰雾之下·等、灰雾之下·等名、灰雾之下·等路、灰雾之下·等心、灰雾之下·放、灰雾之下·放名、灰雾之下·放路、灰雾之下·放心、灰雾之下·承、灰雾之下·承名、灰雾之下·承路、灰雾之下·承心、灰雾之下·递、灰雾之下·递名">
+  <title>四十四章剧情脉络</title>
   <defs>
     <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0" stop-color="#c9a86a" stop-opacity="0"/>
@@ -9,10 +9,10 @@
       <stop offset="1" stop-color="#c9a86a" stop-opacity="0"/>
     </linearGradient>
   </defs>
-  <rect width="4780" height="150" fill="#0a0b12"/>
+  <rect width="4900" height="150" fill="#0a0b12"/>
 
   <!-- connecting ember line -->
-  <rect x="60" y="74" width="4660" height="1.5" fill="url(#line)"/>
+  <rect x="60" y="74" width="4780" height="1.5" fill="url(#line)"/>
 
   <!-- Vol.5 opener marker: a thin amber tick where the new volume begins -->
   <rect x="1932" y="60" width="1" height="30" fill="#c9a86a" opacity="0.35"/>
@@ -239,11 +239,16 @@
     <text x="4595" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#7a7f90">第 四 十 二 章</text>
     <text x="4595" y="108" text-anchor="middle" font-size="13" fill="#e7d9b8">承心·第十卷合</text>
     <text x="4595" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">承心者·三十五枚铜币</text>
-    <!-- 43 (current frontier — Vol.11 开·变奏章：递章·自己把你承下来的往下一个人空着的手心里递过去一笔并把手心朝下一个人伸过去) -->
-    <circle cx="4715" cy="75" r="11" fill="#c9a86a" opacity="0.18"/>
-    <circle cx="4715" cy="75" r="7" fill="#c9a86a"/>
-    <text x="4715" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#c9a86a" opacity="0.9">第四十三章 · 开</text>
+    <!-- 43 (Vol.11 开·变奏章：递章·自己把你承下来的往下一个人空着的手心里递过去一笔并把手心朝下一个人伸过去 — closed) -->
+    <circle cx="4715" cy="75" r="9" fill="#0a0b12" stroke="#c9a86a" stroke-width="1.5"/>
+    <text x="4715" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#7a7f90">第 四 十 三 章</text>
     <text x="4715" y="108" text-anchor="middle" font-size="13" fill="#e7d9b8">递·第十一卷开</text>
     <text x="4715" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">递者·三十六枚铜币</text>
+    <!-- 44 (current frontier — Vol.11 承·变奏章：递名章·自己把你承下来的那个名字往下一个人空着的手心里递过去并把手心朝下一个人伸过去) -->
+    <circle cx="4835" cy="75" r="11" fill="#c9a86a" opacity="0.18"/>
+    <circle cx="4835" cy="75" r="7" fill="#c9a86a"/>
+    <text x="4835" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#c9a86a" opacity="0.9">第四十四章 · 承</text>
+    <text x="4835" y="108" text-anchor="middle" font-size="13" fill="#e7d9b8">递名·第十一卷承</text>
+    <text x="4835" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">递名者·三十七枚铜币</text>
   </g>
 </svg>
