@@ -708,7 +708,7 @@ export const ENEMIES: Record<string, Enemy> = {
       { name: "吞向补潮", msg: "它把一缕属于某位没向了的人的「我去」吞回腔室，缝补自己", heal: 10, w: 1, belowHalf: true },
       { name: "潮冢成壁", msg: "湿白的潮气在它身周凝成一座潮冢般的厚壁", ward: 14, w: 2 },
     ],
-    loot: [{ t: "pounds", v: 18 }, { t: "flag", k: "drifter_down", v: 1 }, { t: "item", k: "seal_card", v: 1 }, { t: "item", k: "charm_anchor", v: 1 }, { t: "sanity", v: -8 }],
+    loot: [{ t: "pounds", v: 18 }, { t: "flag", k: "drifter_aspect_down", v: 1 }, { t: "item", k: "seal_card", v: 1 }, { t: "item", k: "charm_anchor", v: 1 }, { t: "sanity", v: -8 }],
     digest: 22,
   },
   // ---- 第十二章·旧都·塌缩学派·偷根之物 ----
@@ -770,7 +770,7 @@ export const ENEMIES: Record<string, Enemy> = {
       { name: "吞人补壳", msg: "它把一缕属于某位不再是人的人的「我是」吞回家室，缝补自己", heal: 12, w: 1, belowHalf: true },
       { name: "骨冢成壁", msg: "灰白的骨气在它身周凝成一座骨冢般的厚壁", ward: 15, w: 2 },
     ],
-    loot: [{ t: "pounds", v: 22 }, { t: "flag", k: "husk_down", v: 1 }, { t: "item", k: "seal_card", v: 1 }, { t: "item", k: "charm_anchor", v: 1 }, { t: "sanity", v: -10 }],
+    loot: [{ t: "pounds", v: 22 }, { t: "flag", k: "husk_aspect_down", v: 1 }, { t: "item", k: "seal_card", v: 1 }, { t: "item", k: "charm_anchor", v: 1 }, { t: "sanity", v: -10 }],
     digest: 26,
   },
   // ---- 第十四章·灰雾深处·镜我学派·偷我之物（第三卷·终篇）----

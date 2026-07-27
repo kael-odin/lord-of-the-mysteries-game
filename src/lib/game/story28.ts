@@ -91,8 +91,8 @@ export const STORY_28: StoryNode[] = [
       "你站在那段旧道上，把掌心那枚塔罗会铜币的、和印记对过的、那点温热，攥进掌心。",
     ],
     choices: [
-      { text: "以灵视在旧公寓门口旧道留下一段路", sub: "灵感判定：往没人再留路的旧道，留，下，一段路", check: { attr: "inspiration", dc: 16, label: "在旧公寓门口旧道留路", pass: "c29_shelter", passEffects: [{ t: "flag", k: "roadleaver_clue", v: 1 }], fail: "c29_shelter_fail", failEffects: [{ t: "sanity", v: -3 }] } },
-      { text: "在旧公寓门口旧道，静静坐到天亮，把那段路，磨，稳", sub: "意志判定：在没人再留路的旧道，独自，留路完一夜", check: { attr: "will", dc: 15, label: "留那段路", pass: "c29_shelter_walk", passEffects: [{ t: "sp", v: -3 }], fail: "c29_shelter_walk_fail", failEffects: [{ t: "sp", v: -5 }, { t: "sanity", v: -3 }] } },
+      { text: "以灵视在旧公寓门口那段旧道留下一段路", sub: "灵感判定：往没人再留路的旧道，留，下，一段路", check: { attr: "inspiration", dc: 16, label: "在旧公寓门口旧道留路", pass: "c29_shelter", passEffects: [{ t: "flag", k: "roadleaver_clue", v: 1 }], fail: "c29_shelter_fail", failEffects: [{ t: "sanity", v: -3 }] } },
+      { text: "在旧公寓门口那段旧道，静静坐到天亮，把那段路，磨，稳", sub: "意志判定：在没人再留路的旧道，独自，留路完一夜", check: { attr: "will", dc: 15, label: "留那段路", pass: "c29_shelter_walk", passEffects: [{ t: "sp", v: -3 }], fail: "c29_shelter_walk_fail", failEffects: [{ t: "sp", v: -5 }, { t: "sanity", v: -3 }] } },
     ],
   },
   {
@@ -106,8 +106,8 @@ export const STORY_28: StoryNode[] = [
       "你站在那段旧道上，把掌心那枚塔罗会铜币的、和印记对过的、那点温热，攥进掌心。",
     ],
     choices: [
-      { text: "以灵视在旧作坊门口旧道留下一段路", sub: "灵感判定：往没人再留路的旧道，留，下，一段路", check: { attr: "inspiration", dc: 16, label: "在旧作坊门口旧道留路", pass: "c29_shelter", passEffects: [{ t: "flag", k: "roadleaver_clue", v: 1 }], fail: "c29_shelter_fail", failEffects: [{ t: "sanity", v: -3 }] } },
-      { text: "在旧作坊门口旧道，静静坐到天亮，把那段路，磨，稳", sub: "意志判定：在没人再留路的旧道，独自，留路完一夜", check: { attr: "will", dc: 15, label: "留那段路", pass: "c29_shelter_walk", passEffects: [{ t: "sp", v: -3 }], fail: "c29_shelter_walk_fail", failEffects: [{ t: "sp", v: -5 }, { t: "sanity", v: -3 }] } },
+      { text: "以灵视在旧作坊门口那段旧道留下一段路", sub: "灵感判定：往没人再留路的旧道，留，下，一段路", check: { attr: "inspiration", dc: 16, label: "在旧作坊门口旧道留路", pass: "c29_shelter", passEffects: [{ t: "flag", k: "roadleaver_clue", v: 1 }], fail: "c29_shelter_fail", failEffects: [{ t: "sanity", v: -3 }] } },
+      { text: "在旧作坊门口那段旧道，静静坐到天亮，把那段路，磨，稳", sub: "意志判定：在没人再留路的旧道，独自，留路完一夜", check: { attr: "will", dc: 15, label: "留那段路", pass: "c29_shelter_walk", passEffects: [{ t: "sp", v: -3 }], fail: "c29_shelter_walk_fail", failEffects: [{ t: "sp", v: -5 }, { t: "sanity", v: -3 }] } },
     ],
   },
   {
@@ -121,8 +121,8 @@ export const STORY_28: StoryNode[] = [
       "你坐在旧路碑边那条旧道上，把掌心那枚塔罗会铜币的、和印记对过的、那点温热，攥进掌心。",
     ],
     choices: [
-      { text: "以灵视在旧路碑边旧道留下一段路", sub: "灵感判定：往没人再留路的旧道，留，下，一段路", check: { attr: "inspiration", dc: 16, label: "在旧路碑边旧道留路", pass: "c29_shelter", passEffects: [{ t: "flag", k: "roadleaver_clue", v: 1 }], fail: "c29_shelter_fail", failEffects: [{ t: "sanity", v: -3 }] } },
-      { text: "在旧路碑边旧道，静静坐到天亮，把那段路，磨，稳", sub: "意志判定：在没人再留路的旧道，独自，留路完一夜", check: { attr: "will", dc: 15, label: "留那段路", pass: "c29_shelter_walk", passEffects: [{ t: "sp", v: -3 }], fail: "c29_shelter_walk_fail", failEffects: [{ t: "sp", v: -5 }, { t: "sanity", v: -3 }] } },
+      { text: "以灵视在旧路碑边那条旧道留下一段路", sub: "灵感判定：往没人再留路的旧道，留，下，一段路", check: { attr: "inspiration", dc: 16, label: "在旧路碑边旧道留路", pass: "c29_shelter", passEffects: [{ t: "flag", k: "roadleaver_clue", v: 1 }], fail: "c29_shelter_fail", failEffects: [{ t: "sanity", v: -3 }] } },
+      { text: "在旧路碑边那条旧道，静静坐到天亮，把那段路，磨，稳", sub: "意志判定：在没人再留路的旧道，独自，留路完一夜", check: { attr: "will", dc: 15, label: "留那段路", pass: "c29_shelter_walk", passEffects: [{ t: "sp", v: -3 }], fail: "c29_shelter_walk_fail", failEffects: [{ t: "sp", v: -5 }, { t: "sanity", v: -3 }] } },
     ],
   },
   {

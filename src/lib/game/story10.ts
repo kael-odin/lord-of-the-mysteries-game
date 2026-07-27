@@ -212,7 +212,7 @@ export const STORY_10: StoryNode[] = [
       "你掌心的印记，凉了下来——不是冷，是，第四桩差事，办完了。",
       "灰雾之上，你分明感到，那张你落座的、第二十三张椅子，在你身后某个看不见的地方，又，温了一分。",
     ],
-    onEnter: [{ t: "flag", k: "drifter_down", v: 1 }, { t: "flag", k: "case_closed", v: 1 }, { t: "flag", k: "tarot_fourth_done", v: 1 }, { t: "digestion", v: 16 }, { t: "sanity", v: -6 }, { t: "pounds", v: 20 }],
+    onEnter: [{ t: "flag", k: "drifter_aspect_down", v: 1 }, { t: "flag", k: "case_closed", v: 1 }, { t: "flag", k: "tarot_fourth_done", v: 1 }, { t: "digestion", v: 16 }, { t: "sanity", v: -6 }, { t: "pounds", v: 20 }],
     choices: [{ text: "从旧航道遗址，退回南港·上桌复命", sub: "第四桩差事，办完了", next: "c11_climax" }],
   },
   {

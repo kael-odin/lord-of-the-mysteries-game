@@ -213,7 +213,7 @@ export const STORY_12: StoryNode[] = [
       "你掌心的印记，凉了下来——不是冷，是，第六桩差事，办完了。",
       "灰雾之上，你分明感到，那张你落座的、第二十三张椅子，在你身后某个看不见的地方，又，温了一分。",
     ],
-    onEnter: [{ t: "flag", k: "husk_down", v: 1 }, { t: "flag", k: "case13_closed", v: 1 }, { t: "flag", k: "tarot_sixth_done", v: 1 }, { t: "digestion", v: 20 }, { t: "sanity", v: -6 }, { t: "pounds", v: 24 }],
+    onEnter: [{ t: "flag", k: "husk_aspect_down", v: 1 }, { t: "flag", k: "case13_closed", v: 1 }, { t: "flag", k: "tarot_sixth_done", v: 1 }, { t: "digestion", v: 20 }, { t: "sanity", v: -6 }, { t: "pounds", v: 24 }],
     choices: [{ text: "从旧先人冢室，退回骨冢·上桌复命", sub: "第六桩差事，办完了", next: "c13_climax" }],
   },
   {
