@@ -43,8 +43,9 @@ import { STORY_41 } from "./story41";
 import { STORY_42 } from "./story42";
 import { STORY_43 } from "./story43";
 import { STORY_44 } from "./story44";
+import { STORY_45 } from "./story45";
 
-export const ALL_NODES: StoryNode[] = [...STORY_1, ...STORY_2, ...STORY_3, ...STORY_4, ...STORY_5, ...STORY_6, ...STORY_7, ...STORY_8, ...STORY_9, ...STORY_10, ...STORY_11, ...STORY_12, ...STORY_13, ...STORY_14, ...STORY_15, ...STORY_16, ...STORY_17, ...STORY_18, ...STORY_19, ...STORY_20, ...STORY_21, ...STORY_22, ...STORY_23, ...STORY_24, ...STORY_25, ...STORY_26, ...STORY_27, ...STORY_28, ...STORY_29, ...STORY_30, ...STORY_31, ...STORY_32, ...STORY_33, ...STORY_34, ...STORY_35, ...STORY_36, ...STORY_37, ...STORY_38, ...STORY_39, ...STORY_40, ...STORY_41, ...STORY_42, ...STORY_43, ...STORY_44];
+export const ALL_NODES: StoryNode[] = [...STORY_1, ...STORY_2, ...STORY_3, ...STORY_4, ...STORY_5, ...STORY_6, ...STORY_7, ...STORY_8, ...STORY_9, ...STORY_10, ...STORY_11, ...STORY_12, ...STORY_13, ...STORY_14, ...STORY_15, ...STORY_16, ...STORY_17, ...STORY_18, ...STORY_19, ...STORY_20, ...STORY_21, ...STORY_22, ...STORY_23, ...STORY_24, ...STORY_25, ...STORY_26, ...STORY_27, ...STORY_28, ...STORY_29, ...STORY_30, ...STORY_31, ...STORY_32, ...STORY_33, ...STORY_34, ...STORY_35, ...STORY_36, ...STORY_37, ...STORY_38, ...STORY_39, ...STORY_40, ...STORY_41, ...STORY_42, ...STORY_43, ...STORY_44, ...STORY_45];
 
 export const STORY_MAP: Record<string, StoryNode> = Object.fromEntries(
   ALL_NODES.map((n) => [n.id, n]),
@@ -155,6 +156,8 @@ export const ENDINGS: Record<string, { title: string; tone: "gold" | "red" | "gr
   passername: { title: "递名者", tone: "gold", hint: "你在塔罗会之外、被派的差事之外、走完定完的路之外、认出没被叫出名字的东西之外、认名被忘了名字的之外、认人被藏起来的人之外、认心被藏起来的心之外、留下一笔你的之外、留下一个名字之外、留下一段路之外、留下一颗心之外、等下一程之外、等下一个名字之外、等下一段路之外、等下一颗心之外、放下一笔你的之外、放下一个名字之外、放下一段路之外、放下一颗心之外、承下一笔你的之外、承下一个名字之外、承下一段路之外、承下一颗心之外、递下一笔你的之外——自己把你承下来的那个名字，往下一个人空着的手心里递过去，把它递下。三十七枚铜币并排在扶手上——塔罗会的椅子，替你，记你递下去的那个名字。第十一卷，承。" },
   // 第四十五章新结局（第十一卷·转）——变奏章：递路章，自己把你承下来的那段路往下一个人空着的手心里递过去
   passerroad: { title: "递路者", tone: "gold", hint: "你在塔罗会之外、被派的差事之外、走完定完的路之外、认出没被叫出名字的东西之外、认名被忘了名字的之外、认人被藏起来的人之外、认心被藏起来的心之外、留下一笔你的之外、留下一个名字之外、留下一段路之外、留下一颗心之外、等下一程之外、等下一个名字之外、等下一段路之外、等下一颗心之外、放下一笔你的之外、放下一个名字之外、放下一段路之外、放下一颗心之外、承下一笔你的之外、承下一个名字之外、承下一段路之外、承下一颗心之外、递下一笔你的之外、递下一个名字之外——自己把你承下来的那段路，往下一个人空着的手心里递过去，把它递下。三十八枚铜币并排在扶手上——塔罗会的椅子，替你，记你递下去的那段路。第十一卷，转。" },
+  // 第四十六章新结局（第十一卷·合·CLOSED）——变奏章：递心章，自己把你承下来的那颗心往下一个人空着的手心里递过去；主位合上第十一卷
+  passerheart: { title: "递心者", tone: "gold", hint: "你在塔罗会之外、被派的差事之外、走完定完的路之外、认出没被叫出名字的东西之外、认名被忘了名字的之外、认人被藏起来的人之外、认心被藏起来的心之外、留下一笔你的之外、留下一个名字之外、留下一段路之外、留下一颗心之外、等下一程之外、等下一个名字之外、等下一段路之外、等下一颗心之外、放下一笔你的之外、放下一个名字之外、放下一段路之外、放下一颗心之外、承下一笔你的之外、承下一个名字之外、承下一段路之外、承下一颗心之外、递下一笔你的之外、递下一个名字之外、递下一段路之外——自己把你承下来的那颗心，往下一个人空着的手心里递过去，把它递下。三十九枚铜币并排在扶手上——主位把那册书第十一卷轻轻合上，下一卷封皮空白。第十一卷合·CLOSED，塔罗会的椅子，替你，记你递下去的那颗心。" },
 };
 
 export const ALL_ENDING_IDS = Object.keys(ENDINGS);
@@ -205,4 +208,5 @@ export const CHAPTER_TITLES: Record<number, string> = {
   43: "第四十三章 · 灰雾之下·递",
   44: "第四十四章 · 灰雾之下·递名",
   45: "第四十五章 · 灰雾之下·递路",
+  46: "第四十六章 · 灰雾之下·递心",
 };
