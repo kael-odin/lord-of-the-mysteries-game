@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3820 150" width="100%" role="img" aria-label="三十五章剧情脉络：苏醒、值夜者、安提哥努斯之影、钟楼失踪案、绯红假面舞会、贝克兰德的雾、大雾霾、灰雾之上·塔罗会、海上之城、北陆·霜砚镇、南港归潮、旧都·回声、灰原骨冢·先人回响、灰雾深处·真我、灰雾最深处·归处、灰雾更深处·归名、灰雾之上·忆归、灰雾之上·归处、灰雾之下·行路、灰雾之下·同路、灰雾之下·各自、灰雾之下·自定、灰雾之下·认、灰雾之下·认名、灰雾之下·认人、灰雾之下·认心、灰雾之下·留、灰雾之下·留名、灰雾之下·留路、灰雾之下·留心、灰雾之下·等、灰雾之下·等名、灰雾之下·等路、灰雾之下·等心、灰雾之下·放">
-  <title>三十五章剧情脉络</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3940 150" width="100%" role="img" aria-label="三十六章剧情脉络：苏醒、值夜者、安提哥努斯之影、钟楼失踪案、绯红假面舞会、贝克兰德的雾、大雾霾、灰雾之上·塔罗会、海上之城、北陆·霜砚镇、南港归潮、旧都·回声、灰原骨冢·先人回响、灰雾深处·真我、灰雾最深处·归处、灰雾更深处·归名、灰雾之上·忆归、灰雾之上·归处、灰雾之下·行路、灰雾之下·同路、灰雾之下·各自、灰雾之下·自定、灰雾之下·认、灰雾之下·认名、灰雾之下·认人、灰雾之下·认心、灰雾之下·留、灰雾之下·留名、灰雾之下·留路、灰雾之下·留心、灰雾之下·等、灰雾之下·等名、灰雾之下·等路、灰雾之下·等心、灰雾之下·放、灰雾之下·放名">
+  <title>三十六章剧情脉络</title>
   <defs>
     <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0" stop-color="#c9a86a" stop-opacity="0"/>
@@ -9,10 +9,10 @@
       <stop offset="1" stop-color="#c9a86a" stop-opacity="0"/>
     </linearGradient>
   </defs>
-  <rect width="3820" height="150" fill="#0a0b12"/>
+  <rect width="3940" height="150" fill="#0a0b12"/>
 
   <!-- connecting ember line -->
-  <rect x="60" y="74" width="3700" height="1.5" fill="url(#line)"/>
+  <rect x="60" y="74" width="3820" height="1.5" fill="url(#line)"/>
 
   <!-- Vol.5 opener marker: a thin amber tick where the new volume begins -->
   <rect x="1932" y="60" width="1" height="30" fill="#c9a86a" opacity="0.35"/>
@@ -199,11 +199,16 @@
     <text x="3635" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#7a7f90">第 三 十 四 章</text>
     <text x="3635" y="108" text-anchor="middle" font-size="13" fill="#e7d9b8">等心·第八卷合</text>
     <text x="3635" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">等心者·二十七枚铜币</text>
-    <!-- 35 (current frontier — Vol.9 开·变奏章：放章·自己往灰雾里放一笔下来并松手·玩家翻开第九卷空白封皮) -->
-    <circle cx="3755" cy="75" r="11" fill="#c9a86a" opacity="0.18"/>
-    <circle cx="3755" cy="75" r="7" fill="#c9a86a"/>
-    <text x="3755" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#c9a86a" opacity="0.9">第三十五章 · 开</text>
+    <!-- 35 (Vol.9 开·变奏章：放章·自己往灰雾里放一笔下来并松手·玩家翻开第九卷空白封皮 — closed) -->
+    <circle cx="3755" cy="75" r="9" fill="#0a0b12" stroke="#c9a86a" stroke-width="1.5"/>
+    <text x="3755" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#7a7f90">第 三 十 五 章</text>
     <text x="3755" y="108" text-anchor="middle" font-size="13" fill="#e7d9b8">放·第九卷开</text>
     <text x="3755" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">放者·二十八枚铜币</text>
+    <!-- 36 (current frontier — Vol.9 承·变奏章：放名章·自己往灰雾里放一个名字下来并松手) -->
+    <circle cx="3875" cy="75" r="11" fill="#c9a86a" opacity="0.18"/>
+    <circle cx="3875" cy="75" r="7" fill="#c9a86a"/>
+    <text x="3875" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#c9a86a" opacity="0.9">第三十六章 · 承</text>
+    <text x="3875" y="108" text-anchor="middle" font-size="13" fill="#e7d9b8">放名·第九卷承</text>
+    <text x="3875" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">放名者·二十九枚铜币</text>
   </g>
 </svg>

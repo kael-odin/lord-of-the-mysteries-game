@@ -260,6 +260,7 @@ export const STORY_34: StoryNode[] = [
       { text: "在路碑边生火休整", sub: "一壶雾灰茶：生命+8、灵性+6（每夜一次）", once: "rested35", next: "c35_hub", effects: [{ t: "hp", v: 8 }, { t: "sp", v: 6 }, { t: "sanity", v: 2 }] },
       { text: "再放一笔你放过的地方里的旧事", sub: "可选支线：你走过的旧地方里，那点没人再放的，还有一处", once: "took_releaser", req: { flag: "releaser_down" }, next: "arc_releaser_start" },
       { text: "合上眼，顺印记上桌（塔罗会）", sub: "灰雾之上，你的椅子温着", hidden: { flag: "tarot_twentyeighth_climax" }, next: "c35_climax" },
+      { text: "合上眼，顺印记，往没人再放名的地方走·放名", sub: "第三十六程：从放一笔，到放一个名字（第九卷·承）", req: { flag: "tarot_twentyeighth_done" }, next: "c36_start" },
       { text: "【终】放者·自己往灰雾里放一笔下来并松手，是我的了", sub: "达成第九卷·放结局·开", req: { flag: "tarot_twentyeighth_done" }, next: "ending_releaser" },
     ],
   },
