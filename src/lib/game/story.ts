@@ -35,8 +35,9 @@ import { STORY_33 } from "./story33";
 import { STORY_34 } from "./story34";
 import { STORY_35 } from "./story35";
 import { STORY_36 } from "./story36";
+import { STORY_37 } from "./story37";
 
-export const ALL_NODES: StoryNode[] = [...STORY_1, ...STORY_2, ...STORY_3, ...STORY_4, ...STORY_5, ...STORY_6, ...STORY_7, ...STORY_8, ...STORY_9, ...STORY_10, ...STORY_11, ...STORY_12, ...STORY_13, ...STORY_14, ...STORY_15, ...STORY_16, ...STORY_17, ...STORY_18, ...STORY_19, ...STORY_20, ...STORY_21, ...STORY_22, ...STORY_23, ...STORY_24, ...STORY_25, ...STORY_26, ...STORY_27, ...STORY_28, ...STORY_29, ...STORY_30, ...STORY_31, ...STORY_32, ...STORY_33, ...STORY_34, ...STORY_35, ...STORY_36];
+export const ALL_NODES: StoryNode[] = [...STORY_1, ...STORY_2, ...STORY_3, ...STORY_4, ...STORY_5, ...STORY_6, ...STORY_7, ...STORY_8, ...STORY_9, ...STORY_10, ...STORY_11, ...STORY_12, ...STORY_13, ...STORY_14, ...STORY_15, ...STORY_16, ...STORY_17, ...STORY_18, ...STORY_19, ...STORY_20, ...STORY_21, ...STORY_22, ...STORY_23, ...STORY_24, ...STORY_25, ...STORY_26, ...STORY_27, ...STORY_28, ...STORY_29, ...STORY_30, ...STORY_31, ...STORY_32, ...STORY_33, ...STORY_34, ...STORY_35, ...STORY_36, ...STORY_37];
 
 export const STORY_MAP: Record<string, StoryNode> = Object.fromEntries(
   ALL_NODES.map((n) => [n.id, n]),
@@ -134,6 +135,8 @@ export const ENDINGS: Record<string, { title: string; tone: "gold" | "red" | "gr
   namereleaser: { title: "放名者", tone: "gold", hint: "你在塔罗会之外、被派的差事之外、走完定完的路之外、认出没被叫出名字的东西之外、认名被忘了名字的之外、认人被藏起来的人之外、认心被藏起来的心之外、留下一笔你的之外、留下一个名字之外、留下一段路之外、留下一颗心之外、等下一程之外、等下一个名字之外、等下一段路之外、等下一颗心之外、放下一笔你的之外——自己往灰雾里，放一个名字，下来，并松手，把它放下。二十九枚铜币并排在扶手上——塔罗会的椅子，替你，记你放下来的那个名字。第九卷，承。" },
   // 第三十七章新结局（第九卷·转）——变奏章：放路章，自己往灰雾里放一段路下来并松手
   roadreleaser: { title: "放路者", tone: "gold", hint: "你在塔罗会之外、被派的差事之外、走完定完的路之外、认出没被叫出名字的东西之外、认名被忘了名字的之外、认人被藏起来的人之外、认心被藏起来的心之外、留下一笔你的之外、留下一个名字之外、留下一段路之外、留下一颗心之外、等下一程之外、等下一个名字之外、等下一段路之外、等下一颗心之外、放下一笔你的之外、放下一个名字之外——自己往灰雾里，放一段路，下来，并松手，把它放下。三十枚铜币并排在扶手上——塔罗会的椅子，替你，记你放下来的那段路。第九卷，转。" },
+  // 第三十八章新结局（第九卷·合·CLOSED）——变奏章：放心章，自己往灰雾里放一颗心下来并松手；主位合上第九卷
+  heartreleaser: { title: "放心者", tone: "gold", hint: "你在塔罗会之外、被派的差事之外、走完定完的路之外、认出没被叫出名字的东西之外、认名被忘了名字的之外、认人被藏起来的人之外、认心被藏起来的心之外、留下一笔你的之外、留下一个名字之外、留下一段路之外、留下一颗心之外、等下一程之外、等下一个名字之外、等下一段路之外、等下一颗心之外、放下一笔你的之外、放下一个名字之外、放下一段路之外——自己往灰雾里，放一颗心，下来，并松手，把它放下。三十一枚铜币并排在扶手上——塔罗会的椅子，替你，记你放下来的那颗心。第九卷，合。" },
 };
 
 export const ALL_ENDING_IDS = Object.keys(ENDINGS);
@@ -176,4 +179,5 @@ export const CHAPTER_TITLES: Record<number, string> = {
   35: "第三十五章 · 灰雾之下·放",
   36: "第三十六章 · 灰雾之下·放名",
   37: "第三十七章 · 灰雾之下·放路",
+  38: "第三十八章 · 灰雾之下·放心",
 };
