@@ -254,6 +254,7 @@ export const STORY_33: StoryNode[] = [
       { text: "在路碑边生火休整", sub: "一壶雾灰茶：生命+8、灵性+6（每夜一次）", once: "rested34", next: "c34_hub", effects: [{ t: "hp", v: 8 }, { t: "sp", v: 6 }, { t: "sanity", v: 2 }] },
       { text: "再等心一处你等过心的旧地方里的旧事", sub: "可选支线：你走过的旧地方里，那点没人再等心的，还有一处", once: "took_heartwaiter", req: { flag: "heartwaiter_down" }, next: "arc_heartwaiter_start" },
       { text: "合上眼，顺印记上桌（塔罗会）", sub: "灰雾之上，你的椅子温着", hidden: { flag: "tarot_twentyseventh_climax" }, next: "c34_climax" },
+      { text: "合上眼，顺印记，往没人再放的那一段走·放", sub: "第三十五程：从等一颗心，到放一笔你的（第九卷·开）", req: { flag: "tarot_twentyseventh_done" }, next: "c35_start" },
       { text: "【终】等心者·自己往灰雾里等一颗心，是我的了", sub: "达成第八卷·等心结局·合", req: { flag: "tarot_twentyseventh_done" }, next: "ending_heartwaiter" },
     ],
   },
