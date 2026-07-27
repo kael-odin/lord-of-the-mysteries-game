@@ -70,6 +70,7 @@ const ENDING_GROUPS: { label: string; ids: string[] }[] = [
   { label: "第四十四章 · 灰雾之下·递名", ids: ["passername"] },
   { label: "第四十五章 · 灰雾之下·递路", ids: ["passerroad"] },
   { label: "第四十六章 · 灰雾之下·递心", ids: ["passerheart"] },
+  { label: "第四十七章 · 灰雾之下·回", ids: ["returner"] },
 ];
 
 type Tab = "endings" | "pathways" | "dossier" | "guide";
@@ -365,6 +366,7 @@ const DOSSIER: DossierSection[] = [
       { flag: "case44_closed", title: "递名·没递名案", desc: "你走过的旧地方里、另一位空着手心的旧人没承到的一个名字该到他手里的，被你把铜币与印记对过的温热贴在你承下来的那个名字上、往他空着的手心里递了过去、又让他接稳了再让它往下一程去。" },
       { flag: "case45_closed", title: "递路·没递路案", desc: "你走过的旧道里、另一位空着手心的旧人没承到的一段路该到他手里的，被你把铜币与印记对过的温热贴在你承下来的那段路上、往他空着的手心里递了过去、又让他接稳了再让它往下一程去。" },
       { flag: "case46_closed", title: "递心·没递心案", desc: "你走过的旧地方里、另一位空着手心的旧人没承到的一颗心该到他手里的，被你把铜币与印记对过的温热贴在你承下来的那颗心上、往他空着的手心里递了过去、又让他接稳了再让它往下一程去。" },
+      { flag: "case47_closed", title: "回·没回程案", desc: "你走过的旧地方里、另一程没人再回的、被你转过身往回走、把铜币与印记对过的温热贴在你走过的那一程上、回到它落下的那一处旧地方、又看稳了它落在哪里再让它往下一程去。" },
     ],
   },
   {

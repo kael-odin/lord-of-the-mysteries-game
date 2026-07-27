@@ -258,6 +258,7 @@ export const STORY_45: StoryNode[] = [
       { text: "在路碑边生火休整", sub: "一壶雾灰茶：生命+8、灵性+6（每夜一次）", once: "rested46", next: "c46_hub", effects: [{ t: "hp", v: 8 }, { t: "sp", v: 6 }, { t: "sanity", v: 2 }] },
       { text: "再递心一处你递心过的旧地方里的旧事", sub: "可选支线：你走过的旧地方里，那点空着手心没承到一颗心的，还有一处", once: "took_passerheart", req: { flag: "passerheart_down" }, next: "arc_passerheart_start" },
       { text: "合上眼，顺印记上桌（塔罗会）", sub: "灰雾之上，你的椅子温着", hidden: { flag: "tarot_thirtyninth_climax" }, next: "c46_climax" },
+      { text: "合上眼，顺印记，往没人再回的旧地方走·回", sub: "第四十七程：从递心一颗心，到回一程你走过的（第十二卷·开·OPENS Vol.12）", req: { flag: "tarot_thirtyninth_done" }, next: "c47_start" },
       { text: "【终】递心者·你自己把你承下来的那颗心往下一个人空着的手心里递过去，是我的了", sub: "达成第十一卷·递心结局·合·CLOSES Vol.11", req: { flag: "tarot_thirtyninth_done" }, next: "ending_passerheart" },
     ],
   },
