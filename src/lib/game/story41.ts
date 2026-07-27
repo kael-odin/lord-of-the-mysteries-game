@@ -258,6 +258,7 @@ export const STORY_41: StoryNode[] = [
       { text: "在路碑边生火休整", sub: "一壶雾灰茶：生命+8、灵性+6（每夜一次）", once: "rested42", next: "c42_hub", effects: [{ t: "hp", v: 8 }, { t: "sp", v: 6 }, { t: "sanity", v: 2 }] },
       { text: "再承心一颗你承心过的旧地方里的旧事", sub: "可选支线：你走过的旧地方里，那点没人再承心的，还有一颗", once: "took_bearerheart", req: { flag: "bearerheart_down" }, next: "arc_bearerheart_start" },
       { text: "合上眼，顺印记上桌（塔罗会）", sub: "灰雾之上，你的椅子温着", hidden: { flag: "tarot_thirtyfifth_climax" }, next: "c42_climax" },
+      { text: "合上眼，顺印记，往没人再递下的地方走·递", sub: "第四十三程：从承心，到递一笔你承下来的（第十一卷·开）", req: { flag: "tarot_thirtyfifth_done" }, next: "c43_start" },
       { text: "【终】承心者·自己在空着的手心里把落下来的承下来一颗心，是我的了", sub: "达成第十卷·承心结局·合·CLOSED", req: { flag: "tarot_thirtyfifth_done" }, next: "ending_bearerheart" },
     ],
   },
