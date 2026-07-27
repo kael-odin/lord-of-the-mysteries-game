@@ -36,7 +36,7 @@ import type { StoryNode } from "./types";
 //   要写什么，你，自己，写，也，松不松手，你，自己，定"。
 // - 新结局：heartreleaser（放心者·第三十一桩差事是你自己往灰雾里放一颗心下来并松手，
 //   塔罗会铜币第三十一枚——「椅子替你记你放下来的那颗心」）。
-// - c38_hub 不再衔接下一章（第九卷合·CLOSED；Vol.10 尚未开建）。下一卷封皮，空白。
+// - c38_hub 衔接 c39_start（第十卷·开·承章）。req tarot_thirtyfirst_done。
 //
 // 第九卷母题合：放心。放一段路，是，把你攥着的那段路，松，开，手；
 // 可放路之后，灰雾里，仍，有，心，没，被，放，下，来——不是没人攥过那心，
@@ -258,6 +258,7 @@ export const STORY_37: StoryNode[] = [
       { text: "在路碑边生火休整", sub: "一壶雾灰茶：生命+8、灵性+6（每夜一次）", once: "rested38", next: "c38_hub", effects: [{ t: "hp", v: 8 }, { t: "sp", v: 6 }, { t: "sanity", v: 2 }] },
       { text: "再放心一处你放心过的旧地方里的旧事", sub: "可选支线：你走过的旧地方里，那点没人再放心的，还有一处，也，还没松手", once: "took_heartreleaser", req: { flag: "heartreleaser_down" }, next: "arc_heartreleaser_start" },
       { text: "合上眼，顺印记上桌（塔罗会）", sub: "灰雾之上，你的椅子温着", hidden: { flag: "tarot_thirtyfirst_climax" }, next: "c38_climax" },
+      { text: "合上眼，顺印记，往没人再承的地方走·承", sub: "第三十九程：从放心，到承一笔落下来的（第十卷·开）", req: { flag: "tarot_thirtyfirst_done" }, next: "c39_start" },
       { text: "【终】放心者·自己往灰雾里放一颗心下来并松手，是我的了", sub: "达成第九卷·放心结局·合", req: { flag: "tarot_thirtyfirst_done" }, next: "ending_heartreleaser" },
     ],
   },
