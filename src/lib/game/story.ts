@@ -38,8 +38,9 @@ import { STORY_36 } from "./story36";
 import { STORY_37 } from "./story37";
 import { STORY_38 } from "./story38";
 import { STORY_39 } from "./story39";
+import { STORY_40 } from "./story40";
 
-export const ALL_NODES: StoryNode[] = [...STORY_1, ...STORY_2, ...STORY_3, ...STORY_4, ...STORY_5, ...STORY_6, ...STORY_7, ...STORY_8, ...STORY_9, ...STORY_10, ...STORY_11, ...STORY_12, ...STORY_13, ...STORY_14, ...STORY_15, ...STORY_16, ...STORY_17, ...STORY_18, ...STORY_19, ...STORY_20, ...STORY_21, ...STORY_22, ...STORY_23, ...STORY_24, ...STORY_25, ...STORY_26, ...STORY_27, ...STORY_28, ...STORY_29, ...STORY_30, ...STORY_31, ...STORY_32, ...STORY_33, ...STORY_34, ...STORY_35, ...STORY_36, ...STORY_37, ...STORY_38, ...STORY_39];
+export const ALL_NODES: StoryNode[] = [...STORY_1, ...STORY_2, ...STORY_3, ...STORY_4, ...STORY_5, ...STORY_6, ...STORY_7, ...STORY_8, ...STORY_9, ...STORY_10, ...STORY_11, ...STORY_12, ...STORY_13, ...STORY_14, ...STORY_15, ...STORY_16, ...STORY_17, ...STORY_18, ...STORY_19, ...STORY_20, ...STORY_21, ...STORY_22, ...STORY_23, ...STORY_24, ...STORY_25, ...STORY_26, ...STORY_27, ...STORY_28, ...STORY_29, ...STORY_30, ...STORY_31, ...STORY_32, ...STORY_33, ...STORY_34, ...STORY_35, ...STORY_36, ...STORY_37, ...STORY_38, ...STORY_39, ...STORY_40];
 
 export const STORY_MAP: Record<string, StoryNode> = Object.fromEntries(
   ALL_NODES.map((n) => [n.id, n]),
@@ -142,6 +143,7 @@ export const ENDINGS: Record<string, { title: string; tone: "gold" | "red" | "gr
   // 第三十九章新结局（第十卷·开）——变奏章：承章，自己在空着的手心里把落下来的承下来一笔并张开手心；玩家自己翻开第十卷空白封皮
   bearer: { title: "承者", tone: "gold", hint: "你在塔罗会之外、被派的差事之外、走完定完的路之外、认出没被叫出名字的东西之外、认名被忘了名字的之外、认人被藏起来的人之外、认心被藏起来的心之外、留下一笔你的之外、留下一个名字之外、留下一段路之外、留下一颗心之外、等下一程之外、等下一个名字之外、等下一段路之外、等下一颗心之外、放下一笔你的之外、放下一个名字之外、放下一段路之外、放下一颗心之外——自己在空着的手心里，承，一笔，落下来的，下来，并张开手心，把它承下。三十二枚铜币并排在扶手上——塔罗会的椅子，替你，记你承下来的那一笔。第十卷，开。" },
   bearername: { title: "承名者", tone: "gold", hint: "你在塔罗会之外、被派的差事之外、走完定完的路之外、认出没被叫出名字的东西之外、认名被忘了名字的之外、认人被藏起来的人之外、认心被藏起来的心之外、留下一笔你的之外、留下一个名字之外、留下一段路之外、留下一颗心之外、等下一程之外、等下一个名字之外、等下一段路之外、等下一颗心之外、放下一笔你的之外、放下一个名字之外、放下一段路之外、放下一颗心之外、承下一笔你的之外——自己在空着的手心里，承，下，一个名字，落下来的，下来，并张开手心，把它承下。三十三枚铜币并排在扶手上——塔罗会的椅子，替你，记你承下来的那个名字。第十卷，承。" },
+  bearerroad: { title: "承路者", tone: "gold", hint: "你在塔罗会之外、被派的差事之外、走完定完的路之外、认出没被叫出名字的东西之外、认名被忘了名字的之外、认人被藏起来的人之外、认心被藏起来的心之外、留下一笔你的之外、留下一个名字之外、留下一段路之外、留下一颗心之外、等下一程之外、等下一个名字之外、等下一段路之外、等下一颗心之外、放下一笔你的之外、放下一个名字之外、放下一段路之外、放下一颗心之外、承下一笔你的之外、承下一个名字之外——自己在空着的手心里，承，下，一段路，落下来的，下来，并张开手心，把它承下。三十四枚铜币并排在扶手上——塔罗会的椅子，替你，记你承下来的那段路。第十卷，转。" },
 };
 
 export const ALL_ENDING_IDS = Object.keys(ENDINGS);
@@ -187,4 +189,5 @@ export const CHAPTER_TITLES: Record<number, string> = {
   38: "第三十八章 · 灰雾之下·放心",
   39: "第三十九章 · 灰雾之下·承",
   40: "第四十章 · 灰雾之下·承名",
+  41: "第四十一章 · 灰雾之下·承路",
 };

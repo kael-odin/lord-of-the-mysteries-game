@@ -64,6 +64,7 @@ const ENDING_GROUPS: { label: string; ids: string[] }[] = [
   { label: "第三十八章 · 灰雾之下·放心", ids: ["heartreleaser"] },
   { label: "第三十九章 · 灰雾之下·承", ids: ["bearer"] },
   { label: "第四十章 · 灰雾之下·承名", ids: ["bearername"] },
+  { label: "第四十一章 · 灰雾之下·承路", ids: ["bearerroad"] },
 ];
 
 type Tab = "endings" | "pathways" | "dossier" | "guide";
@@ -353,6 +354,7 @@ const DOSSIER: DossierSection[] = [
       { flag: "case38_closed", title: "放心·没放心案", desc: "你走过的旧地方、另一位旧人没放下来的最后一颗心，被你把铜币与印记对过的温热贴在旧物上、把那颗心放了下来并松了手。" },
       { flag: "case39_closed", title: "承·没承案", desc: "你走过的旧地方、另一位旧人没承下来的最后一笔，被你把铜币与印记对过的温热搁在掌心、把空着的手心朝上接住了那一笔落下来的、承了下来又让它过去。" },
       { flag: "case40_closed", title: "承名·没承名案", desc: "你走过的旧地方、另一位旧人没承下来的最后一个名字，被你把铜币与印记对过的温热搁在掌心、把空着的手心朝上接住了那个名字落下来的、承了下来又让它过去。" },
+      { flag: "case41_closed", title: "承路·没承路案", desc: "你走过的旧道里、另一位旧人没承下来的最后一段路，被你把铜币与印记对过的温热贴在旧道上、把空着的手心朝上接住了那段路落下来的、承了下来又让它过去。" },
     ],
   },
   {
