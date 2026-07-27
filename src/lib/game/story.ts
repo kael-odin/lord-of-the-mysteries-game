@@ -31,8 +31,9 @@ import { STORY_29 } from "./story29";
 import { STORY_30 } from "./story30";
 import { STORY_31 } from "./story31";
 import { STORY_32 } from "./story32";
+import { STORY_33 } from "./story33";
 
-export const ALL_NODES: StoryNode[] = [...STORY_1, ...STORY_2, ...STORY_3, ...STORY_4, ...STORY_5, ...STORY_6, ...STORY_7, ...STORY_8, ...STORY_9, ...STORY_10, ...STORY_11, ...STORY_12, ...STORY_13, ...STORY_14, ...STORY_15, ...STORY_16, ...STORY_17, ...STORY_18, ...STORY_19, ...STORY_20, ...STORY_21, ...STORY_22, ...STORY_23, ...STORY_24, ...STORY_25, ...STORY_26, ...STORY_27, ...STORY_28, ...STORY_29, ...STORY_30, ...STORY_31, ...STORY_32];
+export const ALL_NODES: StoryNode[] = [...STORY_1, ...STORY_2, ...STORY_3, ...STORY_4, ...STORY_5, ...STORY_6, ...STORY_7, ...STORY_8, ...STORY_9, ...STORY_10, ...STORY_11, ...STORY_12, ...STORY_13, ...STORY_14, ...STORY_15, ...STORY_16, ...STORY_17, ...STORY_18, ...STORY_19, ...STORY_20, ...STORY_21, ...STORY_22, ...STORY_23, ...STORY_24, ...STORY_25, ...STORY_26, ...STORY_27, ...STORY_28, ...STORY_29, ...STORY_30, ...STORY_31, ...STORY_32, ...STORY_33];
 
 export const STORY_MAP: Record<string, StoryNode> = Object.fromEntries(
   ALL_NODES.map((n) => [n.id, n]),
@@ -122,6 +123,8 @@ export const ENDINGS: Record<string, { title: string; tone: "gold" | "red" | "gr
   namewaiter: { title: "等名者", tone: "gold", hint: "你在塔罗会之外、被派的差事之外、走完定完的路之外、认出没被叫出名字的东西之外、认名被忘了名字的之外、认人被藏起来的人之外、认心被藏起来的心之外、留下一笔你的之外、留下一个名字之外、留下一段路之外、留下一颗心之外、等下一程之外——自己往灰雾里，等一个名字，把它等名下来。二十五枚铜币并排在扶手上——塔罗会的椅子，替你，记你等下来的那个名字。第八卷，承。" },
   // 第三十三章新结局（第八卷·转）——变奏章：等路章，自己往灰雾里等一段路
   roadwaiter: { title: "等路者", tone: "gold", hint: "你在塔罗会之外、被派的差事之外、走完定完的路之外、认出没被叫出名字的东西之外、认名被忘了名字的之外、认人被藏起来的人之外、认心被藏起来的心之外、留下一笔你的之外、留下一个名字之外、留下一段路之外、留下一颗心之外、等下一程之外、等下一个名字之外——自己往灰雾里，等一段路，把它等下来。二十六枚铜币并排在扶手上——塔罗会的椅子，替你，记你等下来的那段路。第八卷，转。" },
+  // 第三十四章新结局（第八卷·合·CLOSED）——变奏章：等心章，自己往灰雾里等一颗心；主位合上第八卷
+  heartwaiter: { title: "等心者", tone: "gold", hint: "你在塔罗会之外、被派的差事之外、走完定完的路之外、认出没被叫出名字的东西之外、认名被忘了名字的之外、认人被藏起来的人之外、认心被藏起来的心之外、留下一笔你的之外、留下一个名字之外、留下一段路之外、留下一颗心之外、等下一程之外、等下一个名字之外、等下一段路之外——自己往灰雾里，等一颗心，把它等下来。二十七枚铜币并排在扶手上——塔罗会的椅子，替你，记你等下来的那颗心。第八卷，合。" },
 };
 
 export const ALL_ENDING_IDS = Object.keys(ENDINGS);
@@ -160,4 +163,5 @@ export const CHAPTER_TITLES: Record<number, string> = {
   31: "第三十一章 · 灰雾之下·等",
   32: "第三十二章 · 灰雾之下·等名",
   33: "第三十三章 · 灰雾之下·等路",
+  34: "第三十四章 · 灰雾之下·等心",
 };

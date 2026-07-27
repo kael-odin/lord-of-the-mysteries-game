@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3580 150" width="100%" role="img" aria-label="三十三章剧情脉络：苏醒、值夜者、安提哥努斯之影、钟楼失踪案、绯红假面舞会、贝克兰德的雾、大雾霾、灰雾之上·塔罗会、海上之城、北陆·霜砚镇、南港归潮、旧都·回声、灰原骨冢·先人回响、灰雾深处·真我、灰雾最深处·归处、灰雾更深处·归名、灰雾之上·忆归、灰雾之上·归处、灰雾之下·行路、灰雾之下·同路、灰雾之下·各自、灰雾之下·自定、灰雾之下·认、灰雾之下·认名、灰雾之下·认人、灰雾之下·认心、灰雾之下·留、灰雾之下·留名、灰雾之下·留路、灰雾之下·留心、灰雾之下·等、灰雾之下·等名、灰雾之下·等路">
-  <title>三十三章剧情脉络</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3700 150" width="100%" role="img" aria-label="三十四章剧情脉络：苏醒、值夜者、安提哥努斯之影、钟楼失踪案、绯红假面舞会、贝克兰德的雾、大雾霾、灰雾之上·塔罗会、海上之城、北陆·霜砚镇、南港归潮、旧都·回声、灰原骨冢·先人回响、灰雾深处·真我、灰雾最深处·归处、灰雾更深处·归名、灰雾之上·忆归、灰雾之上·归处、灰雾之下·行路、灰雾之下·同路、灰雾之下·各自、灰雾之下·自定、灰雾之下·认、灰雾之下·认名、灰雾之下·认人、灰雾之下·认心、灰雾之下·留、灰雾之下·留名、灰雾之下·留路、灰雾之下·留心、灰雾之下·等、灰雾之下·等名、灰雾之下·等路、灰雾之下·等心">
+  <title>三十四章剧情脉络</title>
   <defs>
     <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0" stop-color="#c9a86a" stop-opacity="0"/>
@@ -9,10 +9,10 @@
       <stop offset="1" stop-color="#c9a86a" stop-opacity="0"/>
     </linearGradient>
   </defs>
-  <rect width="3580" height="150" fill="#0a0b12"/>
+  <rect width="3700" height="150" fill="#0a0b12"/>
 
   <!-- connecting ember line -->
-  <rect x="60" y="74" width="3460" height="1.5" fill="url(#line)"/>
+  <rect x="60" y="74" width="3580" height="1.5" fill="url(#line)"/>
 
   <!-- Vol.5 opener marker: a thin amber tick where the new volume begins -->
   <rect x="1932" y="60" width="1" height="30" fill="#c9a86a" opacity="0.35"/>
@@ -189,11 +189,16 @@
     <text x="3395" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#7a7f90">第 三 十 二 章</text>
     <text x="3395" y="108" text-anchor="middle" font-size="13" fill="#e7d9b8">等名·第八卷承</text>
     <text x="3395" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">等名者·二十五枚铜币</text>
-    <!-- 33 (current frontier — Vol.8 转·变奏章：等路章·自己往灰雾里等一段路) -->
-    <circle cx="3515" cy="75" r="11" fill="#c9a86a" opacity="0.18"/>
-    <circle cx="3515" cy="75" r="7" fill="#c9a86a"/>
-    <text x="3515" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#c9a86a" opacity="0.9">第三十三章 · 转</text>
+    <!-- 33 (Vol.8 转 — closed) -->
+    <circle cx="3515" cy="75" r="9" fill="#0a0b12" stroke="#c9a86a" stroke-width="1.5"/>
+    <text x="3515" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#7a7f90">第 三 十 三 章</text>
     <text x="3515" y="108" text-anchor="middle" font-size="13" fill="#e7d9b8">等路·第八卷转</text>
     <text x="3515" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">等路者·二十六枚铜币</text>
+    <!-- 34 (current frontier — Vol.8 合·变奏章：等心章·自己往灰雾里等一颗心·主位合上第八卷) -->
+    <circle cx="3635" cy="75" r="11" fill="#c9a86a" opacity="0.18"/>
+    <circle cx="3635" cy="75" r="7" fill="#c9a86a"/>
+    <text x="3635" y="44" text-anchor="middle" font-size="10" letter-spacing="2" fill="#c9a86a" opacity="0.9">第三十四章 · 合</text>
+    <text x="3635" y="108" text-anchor="middle" font-size="13" fill="#e7d9b8">等心·第八卷合</text>
+    <text x="3635" y="128" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" fill="#6a6f80">等心者·二十七枚铜币</text>
   </g>
 </svg>

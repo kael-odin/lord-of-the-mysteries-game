@@ -57,6 +57,7 @@ const ENDING_GROUPS: { label: string; ids: string[] }[] = [
   { label: "第三十一章 · 灰雾之下·等", ids: ["waiter"] },
   { label: "第三十二章 · 灰雾之下·等名", ids: ["namewaiter"] },
   { label: "第三十三章 · 灰雾之下·等路", ids: ["roadwaiter"] },
+  { label: "第三十四章 · 灰雾之下·等心", ids: ["heartwaiter"] },
 ];
 
 type Tab = "endings" | "pathways" | "dossier" | "guide";
@@ -339,6 +340,7 @@ const DOSSIER: DossierSection[] = [
       { flag: "case31_closed", title: "等·没等下案", desc: "你走过的旧地方、另一位旧人没等下来的最后一处，被你把铜币与印记对过的温热贴在旧物上、把那一程等了下来。" },
       { flag: "case32_closed", title: "等名·没等下名案", desc: "你走过的旧地方、另一位旧人没等名下来的最后一处，被你把铜币与印记对过的温热贴在旧物上、把那个名字等名了下来。" },
       { flag: "case33_closed", title: "等路·没等下路案", desc: "你走过的旧道、另一位旧人没等路下来的最后一段，被你把铜币与印记对过的温热贴在旧物上、把那段路等了下来。" },
+      { flag: "case34_closed", title: "等心·没等下心案", desc: "你走过的旧地方、另一位旧人没等心下来的最后一颗，被你把铜币与印记对过的温热贴在旧物上、把那颗心等了下来。" },
     ],
   },
   {
